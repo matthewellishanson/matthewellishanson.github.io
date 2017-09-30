@@ -1,134 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Matt Hanson</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-  <script src="js/modernizr.js"></script>
-  <script src="js/header-video.js"></script>
-  <script type='text/javascript' src='https://cdn.knightlab.com/libs/soundcite/latest/js/soundcite.min.js'></script>
-  <script type="text/javascript" src="js/bigread.min.js"></script>
-  <script type="text/javascript">
-  $(document).ready(function () {
-          "use strict";
-  setTimeout(function(){
-      $('.navbar').fadeIn(2000)
-  },0);
-  });
-</script>
-</head>
-<body>
-  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-  <div class="container">
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="dropdown navbar-custom navbar-nav navbar-li">
-      <button type="button" id="dropdownMenu2" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle" aria-haspopup="true" aria-expanded="false">The Wounds of Whiteclay
-        <span class="caret"></span>
-      </button>
-      <button type="button" class="btn btn-secondary dropdown-toggle mobile" data-toggle="dropdown">
-            <i class="fa fa-bars"></i>
-      </button>
-      <ul class="dropdown-menu multi-level" aria-labelledby="dropdownMenu1">
-        <!--                Hidden li included to remove active class from about link when scrolled up past about section -->
-          <li class="hidden">
-          <a href="#page-top"></a>
-          </li>
+  <head>
 
-          <li>
-              <a class="page-scroll" href="../_home.html">Home</a>
-          </li>
-          <li>
-                      <a class="page-scroll" href="/history">History</a>
-          </li>
-          <li>
-                      <a class="page-scroll" href="/arianna">A Mom for All Ages</a>
-          </li>
-          <li>
-                      <a class="page-scroll" href="/brewer">Colonel Brewer's Ride</a>
-          </li>
-          <li>
-                      <a class="page-scroll" href="/economics">The Cost of a Can of Beer</a>
-          </li>
-          <li>
-                      <a class="page-scroll" href="/dayinthelife">A Day in the Life of Whiteclay</a>
-          </li>
-          <li>
-                      <a class="page-scroll" href="/death">Death on the Reservation</a>
-          </li>
-          <li>
-                      <a class="page-scroll" href="/standingrock">Letters from Standing Rock</a>
-          </li>
-          <li>
-                      <a class="page-scroll" href="/abram">Shepherd of the Streets</a>
-          </li>
-          <li>
-                      <a class="page-scroll" href="/beareagle">A Legal Eagle</a>
-          </li>
-          <li>
-                      <a class="page-scroll" href="/brewer-threats">Threats and Thank-you's</a>
-          </li>
-          <li>
-                      <a class="page-scroll" href="/data">Data</a>
-          </li>
-      </ul>
-  </div>
-  <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-  </div>
-    <!-- /.navbar-collapse -->
-  </div>
-  <!-- /.container -->
-</nav>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <title>Scrolling Nav - Start Bootstrap Template</title>
 
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Custom styles for this template -->
+    <link href="css/scrolling-nav.css" rel="stylesheet">
+    <link href="css/theme.css" rel="stylesheet">
 
+  </head>
 
+  <body id="page-top">
 
-
-<div class="panel0-container">
-  <div class="panel0">
-      <img src="img/capetown.jpg">
-  </div>
-</div>
-
-<header class="intro">
-  <div class="intro-body">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       <div class="container">
-          <div class="row">
-               <div class="col-md-12">
-               <div class="head-contain">
-               <h1 class="content__heading">The Wounds of Whiteclay: <span class="sub-brand">Nebraska's Shameful Legacy</span></h1>
-                  <p class="intro-text">The official population of Whiteclay, Nebraska is 12. But thanks to a lucrative liquor trade that's heavily dependent on customers from the neighboring, alcohol-free Pine Ridge Reservation in South Dakota, there are many more lives at stake in this unincorporated border town.</p>
-                  <a href="#content-container" class="btn btn-circle page-scroll">
-                      <i class="fa fa-angle-double-down animated"></i>
-                  </a>
-              </div>
-              </div>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#resume">Resume</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="panel0-container">
+        <div class="panel0">
+            <img src="img/cover4.jpg">
+        </div>
+    </div>
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                     <div class="col-md-6 col-md-offset-3">
+                     <div class="head-contain">
+                     <h1 class="brand-heading">Matt Hanson</h1>
+                        <p class="intro-text">Writer | Data Reporter | Web Developer</p>
+                        <a href="#content-container" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>About this page</h2>
+            <p class="lead"><span class="drop">H</span>ello there. I confess I'm not sure how one introduces one's own professional website. The whole concept seems both redundant and self-indulgent. But since some sort of introduction is needed here, let's start with the basics.
+My name is Matt Hanson and I'm a senior journalism major at the University of Nebraska-Lincoln. These days, I mostly specialize in data reporting and web design in my work for college publications and as an intern at professional outlets such as The Buffalo News and The Omaha World-Herald, where I am presently employed as a part-time data fellow.</p>
           </div>
+        </div>
       </div>
-  </div>
-</header>
+    </section>
 
-<div id="content-wrapper">
-<div id="content-container">
-
-  <div class="row">
-      <div class="col-sm-7 col-sm-offset-1 col-xs-10 col-xs-offset-1">
-          <p><span class="drop">I</span>n the southwestern corner of South Dakota, just off I-90 as it scrapes by the Badlands, there lies a beautiful expanse of rolling prairie, interrupted only by ridges of rugged rock face and pine. This is the Pine Ridge Reservation—home to the Oglala Lakota. As a band of the powerful Lakota tribe, most living on the reservation have storied lineages, some even tracing back to Crazy Horse, Sitting Bull and Red Cloud. But the spiritual, nomadic culture of their ancestors is not what exists today. It’s been replaced by injustices, tragedies and sorrows spanning more than a century. Chief among them today is a small, unincorporated village on the other side of the South Dakota-Nebraska border.</p><p>Whiteclay, Nebraska. 12 people. Four liquor stores. More than 42 million cans of beer sold in the last 10 years.</p><p>It fuels alcoholism that affects nearly every family on a reservation where alcohol is illegal. Here, in the most impoverished county in the United States, it spurs domestic violence, murder, suicide and birth defects that are unprecedented almost anywhere else in the country.</p>
+    <section id="resume" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <object data="/img/resume.pdf" type="application/pdf" width="100%" height="800px">
+              <iframe src="/img/resume.pdf" width="100%" height="800px" style="border: none;">
+                This browser does not support PDFs. Please download the PDF to view it: <a href="/img/resume.pdf">Download PDF</a>
+              </iframe>
+            </object>
+          </div>
+        </div>
       </div>
-  </div>
+    </section>
 
+    <section id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Contact us</h2>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
 
-</div>
-</div>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-</body>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="js/scrolling-nav.js"></script>
+
+  </body>
 
 </html>
