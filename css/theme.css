@@ -15,7 +15,8 @@
 }
 
 .navbar-custom .navbar-brand {
-    font-weight: 700;
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .navbar-custom .navbar-brand:focus {
@@ -101,7 +102,7 @@
     }
 
 
-    
+
 
     .navbar-custom.top-nav-collapse {
         padding: 0;
@@ -233,7 +234,7 @@
 }
 
 .expand-image {
-    cursor: -webkit-zoom-in; 
+    cursor: -webkit-zoom-in;
     cursor: -moz-zoom-in;
 }
 
@@ -274,13 +275,13 @@ img.ajmint-unveil {
 
     .intro .intro-body .intro-text,
     .intro .intro-body .brand-heading {
-     text-shadow: none; 
+     text-shadow: none;
     }
 
     .intro .intro-body .intro-text{
         font-size: 1.2em;
     }
-    
+
     .intro .intro-body .brand-heading {
         font-size: 2.2em;
     }
@@ -291,7 +292,7 @@ img.ajmint-unveil {
 
     .panel0-container{
         margin-top: 50px;
-    }    
+    }
 
 }
 
@@ -346,7 +347,7 @@ img.ajmint-unveil {
     -moz-animation-timing-function: linear;
 }
 
-@-webkit-keyframes pulse {    
+@-webkit-keyframes pulse {
     0% {
         -webkit-transform: scale(1);
         transform: scale(1);
@@ -363,7 +364,7 @@ img.ajmint-unveil {
     }
 }
 
-@-moz-keyframes pulse {    
+@-moz-keyframes pulse {
     0% {
         -moz-transform: scale(1);
         transform: scale(1);
