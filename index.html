@@ -208,7 +208,6 @@ BigreadAnalytics.init({
     
         <div id="resume" class="row">
 <div class="col-xs-10 col-xs-offset-1">
-<h1 class="teaser-head">Resume</h1>
 <div class="responsive-object">
 <iframe src="/img/resume.pdf" width="100%" height="1100px" style="border: none;">
 This browser does not support PDFs. Please download the PDF to view it: <a href="/img/resume.pdf">Download PDF</a>
@@ -299,7 +298,18 @@ var BIGREAD_GLOBAL = {
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+    <script>
+      (function(w, d){
+        var id='embedly-platform', n = 'script';
+        if (!d.getElementById(id)){
+          w.embedly = w.embedly || function() {(w.embedly.q = w.embedly.q || []).push(arguments);};
+            var e = d.createElement(n); e.id = id; e.async=1;
+          e.src = ('https:' === document.location.protocol ? 'https' : 'http') + '://cdn.embedly.com/widgets/platform.js';
+            var s = d.getElementsByTagName(n)[0];
+            s.parentNode.insertBefore(e, s);
+        }
+      })(window, document);
+    </script>
     <script type="text/javascript">
     function openNav() {
       document.getElementById("mySidenav").style.width = "100%";

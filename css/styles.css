@@ -82,7 +82,7 @@ font-family: 'Ubuntu Mono', monospace;
 
 #about {
   margin-top: 8%;
-  padding-bottom: 5%;
+  padding-bottom: 3%;
 }
 
 #about a {
@@ -91,7 +91,7 @@ font-family: 'Ubuntu Mono', monospace;
 
 #reporting {
   padding-top: 5%;
-  padding-bottom: 5%;
+  padding-bottom: 3%;
 }
 
 #reporting a {
@@ -99,12 +99,17 @@ font-family: 'Ubuntu Mono', monospace;
 }
 
 #visuals {
-  padding-top: 5%;
+  padding-top: 3%;
   margin-bottom: 8%;
 }
 
 #visuals a {
   font-weight: 600;
+}
+
+#resume {
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
 .responsive-object {
@@ -495,10 +500,7 @@ font-family: 'Ubuntu Mono', monospace;
 }
 
 
-#resume {
-  padding-top: 5%;
-  padding-bottom: 5%;
-}
+
 /* Teaser */
 
 .teaser {
@@ -523,9 +525,11 @@ font-family: 'Ubuntu Mono', monospace;
 
 .teaser-head {
     text-align: center;
-    background: #561b8d;
+    background: black;
     color: white;
     margin-bottom: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 .teaser-title {
@@ -888,10 +892,10 @@ p {
       margin-left: 8.33333333%;
     }
     .navbar-custom {
-        background: #561b8d;
+        background: black;
     }
     .navbar-custom.top-nav-collapse {
-        background: #561b8d;
+        background: black;
     }
     .col-xs-10 {
         width: 83.33%;
@@ -931,21 +935,21 @@ p {
       transform: scale(1.5, 1.5);
     }
     #reporting {
-      padding-top: 10%;
-      padding-top: 10%;
+      padding-top: 8%;
+      padding-bottom: 4%;
     }
     #visuals {
-      padding-top: 10%;
       padding-bottom: 10%;
     }
     #about {
-      padding-top: 10%;
-      padding-bottom: 10%;
+      padding-top: 5%;
+      padding-bottom: 5%;
     }
     .teaser-head {
       font-size: 2em;
       padding-left: 2%;
       padding-right: 2%;
+      margin-bottom: 8%;
     }
 }
 
@@ -986,7 +990,7 @@ p {
     }
 
     .navbar-custom.top-nav-collapse {
-        background: #561b8d;
+        background: black;
     }
 
     .dropdown.navbar-custom.navbar-nav.navbar-li {
@@ -1085,7 +1089,7 @@ p {
     }
 
     .intro .intro-body {
-        background: #561b8d;
+        background: black;
     }
 
     .intro .intro-body .brand-heading {
