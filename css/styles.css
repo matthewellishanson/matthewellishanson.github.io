@@ -80,6 +80,165 @@ font-family: 'Ubuntu Mono', monospace;
     margin-right: 1px;
 }
 
+/* readiscover */
+
+#readiscover h2 {
+    margin-bottom: 1em;
+}
+
+#passage-text {
+    padding: 5%;
+}
+.passage-audio {
+    height: 2em;
+    position: relative;
+    margin: 2.5% 0 2.5% 0;
+}
+#passage-audio {
+    width: 100%;
+    max-height: 2em;
+}
+#passage-text.speaking {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.autofocus-current-word,
+.playback-rate {
+    font-size: smaller;
+}
+.autofocus-current-word label,
+.playback-rate label {
+    font-weight: bold;
+}
+
+.playback-rate {
+    position: relative;
+    margin: 2.5% 0 2.5% 0;
+}
+q {
+    quotes: "“" "”" "‘" "’";
+}
+.section-heading {
+    display: none;
+}
+.passage p {
+    line-height: 1.4em;
+}
+.verse-start {
+    line-height: 0;
+}
+.initialized span[data-begin]:focus,
+.initialized span[data-begin]:hover {
+    color: rgb(255,215,0);
+}
+.initialized span[data-begin].speaking {
+    color: rgb(255,215,0);
+}
+.initialized span[data-begin] {
+    cursor: pointer;
+}
+.error {
+    color: red;
+}
+
+article > footer {
+    border-top: solid 1px gray;
+    padding-top: 1em;
+    margin-top: 1em;
+}
+
+footer {
+    margin-bottom: 0.5em;
+    line-height: 1.4em;
+    font-size: small;
+}
+footer img {
+    vertical-align: text-bottom;
+}
+
+.story .media {
+    margin-top: 0px;
+    height: 100%;
+    padding: 0;
+}
+
+.story .text {
+    overflow-y: scroll;
+    height: 100%;
+    padding: 0;
+    background: rgb(40,40,40);
+}
+
+
+.story {
+    color: white;
+    background: rgba(255,215,0,.75);
+    height: 500px;
+    display: block;
+    position: relative;
+    -moz-box-shadow:   0 0 10px #000000;
+   -webkit-box-shadow:  0 0 10px #000000;
+    box-shadow:     0 0 10px #000000;
+    margin: 3% 0 3% 0;
+}
+
+.margin {
+  max-width: 90%;
+  max-height: 90%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  resize: both;
+  overflow: auto;
+   -moz-box-shadow:   0 0 20px #000000;
+   -webkit-box-shadow:  0 0 20px #000000;
+    box-shadow:     0 0 20px #000000;
+}
+
+#readiscover .title {
+    position: relative;
+    margin: 3% 0 3% 0;
+}
+#readiscover .head {
+    position: relative; 
+    width: 100%;
+    height: 42px;
+    margin-top: 5%;
+}
+
+.controls {
+    position: relative;
+    margin: 5% 0 5% 0;
+}
+
+.logo {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  resize: both;
+  overflow: auto;
+}
+#joseph {
+    display: none;
+}
+
+/*#mary {
+    display: none;
+}
+
+#nativity {
+    display: none;
+}
+
+.is-hidden {
+    display: none;
+}
+*/
+
 #about {
   margin-top: 8%;
   padding-bottom: 3%;
