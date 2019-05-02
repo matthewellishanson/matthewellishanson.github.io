@@ -1,6 +1,6 @@
 /* Fonts */
 
-font-family: 'Shrikhand', cursive;
+/* font-family: 'Shrikhand', cursive;
 font-family: 'Lobster', cursive;
 font-family: 'Fjalla One', sans-serif;
 font-family: 'Abril Fatface', cursive;
@@ -11,7 +11,7 @@ font-family: 'Teko', sans-serif;
 font-family: 'Rubik One', sans-serif;
 font-family: 'Bungee Shade', cursive;
 font-family: 'Gravitas One', cursive;
-font-family: 'Ubuntu Mono', monospace;
+font-family: 'Ubuntu Mono', monospace; */
 
 .header-video {
   position: relative;
@@ -239,6 +239,8 @@ footer img {
 }
 */
 
+
+/* sections */
 #about {
   margin-top: 8%;
   padding-bottom: 3%;
@@ -766,9 +768,6 @@ footer img {
     margin-left: 5%;
 }
 
-#content-wrapper {
-}
-
 #content-container {
     position: absolute;
     width: 100%;
@@ -1201,8 +1200,6 @@ p {
     .intro .intro-body {
         top: 52px;
     }
-    .panel0-container {
-    }
     .navbar .container {
     width: 90%;
     padding: 0px;
@@ -1310,8 +1307,6 @@ p {
     bottom: 0;
     left: 0;
     right: 0;
-}
-.navbar {
 }
 
 .head-contain {
