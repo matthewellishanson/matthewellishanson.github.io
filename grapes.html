@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Grapes of Math</title>
+
+    <!-- Bootstrap CSS & JS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- Leaflet CSS & JS
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+    integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+    crossorigin=""></script> -->
+
+    
+
+    <!-- d3 JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+
+    <!-- Marker Cluster JS & CSS
+    <script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css"> -->
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="static/css/d3Style.css">
+
+  </head>
+
+  <body>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Grapes of Math</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#graphics">Visualizations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/ETL.html">Code</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+    <div class="panel0-container">
+        <div class="panel0">
+            <img src="img/wine.jpg">
+        </div>
+    </div>
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                  <div class="head-contain">
+                  <h1 class="brand-heading">Grapes of Math</h1>
+                  <p class="intro-text">Machine Learning with Wine</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main role="main">
+        <div class="container">
+
+
+          <div class="row">
+              <p class="paragraph"><span class="drop">W</span>ine can be more than just a drink of choice for many who drink it. For some, finding the right wine can be a lifestyle hobby of sorts, with all the challenge of a global scavenger hunt and all the reward of, well, a choice glass of merlot or pinot. This project sought to create visuals for a comprehensive dataset on wine, covering variables such as price, country of origin, quality points, and alcohol content. Additionally, this project used a second dataset consisting of chemical qualities which could be quanitified. This was crucial to the machine learning portion of the analysis.</p>
+          </div>
+            <div class="row">
+              <h2 class="main-head">Visualizations</h2>
+              <!-- The div where we will inject our map -->
+            </div>
+            <div class='tableauPlaceholder' id='viz1565052195329' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Wi&#47;WineAnalysis_15650521611280&#47;Story1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='WineAnalysis_15650521611280&#47;Story1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Wi&#47;WineAnalysis_15650521611280&#47;Story1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1565052195329');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1016px';vizElement.style.height='991px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+            <div class="row">
+              <div class="full-image full">
+                  <img class="ajmint-unveil" src="img/correlation.png" data-src="img/correlation.png" data-height="800" data-width="1200" data-pswp-uid="1" style="opacity: 1;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="full-image full">
+                  <img class="ajmint-unveil" src="img/densityalcoholscatter.png" data-src="img/densityalcoholscatter.png" data-height="800" data-width="1200" data-pswp-uid="1" style="opacity: 1;">
+              </div>
+            </div>
+            <div class="row">
+                <div class="full-image full">
+                    <img class="ajmint-unveil" src="img/densityalcoholcluster.png" data-src="img/densityalcoholcluster.png" data-height="800" data-width="1200" data-pswp-uid="1" style="opacity: 1;">
+                </div>
+            </div>
+            <div class="row">
+              <div class="full-image full">
+                  <img class="ajmint-unveil" src="img/densityalcoholregress.png" data-src="img/densityalcoholregress.png" data-height="800" data-width="1200" data-pswp-uid="1" style="opacity: 1;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="full-image full">
+                  <img class="ajmint-unveil" src="img/densityalcoholfinal.jpg" data-src="img/densityalcoholfinal.png" data-height="800" data-width="1200" data-pswp-uid="1" style="opacity: 1;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="full-image full">
+                  <img class="ajmint-unveil" src="img/densityacidityscatter.png" data-src="img/densityacidityscatter.png" data-height="800" data-width="1200" data-pswp-uid="1" style="opacity: 1;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="full-image full">
+                  <img class="ajmint-unveil" src="img/densityaciditycluster.png" data-src="img/densityaciditycluster.png" data-height="800" data-width="1200" data-pswp-uid="1" style="opacity: 1;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="full-image full">
+                  <img class="ajmint-unveil" src="img/densityacidityregress.png" data-src="img/densityacidityregress.png" data-height="800" data-width="1200" data-pswp-uid="1" style="opacity: 1;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="full-image full">
+                  <img class="ajmint-unveil" src="img/densityacidityfinal.png" data-src="img/densityacidityfinal.png" data-height="800" data-width="1200" data-pswp-uid="1" style="opacity: 1;">
+              </div>
+            </div>
+        </div>
+  
+    </main>
+    <!-- <script type="text/javascript" src="static/js/config.js"></script>
+    <script type="text/javascript" src="static/js/logic.js"></script>
+    <script type="text/javascript" src="static/js/app.js"></script> -->
+  </body>
+
+</html>
