@@ -178,3 +178,7 @@ a:hover, a:focus, a:active {
 .fa-check {
   color:#8FBC8B;
 }
+
+.fa-newspaper {
+  opacity: 0.75;
+}
