@@ -182,3 +182,8 @@ a:hover, a:focus, a:active {
 .fa-newspaper {
   opacity: 0.75;
 }
+
+.sub {
+  margin-top: .3em;
+  margin-bottom: .3em;
+}
