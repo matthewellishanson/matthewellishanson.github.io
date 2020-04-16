@@ -183,6 +183,10 @@ a:hover, a:focus, a:active {
   opacity: 0.75;
 }
 
+.fa-code {
+  opacity: 0.75;
+}
+
 .sub {
   margin-top: .3em;
   margin-bottom: .3em;
