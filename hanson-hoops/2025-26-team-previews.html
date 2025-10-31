@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2024-25 NBA Team Previews | Hanson Hoops</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --app-primary: #7c3aed;
+      --primary-contrast: #ffffff;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 220px;
+      background-color: #eee;
+      padding: 1rem;
+      overflow-y: auto;
+      border-right: 1px solid #ccc;
+    }
+
+    .sidebar h4 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar a {
+      display: block;
+      margin-bottom: 0.5rem;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .sidebar a:hover {
+      color: var(--app-primary);
+    }
+
+    .content {
+      margin-left: 240px;
+      padding: 2rem;
+    }
+
+    .team-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .team-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      cursor: pointer;
+      background-size: cover;
+      background-position: center;
+      color: white;
+      position: relative;
+    }
+
+    .team-header::after {
+      content: "\25BC";
+      position: absolute;
+      right: 20px;
+      font-size: 1.5rem;
+    }
+
+    .team-info {
+      background: rgba(0,0,0,0.5);
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    .team-info h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.75rem;
+      color: white;
+    }
+
+    .team-details {
+      padding: 1rem 2rem;
+      display: none;
+      background: #fafafa;
+    }
+
+    .team-logo {
+      height: 60px;
+    }
+
+    .highlight {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    .locked {
+      opacity: 0.5;
+      position: relative;
+    }
+
+    .locked::after {
+      content: "\1f512";
+      position: absolute;
+      right: 20px;
+      font-size: 1.5rem;
+    }
+    .chart-wrapper {
+      max-width: 500px;
+      margin: 2rem auto; /* centers + spacing */
+      padding: 1rem;
+      background-color: #fff;
+      border-radius: 8px;
+    }
+    #details-sixers p:first-of-type::first-letter {
+      float: left;
+      font-size: 3rem;
+      line-height: 1;
+      font-weight: bold;
+      color: var(--app-primary);
+      padding-right: 0.25rem;
+      padding-top: 0.1rem;
+    }
+    
+  </style>
+  <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <h4>Jump to Team</h4>
+    <a href="#team-sixers">76ers</a>
+    <a href="#team-hawks">Hawks</a>
+    <a href="#team-celtics">Celtics</a>
+    <a href="#team-nets">Nets</a>
+    <a href="#team-hornets">Hornets</a>
+    <a href="#team-bulls">Bulls</a>
+    <a href="#team-cavs">Cavaliers</a>
+    <a href="#team-mavs">Mavericks</a>
+    <a href="#team-nuggets">Nuggets</a>
+    <a href="#team-pistons">Pistons</a>
+    <a href="#team-warriors">Warriors</a>
+    <a href="#team-rockets">Rockets</a>
+    <a href="#team-pacers">Pacers</a>
+    <a href="#team-clippers">Clippers</a>
+    <a href="#team-lakers">Lakers</a>
+    <a href="#team-grizzlies">Grizzlies</a>
+    <a href="#team-heat">Heat</a>
+    <a href="#team-bucks">Bucks</a>
+    <a href="#team-twolves">Timberwolves</a>
+    <a href="#team-pelicans">Pelicans</a>
+    <a href="#team-knicks">Knicks</a>
+    <a href="#team-thunder">Thunder</a>
+    <a href="#team-magic">Magic</a>
+    <a href="#team-sixers">76ers</a>
+    <a href="#team-suns">Suns</a>
+    <a href="#team-blazers">Trail Blazers</a>
+    <a href="#team-kings">Kings</a>
+    <a href="#team-spurs">Spurs</a>
+    <a href="#team-raptors">Raptors</a>
+    <a href="#team-jazz">Jazz</a>
+    <a href="#team-wizards">Wizards</a>
+  </div>
+
+  <div class="content">
+    <h1>2024-25 NBA Team Previews</h1>
+    <p class="text-muted">One team per day, every day for 30 days. Full blog + charts below.</p>
+
+    <!-- Active: Sixers -->
+    <div class="team-card" id="team-sixers">
+      <div class="team-header" style="background-color: #006bb6;" onclick="toggleDetails('details-sixers')">
+        <div class="team-info">
+          <img src="https://upload.wikimedia.org/wikipedia/en/0/0e/Philadelphia_76ers_logo.svg" class="team-logo" alt="Sixers logo">
+          <h2>Philadelphia 76ers</h2>
+          <p class="highlight">2024-25: 13th in East &middot; 24-58</p>
+        </div>
+      </div>
+      <div class="team-details" id="details-sixers">
+        <p>Oh boy. This team, this city, this franchise. It’s hard to know where to even begin discussing the Philadelphia 76ers. Let’s start here: it’s going to be very hard for the Sixers to do worse this season than they did in 2024-25. If nothing else, expect something marginally better — but beyond that, it could go in all sorts of directions for Philly.</p>
+        <p>After a year from hell that saw the roster ravaged by injuries, age, and internal drama — much of it concerning franchise center and former MVP Joel Embiid’s health and availability — the Sixers have a lot to figure out if they want back into the thick of things at the top of the East.</p>
+        <p>The challenges all start with Embiid, whose health and relationship with the front office have stagnated to a concerning degree in recent seasons, even as he signed a three-year, $193 million contract extension in September 2024, including a player option for the 2028-29 season.</p>
+        <div class="chart-wrapper" id="chart-embiid-2023"></div>
+          <script>
+            Plotly.newPlot("chart-embiid-2023", {
+              data: [
+                {
+                  type: "scatterpolar",
+                  r: [66.2, 56.4, 34.6, 37.7, 28.6, 84.3, 73.3, 96.8, 89.3, 57.2, 66.2],
+                  theta: [
+                    "Points", "Rebounds", "Assists", "Blocks", "Steals",
+                    "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"
+                  ],
+                  fill: "toself",
+                  text: [
+                    "Points: 33.1 PPG", "Rebounds: 10.2 RPG", "Assists: 4.2 APG",
+                    "Blocks: 1.7 BPG", "Steals: 1 SPG", "FG%: 54.8%", "3P%: 33%",
+                    "FT Rate: 58.1%", "FT%: 85.7%", "Turnovers: 3.4 TOPG", "Points: 33.1 PPG"
+                  ],
+                  hoverinfo: "text",
+                  name: "Joel Embiid",
+                  line: { color: "#7c3aed" },
+                  marker: { color: "#7c3aed" },
+                  fillcolor: "rgba(124,58,237,0.25)"
+                }
+              ],
+              layout: {
+                title: "Joel Embiid - 2022-23 Season",
+                polar: {
+                  radialaxis: {
+                    visible: true,
+                    range: [0, 100],
+                    tickvals: [0, 20, 40, 60, 80, 100],
+                    type: "linear",
+                    autorange: false
+                  },
+                  angularaxis: { type: "category" }
+                },
+                margin: { t: 48, l: 16, r: 16, b: 22 },
+                autosize: true
+              },
+              config: {
+                responsive: true,
+                displayModeBar: false
+              }
+            });
+          </script>
+        <div class="chart-wrapper" id="chart-embiid-2024"></div>
+            <script>
+              Plotly.newPlot("chart-embiid-2024", {
+                data: [
+                  {
+                    type: "scatterpolar",
+                    r: [69.4, 61.3, 46.8, 37.6, 33.7, 81.4, 86.3, 88.5, 95.7, 51.9, 69.4],
+                    theta: [
+                      "Points", "Rebounds", "Assists", "Blocks", "Steals",
+                      "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"
+                    ],
+                    fill: "toself",
+                    text: [
+                      "Points: 34.7 PPG", "Rebounds: 11 RPG", "Assists: 5.6 APG",
+                      "Blocks: 1.7 BPG", "Steals: 1.2 SPG", "FG%: 52.9%", "3P%: 38.8%",
+                      "FT Rate: 53.1%", "FT%: 88.3%", "Turnovers: 3.8 TOPG", "Points: 34.7 PPG"
+                    ],
+                    hoverinfo: "text",
+                    name: "Joel Embiid",
+                    line: { color: "#7c3aed" },
+                    marker: { color: "#7c3aed" },
+                    fillcolor: "rgba(124,58,237,0.25)"
+                  }
+                ],
+                layout: {
+                  title: "Joel Embiid 2023-24 Season",
+                  polar: {
+                    radialaxis: {
+                      visible: true,
+                      range: [0, 100],
+                      tickvals: [0, 20, 40, 60, 80, 100],
+                      type: "linear",
+                      autorange: false
+                    },
+                    angularaxis: { type: "category" }
+                  },
+                  margin: { t: 48, l: 16, r: 16, b: 22 },
+                  autosize: true
+                },
+                config: {
+                  responsive: true,
+                  displayModeBar: false
+                }
+              });
+            </script>
+          <div class="chart-wrapper"id="chart-embiid-2025"></div>
+            <script>
+              Plotly.newPlot("chart-embiid-2025", {
+                data: [
+                  {
+                    type: "scatterpolar",
+                    r: [47.6, 45.3, 37.3, 21.1, 21.1, 68.4, 66.4, 89.4, 95.4, 59.2, 47.6],
+                    theta: [
+                      "Points", "Rebounds", "Assists", "Blocks", "Steals",
+                      "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"
+                    ],
+                    fill: "toself",
+                    text: [
+                      "Points: 23.8 PPG", "Rebounds: 8.2 RPG", "Assists: 4.5 APG",
+                      "Blocks: 0.9 BPG", "Steals: 0.7 SPG", "FG%: 44.4%", "3P%: 29.9%",
+                      "FT Rate: 53.7%", "FT%: 88.2%", "Turnovers: 3.3 TOPG", "Points: 23.8 PPG"
+                    ],
+                    hoverinfo: "text",
+                    name: "Joel Embiid",
+                    line: { color: "#7c3aed" },
+                    marker: { color: "#7c3aed" },
+                    fillcolor: "rgba(124,58,237,0.25)"
+                  }
+                ],
+                layout: {
+                  title: "Joel Embiid 2024-25 Season",
+                  polar: {
+                    radialaxis: {
+                      visible: true,
+                      range: [0, 100],
+                      tickvals: [0, 20, 40, 60, 80, 100],
+                      type: "linear",
+                      autorange: false
+                    },
+                    angularaxis: { type: "category" }
+                  },
+                  margin: { t: 48, l: 16, r: 16, b: 22 },
+                  autosize: true
+                },
+                config: {
+                  responsive: true,
+                  displayModeBar: false
+                }
+              });
+            </script>
+        <p>Embiid’s decline from his MVP season in 2023 has been dramatic — if perhaps predictable, given the arc of his career and how he’s been handled in Philadelphia. Drafted third overall in 2014, Embiid became the poster child for the franchise’s controversial “Trust the Process” approach, both a beneficiary and a victim of a culture that prioritized long-term development and draft capital over on-court results for too many seasons.</p>
+
+        <p>That lose-now-to-win-later mindset allowed Embiid to sit out his entire rookie season, as well as several other long stretches in the years since. More often than not during his 12 seasons as a Sixer, he’s been able to pick and choose when — and how — he plays, at least according to his critics. The result is a toxic dynamic between an aging, injury-prone big man, his team, and a proud, famously aggressive fanbase that has adored him — until now.</p>
+
+        <p>Last season, those long-standing tensions reached a new low. Embiid missed most of the season, and the Sixers finished with a dismal 24-58 record — an especially disappointing result given the high hopes fans and the front office had going into the year. The situation was further compounded by the Sixers’ ill-fated acquisition of veteran superstar Paul George, who also suffered a steep drop in production and missed significant time in his first year in Philly.</p>
+
+        <p>The simultaneous decline of Philadelphia’s two highest-paid players — just after both signed massive new contracts — left the front office in an uncomfortable spot, especially given the emergence of a promising young core. On one hand, GM Daryl Morey invested nearly half a billion dollars over the next four years in the two 30-something stars, inking George to a four-year, $212 million deal in July and re-upping Embiid in September. But neither has looked remotely like the player he once was.</p>
+
+        <p>George had a career-low season across nearly every statistical category, failing to shoulder the offensive load in Embiid’s absence. His struggles got so severe that he even stopped producing new episodes of his popular podcast midseason to focus on basketball. His health history — like Embiid’s — doesn’t inspire much confidence going forward.</p>
+
+        <p>The resources poured into George and Embiid — and the lack of return — would concern any team. But for this Sixers squad, it feels especially risky given the exciting group of young guards they’ve assembled behind them.</p>
+
+        <p>Compounding the issue is the promise of that guard group — three players, possibly four if recently re-signed Quentin Grimes continues his late-season surge — who could form the bridge to a post-Process future. Led by All-Star Tyrese Maxey, who posted a career-high 26.3 PPG last season, the trio of Maxey, second-year guard Jared McCain, and rookie dark horse V.J. Edgecombe might tempt Morey to test the trade market for either George or even Embiid.</p>
+
+        <p>And you couldn’t blame him if he did. Maxey has been one of the league’s top under-25 guards for multiple seasons now. McCain — though sidelined for most of his rookie campaign with a torn meniscus and set to miss the start of this season with a UCL tear — showed poise, scoring touch, and star potential in limited action. And Edgecombe, despite being a rookie, has impressed so much in early returns that he looks poised to crack the starting lineup by season’s end. All three, along with Grimes, are under 25 and far more affordable to retain and build around than the aging stars ahead of them.</p>
+
+        <p>That promise has only grown in the early weeks of the new season. Maxey currently leads the league in scoring, and Edgecombe is playing like a legitimate Rookie of the Year contender. It’s too soon for victory laps, but their hot start has pushed the Sixers to a 4-0 record and back into relevance — at least for now.</p>
+
+        <p>Still, it’s far from certain that the Embiid era is over — or even that Embiid himself can’t return to form. While rare, there is precedent for injury-plagued bigs over 30 finding a second wind (see: Al Horford, Brook Lopez). Just two seasons ago, Embiid averaged more points than minutes. His midrange game might still be the best in the NBA. He can stretch the floor, overpower defenders, and move as well as any big man — if healthy.</p>
+
+        <p>Even half that player would be a formidable starting center.</p>
+
+        <p>But as always in Philly, the question remains: “If Embiid’s healthy…”</p>
+
+        <p>The Sixers’ 4-0 start and Maxey’s MVP-level play are promising, but the fate of their season — and their era — still hinges on the health and productivity of the big Cameroonian. If Embiid can claw his way back to even 75 percent of what he was two years ago, this team could be a legit Finals threat in a wide-open Eastern Conference. Based on what we’ve seen so far, he’s still got a long way to go.</p>
+
+        <p>But if he gets going? Look out.</p>
+
+      </div>
+    </div>
+
+    <!-- Locked Teams Below -->
+    <div class="team-card locked" id="team-hawks">
+      <div class="team-header" style="background-color: #e03a3e;">
+        <div class="team-info">
+          <img src="https://upload.wikimedia.org/wikipedia/en/2/24/Atlanta_Hawks_logo.svg" class="team-logo" alt="Hawks logo">
+          <h2>Atlanta Hawks</h2>
+        </div>
+      </div>
+    </div>
+    <!-- Repeat for other teams alphabetically -->
+  </div>
+
+  <script>
+    function toggleDetails(id) {
+      const el = document.getElementById(id);
+      if (el) el.style.display = el.style.display === 'none' || el.style.display === '' ? 'block' : 'none';
+    }
+  </script>
+</body>
+</html>
