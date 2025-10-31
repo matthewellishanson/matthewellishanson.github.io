@@ -131,6 +131,34 @@
       padding-right: 0.25rem;
       padding-top: 0.1rem;
     }
+    @media (max-width: 768px) {
+      /* make sidebar stack vertically */
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+      }
+
+      /* make content take full width below sidebar */
+      .content {
+        margin-left: 0;
+        padding: 1rem;
+      }
+
+      /* smaller text and tighter spacing for team links */
+      .sidebar a {
+        display: inline-block;
+        margin: 0.25rem 0.5rem;
+      }
+
+      .sidebar h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+      }
+    }
+
     
   </style>
   <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
