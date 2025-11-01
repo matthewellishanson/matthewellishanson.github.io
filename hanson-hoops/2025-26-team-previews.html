@@ -131,6 +131,17 @@
       padding-right: 0.25rem;
       padding-top: 0.1rem;
     }
+
+    #details-hawks p:first-of-type::first-letter {
+      float: left;
+      font-size: 3rem;
+      line-height: 1;
+      font-weight: bold;
+      color: var(--app-primary);
+      padding-right: 0.25rem;
+      padding-top: 0.1rem;
+    }
+
     @media (max-width: 768px) {
       /* make sidebar stack vertically */
       .sidebar {
@@ -381,13 +392,125 @@
 
       </div>
     </div>
+    
+    <!-- Active: Atlanta Hawks-->
+    <div class="team-card" id="team-hawks">
+    <div class="team-header" style="background-color: #e03a3e;" onclick="toggleDetails('details-hawks')">
+      <div class="team-info">
+        <img src="https://upload.wikimedia.org/wikipedia/en/2/24/Atlanta_Hawks_logo.svg" class="team-logo" alt="Hawks logo">
+        <h2>Atlanta Hawks</h2>
+        <p class="highlight">2024-25: 10th in East &middot; 41-41</p>
+      </div>
+    </div>
+    <div class="team-details" id="details-hawks">
+      <p>It&rsquo;s been an underwhelming stretch since the Atlanta Hawks last made waves in the East with their surprise Eastern Conference Finals appearance in 2021. Four years ago, this team and its star point guard, Trae Young, felt like they were trending toward consistent contention in the East this decade.</p>
+
+      <p>But the best-laid plans of mice and NBA GMs often go astray, and so did the contention dreams of Hawks fans following their loss in the ECF to eventual champion Milwaukee. The past four seasons have been a cavalcade of mismanagement and mediocrity, with Atlanta posting a 160-168 record in that time and failing to build on their 2021 success. But now, after a series of shrewd offseason moves, the Hawks look to break back into the hunt for playoff relevance.</p>
+
+      <p>The problems and the promise of this team, as presently constructed and throughout this era of Atlanta basketball, start and end with Young. As one of the league&rsquo;s most skilled offensive players and one of its most diminutive in stature, &ldquo;Ice Trae&rdquo; presents a uniquely vexing team-building challenge. How do you build a modern, 2020s NBA contender around a 5&rsquo;11&rdquo; pinball of a pure point guard whose superstar offensive skills are offset by his distinction as one of the league&rsquo;s worst defensive players? Add to that a troublesome tendency to alienate and frustrate teammates and coaches alike, and the front office has in Young a truly unparalleled team-building quagmire. For every good thing he adds to his team, he always seems to take at least one thing away from it.</p>
+
+      <p>But there have been signs of progress in recent seasons from the star guard. A perpetual sieve on defense, Young has shown increased effort and consistency on that end of the court in the past two seasons, suggesting he is taking the criticisms around the league seriously and wants to do all the right things to address his glaring Achilles' heel. Furthermore, the polarizing playmaker has in recent seasons ceded some (key word: some) of the offensive creation responsibilities to teammates like DeJounte Murray (now in New Orleans) and rising star forward Jalen Johnson, showing a willingness to downplay his own heliocentric offensive style for the sake of team success. 
+      </p>
+      
+      <p>If those trends can carry into this coming season&mdash;and with Young&rsquo;s trade value around the league and job security with the Hawks both at all-time lows, per league sources&mdash;he has more incentive than ever to show improvement. This could be a pivotal season for him to prove he can be &ldquo;the guy&rdquo; the Hawks can build a contender around.</p>
+
+      <div class="chart-wrapper" id="trae-young-chart" style="width:100%;max-width:500px;margin:auto;"></div>
+      <script>
+        // Trae Young Radar
+        Plotly.newPlot('trae-young-chart',
+          [{
+            type: "scatterpolar",
+            r: [48.4, 17.3, 96.5, 3.5, 34.2, 63.3, 75.5, 68, 93.8, 41.6, 48.4],
+            theta: ["Points", "Rebounds", "Assists", "Blocks", "Steals", "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"],
+            fill: "toself",
+            text: ["Points: 24.2 PPG", "Rebounds: 3.1 RPG", "Assists: 11.6 APG", "Blocks: 0.2 BPG", "Steals: 1.2 SPG", "FG%: 41.1%", "3P%: 34%", "FT Rate: 40.8%", "FT%: 87.5%", "Turnovers: 4.7 TOPG", "Points: 24.2 PPG"],
+            hoverinfo: "text",
+            name: "Trae Young",
+            line: { color: "#7c3aed" },
+            marker: { color: "#7c3aed" },
+            fillcolor: "rgba(124,58,237,0.25)"
+          }],
+          {
+            title: "Trae Young 2024-25 Season",
+            polar: {
+              radialaxis: {
+                visible: true,
+                range: [0, 100],
+                tickvals: [0, 20, 40, 60, 80, 100],
+                type: "linear",
+                autorange: false
+              },
+              angularaxis: { type: "category" }
+            },
+            margin: { t: 48, l: 16, r: 16, b: 22 },
+            autosize: true
+          },
+          {
+            responsive: true,
+            displayModeBar: false
+          }
+        );
+      </script>
+
+
+      <p>As for the roster around Young, that too gives reasons to be optimistic that this will be the year Atlanta gets back on track. The front office made a series of savvy, ambitious moves this offseason. Chief among these was the bargain trade new GM Onsi Saleh made for injured All-Star center Kristaps Porzingis, who joined Atlanta after winning a championship in 2024 with the Boston Celtics. If he can stay healthy&mdash;a big if, given his injury history and the recent mysterious illness during the Celtics&rsquo; 2025 playoff run&mdash;the 7&rsquo;3&rdquo; Latvian could add a potent pick-and-pop dimension to Trae and the Hawks&rsquo; ball screen offense.</p>
+
+      <div class="chart-wrapper" id="jalen-johnson-chart" style="width:100%;max-width:500px;margin:auto;margin-top:24px;"></div>
+
+      <script>
+        // Jalen Johnson Radar
+        Plotly.newPlot('jalen-johnson-chart',
+          [{
+            type: "scatterpolar",
+            r: [37.8, 55.4, 41.9, 22.2, 44.4, 76.9, 69.3, 38.7, 61.5, 63.2, 37.8],
+            theta: ["Points", "Rebounds", "Assists", "Blocks", "Steals", "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"],
+            fill: "toself",
+            text: ["Points: 18.9 PPG", "Rebounds: 10 RPG", "Assists: 5 APG", "Blocks: 1 BPG", "Steals: 1.6 SPG", "FG%: 50%", "3P%: 31.2%", "FT Rate: 23.2%", "FT%: 74.6%", "Turnovers: 2.9 TOPG", "Points: 18.9 PPG"],
+            hoverinfo: "text",
+            name: "Jalen Johnson",
+            line: { color: "#7c3aed" },
+            marker: { color: "#7c3aed" },
+            fillcolor: "rgba(124,58,237,0.25)"
+          }],
+          {
+            title: "Jalen Johnson 2024-25 Season",
+            polar: {
+              radialaxis: {
+                visible: true,
+                range: [0, 100],
+                tickvals: [0, 20, 40, 60, 80, 100],
+                type: "linear",
+                autorange: false
+              },
+              angularaxis: { type: "category" }
+            },
+            margin: { t: 48, l: 16, r: 16, b: 22 },
+            autosize: true
+          },
+          {
+            responsive: true,
+            displayModeBar: false
+          }
+        );
+      </script>
+
+      <p>In addition to Porzingis, the Hawks also nabbed guard Nickeil Alexander-Walker, a key bench contributor on back-to-back conference finals Timberwolves teams, and sharpshooter Luke Kennard, who could help Head Coach Quin Snyder bolster a bench that has been a weak point in recent seasons.</p>
+
+      <p>Combine these additions with the return from injury of rising star Johnson and the make-or-break nature of this season for Young&rsquo;s legacy in Atlanta, and it would appear this team has all the ingredients it needs to make a real run at the East this year. Whether the Hawks capitalize on that potential will ultimately depend on the kind of season Young delivers and how well he fits with the new pieces&mdash;and the extent to which the team can stay healthy, on the court and consistently productive. Some big ifs, to be sure, but despite those questions, things are looking brighter and better for Atlanta than they have in several years.</p>
+
+      <p>Early season showings have not exactly boosted confidence in this Hawks team&rsquo;s ability to get over the hump and compete, however. Porzingis&rsquo; health is fine, but his tendency to pick and pop and spot up&mdash;as opposed to getting his offense inside as a roll man or via post-ups&mdash;has led to a drop in team rebounding. Young remains as polarizing an on-court presence as ever, and newcomers Kennard and Alexander-Walker have underwhelmed off a bench that still lacks depth and production.</p>
+
+      <p>As a result of those early trends, the Hawks remain, as ever, a .500 team early in this new NBA season.</p>
+    </div>
+  </div>
+
 
     <!-- Locked Teams Below -->
-    <div class="team-card locked" id="team-hawks">
-      <div class="team-header" style="background-color: #e03a3e;">
+    <div class="team-card locked" id="team-celtics">
+      <div class="team-header" style="background-color: #007a33;">
         <div class="team-info">
-          <img src="https://upload.wikimedia.org/wikipedia/en/2/24/Atlanta_Hawks_logo.svg" class="team-logo" alt="Hawks logo">
-          <h2>Atlanta Hawks</h2>
+          <img src="https://upload.wikimedia.org/wikipedia/en/8/8f/Boston_Celtics.svg" class="team-logo" alt="Celtics logo">
+          <h2>Boston Celtics</h2>
         </div>
       </div>
     </div>
