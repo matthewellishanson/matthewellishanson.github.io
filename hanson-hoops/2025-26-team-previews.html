@@ -59,8 +59,29 @@
       background-color: white;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      margin-bottom: 2rem;
+      margin: 0 auto 2rem auto;
+      width: 100%;
+      max-width: 960px;
+      box-sizing: border-box;
       overflow: hidden;
+    }
+
+    .team-details {
+      display: none;
+      padding: 1rem 2rem;
+      background: #fafafa;
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    .team-details img,
+    .team-details iframe,
+    .team-details canvas,
+    .team-details .chart {
+      max-width: 100%;
+      height: auto;
     }
 
     .team-header {
@@ -94,12 +115,6 @@
       color: white;
     }
 
-    .team-details {
-      padding: 1rem 2rem;
-      display: none;
-      background: #fafafa;
-    }
-
     .team-logo {
       height: 60px;
     }
@@ -121,34 +136,27 @@
       right: 20px;
       font-size: 1.5rem;
     }
+
     .chart-wrapper {
-      max-width: 500px;
-      margin: 2rem auto; /* centers + spacing */
+      width: 100%;
+      max-width: 700px;
+      margin: 2rem auto;
       padding: 1rem;
-      background-color: #fff;
-      border-radius: 8px;
-    }
-    #details-sixers p:first-of-type::first-letter {
-      float: left;
-      font-size: 3rem;
-      line-height: 1;
-      font-weight: bold;
-      color: var(--app-primary);
-      padding-right: 0.25rem;
-      padding-top: 0.1rem;
+      box-sizing: border-box;
+      overflow-x: auto;
     }
 
-    #details-hawks p:first-of-type::first-letter {
-      float: left;
-      font-size: 3rem;
-      line-height: 1;
-      font-weight: bold;
-      color: var(--app-primary);
-      padding-right: 0.25rem;
-      padding-top: 0.1rem;
+    .chart-wrapper .js-plotly-plot {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      box-sizing: border-box;
     }
 
-    #details-celtics p:first-of-type::first-letter {
+    #details-sixers p:first-of-type::first-letter,
+    #details-hawks p:first-of-type::first-letter,
+    #details-celtics p:first-of-type::first-letter,
+    #details-nets p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -159,7 +167,6 @@
     }
 
     @media (max-width: 768px) {
-      /* make sidebar stack vertically */
       .sidebar {
         position: relative;
         width: 100%;
@@ -168,13 +175,11 @@
         border-bottom: 1px solid #ccc;
       }
 
-      /* make content take full width below sidebar */
       .content {
         margin-left: 0;
         padding: 1rem;
       }
 
-      /* smaller text and tighter spacing for team links */
       .sidebar a {
         display: inline-block;
         margin: 0.25rem 0.5rem;
@@ -184,10 +189,16 @@
         font-size: 1.1rem;
         margin-bottom: 0.5rem;
       }
-    }
 
-    
+      .team-details {
+        padding: 1rem;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+      }
+    }
   </style>
+
   <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
 </head>
 <body>
@@ -549,25 +560,116 @@
     </div>
   </div>
 
-
-    <!-- Locked Teams Below -->
-    <div class="team-card locked" id="team-nets">
-      <div class="team-header" style="background-color: #000000;">
-        <div class="team-info">
-          <img src="https://logos-world.net/wp-content/uploads/2020/05/Brooklyn-Nets-Logo.png" class="team-logo" alt="Nets logo">
-          <h2>Brooklyn Nets</h2>
-        </div>
+  <!-- Active: Brooklyn Nets -->
+  <div class="team-card" id="team-nets">
+    <div class="team-header" style="background-color: #000000;" onclick="toggleDetails('details-nets')">
+      <div class="team-info">
+        <img src="https://logos-world.net/wp-content/uploads/2020/05/Brooklyn-Nets-Logo.png" class="team-logo" alt="Nets logo">
+        <h2>Brooklyn Nets</h2>
+        <p class="highlight">2024-25: 12th in East &middot; 26-56</p>
       </div>
     </div>
+    <div class="team-details" id="details-nets">
+        <p>I will start with a confession: I did not watch more than two or three Nets games all last season. This is not one of those teams I have hundreds of words to write about, and that’s for good reason. Like last year, this season’s Nets team, off to a putrid 0-6 start thus far, remains one of the more confusing, aimless and anonymous rosters this league has to offer. This is a team as full of questions and holes as Brooklyn is full of hipster transplants and artisanal coffee shops, and apart from aspirations to land a top lottery pick in the coming draft, I’m not sure what direction this franchise has in mind at this moment.</p> 
+        <p>Take the team’s 2025 draft class as the most recent and oft-discussed example of what I mean. With five first-round picks going into draft night, most of the league anticipated the Nets would bundle some of those to either move up in the first round, grab additional picks in future drafts, or even the sort of current star player they have noticeably lacked since parting ways a few seasons back with their brief and ill-fated superstar core of Kevin Durant, James Harden and Kyrie Irving.</p> 
+        <p>But rather than trying for any of those sensible, rational team-building paths, GM Sean Marks and his front office decided to keep all five first-round picks in this June’s draft. That choice, in and of itself, would have baffled most league insiders and observers, no matter which players the team actually picked with those selections.</p> 
+        <p>But it was who the Nets took with their record five first-round picks that really bewildered so many around the NBA. All five of Brooklyn’s first-rounders — Egor Demin, Nolan Traoré, Ben Saraf, Drake Powell and Danny Wolf — range in size, potential and position, yet all five project as the same archetype of player, that of non-scoring playmaker. In a league that had never seen one team draft that many first-round picks in a single draft, the Nets’ choice to quintuple down on the same kind of player was one that many took as proof positive that this team has no real direction or vision going into yet another consecutive year of yet another full rebuild.</p>
+        <div class="chart-wrapper"><div id="chart1"></div>
+        </div>
+        <div class="chart-wrapper"><div id="chart2"></div>
+        </div>
+        <div class="chart-wrapper"><div id="chart3"></div>
+        </div>
+        <div class="chart-wrapper"><div id="chart4"></div>
+        </div>
+        <script>
+          const chartData = [
+            {
+              name: "Brooklyn Nets 2025-26 Stats",
+              r: [16.7, 6.7, 20, 3.3, 16.7, 40, 26.7, 56.7, 16.7],
+              theta: ["Points", "Rebounds", "Assists", "Blocks", "Steals", "FG%", "3P%", "Turnovers (↓ better)", "Points"],
+              text: ["Points: 112.3 PPG", "Rebounds: 39.7 RPG", "Assists: 23.8 APG", "Blocks: 1.8 BPG", "Steals: 7.2 SPG", "FG%: 45.2%", "3P%: 32.8%", "Turnovers: 15.5 TOPG", "Points: 112.3 PPG"]
+            },
+            {
+              name: "Brooklyn Nets 2024-25 Stats",
+              r: [6.7, 6.7, 20, 10, 30, 6.7, 20, 70, 6.7],
+              theta: ["Points", "Rebounds", "Assists", "Blocks", "Steals", "FG%", "3P%", "Turnovers (↓ better)", "Points"],
+              text: ["Points: 105.1 PPG", "Rebounds: 41.3 RPG", "Assists: 25.2 APG", "Blocks: 4.3 BPG", "Steals: 7.8 SPG", "FG%: 43.7%", "3P%: 34.4%", "Turnovers: 13.9 TOPG", "Points: 105.1 PPG"]
+            },
+            {
+              name: "Brooklyn Nets 2025-26 (Opponent)",
+              r: [13.6, 24.7, 27.1, 32, 33.8, 48.6, 11.8, 13.6],
+              theta: ["Opp Pts", "Opp FG%", "Opp 3P%", "Opp AST", "Opp REB", "Opp FTM", "Opp FT%", "Opp Pts"],
+              text: ["Opp Points: 112.3 PPG", "Opp FG%: 45.2%", "Opp 3P%: 32.8%", "Opp Assists: 23.8 APG", "Opp Rebounds: 39.7 RPG", "Opp Free Throws: 18 FTM/G", "Opp FT%: 79.4%", "Opp Points: 112.3 PPG"]
+            },
+            {
+              name: "Brooklyn Nets 2024-25 (Opponent)",
+              r: [19.2, 27.2, 23.6, 28, 31.2, 53.4, 12.6, 19.2],
+              theta: ["Opp Pts", "Opp FG%", "Opp 3P%", "Opp AST", "Opp REB", "Opp FTM", "Opp FT%", "Opp Pts"],
+              text: ["Opp Points: 105.1 PPG", "Opp FG%: 43.7%", "Opp 3P%: 34.4%", "Opp Assists: 25.2 APG", "Opp Rebounds: 41.3 RPG", "Opp Free Throws: 16.3 FTM/G", "Opp FT%: 78.7%", "Opp Points: 105.1 PPG"]
+            }
+          ];
+
+          chartData.forEach((data, i) => {
+            Plotly.newPlot(`chart${i + 1}`, [{
+              type: 'scatterpolar',
+              r: data.r,
+              theta: data.theta,
+              fill: 'toself',
+              text: data.text,
+              hoverinfo: 'text',
+              name: data.name,
+              line: { color: '#7c3aed' },
+              marker: { color: '#7c3aed' },
+              fillcolor: 'rgba(124,58,237,0.25)',
+            }], {
+      title: { text: data.name, font: { size: 16 } },
+      polar: {
+        radialaxis: {
+          visible: true,
+          range: [0, 100],
+          tickvals: [0, 20, 40, 60, 80, 100]
+        }
+      },
+      margin: { t: 48, l: 16, r: 16, b: 22 }
+    }, {
+              responsive: true,
+              displayModeBar: false
+            });
+          });
+
+          // ✅ Responsive fix: Resize after charts are rendered AND on window resize
+          window.addEventListener('load', () => {
+            document.querySelectorAll('.js-plotly-plot').forEach(chart => {
+              Plotly.Plots.resize(chart);
+            });
+          });
+
+          window.addEventListener('load', () => {
+            setTimeout(() => {
+              document.querySelectorAll('.js-plotly-plot').forEach(chart => {
+                Plotly.Plots.resize(chart);
+              });
+            }, 150);
+          });
+        </script>
+        <p>Beyond draft night, Brooklyn has provided other reasons to be concerned about the current rebuild’s trajectory. For one, the provisioning of the offense last season and, barring injury or an unforeseen breakout season elsewhere on the roster, this coming season as well, to trigger-happy, ultra-confident scoring guard Cam Thomas has not inspired much confidence — particularly given the team’s apparent reluctance to bet on Thomas this offseason in the form of a longer-term contract extension. Thomas, who led the team in scoring with a career-best 24 points per game last season, ended a long standoff between the front office and himself last month by opting for a one-year, $6 million deal that will give him another chance at that big contract he thinks he’s earned this coming summer. With all those new playmakers and only newcomer knockdown shooter Michael Porter Jr. to share scoring responsibilities with, that might prove the smart bet to make.</p> 
+        <p>As for Porter Jr. … sigh. This dude oozes with talent and potential and has already won a title as the perfectly cast sharpshooter next to the league’s best player and playmaker in Nikola Jokic. But he’s on his own now, and without the benefit of Jokic’s all-world passing, it’s a safe bet that Porter Jr.’s flaws will be far more exposed this season in Brooklyn. On court, he’s a 6-foot-10 sniper, but almost entirely useless as a playmaker and off-the-dribble shot creator. And on the defensive end, he tends to look utterly confused and disengaged most nights, so don’t expect much from him on that end, either. And if all of that wasn’t disappointing enough for a player who once drew comparisons to Kevin Durant as a high school phenom, the guy may also be the dumbest and crudest bro in the league — just take a listen to his podcast sometime if you doubt me on that. I’ll give him this much: He seems perfectly cast to help the Nets tank this season and beyond, if that is indeed the franchise’s goal right now.</p> 
+        <p>Having outlined all these reasons for pessimism about the 2025-26 Nets, there are some reasons to hope for a better season in Brooklyn than you might be expecting. Foremost of those would be second-year coach Jordi Fernandez, who defied expectations (and, whether they’ll ever admit it or not, front office hopes for a top lottery pick) last season by way overperforming in his first season as coach. Fernandez was the main reason last year’s Nets proved a more competitive and pesky contest for much of the league than the sum of their parts suggested they’d be. There were many nights over the course of the season when I could not name a single player on the court for Brooklyn, and yet a lot of those nights they went out and really hung with superior opponents.</p> 
+        <p>Under Fernandez’s continued oversight, this Nets team should continue to be a scrappy, hard-playing group of young, unheralded players who aren’t just going to roll over for any team that expects an easy W against them in 2025-26. They might not look like they know what they are or where they’re going, but this is not going to be your 2011-12 Charlotte Bobcats of the infamous 7-59 record. This is a real, albeit random, group of developing talents, and they won’t be pigeonholed into the lottery without putting up a fight for all 82 games.</p>
+      </div>
+    </div>
+    <!-- Locked Teams Below -->
     <!-- Charlotte Hornets -->
-    <!-- <div class="team-card locked" id="team-hornets">
-      <div class="team-header" style="background-color: #1d1160;">
-        <div class="team-info">
-          <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/Charlotte_Hornets_%282014%29.svg" class="team-logo" alt="Hornets logo">
-          <h2>Charlotte Hornets</h2>
+      <div class="team-card locked">
+        <div class="team-header" style="background-color: #1d1160;">
+          <div class="team-info">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/Charlotte_Hornets_%282014%29.svg/1024px-Charlotte_Hornets_%282014%29.svg.png" class="team-logo" alt="Hornets logo">
+            <h2>Charlotte Hornets</h2>
+          </div>
         </div>
       </div>
-    </div> -->
+
 
     <!-- Chicago Bulls -->
     <!-- <div class="team-card locked" id="team-bulls">
@@ -638,6 +740,7 @@
         </div>
       </div>
     </div> -->
+  </div>
 
   <script>
     function toggleDetails(id) {
