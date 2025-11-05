@@ -138,12 +138,14 @@
     }
 
     .chart-wrapper {
-      width: 100%;
+      width: 90%;
       max-width: 700px;
       margin: 2rem auto;
-      padding: 1rem;
+      padding: 1rem 1.5rem; /* <- add horizontal padding */
+      background-color: #fff;
+      border-radius: 8px;
       box-sizing: border-box;
-      overflow-x: auto;
+      overflow-x: visible; /* or remove entirely */
     }
 
     .chart-wrapper .js-plotly-plot {
@@ -156,7 +158,8 @@
     #details-sixers p:first-of-type::first-letter,
     #details-hawks p:first-of-type::first-letter,
     #details-celtics p:first-of-type::first-letter,
-    #details-nets p:first-of-type::first-letter {
+    #details-nets p:first-of-type::first-letter,
+    #details-hornets p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -238,7 +241,7 @@
   </div>
 
   <div class="content">
-    <h1>2024-25 NBA Team Previews</h1>
+    <h1>2025-26 NBA Team Previews</h1>
     <p class="text-muted">One team per day, every day for 30 days. Full blog + charts below.</p>
 
     <!-- Active: Sixers -->
@@ -529,47 +532,47 @@
 
       <p>As a result of those early trends, the Hawks remain, as ever, a .500 team early in this new NBA season.</p>
     </div>
-  </div>
+    </div>
 
-  <!-- Active: Boston Celtics -->
-  <div class="team-card" id="team-celtics">
-    <div class="team-header" style="background-color: #007a33;" onclick="toggleDetails('details-celtics')">
-      <div class="team-info">
-        <img src="https://upload.wikimedia.org/wikipedia/en/8/8f/Boston_Celtics.svg" class="team-logo" alt="Celtics logo">
-        <h2>Boston Celtics</h2>
-        <p class="highlight">2024-25: 2nd in East &middot; 61-21</p>
+    <!-- Active: Boston Celtics -->
+    <div class="team-card" id="team-celtics">
+      <div class="team-header" style="background-color: #007a33;" onclick="toggleDetails('details-celtics')">
+        <div class="team-info">
+          <img src="https://upload.wikimedia.org/wikipedia/en/8/8f/Boston_Celtics.svg" class="team-logo" alt="Celtics logo">
+          <h2>Boston Celtics</h2>
+          <p class="highlight">2024-25: 2nd in East &middot; 61-21</p>
+        </div>
+      </div>
+      <div class="team-details" id="details-celtics">
+        <p>The seemingly unstoppable 2023–24 champs limped their way out of the playoffs early last season. Some did so quite literally, as with star Jayson Tatum, who tore his Achilles in the Celtics’ second-round series loss to the New York Knicks and is now likely to miss most, if not all, of this coming season. With Tatum out and key starters from the 2024 champion squad — Kristaps Porzingis and Jrue Holiday — traded in the offseason, this year’s Celtics are going into the season with lowered expectations and a bunch of new faces playing alongside remaining All-Stars Jaylen Brown and Derrick White.</p> 
+        <p>Without Tatum, Porzingis and Holiday, the Celtics will look like a completely new team. Led by Brown, buoyed by White and reigning Sixth Man of the Year Payton Pritchard, Boston will still have a few of its heavy hitters in the starting lineup. But judging by the state of their roster and early performances to start the season, this team seems to lack the star power and balance of its championship contenders in recent years.</p> 
+        <p>What can we expect from these new-look Celtics? For one, lots and lots of 3s: The Celtics shattered league records last season for 3-point attempts, and that was before losing most of their size and slower, less perimeter-bound offensive options. In the absence of Tatum, Porzingis and Holiday, expect the team that shot the most 3s in league history last year to attempt even more per game this coming season. We’re talking upward of 50 3s attempted per game, and a math challenge for any opposing team to solve regardless of the personnel Boston is able to field. That kind of audacious offensive approach could offset the loss in on-court talent, but it will also open the door to wide variance in outcomes night to night (bettors, beware).</p> 
+        <div style="text-align: center; margin: 2rem 0;">
+          <h3 style="margin-bottom: 1rem;">Boston Celtics Shot Maps 2024–25</h3>
+          <img 
+            src="/hanson-hoops/assets/celtics202425shotmap.png" 
+            alt="Boston Celtics Shot Maps 2024–25"
+            style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
+          >
+        </div>
+        <p>Beyond the 3s, look for a big jump in scoring from Brown in the absence of his longtime running mate, Tatum, who led the team in scoring and rebounding each of the last two seasons. In his nine seasons in the league — all in Boston — Brown has averaged just under 20 points per game on 14.9 field goal attempts, forming with Tatum one of the league’s most potent offensive duos of this era. Now, for the first time since his rookie season in 2016–17, in which he notably did not start or play many minutes, Brown gets to lead this team without Tatum’s assistance or share of the offensive load.</p> 
+        <p>As a longtime Brown believer, I want to believe this will translate automatically to at least +5 PPG this season on equivalent efficiency and shooting splits, but that’s by no means guaranteed. For one, as many in the league have pointed out, Brown has limitations on offense that could make the transition from No. 2 option to go-to scorer tricky — particularly his ball handling and playmaking, which have always fallen short of what’s expected from a star of his caliber. Even after some improvements in recent seasons, Brown remains frustratingly prone to coughing up the ball, dribbling off his feet, making errant passes or simply picking up his dribble too early and in too much traffic. To maximize Boston’s potential this season without Tatum will require a more careful, steady and responsible effort as a playmaker than Brown has historically shown.</p> 
+        <p>He’ll have plenty of help in that department in the Celtics’ backcourt, however. White and Pritchard are as reliable a duo of secondary guards as you’re likely to find in the league short of the All-Star class, and their steady shooting and playmaking will be supplemented by newcomer Anfernee Simons, who brings a potent shot-making punch and youth off the bench (presumably, though he could land in the starting lineup at some point) for a team that already has quite a lot of perimeter firepower.</p> 
+        <p>What Brown and the rest of the Celtics’ core won’t be able to count on in 2025–26, though, is the consistent rebounding and defense the team has sustained for much of this decade. Without Tatum, Porzingis and Holiday — who not only contributed much offensively to Boston’s championship teams but also served as primary cogs in those squads’ suffocating defenses — the Celtics will lose much of what made them a perennial top-tier defense in the Tatum-Brown era. Rebounding and rim protection, in particular, should see a major drop-off this season, with the Celtics’ two top rebounders last season gone from the team. Holiday’s absence, while less relevant to interior defense and rebounding, will still be felt. Head coach Joe Mazzulla (an all-time NBA character who warrants an entire column of his own at some point) still has two top-tier perimeter stoppers to lean on in Brown and White, but Holiday’s bulldog defense and knack for clutch playmaking on that end of the court will be missed throughout the season — especially on nights when one or both of White and/or Brown are sidelined.</p> 
+        <p>Ultimately, this is not going to be the same Celtics squad that made the Eastern Conference Finals six times during the Tatum-Brown era. But with help from an unleashed Brown — and perhaps a little math magic via record-breaking 3-point attempts — this team doesn’t have to be bad, either. There’s a lot of room between the perennial Finals contender Boston has been and falling into next year’s draft lottery. This could still be a play-in team, maybe even a top-six seed, in what is shaping up to be a very thin Eastern Conference. With the right contributions and enough 3s, a whole lot of possibilities still exist for this year’s Boston Celtics.</p>
       </div>
     </div>
-    <div class="team-details" id="details-celtics">
-      <p>The seemingly unstoppable 2023–24 champs limped their way out of the playoffs early last season. Some did so quite literally, as with star Jayson Tatum, who tore his Achilles in the Celtics’ second-round series loss to the New York Knicks and is now likely to miss most, if not all, of this coming season. With Tatum out and key starters from the 2024 champion squad — Kristaps Porzingis and Jrue Holiday — traded in the offseason, this year’s Celtics are going into the season with lowered expectations and a bunch of new faces playing alongside remaining All-Stars Jaylen Brown and Derrick White.</p> 
-      <p>Without Tatum, Porzingis and Holiday, the Celtics will look like a completely new team. Led by Brown, buoyed by White and reigning Sixth Man of the Year Payton Pritchard, Boston will still have a few of its heavy hitters in the starting lineup. But judging by the state of their roster and early performances to start the season, this team seems to lack the star power and balance of its championship contenders in recent years.</p> 
-      <p>What can we expect from these new-look Celtics? For one, lots and lots of 3s: The Celtics shattered league records last season for 3-point attempts, and that was before losing most of their size and slower, less perimeter-bound offensive options. In the absence of Tatum, Porzingis and Holiday, expect the team that shot the most 3s in league history last year to attempt even more per game this coming season. We’re talking upward of 50 3s attempted per game, and a math challenge for any opposing team to solve regardless of the personnel Boston is able to field. That kind of audacious offensive approach could offset the loss in on-court talent, but it will also open the door to wide variance in outcomes night to night (bettors, beware).</p> 
-      <div style="text-align: center; margin: 2rem 0;">
-        <h3 style="margin-bottom: 1rem;">Boston Celtics Shot Maps 2024–25</h3>
-        <img 
-          src="/hanson-hoops/assets/celtics202425shotmap.png" 
-          alt="Boston Celtics Shot Maps 2024–25"
-          style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
-        >
-      </div>
-      <p>Beyond the 3s, look for a big jump in scoring from Brown in the absence of his longtime running mate, Tatum, who led the team in scoring and rebounding each of the last two seasons. In his nine seasons in the league — all in Boston — Brown has averaged just under 20 points per game on 14.9 field goal attempts, forming with Tatum one of the league’s most potent offensive duos of this era. Now, for the first time since his rookie season in 2016–17, in which he notably did not start or play many minutes, Brown gets to lead this team without Tatum’s assistance or share of the offensive load.</p> 
-      <p>As a longtime Brown believer, I want to believe this will translate automatically to at least +5 PPG this season on equivalent efficiency and shooting splits, but that’s by no means guaranteed. For one, as many in the league have pointed out, Brown has limitations on offense that could make the transition from No. 2 option to go-to scorer tricky — particularly his ball handling and playmaking, which have always fallen short of what’s expected from a star of his caliber. Even after some improvements in recent seasons, Brown remains frustratingly prone to coughing up the ball, dribbling off his feet, making errant passes or simply picking up his dribble too early and in too much traffic. To maximize Boston’s potential this season without Tatum will require a more careful, steady and responsible effort as a playmaker than Brown has historically shown.</p> 
-      <p>He’ll have plenty of help in that department in the Celtics’ backcourt, however. White and Pritchard are as reliable a duo of secondary guards as you’re likely to find in the league short of the All-Star class, and their steady shooting and playmaking will be supplemented by newcomer Anfernee Simons, who brings a potent shot-making punch and youth off the bench (presumably, though he could land in the starting lineup at some point) for a team that already has quite a lot of perimeter firepower.</p> 
-      <p>What Brown and the rest of the Celtics’ core won’t be able to count on in 2025–26, though, is the consistent rebounding and defense the team has sustained for much of this decade. Without Tatum, Porzingis and Holiday — who not only contributed much offensively to Boston’s championship teams but also served as primary cogs in those squads’ suffocating defenses — the Celtics will lose much of what made them a perennial top-tier defense in the Tatum-Brown era. Rebounding and rim protection, in particular, should see a major drop-off this season, with the Celtics’ two top rebounders last season gone from the team. Holiday’s absence, while less relevant to interior defense and rebounding, will still be felt. Head coach Joe Mazzulla (an all-time NBA character who warrants an entire column of his own at some point) still has two top-tier perimeter stoppers to lean on in Brown and White, but Holiday’s bulldog defense and knack for clutch playmaking on that end of the court will be missed throughout the season — especially on nights when one or both of White and/or Brown are sidelined.</p> 
-      <p>Ultimately, this is not going to be the same Celtics squad that made the Eastern Conference Finals six times during the Tatum-Brown era. But with help from an unleashed Brown — and perhaps a little math magic via record-breaking 3-point attempts — this team doesn’t have to be bad, either. There’s a lot of room between the perennial Finals contender Boston has been and falling into next year’s draft lottery. This could still be a play-in team, maybe even a top-six seed, in what is shaping up to be a very thin Eastern Conference. With the right contributions and enough 3s, a whole lot of possibilities still exist for this year’s Boston Celtics.</p>
-    </div>
-  </div>
 
-  <!-- Active: Brooklyn Nets -->
-  <div class="team-card" id="team-nets">
-    <div class="team-header" style="background-color: #000000;" onclick="toggleDetails('details-nets')">
-      <div class="team-info">
-        <img src="https://logos-world.net/wp-content/uploads/2020/05/Brooklyn-Nets-Logo.png" class="team-logo" alt="Nets logo">
-        <h2>Brooklyn Nets</h2>
-        <p class="highlight">2024-25: 12th in East &middot; 26-56</p>
+    <!-- Active: Brooklyn Nets -->
+    <div class="team-card" id="team-nets">
+      <div class="team-header" style="background-color: #000000;" onclick="toggleDetails('details-nets')">
+        <div class="team-info">
+          <img src="https://logos-world.net/wp-content/uploads/2020/05/Brooklyn-Nets-Logo.png" class="team-logo" alt="Nets logo">
+          <h2>Brooklyn Nets</h2>
+          <p class="highlight">2024-25: 12th in East &middot; 26-56</p>
+        </div>
       </div>
-    </div>
-    <div class="team-details" id="details-nets">
+      <div class="team-details" id="details-nets">
         <p>I will start with a confession: I did not watch more than two or three Nets games all last season. This is not one of those teams I have hundreds of words to write about, and that’s for good reason. Like last year, this season’s Nets team, off to a putrid 0-6 start thus far, remains one of the more confusing, aimless and anonymous rosters this league has to offer. This is a team as full of questions and holes as Brooklyn is full of hipster transplants and artisanal coffee shops, and apart from aspirations to land a top lottery pick in the coming draft, I’m not sure what direction this franchise has in mind at this moment.</p> 
         <p>Take the team’s 2025 draft class as the most recent and oft-discussed example of what I mean. With five first-round picks going into draft night, most of the league anticipated the Nets would bundle some of those to either move up in the first round, grab additional picks in future drafts, or even the sort of current star player they have noticeably lacked since parting ways a few seasons back with their brief and ill-fated superstar core of Kevin Durant, James Harden and Kyrie Irving.</p> 
         <p>But rather than trying for any of those sensible, rational team-building paths, GM Sean Marks and his front office decided to keep all five first-round picks in this June’s draft. That choice, in and of itself, would have baffled most league insiders and observers, no matter which players the team actually picked with those selections.</p> 
@@ -659,27 +662,198 @@
         <p>Under Fernandez’s continued oversight, this Nets team should continue to be a scrappy, hard-playing group of young, unheralded players who aren’t just going to roll over for any team that expects an easy W against them in 2025-26. They might not look like they know what they are or where they’re going, but this is not going to be your 2011-12 Charlotte Bobcats of the infamous 7-59 record. This is a real, albeit random, group of developing talents, and they won’t be pigeonholed into the lottery without putting up a fight for all 82 games.</p>
       </div>
     </div>
-    <!-- Locked Teams Below -->
-    <!-- Charlotte Hornets -->
-      <div class="team-card locked">
-        <div class="team-header" style="background-color: #1d1160;">
-          <div class="team-info">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/Charlotte_Hornets_%282014%29.svg/1024px-Charlotte_Hornets_%282014%29.svg.png" class="team-logo" alt="Hornets logo">
-            <h2>Charlotte Hornets</h2>
-          </div>
+
+    <!-- Active: Charlotte Hornets -->
+    <div class="team-card" id="team-hornets">
+      <div class="team-header" style="background-color: #1d1160;" onclick="toggleDetails('details-hornets')">
+        <div class="team-info">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/Charlotte_Hornets_%282014%29.svg/1024px-Charlotte_Hornets_%282014%29.svg.png" class="team-logo" alt="Hornets logo">
+          <h2>Charlotte Hornets</h2>
+          <p class="highlight">2024-25: 14th in East &middot; 19-64</p>
         </div>
       </div>
+      <div class="team-details" id="details-hornets">
+        <p>For most of my 15-plus years watching NBA basketball, the Charlotte Hornets have been among the most dysfunctional organizations in the league. Much of that dysfunction, ironically, could be traced to former minority owner and NBA icon—some would say “GOAT”—Michael Jordan. While universally lauded for his accomplishments as a player, Jordan proved to be one of the worst owners and draft decision-makers I’ve seen in my time following the NBA. (Granted, I’m not counting Robert Sarver or Donald Sterling, who famously were forced to sell their teams due to inappropriate personal conduct.)</p>
 
+        <p>His drafts, signings and trades—about a decade’s worth—often left Hornets fans baffled. Jordan the owner could seemingly do no right. The result was a long stretch of losing seasons, poor roster moves and questionable draft picks, culminating in just one first-round playoff appearance and two play-in games, all losses.</p>
 
+        <p>So, where has all that mismanagement left the Hornets heading into the 2025–26 season? What does this team’s future look like, and what should we expect this year from a core led—generously stated—by mercurial, dazzling and wildly popular guard LaMelo Ball? I wouldn’t call this team a conference contender or even a strong play-in hopeful, but for the first time in years, I’m feeling almost bullish about Charlotte’s prospects.</p>
+
+        <p>Ball has rightly drawn criticism for his conditioning, his frenetic and freewheeling playing style, his lack of defensive effort, off-court maturity issues and his inability to stay healthy over a full season. Frankly, most of that criticism has been deserved.</p>
+
+        <p>But it’s also true that the frustration surrounding Ball is driven just as much by his tantalizing upside. The things he does on the court—routinely—are things we’ve never really seen before. He’s made Charlotte a consistent League Pass favorite despite its poor records and organizational chaos. And beyond the flair and creativity, he’s 6-foot-8 and athletic as they come at the point guard position. That combination of size, skill and vision is what keeps fans and analysts invested in what he <em>could</em> become.</p>
+
+        <p>I count myself among those who still believe in Ball’s potential. One of these seasons, he’s going to figure it out—how to play winning basketball, how to go beyond the viral highlights he’s always delivered. Either that, or Charlotte finally trades him for what would likely be a decent (but not elite) return of picks and players. Personally, I’m betting on the former—and I think this could be the year Ball starts to put it all together.</p>
+        <div class="chart-wrapper"><div id="lameloChart1"></div>
+        </div>
+        <div class="chart-wrapper"><div id="lameloChart2"></div>
+        </div>
+        <div class="chart-wrapper"><div id="lameloChart3"></div>
+        </div>
+        <div class="chart-wrapper"><div id="lameloChart4"></div>
+        </div>
+        <div class="chart-wrapper"><div id="lameloChart5"></div>
+        </div>
+        <script>
+          const lameloChartData = [
+            {
+              title: "LaMelo Ball - 2025-26",
+              name: "LaMelo Ball",
+              r: [46.7, 43.5, 81.9, 3.7, 47.6, 66.1, 74.1, 39.5, 78.7, 54.2, 46.7],
+              theta: ["Points", "Rebounds", "Assists", "Blocks", "Steals", "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"],
+              text: ["Points: 23.3 PPG", "Rebounds: 7.8 RPG", "Assists: 9.8 APG", "Blocks: 0.2 BPG", "Steals: 1.7 SPG", "FG%: 43%", "3P%: 33.3%", "FT Rate: 23.7%", "FT%: 81.5%", "Turnovers: 3.7 TOPG", "Points: 23.3 PPG"]
+            },
+            {
+              title: "LaMelo Ball - 2024-25",
+              name: "LaMelo Ball",
+              r: [50.4, 27.4, 61.3, 6.1, 32.8, 62.3, 75.3, 38.1, 85.7, 55.6, 50.4],
+              theta: ["Points", "Rebounds", "Assists", "Blocks", "Steals", "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"],
+              text: ["Points: 25.2 PPG", "Rebounds: 4.9 RPG", "Assists: 7.4 APG", "Blocks: 0.3 BPG", "Steals: 1.1 SPG", "FG%: 40.5%", "3P%: 33.9%", "FT Rate: 22.8%", "FT%: 84.3%", "Turnovers: 3.6 TOPG", "Points: 25.2 PPG"]
+            },
+            {
+              title: "LaMelo Ball - 2023-24",
+              name: "LaMelo Ball",
+              r: [47.8, 28.5, 66.7, 4, 51.9, 66.6, 79, 41, 91.3, 52.8, 47.8],
+              theta: ["Points", "Rebounds", "Assists", "Blocks", "Steals", "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"],
+              text: ["Points: 23.9 PPG", "Rebounds: 5.1 RPG", "Assists: 8 APG", "Blocks: 0.2 BPG", "Steals: 1.8 SPG", "FG%: 43.3%", "3P%: 35.5%", "FT Rate: 24.6%", "FT%: 86.5%", "Turnovers: 3.8 TOPG", "Points: 23.9 PPG"]
+            },
+            {
+              title: "LaMelo Ball - 2022-23",
+              name: "LaMelo Ball",
+              r: [46.6, 35.6, 70.4, 6.8, 36.5, 63.2, 83.6, 28.2, 84, 55.2, 46.6],
+              theta: ["Points", "Rebounds", "Assists", "Blocks", "Steals", "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"],
+              text: ["Points: 23.3 PPG", "Rebounds: 6.4 RPG", "Assists: 8.4 APG", "Blocks: 0.3 BPG", "Steals: 1.3 SPG", "FG%: 41.1%", "3P%: 37.6%", "FT Rate: 16.9%", "FT%: 83.6%", "Turnovers: 3.6 TOPG", "Points: 23.3 PPG"]
+            },
+            {
+              title: "LaMelo Ball - 2021-22",
+              name: "LaMelo Ball",
+              r: [40.2, 37.1, 63.4, 8.9, 45.3, 66, 86.5, 32.3, 93.1, 59.2, 40.2],
+              theta: ["Points", "Rebounds", "Assists", "Blocks", "Steals", "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"],
+              text: [
+                "Points: 20.1 PPG",
+                "Rebounds: 6.7 RPG",
+                "Assists: 7.6 APG",
+                "Blocks: 0.4 BPG",
+                "Steals: 1.6 SPG",
+                "FG%: 42.9%",
+                "3P%: 38.9%",
+                "FT Rate: 19.4%",
+                "FT%: 87.2%",
+                "Turnovers: 3.3 TOPG",
+                "Points: 20.1 PPG"
+              ]
+            }
+          ];
+
+          lameloChartData.forEach((data, i) => {
+            const targetId = `lameloChart${i + 1}`;
+            const targetDiv = document.getElementById(targetId);
+            Plotly.newPlot(targetDiv, [{
+              type: 'scatterpolar',
+              r: data.r,
+              theta: data.theta,
+              fill: 'toself',
+              text: data.text,
+              hoverinfo: 'text',
+              name: data.name,
+              line: { color: '#7c3aed' },
+              marker: { color: '#7c3aed' },
+              fillcolor: 'rgba(124,58,237,0.25)'
+            }], {
+              title: { text: data.title, font: { size: 14 } },
+              polar: {
+                radialaxis: {
+                  visible: true,
+                  range: [0, 100],
+                  tickvals: [0, 20, 40, 60, 80, 100],
+                  tickfont: { size: 10 } // reduce if needed
+                }
+              },
+              margin: { t: 56, l: 16, r: 16, b: 22 }
+            }, {
+              responsive: true,
+              displayModeBar: false
+            });
+          });
+
+          // Trigger responsive redraw on load and resize
+          window.addEventListener('load', () => {
+            document.querySelectorAll('.js-plotly-plot').forEach(chart => Plotly.Plots.resize(chart));
+          });
+
+          window.addEventListener('resize', () => {
+            document.querySelectorAll('.js-plotly-plot').forEach(chart => Plotly.Plots.resize(chart));
+          });
+        </script>
+        <p>Three weeks into the season, Ball looks reinvigorated. Through seven games, he’s posting career highs in rebounds, assists and offensive rating per 100 possessions. The Hornets haven’t taken a major leap off the back of his improved play, but they look reenergized with their youth movement and fast-paced, creative offense. Ball has reined in some of his wilder instincts and is showing early chemistry with rookies Kon Knueppel and Ryan Kalkbrenner, as well as veteran combo guard Collin Sexton.</p>
+        <div class="chart-wrapper">
+          <div id="lameloOrtDrtChart"></div>
+        </div>
+
+        <script>
+          const seasons = ["2020-21", "2021-22", "2022-23", "2023-24", "2024-25", "2025-26"];
+          const ortg = [108, 111, 108, 110, 108, 118];
+          const drtg = [110, 112, 115, 118, 117, 116];
+
+          const traceORtg = {
+            x: seasons,
+            y: ortg,
+            name: "Offensive Rating",
+            type: "scatter",
+            mode: "lines+markers",
+            line: { color: "#1d1160", width: 3 },
+            marker: { size: 6 }
+          };
+
+          const traceDRtg = {
+            x: seasons,
+            y: drtg,
+            name: "Defensive Rating",
+            type: "scatter",
+            mode: "lines+markers",
+            line: { color: "#00788c", width: 3 },
+            marker: { size: 6 }
+          };
+
+          const layout = {
+            title: { text: "LaMelo Ball – Per 100 Possessions", font: { size: 14 } },
+            xaxis: { title: "Season", tickangle: -45 },
+            yaxis: { title: "Rating", range: [100, 125] },
+            margin: { t: 50, l: 50, r: 30, b: 50 },
+            legend: { x: 0, y: 1 },
+            hovermode: "x unified"
+          };
+
+          Plotly.newPlot("lameloOrtDrtChart", [traceORtg, traceDRtg], layout, {
+            responsive: true,
+            displayModeBar: false
+          });
+
+          // Ensure resize on load and viewport changes
+          window.addEventListener("load", () => Plotly.Plots.resize("lameloOrtDrtChart"));
+          window.addEventListener("resize", () => Plotly.Plots.resize("lameloOrtDrtChart"));
+        </script>
+        <p>That new trio is part of a more functional supporting cast around Ball. Third-year forward Brandon Miller has shown flashes of All-NBA potential when healthy and is one of my breakout picks for this season. Veteran forward Miles Bridges—despite the serious and disturbing domestic violence case that has understandably tainted his public image—is still a key on-court contributor entering his athletic prime. He also shares established chemistry with Ball. Knueppel, meanwhile, has emerged as a versatile, efficient offensive weapon who fits seamlessly alongside the rest of the core.</p>
+
+        <p>Still, there are plenty of reasons to temper expectations. Chief among them is the Hornets’ frontcourt, which remains extremely thin. As of now, it consists of Moussa Diabate, veteran Mason Plumlee and rookie second-round pick Kalkbrenner. Kalkbrenner has impressed early, and there’s real upside there—but he’s still a rookie and can’t be expected to anchor the frontcourt for an entire season without some growing pains.</p>
+
+        <p>Unless Charlotte makes a move in free agency or on the trade market, this will likely be the worst frontcourt in the league—a significant ceiling-limiter for an otherwise exciting young roster. That’s a problem, especially for a team that hasn’t exactly been a defensive stalwart in recent years.</p>
+
+        <p>Because of that, I’m still predicting a finish in the play-in range at best. Even with Ball’s improvements and the promise of the team’s younger players, this will likely remain a losing—or at best, .500—team in 2025–26.</p>
+
+        <p>Still, with new leadership in the front office and ownership suite, and a young, intriguing core, there’s finally a sense of direction. For a franchise that’s spent much of the last decade wandering aimlessly, that’s no small thing heading into the new season.</p>
+      </div>
+    </div>
+    <!-- Locked Teams Below -->
     <!-- Chicago Bulls -->
-    <!-- <div class="team-card locked" id="team-bulls">
+    <div class="team-card locked" id="team-bulls">
       <div class="team-header" style="background-color: #ce1141;">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/6/67/Chicago_Bulls_logo.svg" class="team-logo" alt="Bulls logo">
           <h2>Chicago Bulls</h2>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- Cleveland Cavaliers -->
     <!-- <div class="team-card locked" id="team-cavs">
@@ -744,8 +918,18 @@
 
   <script>
     function toggleDetails(id) {
-      const el = document.getElementById(id);
-      if (el) el.style.display = el.style.display === 'none' || el.style.display === '' ? 'block' : 'none';
+      const section = document.getElementById(id);
+      const isOpen = section.style.display === 'block';
+      section.style.display = isOpen ? 'none' : 'block';
+
+      // Resize charts after expanding the section
+      if (!isOpen) {
+        setTimeout(() => {
+          section.querySelectorAll('.js-plotly-plot').forEach(chart => {
+            Plotly.Plots.resize(chart);
+          });
+        }, 200); // delay for layout recalculation
+      }
     }
   </script>
 </body>
