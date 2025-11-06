@@ -159,7 +159,8 @@
     #details-hawks p:first-of-type::first-letter,
     #details-celtics p:first-of-type::first-letter,
     #details-nets p:first-of-type::first-letter,
-    #details-hornets p:first-of-type::first-letter {
+    #details-hornets p:first-of-type::first-letter,
+    #details-bulls p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -844,26 +845,133 @@
         <p>Still, with new leadership in the front office and ownership suite, and a young, intriguing core, there’s finally a sense of direction. For a franchise that’s spent much of the last decade wandering aimlessly, that’s no small thing heading into the new season.</p>
       </div>
     </div>
-    <!-- Locked Teams Below -->
-    <!-- Chicago Bulls -->
-    <div class="team-card locked" id="team-bulls">
-      <div class="team-header" style="background-color: #ce1141;">
+
+    <!-- Active: Chicago Bulls -->
+     <div class="team-card" id="team-bulls">
+      <div class="team-header" style="background-color: #ce1141;" onclick="toggleDetails('details-bulls')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/6/67/Chicago_Bulls_logo.svg" class="team-logo" alt="Bulls logo">
           <h2>Chicago Bulls</h2>
+          <p class="highlight">2024-25: 10th in East &middot; 39-43</p>
         </div>
       </div>
-    </div>
+      <div class="team-details" id="details-bulls">
+        <p>It’s hard to think of any team in the league that has embodied mediocrity more in the 2020s than the Chicago Bulls.</p>
+        <p>The issues this decade for the Bulls began with their March 2021 trade with the Orlando Magic for center Nikola Vucevic. That trade cost the Bulls not only a younger center in Wendell Carter Jr., who has been consistently solid for the Magic, but also the lottery pick that became Franz Wagner, who has emerged as one of the league’s best young forwards since Orlando took him in the 2021 draft.</p>
+        <p>What did those valuable assets bring in return to the Bulls in the seasons since the trade? Very little, it turned out. Vucevic has never looked like the same player he was in Orlando on the Bulls. Worse, the “big three” he was brought in to complete and compete for titles with – comprised of Vucevic, veteran All-Star DeMar DeRozan and uber-athletic All-Star guard Zach Lavine – never really delivered on their initial promise: in three and a half seasons together, the trio never even made it past the first round, and missed the playoffs altogether in multiple seasons.</p>
+        <p>That era of Bulls basketball ended unceremoniously last season with the departures of Lavine and DeRozan – both shipped out to Sacramento for disappointing returns in separate trades – along with the trade of fan favorite Alex Caruso to the Oklahoma City Thunder for Josh Giddey, a polarizing 6’8” point guard whose defensive and shooting issues prompted Thunder GM Sam Presti to unload him just three years after taking him in the lottery.</p>
+        <p>In his first two seasons in the league, Giddey had been tantalizingly productive yet frustratingly flawed, as much a defensive liability and spacing conundrum as a non-shooting guard as he was a passing savant with tantalizing upside and size for his skillset. At the time of the trade just before the start of last season, fans and media alike were skeptical and critical of the trade for Chicago, and more or less stayed that way all year, despite a strong first season in Chicago from the Australian point forward. The Bulls ended yet another season with another loss in the 9-10 play-in game, and after another underwhelming offseason entered the 2025-26 season with little to no hype or expectations.</p>
+        <p>But three weeks into the new season, something strange and unexpected is happening in the windy city: the Chicago Bulls are top of the conference at 6-1, and playing like a real contender. The signature moment of the Bulls hot start came in last night’s thrilling home win over another surprise early-season upstart, the Philadelphia Sixers. In one of the better games of the season so far, both teams showed why they’ve vaulted to the top of the conference unexpectedly, with big games from young stars on both sides – Tyrese Maxey for the Sixers and Giddey for the Bulls – and a huge comeback by the Bulls ending in a game-winning three by Vucevic.</p>
+        <p>It was a perfect showcase for both sides, but especially the Bulls, highlighting all the key elements that have driven their hot start: an efficient triple double from Giddey, a clutch winner from the resurgent Vucevic, fast and athletic play from the rest of this young Bulls roster, snappy ball movement and surprisingly strong perimeter defense that has covered over Vucevic’s weaker rim protection in Chicago’s first seven games. It was an impressive, statement win for a team I admittedly had zero hope for going into the season.</p>
+        <p>After watching the whole game this morning, I have to admit I found myself won over by this young, fun Bulls team, and particularly by Giddey, who was magnificent and made the game winning assist to Vucevic with a gorgeous wraparound bullet pass to the corner after driving into traffic under the basket. His play so far has all but erased his past weaknesses, both on the defensive end and as a shooter (teams are still defending him by going under on everything like they always have, and he’s made them pay for it, shooting a career-best 41 percent from behind the arc on 4.4 attempts per game, to go along with career highs in rebounds, assists and effective field goal percentage). He looks every bit like he’s making “the leap” here, and that could change a whole lot for Chicago.</p>
+        <div class="chart-wrapper">
+        <div id="giddeyCareerChart"></div>
+        </div>
+        <script>
+          const giddeySeasons = ["2021-22", "2022-23", "2023-24", "2024-25", "2025-26"];
+          const assists = [6.4, 6.2, 4.8, 7.2, 9.1];
+          const rebounds = [7.8, 7.9, 6.4, 8.1, 10.0];
+          const efg = [46.1, 51.6, 52.3, 53.1, 55.1];
+          const threes = [26.3, 32.5, 33.7, 37.8, 41.9];
+
+          const traceAST = {
+            x: giddeySeasons,
+            y: assists,
+            name: "AST (Assists)",
+            type: "scatter",
+            mode: "lines+markers",
+            line: { color: "#CE1141", width: 3 },
+            marker: { size: 6 },
+            yaxis: "y1"
+          };
+
+          const traceTRB = {
+            x: giddeySeasons,
+            y: rebounds,
+            name: "TRB (Rebounds)",
+            type: "scatter",
+            mode: "lines+markers",
+            line: { color: "#000000", width: 3 },
+            marker: { size: 6 },
+            yaxis: "y1"
+          };
+
+          const traceEFG = {
+            x: giddeySeasons,
+            y: efg,
+            name: "eFG%",
+            type: "scatter",
+            mode: "lines+markers",
+            line: { color: "#8000FF", width: 3 },
+            marker: { size: 6 },
+            yaxis: "y2"
+          };
+
+          const trace3P = {
+            x: giddeySeasons,
+            y: threes,
+            name: "3P%",
+            type: "scatter",
+            mode: "lines+markers",
+            line: { color: "#1CA9C9", width: 3 },
+            marker: { size: 6 },
+            yaxis: "y2"
+          };
+
+          const layoutGiddey = {
+            title: {
+              text: "Josh Giddey – Career AST, TRB, eFG% & 3P%",
+              font: { size: 14 }
+            },
+            xaxis: {
+              title: "Season",
+              tickangle: -45
+            },
+            yaxis: {
+              title: "AST / TRB",
+              range: [0, 12],
+              side: "left"
+            },
+            yaxis2: {
+              title: "Shooting %",
+              overlaying: "y",
+              side: "right",
+              range: [20, 60]
+            },
+            margin: { t: 50, l: 60, r: 60, b: 50 },
+            legend: {
+              orientation: "h",
+              x: 0.5,
+              y: -0.3,
+              xanchor: "center",
+              font: { size: 12 }
+            },
+            hovermode: "x unified"
+          };
+
+          Plotly.newPlot("giddeyCareerChart", [traceAST, traceTRB, traceEFG, trace3P], layoutGiddey, {
+            responsive: true,
+            displayModeBar: false
+          });
+
+          window.addEventListener("load", () => Plotly.Plots.resize("giddeyCareerChart"));
+          window.addEventListener("resize", () => Plotly.Plots.resize("giddeyCareerChart"));
+        </script>
+        <p>Moreover, Giddey isn’t the only Bull on pace for a big breakout season so far. 2024 lottery pick Matas Buzelis has looked awesome through seven games after a solid rookie season last year, and looks like he could become something more than just a solid starting caliber forward in this league. The former top high school prospect in what is broadly considered one of the weakest classes in NBA draft history, the lanky Lithuanian is starting to show why he was considered the best of his peers as a teenager. He might have some All-Star appearances in his future, if he stays healthy and keeps adding to his balanced and athletic game – if so, that’s another huge game-changing win for the franchise’s long-term plans.</p>
+        <p>Throw in improved play so far from other young Bulls players like Ayo Dosunmu (who I’ve always been bullish on, no pun intended) and Patrick Williams and a revival of Vucevic, and you start to understand why these Bulls are off to such a surprisingly strong start. Between Giddey and Buzelis and the other improved showings by this young and athletic supporting cast, you can actually envision a strong future in Chicago for the first time in many years. And that, regardless of what else happens the rest of this season, is a massive move in the right direction for this once dominant but long dormant franchise.</p>
+      </div>
+     </div>
+    <!-- Locked Teams Below -->
 
     <!-- Cleveland Cavaliers -->
-    <!-- <div class="team-card locked" id="team-cavs">
+    <div class="team-card locked" id="team-cavs">
       <div class="team-header" style="background-color: #6f263d;">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cleveland_Cavaliers_logo.svg/1024px-Cleveland_Cavaliers_logo.svg.png" class="team-logo" alt="Cavaliers logo">
           <h2>Cleveland Cavaliers</h2>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- Dallas Mavericks -->
     <!-- <div class="team-card locked" id="team-mavs">
