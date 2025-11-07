@@ -161,7 +161,8 @@
     #details-nets p:first-of-type::first-letter,
     #details-hornets p:first-of-type::first-letter,
     #details-bulls p:first-of-type::first-letter,
-    #details-cavs p:first-of-type::first-letter {
+    #details-cavs p:first-of-type::first-letter,
+    #details-mavs p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -1108,26 +1109,182 @@
         <p>All in all, the 5-3 Cavs are still a formidable force in the Eastern Conference and should only get better over the season as they reintegrate Garland and further develop Mobley’s offensive game. Ball is a perfect addition for them and Mitchell is right in his prime at 29 and playing like it. I expect better outcomes for this team, especially in the playoffs when it counts most… just so long as they can stay healthy with a roster full of key players with significant injury history.</p>
       </div>
     </div>
-    <!-- Locked Teams Below -->
-    <!-- Dallas Mavericks -->
-    <div class="team-card locked" id="team-mavs">
-      <div class="team-header" style="background-color: #00538c;">
+    <!-- Active: Dallas Mavericks -->
+    <div class="team-card" id="team-mavs">
+      <div class="team-header" style="background-color: #00538c;" onclick="toggleDetails('details-mavs')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/9/97/Dallas_Mavericks_logo.svg" class="team-logo" alt="Mavericks logo">
           <h2>Dallas Mavericks</h2>
+          <p class="highlight">2024-25: 39-43 &middot; 10th in West</p>
         </div>
+      </div>
+      <div class="team-details" id="details-mavs">
+        <p>Boy, have I been eager to write about this team.</p>
+        <p>Let’s get this out of the way: it’s impossible to talk about the 2025–26 Dallas Mavericks without focusing on what they gave up to assemble their current roster. I’m talking, of course, about the infamous, shocking trade of their homegrown, all-world superstar Luka Dončić for Anthony Davis and Max Christie back in February. Then and now, the deal has been widely regarded as one of the worst trades in NBA history — if not the worst. And just a few weeks into a season that began with the Mavs reviving franchise hopes by lucking into the top pick and drafting Duke phenom Cooper Flagg, nothing I’ve seen suggests otherwise.</p>
+        <p>Don’t get me wrong: I love Flagg’s game. He’s a legitimate Rookie of the Year candidate — though not the shoo-in many expected — and a worthy long-term piece. What I am saying is that this team, as constructed, was never going to be a title contender, no matter the delusions or public comments from beleaguered GM Nico Harrison and head coach Jason Kidd. At the time of the trade, the Mavericks pitched it as a win-now, defense-first move centered around Davis, Klay Thompson and Kyrie Irving — veterans supposedly better suited to chase a ring than Dončić, who, lest we forget, carried this franchise to a Finals appearance less than a year ago.</p>
+        <p>That trade was lunacy then, and despite the lucky bounce of landing Flagg, it looks even worse now. Just look at the current state of this supposed contender: 2–6, dead last in the ultra-competitive Western Conference they were “built to compete in,” and ranked 30th in both offense and offensive efficiency. Flagg, their franchise centerpiece of the future, has been shoehorned into running point while Irving recovers from an ACL tear. Davis, Lively, Gafford, and Flagg were supposed to form a stacked frontcourt. Right now, it’s just Flagg. It’s a disaster — and someone (maybe more than one someone) is about to pay the price if this continues.</p>
+        <div class="chart-wrapper"><div id="mavsChart1"></div></div>
+        <!-- Chart Script: Dallas Mavericks -->
+        <script>
+          const mavsChartData = [
+            {
+              title: "Dallas Mavericks - 2025-26 (Team)",
+              name: "Dallas Mavericks",
+              r: [0, 53.3, 6.7, 73.3, 43.3, 13.3, 10, 43.3, 0],
+              theta: [
+                "Points",
+                "Rebounds",
+                "Assists",
+                "Blocks",
+                "Steals",
+                "FG%",
+                "3P%",
+                "Turnovers (↓ better)",
+                "Points"
+              ],
+              text: [
+                "Points: 106.2 PPG",
+                "Rebounds: 43 RPG",
+                "Assists: 23.4 APG",
+                "Blocks: 5.2 BPG",
+                "Steals: 8 SPG",
+                "FG%: 44%",
+                "3P%: 31.5%",
+                "Turnovers: 16.1 TOPG",
+                "Points: 106.2 PPG"
+              ]
+            }
+          ];
+
+          mavsChartData.forEach((data, i) => {
+            const targetId = `mavsChart${i + 1}`;
+            const targetDiv = document.getElementById(targetId);
+            Plotly.newPlot(targetDiv, [{
+              type: 'scatterpolar',
+              r: data.r,
+              theta: data.theta,
+              fill: 'toself',
+              text: data.text,
+              hoverinfo: 'text',
+              name: data.name,
+              line: { color: '#2563eb' },
+              marker: { color: '#2563eb' },
+              fillcolor: 'rgba(37,99,235,0.25)'
+            }], {
+              title: { text: data.title, font: { size: 14 } },
+              polar: {
+                radialaxis: {
+                  visible: true,
+                  range: [0, 100],
+                  tickvals: [0, 20, 40, 60, 80, 100],
+                  tickfont: { size: 10 }
+                }
+              },
+              margin: { t: 56, l: 16, r: 16, b: 22 }
+            }, {
+              responsive: true,
+              displayModeBar: false
+            });
+          });
+
+          // Trigger responsive redraw on load and resize
+          window.addEventListener('load', () => {
+            document.querySelectorAll('.js-plotly-plot').forEach(chart => Plotly.Plots.resize(chart));
+          });
+
+          window.addEventListener('resize', () => {
+            document.querySelectorAll('.js-plotly-plot').forEach(chart => Plotly.Plots.resize(chart));
+          });
+        </script>
+        <p>To be fair, injuries are a big part of the dysfunction. But even if healthy, I’m not sure this roster was ever more than a play-in team in today’s Western Conference. Irving, Thompson, and Davis are all deep into their 30s with extensive injury histories that should make any Dallas fan uneasy.</p>
+        <p>Davis is among the unluckiest stars I’ve seen in terms of health in 15 years following the league. He’s already missed significant time twice since arriving in Dallas. Irving, ever mercurial but immensely gifted, has suffered arguably the worst injury possible for a guard of his type. That ACL tear may have ended his prime — assuming he returns at all. And Thompson, as painful as it is to say (and it really is, considering how beloved and accomplished he is), looks like a shell of his former self. Some nights, he’s so washed I find myself wishing his girlfriend Megan Thee Stallion would suit up in his place. Honestly, she might be a better scoring option right now (I kid — mostly. It’s been that rough for the future Hall of Famer).</p>
+        <div class="chart-wrapper">
+          <div id="klayShootingChart"></div>
+        </div>
+
+        <script>
+          const klayStats = {
+            categories: ["FG%", "3P%", "eFG%"],
+            gsw: [45.3, 41.3, 55.0],
+            dal: [40.6, 38.3, 52.7]
+          };
+
+          const traceGSW = {
+            x: klayStats.categories,
+            y: klayStats.gsw,
+            name: "Golden State Warriors (11 Seasons)",
+            type: "bar",
+            marker: {
+              color: "#FDB927"  // Warriors gold
+            },
+            text: klayStats.gsw.map(v => v + "%"),
+            textposition: "auto"
+          };
+
+          const traceDAL = {
+            x: klayStats.categories,
+            y: klayStats.dal,
+            name: "Dallas Mavericks (2 Seasons)",
+            type: "bar",
+            marker: {
+              color: "#00538C"  // Mavericks blue
+            },
+            text: klayStats.dal.map(v => v + "%"),
+            textposition: "auto"
+          };
+
+          const layoutKlay = {
+            title: {
+              text: "Klay Thompson – Shooting: GSW vs DAL",
+              font: { size: 14 }
+            },
+            barmode: "group",
+            xaxis: {
+              title: "Category",
+              tickangle: 0
+            },
+            yaxis: {
+              title: "Percentage",
+              range: [0, 60],
+              ticksuffix: "%"
+            },
+            legend: {
+              x: 0.5,
+              y: -0.2,
+              orientation: "h",
+              xanchor: "center"
+            },
+            margin: { t: 60, l: 50, r: 20, b: 70 }
+          };
+
+          Plotly.newPlot("klayShootingChart", [traceGSW, traceDAL], layoutKlay, {
+            responsive: true,
+            displayModeBar: false
+          });
+
+          // Resize support
+          window.addEventListener("load", () => Plotly.Plots.resize("klayShootingChart"));
+          window.addEventListener("resize", () => Plotly.Plots.resize("klayShootingChart"));
+        </script>
+
+        <p>But the Mavericks’ problems go deeper than aging stars. Even if Irving, Davis, and Thompson were healthy and playing at their peaks, this team still suffers from a fundamental roster imbalance. Flagg, as good as he is, only amplifies a glaring problem created post-Luka: a glut of frontcourt talent and a dire lack of ball-handling and shot-creating guards. Without Irving, that imbalance is fatal in a conference this deep and dangerous. And no offense, Nico, but signing D’Angelo Russell as a stopgap was never going to solve that.</p>
+        <p>To make matters worse, even the younger guys haven’t stepped up. Derrick Lively has been bitten by the injury bug, while Caleb Martin and Jaden Hardy have underwhelmed despite staying healthy. From aging stars to misfiring youth to an offense stuck in the mud, all roads lead to the same tragic outcome: Cooper Flagg’s first month as a pro has been overshadowed and undermined by dysfunction all around him.</p>
+        <p>Flagg should be thriving as a Swiss Army knife at his most dangerous off the ball — cutting, screening, connecting, shooting, rebounding. Instead, he’s been forced into a lead ball-handler role, and he’s clearly less comfortable there. The result? He’s looked less effective than expected and may no longer be the front-runner for Rookie of the Year, despite entering the season as a consensus favorite. It’s a brutal way to start your franchise cornerstone’s career — and a move that threatens both his development and long-term buy-in.</p>
+        <p>I’m not sure what the short-term fix is here, unless everyone magically gets healthy and turns back the clock. The best-case scenario might actually be trading Davis — yes, that Davis, the one they gave up Luka Freaking Dončić to get. But doing that would almost certainly cost Harrison his job, and maybe Kidd’s, too. Worse still, it would mean conceding total failure on the Luka trade — the most widely derided deal in recent memory — and bracing for a full-scale rebuild around Flagg. And if the dysfunction continues, even that might not be enough to keep him happy in Dallas.</p>
+        <p>This is as bleak a moment as I can recall for this franchise — and I’ve seen a few. It all traces back to that inexplicable Luka trade. Maybe things improve once players return and Flagg grows more comfortable. But even then, from an organizational and PR standpoint, this is a DEFCON 5 disaster. I wish I could be more optimistic, but as it stands, it’s hard to see anything other than a humiliating rebuild in the Mavericks’ near future.</p>
       </div>
     </div>
 
+    <!-- Locked Teams Below -->
     <!-- Denver Nuggets -->
-    <!-- <div class="team-card locked" id="team-nuggets">
+    <div class="team-card locked" id="team-nuggets">
       <div class="team-header" style="background-color: #0e2240;">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/7/76/Denver_Nuggets.svg" class="team-logo" alt="Nuggets logo">
           <h2>Denver Nuggets</h2>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- Detroit Pistons -->
     <!-- <div class="team-card locked" id="team-pistons">
