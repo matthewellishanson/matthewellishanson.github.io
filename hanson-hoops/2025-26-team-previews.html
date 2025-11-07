@@ -160,7 +160,8 @@
     #details-celtics p:first-of-type::first-letter,
     #details-nets p:first-of-type::first-letter,
     #details-hornets p:first-of-type::first-letter,
-    #details-bulls p:first-of-type::first-letter {
+    #details-bulls p:first-of-type::first-letter,
+    #details-cavs p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -961,27 +962,162 @@
         <p>Throw in improved play so far from other young Bulls players like Ayo Dosunmu (who I’ve always been bullish on, no pun intended) and Patrick Williams and a revival of Vucevic, and you start to understand why these Bulls are off to such a surprisingly strong start. Between Giddey and Buzelis and the other improved showings by this young and athletic supporting cast, you can actually envision a strong future in Chicago for the first time in many years. And that, regardless of what else happens the rest of this season, is a massive move in the right direction for this once dominant but long dormant franchise.</p>
       </div>
      </div>
+    
     <!-- Locked Teams Below -->
 
-    <!-- Cleveland Cavaliers -->
-    <div class="team-card locked" id="team-cavs">
-      <div class="team-header" style="background-color: #6f263d;">
+    <!-- Active: Cleveland Cavaliers -->
+    <div class="team-card" id="team-cavs">
+      <div class="team-header" style="background-color: #6f263d;" onclick="toggleDetails('details-cavs')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cleveland_Cavaliers_logo.svg/1024px-Cleveland_Cavaliers_logo.svg.png" class="team-logo" alt="Cavaliers logo">
           <h2>Cleveland Cavaliers</h2>
+          <p class="highlight">2024-25: 1st in East &middot; 64-18</p>
         </div>
       </div>
-    </div>
+      <div class="team-details" id="details-cavs">
+        <p>It has been a couple of interesting seasons for the Cleveland Cavaliers. Dominant in the regular season two years in a row, the Cavs fizzled out in the postseason in anti-climactic fashion in 2023-24 and in 2024-25, prompting some pundits and fans to express skepticism about their legitimacy as a contender in the Eastern Conference.</p>
+        <p>Last season in particular saw the Cavs dominate all regular season with balanced offense, exceptional pace and shooting and lockdown interior defense throughout the year. But when it came time to prove that campaign wasn’t a fluke or the result of a roster built to succeed more in the regular season than in the playoffs, Cleveland ran into injuries and the surprise buzzsaw that was the Indiana Pacers in this past postseason, and bowed out in the second round with a 4-1 series drubbing courtesy of Indiana’s pace and space offensive machine.</p>
+        <p>Coming into this season, the expectations for this team have been high but tempered, thanks to their recent disappointing playoff showings, but the consensus has still been that this is a top 2 team in the weak East that has as good a chance as any other team in the conference to make the Finals. So far, nothing I’ve seen from the Cavs has given me reason to doubt that projection, and in fact, I have a feeling this team is going to be better than last season’s 64-18 squad.</p>
+        <p>My optimism for this team has less to do with their start to this season, which has so far fallen short of their blistering early season success last year, and everything to do with the balance and improved play of a few key players that I’ve seen so far.</p>
+        <p>With fellow All-Star and backcourt mate Darius Garland out to start the season with a toe injury that he had to get surgery for in the offseason, only making his debut on Wednesday against the Sixers, the team’s go-to scorer, Donovan Mitchell, has upped his output significantly. After a drop in scoring in each of the past two seasons from his career-high 28.3 PPG in his first season in Cleveland, Mitchell has been aces so far, dropping a career-best 31.9 PPG on his best shooting splits ever (57% FG, 45% 3pt, 82% FT). It’s obviously too early to bank on this remaining a career year for the six-time All-Star, but if these stats even come close to holding where they’re at currently, the Cavs will be in great shape, especially once Garland returns to form.</p>
+        <div class="chart-wrapper"><div id="mitchellChart1"></div></div>
+        <div class="chart-wrapper"><div id="mitchellChart2"></div></div>
+        <!-- Chart Scripts for Donovan Mitchell -->
+        <script>
+          const mitchellChartData = [
+            {
+              title: "Donovan Mitchell - 2025-26",
+              name: "Donovan Mitchell",
+              r: [63.7, 14.3, 41.7, 9.5, 36.7, 88.6, 100, 63.1, 80, 57.1, 63.7],
+              theta: ["Points", "Rebounds", "Assists", "Blocks", "Steals", "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"],
+              text: ["Points: 31.9 PPG", "Rebounds: 2.6 RPG", "Assists: 5 APG", "Blocks: 0.4 BPG", "Steals: 1.3 SPG", "FG%: 57.6%", "3P%: 45.5%", "FT Rate: 37.9%", "FT%: 82%", "Turnovers: 3.4 TOPG", "Points: 31.9 PPG"]
+            },
+            {
+              title: "Donovan Mitchell - 2024-25",
+              name: "Donovan Mitchell",
+              r: [47.9, 25.2, 41.5, 5.3, 38.2, 68.2, 81.8, 45.7, 80.8, 73.8, 47.9],
+              theta: ["Points", "Rebounds", "Assists", "Blocks", "Steals", "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"],
+              text: ["Points: 24 PPG", "Rebounds: 4.5 RPG", "Assists: 5 APG", "Blocks: 0.2 BPG", "Steals: 1.3 SPG", "FG%: 44.3%", "3P%: 36.8%", "FT Rate: 27.4%", "FT%: 82.3%", "Turnovers: 2.1 TOPG", "Points: 24 PPG"]
+            }
+          ];
 
+          mitchellChartData.forEach((data, i) => {
+            const targetId = `mitchellChart${i + 1}`;
+            const targetDiv = document.getElementById(targetId);
+            Plotly.newPlot(targetDiv, [{
+              type: 'scatterpolar',
+              r: data.r,
+              theta: data.theta,
+              fill: 'toself',
+              text: data.text,
+              hoverinfo: 'text',
+              name: data.name,
+              line: { color: '#7c3aed' },
+              marker: { color: '#7c3aed' },
+              fillcolor: 'rgba(124,58,237,0.25)'
+            }], {
+              title: { text: data.title, font: { size: 14 } },
+              polar: {
+                radialaxis: {
+                  visible: true,
+                  range: [0, 100],
+                  tickvals: [0, 20, 40, 60, 80, 100],
+                  tickfont: { size: 10 }
+                }
+              },
+              margin: { t: 56, l: 16, r: 16, b: 22 }
+            }, {
+              responsive: true,
+              displayModeBar: false
+            });
+          });
+
+          window.addEventListener('load', () => {
+            document.querySelectorAll('.js-plotly-plot').forEach(chart => Plotly.Plots.resize(chart));
+          });
+
+          window.addEventListener('resize', () => {
+            document.querySelectorAll('.js-plotly-plot').forEach(chart => Plotly.Plots.resize(chart));
+          });
+        </script>
+        <p>Mitchell’s strong start has been supplemented by a really encouraging revival of newcomer point guard Lonzo Ball, who has looked as good as he’s ever looked to start the season after missing the last three seasons with a complex and scary knee injury that required multiple surgeries and threatened to end his career prematurely. Ball is a perfect complementary backcourt pairing with either of Cleveland’s two star guards, and has been an instant seamless fit in Cleveland’s egalitarian, pass-happy offense. His playmaking, which has always been preternaturally good going back to his famed high school years, is really at home in this offense and could elevate this Cavs team to real playoff success come April, May and June.</p>
+        <p>With Ball playing like he never so much as scraped his surgically repaired knee, Cleveland has hardly even missed Garland, who has been plagued by one injury after another in critical stretches over the last three seasons. If he can return to the heights he showed in his healthy stretches those seasons, however, this Cavs team suddenly looks like the title contender they seemed like they were all last regular season.</p>
+        <p>Another big piece of what made the Cavs a regular season juggernaut last season was their two-headed monster duo down low of reigning Defensive Player of the Year Evan Mobley and Jarrett Allen, who have combined to lockdown the paint on defense, dominate the boards and supplement the Cavs pace and space perimeter scoring with efficient and consistent paint points in their time together in Cleveland. Mobley gets the lion’s share of the credit and hype out of Cleveland’s two star bigs, and understandably so, given his freakish athleticism and skill for his frame, his youth and his higher ceiling, but too many fans and pundits have slept on Allen in this era of the Cavs. Last season Allen quietly led the league in offensive rating while also holding opponents to lower shooting numbers in the paint and at the rim than his DPOY teammate Mobley. In my mind, he’s consistently been underrated his whole career in this league, and is just as important to this season’s Cavs chances as Mobley is.</p>
+        <p>That said, Mobley has a chance to take another leap, particularly on offense, where he’s been a streaky shooter and inconsistent shot creator more often than not in his four seasons in the league. If he can paper over some of his past offensive inconsistencies and weaknesses enough to force defenses to respect him as a shooter and a playmaking big – he has shown at times a scary level of ball control and vision for his size, but has yet to consistently play to that level in those areas – Mobley could skyrocket this Cavs’ title hopes in this season and beyond.</p>
+        <div class="chart-wrapper"><div id="mobleyChart1"></div></div>
+        <div class="chart-wrapper"><div id="mobleyChart2"></div></div>
+        <!-- Chart Scripts for Evan Mobley -->
+        <script>
+          const mobleyChartData = [
+            {
+              title: "Evan Mobley - 2025-26",
+              name: "Evan Mobley",
+              r: [39.5, 46.5, 35.4, 38.9, 53.6, 70.6, 77.5, 61.5, 47.2, 64.1, 39.5],
+              theta: ["Points", "Rebounds", "Assists", "Blocks", "Steals", "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"],
+              text: ["Points: 19.8 PPG", "Rebounds: 8.4 RPG", "Assists: 4.2 APG", "Blocks: 1.8 BPG", "Steals: 1.9 SPG", "FG%: 45.9%", "3P%: 34.9%", "FT Rate: 36.9%", "FT%: 68.9%", "Turnovers: 2.9 TOPG", "Points: 19.8 PPG"]
+            },
+            {
+              title: "Evan Mobley - 2024-25",
+              name: "Evan Mobley",
+              r: [37.1, 51.6, 26.5, 35.4, 24.5, 85.8, 82.1, 56.1, 56.1, 74.5, 37.1],
+              theta: ["Points", "Rebounds", "Assists", "Blocks", "Steals", "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"],
+              text: ["Points: 18.5 PPG", "Rebounds: 9.3 RPG", "Assists: 3.2 APG", "Blocks: 1.6 BPG", "Steals: 0.9 SPG", "FG%: 55.7%", "3P%: 37%", "FT Rate: 33.7%", "FT%: 72.5%", "Turnovers: 2 TOPG", "Points: 18.5 PPG"]
+            }
+          ];
+
+          mobleyChartData.forEach((data, i) => {
+            const targetId = `mobleyChart${i + 1}`;
+            const targetDiv = document.getElementById(targetId);
+            Plotly.newPlot(targetDiv, [{
+              type: 'scatterpolar',
+              r: data.r,
+              theta: data.theta,
+              fill: 'toself',
+              text: data.text,
+              hoverinfo: 'text',
+              name: data.name,
+              line: { color: '#7c3aed' },
+              marker: { color: '#7c3aed' },
+              fillcolor: 'rgba(124,58,237,0.25)'
+            }], {
+              title: { text: data.title, font: { size: 14 } },
+              polar: {
+                radialaxis: {
+                  visible: true,
+                  range: [0, 100],
+                  tickvals: [0, 20, 40, 60, 80, 100],
+                  tickfont: { size: 10 }
+                }
+              },
+              margin: { t: 56, l: 16, r: 16, b: 22 }
+            }, {
+              responsive: true,
+              displayModeBar: false
+            });
+          });
+
+          window.addEventListener('load', () => {
+            document.querySelectorAll('.js-plotly-plot').forEach(chart => Plotly.Plots.resize(chart));
+          });
+
+          window.addEventListener('resize', () => {
+            document.querySelectorAll('.js-plotly-plot').forEach(chart => Plotly.Plots.resize(chart));
+          });
+        </script>
+        <p>Last but not least, I’d be remiss if I didn’t acknowledge the superb coaching of Kenny Atkinson last year, his first in Cleveland after years as universally lauded assistant coach in Golden State and a successful tenure as head coach of the Brooklyn Nets. Atkinson completely unlocked this team’s potential last season with a new offense that emphasized ball movement and space and fast break points, a style that played to his stars’ strengths and elevated his bench’s play all season. In his steady, shrewd hands, this Cavs team will be sure to maximize their effort and optimize their performance, at least in regular season play. Few coaches have elevated their rosters better than Atkinson has in his career with the Nets and the Cavs, and I expect that to continue this season.</p>
+        <p>All in all, the 5-3 Cavs are still a formidable force in the Eastern Conference and should only get better over the season as they reintegrate Garland and further develop Mobley’s offensive game. Ball is a perfect addition for them and Mitchell is right in his prime at 29 and playing like it. I expect better outcomes for this team, especially in the playoffs when it counts most… just so long as they can stay healthy with a roster full of key players with significant injury history.</p>
+      </div>
+    </div>
+    <!-- Locked Teams Below -->
     <!-- Dallas Mavericks -->
-    <!-- <div class="team-card locked" id="team-mavs">
+    <div class="team-card locked" id="team-mavs">
       <div class="team-header" style="background-color: #00538c;">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/9/97/Dallas_Mavericks_logo.svg" class="team-logo" alt="Mavericks logo">
           <h2>Dallas Mavericks</h2>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- Denver Nuggets -->
     <!-- <div class="team-card locked" id="team-nuggets">
