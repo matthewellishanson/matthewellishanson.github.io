@@ -162,7 +162,8 @@
     #details-hornets p:first-of-type::first-letter,
     #details-bulls p:first-of-type::first-letter,
     #details-cavs p:first-of-type::first-letter,
-    #details-mavs p:first-of-type::first-letter {
+    #details-mavs p:first-of-type::first-letter,
+    #details-nuggets p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -1109,6 +1110,7 @@
         <p>All in all, the 5-3 Cavs are still a formidable force in the Eastern Conference and should only get better over the season as they reintegrate Garland and further develop Mobley’s offensive game. Ball is a perfect addition for them and Mitchell is right in his prime at 29 and playing like it. I expect better outcomes for this team, especially in the playoffs when it counts most… just so long as they can stay healthy with a roster full of key players with significant injury history.</p>
       </div>
     </div>
+
     <!-- Active: Dallas Mavericks -->
     <div class="team-card" id="team-mavs">
       <div class="team-header" style="background-color: #00538c;" onclick="toggleDetails('details-mavs')">
@@ -1275,26 +1277,130 @@
       </div>
     </div>
 
-    <!-- Locked Teams Below -->
-    <!-- Denver Nuggets -->
-    <div class="team-card locked" id="team-nuggets">
-      <div class="team-header" style="background-color: #0e2240;">
+    
+    <!-- Active Card: Denver Nuggets -->
+    <div class="team-card" id="team-nuggets">
+      <div class="team-header" style="background-color: #0e2240;" onclick="toggleDetails('details-nuggets')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/7/76/Denver_Nuggets.svg" class="team-logo" alt="Nuggets logo">
           <h2>Denver Nuggets</h2>
+          <p class="highlight">2024-25: 50-32 &middot; 4th in West</p>
         </div>
+      </div>
+      <div class="team-details" id="details-nuggets">
+        <p>Any conversation about the Denver Nuggets in the 2020s must begin and end with Nikola Jokic. The three-time MVP and human embodiment of a triple double, Jokic has been by far the most dominant and efficient offensive player this decade, and is threatening to contend for the greatest offensive career in league history, if he keeps at this rate a few more seasons without retiring or declining. He effortlessly elevates every teammate he plays with, carries your whole offense like a child’s backpack casually slung over his doughy Serbian shoulders, and, for as long as he remains a Nugget, all but guarantees Denver will make at least the second round if not further in any postseason he plays in.</p>
+        <p>The dominance and efficiency Jokic has shown throughout his career, but especially over the last five seasons, is hard to overstate. Moreover, the effect he has on all of his fellow teammates might be the most impressive and important part of his dominant run, even more so than his genius level playmaking, his almost lazy, reluctant efficiency as a scorer or his consistency in getting triple doubles without ever forcing things or seeming to chase (or even really care at all about) stats. Given all that, there will always be a heightened hype around any Nuggets roster that has enough decent to good players next to him.</p>
+        <p>That’s certainly the case with this year’s Nuggets, who, after failing to make the finals back to back seasons following their 2023 championship, at last made a series of savvy moves this offseason to address some of the issues that have held this team back from returning to the NBA Finals the past two years. Coming into the season, many saw the additions of Brooklyn Nets forward Cameron Johnson, journeyman backup center Jonas Valanciunis and the return of celebrated former Nugget from that 2023 title team, guard Bruce Brown, as all Jokic and Nuggets needed to get back to title contention this season.</p>
+        <p>But although there’s still a lot of season to go and you can’t ever really rule out this team as a contender as long as they have a healthy Jokic, there have been some signs of concern for this team early in this new campaign.</p>
+        <p>For one, the widely praised move Denver made in trading homegrown and title-winning forward Michael Porter, Jr. to Brooklyn for Johnson hasn’t exactly gone the way most thought it would through the team’s first eight games. In fact, Johnson has looked like a completely different and less valuable player than he’s been for most of his career in the league, a somewhat perplexing drop in production for a player who seemed perfectly cast next to the league’s best passer in Jokic. He’s shooting career lows from three, overall field goal percentage and effective field goal percentage, and posting his lowest scoring average ever at just 7.5 PPG, despite playing next to Jokic’s preternatural passing as well as a roster of other teammates far more accomplished than almost any of the dudes he played with last season in Brooklyn. He just hasn’t looked himself so far, and while it’s too early to panic about the trade being a bust for Denver, it is something to keep an eye on here as we continue through the season.</p>
+        <div class="chart-wrapper">
+          <div id="camJohnsonRadar"></div>
+        </div>
+
+        <script>
+          const camJohnsonRadar = [
+            {
+              name: "2022-23",
+              r: [31, 24.5, 15.5, 7.4, 34, 72.4, 89.8, 42.2, 85.4, 89, 31],
+              text: [
+                "Points: 15.5 PPG", "Rebounds: 4.4 RPG", "Assists: 1.9 APG",
+                "Blocks: 0.3 BPG", "Steals: 1.2 SPG", "FG%: 47%", "3P%: 40.4%",
+                "FT Rate: 25.3%", "FT%: 84.2%", "Turnovers: 0.9 TOPG", "Points: 15.5 PPG"
+              ]
+            },
+            {
+              name: "2023-24",
+              r: [26.8, 24, 19.8, 5.7, 24.1, 68.6, 86.9, 29.3, 72.2, 87.7, 26.8],
+              text: [
+                "Points: 13.4 PPG", "Rebounds: 4.3 RPG", "Assists: 2.4 APG",
+                "Blocks: 0.3 BPG", "Steals: 0.8 SPG", "FG%: 44.6%", "3P%: 39.1%",
+                "FT Rate: 17.6%", "FT%: 78.9%", "Turnovers: 1 TOPG", "Points: 13.4 PPG"
+              ]
+            },
+            {
+              name: "2024-25",
+              r: [37.5, 24.1, 28.4, 9.7, 26.6, 73.1, 86.6, 50.2, 98.3, 78.3, 37.5],
+              text: [
+                "Points: 18.8 PPG", "Rebounds: 4.3 RPG", "Assists: 3.4 APG",
+                "Blocks: 0.4 BPG", "Steals: 0.9 SPG", "FG%: 47.5%", "3P%: 39%",
+                "FT Rate: 30.1%", "FT%: 89.3%", "Turnovers: 1.7 TOPG", "Points: 18.8 PPG"
+              ]
+            },
+            {
+              name: "2025-26",
+              r: [15, 15.3, 14.6, 2.8, 14.3, 55.7, 57.3, 34.5, 83.3, 92.2, 15],
+              text: [
+                "Points: 7.5 PPG", "Rebounds: 2.8 RPG", "Assists: 1.8 APG",
+                "Blocks: 0.1 BPG", "Steals: 0.5 SPG", "FG%: 36.2%", "3P%: 25.8%",
+                "FT Rate: 20.7%", "FT%: 83.3%", "Turnovers: 0.6 TOPG", "Points: 7.5 PPG"
+              ]
+            }
+          ];
+
+          const theta = [
+            "Points", "Rebounds", "Assists", "Blocks", "Steals",
+            "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"
+          ];
+
+          const colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"];
+
+          const traces = camJohnsonRadar.map((season, i) => ({
+            type: "scatterpolar",
+            r: season.r,
+            theta: theta,
+            fill: "toself",
+            name: season.name,
+            text: season.text,
+            hoverinfo: "text",
+            line: { color: colors[i] }
+          }));
+
+          const camLayout = {
+            title: {
+              text: "Cam Johnson - 2022-26",
+              font: { size: 14 }
+            },
+            polar: {
+              radialaxis: {
+                visible: true,
+                range: [0, 100],
+                tickfont: { size: 10 }
+              }
+            },
+            legend: {
+              x: 0.5,
+              y: -0.2,
+              orientation: "h",
+              xanchor: "center"
+            },
+            margin: { t: 60, l: 40, r: 20, b: 70 }
+          };
+
+          Plotly.newPlot("camJohnsonRadar", traces, camLayout, {
+            responsive: true,
+            displayModeBar: false
+          });
+
+          window.addEventListener("load", () => Plotly.Plots.resize("camJohnsonRadar"));
+          window.addEventListener("resize", () => Plotly.Plots.resize("camJohnsonRadar"));
+        </script>
+        <p>Johnson’s struggles notwithstanding, the rest of this roster has looked solid to great as complementary pieces to Jokic. Point guard and the Nugget’s best shot creator off the dribble, Jamal Murray, has played his way into shape before the season began for once, and looks like playoff Murray right off the bat, which has made a nice difference for this team’s offensive chemistry and flow early on. If he stays healthy and productive like this, the Nuggets are in fantastic shape for a title run.</p>
+        <p>Even more promising than Murray’s strong start has been that of Aaron Gordon, who has continued his unexpectedly hot shooting from beyond the arc last season into this one. A career 35 percent three-point shooter known most for his bruising athletic frame and versatile, reliable play on both ends as a combo forward who really found his basketball Mecca playing next to Jokic, Gordon was never much of a threat from downtown, until game 4 of the 2024 Western Conference Semifinals against the Minnesota Timberwolves, a game I remember quite vividly as a fan of the Wolves. Gordon erupted for 27 points on 10-11 field goals that night, and it honestly feels like he hasn’t missed since.</p>
+        <p>Last season Gordon obliterated his previous career high of 37.5 percent from three, netting an impressive 43.6 percent on 3.7 attempts per game. This year he’s shooting 46.7 percent on 5.1 attempts, and already dropped a career high 51 in a win last month at Golden State. He looks like a totally different player than the Gordon we’ve seen for 11 seasons prior to this one, and that leap if sustained would be even bigger for Denver than a full season of consistency and health from Murray. It could even nullify the disappointing drop off from Johnson if that continues to hold.</p>
+        <p>But as always, the Nuggets can’t be the Nuggets, let alone a title contender, without another brilliant season from the big guy. Barring injury, Jokic will surely have another MVP-caliber season in Denver, and that alone should be enough to make them a serious team, even in a highly competitive West that leaves next to no room for error. As long as Jokic plays like Jokic and has even a couple of serviceable teammates to help him carry this team, I count on Denver being one of the top 5 teams in the West, if not the league by the end of this season. Few things in this league have proven more reliable than that in this decade.</p>
       </div>
     </div>
 
+    <!-- Locked Teams Below -->
     <!-- Detroit Pistons -->
-    <!-- <div class="team-card locked" id="team-pistons">
+    <div class="team-card locked" id="team-pistons">
       <div class="team-header" style="background-color: #1d42ba;">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Logo_of_the_Detroit_Pistons.svg/1024px-Logo_of_the_Detroit_Pistons.svg.png" class="team-logo" alt="Pistons logo">
           <h2>Detroit Pistons</h2>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- Golden State Warriors -->
     <!-- <div class="team-card locked" id="team-warriors">
