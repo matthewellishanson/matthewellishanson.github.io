@@ -163,7 +163,8 @@
     #details-bulls p:first-of-type::first-letter,
     #details-cavs p:first-of-type::first-letter,
     #details-mavs p:first-of-type::first-letter,
-    #details-nuggets p:first-of-type::first-letter {
+    #details-nuggets p:first-of-type::first-letter,
+    #details-pistons p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -1393,12 +1394,116 @@
 
     <!-- Locked Teams Below -->
     <!-- Detroit Pistons -->
-    <div class="team-card locked" id="team-pistons">
-      <div class="team-header" style="background-color: #1d42ba;">
+    <div class="team-card" id="team-pistons">
+      <div class="team-header" style="background-color: #1d42ba;" onclick="toggleDetails('details-pistons')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Logo_of_the_Detroit_Pistons.svg/1024px-Logo_of_the_Detroit_Pistons.svg.png" class="team-logo" alt="Pistons logo">
           <h2>Detroit Pistons</h2>
+          <p class="highlight">2024-25: 44-38 &middot; 6th in East</p>
         </div>
+      </div>
+      <div class="team-details" id="details-pistons">
+        <p>In this league, fortunes change and empires can rise or fall almost overnight, and a lot can change in just two calendar years for any franchise. That’s certainly been true for the Detroit Pistons, who just a couple years ago were eyeing a long rebuild with no clear end in sight, after falling from the top odds in the draft lottery out of the top four for a second straight year. That Pistons team had tanked two seasons away and been left with disappointment to show for it both times, after taking point forward Cade Cunningham with the number one overall pick in 2021’s draft. Worse yet, at that point in time – specifically, the summer of 2024 through the start of last season, it still wasn’t even clear that the Pistons picked the right guy in the year they did win the lottery, as Cunningham had struggled with injuries on top of disappointing production and efficiency through his first three seasons.</p>
+        <p>But things took a turn for the better in Detroit last season: Cunningham had himself a breakout season, some of those once “disappointing” lottery picks started to pan out pretty well around him, and the Pistons made the playoffs as a six seed in the East, and almost knocked off the New York Knicks in what amounted to a pretty impressive first round series for a team as young as the Pistons.</p>
+        <p>Now, that breakout season last year looks even more like the turning of the tide toward a bright future for these Pistons. At 7-2, Detroit currently sits atop the Eastern Conference and getting big improvements and strong starts not only from their franchise player Cunningham, but from several other key pieces of their young, athletic core.</p>
+        <p>Perhaps the most significant improvement for Detroit has come from fourth year center Jalen Duren. Duren has flashed glimpses of a high-ceiling as an elite rim runner who could become an elite rim protector in time, with a strong and physical frame, a promisingly high motor and top-tier verticality for his size and position. At the same time, Duren also showed his youth and inexperience just as often in those first three seasons, perhaps understandably so, as he entered as the league’s youngest player, on a team that was trying to lose games more often than not to start his career.</p>
+        <p>Despite those disadvantages from a developmental standpoint, however, the former Memphis Tigers’ center has grown into a critical piece of what Detroit is building, and an ideal pick and roll partner for Cunningham’s probing, high-IQ, distributive game. Nine games into this season, it looks like Duren is taking the proverbial leap, averaging career highs in points and blocks (19.2 PPG and 2.1 BPG) in efficient fashion and showing potential to become a real second scoring option next to Cunningham.</p>
+        <!-- Jalen Duren Per 100 Possessions Chart -->
+        <div class="chart-wrapper">
+          <div id="duren-counting-stats"></div>
+        </div>
+        <script>
+          const data = [
+            {
+              x: ["2022-23", "2023-24", "2024-25", "2025-26"],
+              y: [17.8, 22.8, 21.7, 34.3],
+              type: "scatter",
+              mode: "lines+markers",
+              name: "PPG"
+            },
+            {
+              x: ["2022-23", "2023-24", "2024-25", "2025-26"],
+              y: [17.3, 19.2, 19.1, 20.2],
+              type: "scatter",
+              mode: "lines+markers",
+              name: "TRB"
+            },
+            {
+              x: ["2022-23", "2023-24", "2024-25", "2025-26"],
+              y: [1.7, 1.3, 2.1, 2.2],
+              type: "scatter",
+              mode: "lines+markers",
+              name: "BPG"
+            }
+          ];
+
+          const durenCountLayout = {
+            title: {
+              text: "Jalen Duren Per 100",
+              font: { size: 12 }
+            },
+            xaxis: { title: "Season" },
+            yaxis: { title: "Stat Value" },
+            margin: { l: 60, r: 20, t: 60, b: 40 },
+            template: "plotly_white",
+            legend: { title: { text: "Stat" } }
+          };
+
+          Plotly.newPlot("duren-counting-stats", data, durenCountLayout, { responsive: true });
+        </script>
+        <div class="chart-wrapper">
+          <div id="duren-efficiency-stats"></div>
+        </div>
+        <script>
+          const durenEfficiencyData = [
+            {
+              x: ["2022-23", "2023-24", "2024-25", "2025-26"],
+              y: [126, 122, 134, 136],
+              type: "scatter",
+              mode: "lines+markers",
+              name: "Offensive Rating",
+              marker: { color: "steelblue" }
+            },
+            {
+              x: ["2022-23", "2023-24", "2024-25", "2025-26"],
+              y: [116, 115, 109, 106],
+              type: "scatter",
+              mode: "lines+markers",
+              name: "Defensive Rating",
+              marker: { color: "orange" }
+            }
+          ];
+
+          const durenEfficiencyLayout = {
+            title: {
+              text: "Jalen Duren Per 100",
+              font: { size: 12 }
+            },
+            xaxis: {
+              title: "Season",
+              tickangle: -45
+            },
+            yaxis: {
+              title: "Rating"
+            },
+            height: 400, // Keeps mobile layout stable
+            margin: { l: 40, r: 20, t: 60, b: 80 },
+            template: "plotly_white",
+            legend: {
+              orientation: "h",
+              y: -0.3,
+              x: 0.5,
+              xanchor: "center"
+            }
+          };
+
+          Plotly.newPlot("duren-efficiency-stats", durenEfficiencyData, durenEfficiencyLayout, { responsive: true });
+        </script>
+
+
+
+        <p>He might face competition for that role of Robin to Cunningham’s Batman, though. Third year wing Ausar Thompson, for one, continues to grow and improve as a 99th percentile athlete who makes winning plays on both ends night in and night out, as has second year forward Ron Holland. Both will help smooth over the absence of yet another promising, athletic young Pistons guard, Jaden Ivey, who missed the second half of last season due to injury only to go out early this season with another. Between the improved play of Thompson and Holland and the leaps we’re seeing from Duren and fellow under-25 big Isaiah Stewart, the Pistons might not even miss Ivey this season. Given his prolonged absences and the team’s strong showings without him, Ivey might not even be extended next summer when he’ll be a restricted free agent. Whether he remains a Piston beyond this season or not, I’m bullish on his potential in this league and am eyeing his contract status with great interest going forward.</p>
+        <p>The identity and success of this team will ultimately depend on Cunningham, no matter what else transpires with the rest of the roster. His leap last year must be sustained if Detroit wants to compete in any real way this season and beyond. So far, that’s been the case, as the Oklahoma State product has put up 25.6 PPG, 9.8 APG and 4.9 RPG through the team’s first nine games, all on solid efficiency. What Detroit really needs for this team to thrive in this season and future ones, however, is for their franchise player to show he can sustain and elevate that production into the postseason. He looked uncomfortable and strained at times in that series loss to the Knicks, and needs to improve come this postseason for Detroit to reach the heights that their youth, athleticism and toughness suggest they can get to. With health, continued player development successes across this young core and a better postseason this time around from Cade, this team might be capable of making a real run in the East this postseason. With all the progress we’ve seen in Detroit in just the past two years, even a premature conference finals appearance this season can’t be ruled out.</p>
       </div>
     </div>
 
