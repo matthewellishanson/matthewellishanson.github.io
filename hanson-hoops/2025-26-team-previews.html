@@ -177,7 +177,8 @@
     #details-mavs p:first-of-type::first-letter,
     #details-nuggets p:first-of-type::first-letter,
     #details-pistons p:first-of-type::first-letter,
-    #details-warriors p:first-of-type::first-letter {
+    #details-warriors p:first-of-type::first-letter,
+    #details-rockets p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -1536,6 +1537,7 @@
         <p>The identity and success of this team will ultimately depend on Cunningham, no matter what else transpires with the rest of the roster. His leap last year must be sustained if Detroit wants to compete in any real way this season and beyond. So far, that’s been the case, as the Oklahoma State product has put up 25.6 PPG, 9.8 APG and 4.9 RPG through the team’s first nine games, all on solid efficiency. What Detroit really needs for this team to thrive in this season and future ones, however, is for their franchise player to show he can sustain and elevate that production into the postseason. He looked uncomfortable and strained at times in that series loss to the Knicks, and needs to improve come this postseason for Detroit to reach the heights that their youth, athleticism and toughness suggest they can get to. With health, continued player development successes across this young core and a better postseason this time around from Cade, this team might be capable of making a real run in the East this postseason. With all the progress we’ve seen in Detroit in just the past two years, even a premature conference finals appearance this season can’t be ruled out.</p>
       </div>
     </div>
+    
     <!-- Golden State Warriors -->
     <div class="team-card" id="team-warriors">
       <div class="team-header" style="background-color: #1d428a;" onclick="toggleDetails('details-warriors')">
@@ -1751,25 +1753,209 @@
     </div>
 
     <!-- Houston Rockets -->
-    <div class="team-card locked" id="team-rockets">
-      <div class="team-header" style="background-color: #ce1141;">
+    <div class="team-card" id="team-rockets">
+      <div class="team-header" style="background-color: #ce1141;" onclick="toggleDetails('details-rockets')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/2/28/Houston_Rockets.svg" class="team-logo" alt="Rockets logo">
           <h2>Houston Rockets</h2>
+          <p class="highlight">2024-25: 52-30 &middot; 2nd in West</p>
         </div>
       </div>
+      <div class="team-details" id="details-rockets">
+        <p>Every NBA season inevitably features a breakout team—one that entered the year with low to no expectations for contention, only to surprise with a significant jump into the playoff picture. This season, I’ve got my eye on the Bulls, Sixers, and Spurs as potential candidates for that distinction. Time will tell which, if any, of those three ultimately earn a playoff spot and break into the top tier of “contenders” in the eyes of fans and media alike.</p>
+        <p>But while this year’s breakout team is still up for grabs, last year’s was pretty clear to most league observers right from the jump: the young and freakishly athletic Houston Rockets got off to a hot start and never looked back. Led by a cast of tough, athletic, rangy, and defensively minded stars—all 25 years old or younger—and coached by a hungry former Finals head coach eager to prove himself after an ugly exit from the Celtics, Ime Udoka, the Rockets vaulted from the lottery all the way to the No. 2 seed in the competitive Western Conference.</p>
+        <p>Now, after a big offseason that saw Houston trade one of its young stars—the inconsistent but tantalizing Jalen Green—to the Suns for the primary bucket-getter they so painfully lacked in their seven-game first-round loss to the Warriors—future Hall of Famer Kevin Durant—the team entered this season with a whole new set of expectations. Even after a season-ending injury to their only reliable point guard, Fred VanVleet, just before the season started, the expectations remained somewhere in the range of “Conference Finals or bust.”</p>
+        <p>A month into the season, the Rockets have more or less lived up to the hype, despite some confusion and clunkiness caused by VanVleet’s absence and the lack of a true point guard. They’re currently 6-3 and sitting comfortably in fifth place in a crowded Western Conference that will test their youth and playmaking depth all year. Better yet, their two most important players not named Durant—Turkish center Alperen Şengün and otherworldly athletic wing Amen Thompson—have both shown promising early-season improvements, playing more mature and well-rounded basketball through the Rockets’ first nine games.</p>
+        <p>Yes, VanVleet’s absence has disrupted Houston’s hierarchy of ball-handling and playmaking duties, but so far it looks more like an early-season blemish than a fatal flaw. The point guard responsibilities have been shared among Thompson, newly promoted (and still very raw) G League point guard and former lottery pick Reed Sheppard, Durant, and even the 6-foot-11 Şengün—who profiles as a discount Nikola Jokić and can really pass in the half court. Between those four and the rest of the wing-heavy roster, Houston has managed to survive the growing pains caused by the lack of a steady floor general, and should only get more comfortable as the season progresses.</p>
+        <p>What really stands out—both now and last season—about these Rockets is the incredible depth, athleticism, and length of their young core. No player better embodies those traits than Thompson, who took one of the biggest leaps in the league last year and earned All-Defensive First Team honors at just 22 years old. His game is breathtaking—marked by explosiveness and relentless intensity—and it seems that not even a deeply broken jump shot (in both form and result) can curb his superstar trajectory. If he ever does fix that shot—and the same could be said for his brother, Pistons wing Ausar Thompson—then good luck to the rest of the league. With even a modestly reliable jumper, Amen could become one of the NBA’s most terrifying two-way forces.</p>
+        <!-- Amen Thompson Year-Over-Year Chart -->
+        <div class="chart-container">
+          <h3 class="chart-title">Amen Thompson Year-Over-Year</h3>
+          <div class="chart-wrapper">
+            <div id="amen-thompson-radar"></div>
+          </div>
+        </div>
+
+        <script>
+          const amenThompsonData = [
+            {
+              name: "2024-25",
+              r: [28.1, 45.4, 32, 28.7, 40.2, 85.6, 61.1, 59.1, 46.1, 75, 28.1],
+              theta: [
+                "Points", "Rebounds", "Assists", "Blocks", "Steals",
+                "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"
+              ],
+              text: [
+                "Points: 14.1 PPG",
+                "Rebounds: 8.2 RPG",
+                "Assists: 3.8 APG",
+                "Blocks: 1.3 BPG",
+                "Steals: 1.4 SPG",
+                "FG%: 55.7%",
+                "3P%: 27.5%",
+                "FT Rate: 35.4%",
+                "FT%: 68.4%",
+                "Turnovers: 2 TOPG",
+                "Points: 14.1 PPG"
+              ]
+            },
+            {
+              name: "2025-26",
+              r: [35.1, 37, 44.4, 9.9, 34.9, 73.9, 50.5, 53, 51.8, 66.7, 35.1],
+              theta: [
+                "Points", "Rebounds", "Assists", "Blocks", "Steals",
+                "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"
+              ],
+              text: [
+                "Points: 17.6 PPG",
+                "Rebounds: 6.7 RPG",
+                "Assists: 5.3 APG",
+                "Blocks: 0.4 BPG",
+                "Steals: 1.2 SPG",
+                "FG%: 48.1%",
+                "3P%: 22.7%",
+                "FT Rate: 31.8%",
+                "FT%: 70.7%",
+                "Turnovers: 2.7 TOPG",
+                "Points: 17.6 PPG"
+              ]
+            }
+          ];
+
+          const amenThompsonTraces = amenThompsonData.map(season => ({
+            type: 'scatterpolar',
+            r: season.r,
+            theta: season.theta,
+            fill: 'toself',
+            name: season.name,
+            text: season.text,
+            hoverinfo: 'text'
+          }));
+
+          Plotly.newPlot('amen-thompson-radar', amenThompsonTraces, {
+            polar: {
+              radialaxis: {
+                visible: true,
+                range: [0, 100],
+                tickfont: { size: 10 }
+              },
+              angularaxis: {
+                tickfont: { size: 10 }
+              }
+            },
+            showlegend: true,
+            legend: { font: { size: 10 } },
+            margin: { t: 30, b: 30, l: 30, r: 30 },
+            autosize: true
+          }, {
+            responsive: true,
+            displayModeBar: false
+          });
+        </script>
+
+        <p>Şengün, too, has room to grow beyond the All-Star-caliber player he’s already become. For one, he seems to grow an inch and gain 10 pounds of muscle every other offseason (OK, that’s a bit of an exaggeration—but he has grown a couple of inches and packed on considerable bulk since being drafted in 2021). More importantly, he continues to expand his Jokić-esque offensive toolkit with each passing season—whether it’s the improved three-point range he’s shown this year and during EuroBasket, or the bruising low-post efficiency he added last season. He’s exceeded expectations every year, and at this point, it’s anyone’s guess how good he’ll be at his peak.</p>
+
+        <!-- Alperen Şengün Year-Over-Year Chart -->
+         <div class="chart-container">
+            <h3 class="chart-title">Alperen Şengün Career Stats</h3>
+            <div class="chart-wrapper">
+              <div id="sengun-radar"></div>
+            </div>
+          </div>
+
+          <script>
+            const sengunData = [
+              {
+                name: "2024-25",
+                r: [38.2, 57.5, 40.8, 17.8, 31.6, 76.3, 51.9, 62.4, 47.9, 68.1, 38.2],
+                theta: [
+                  "Points", "Rebounds", "Assists", "Blocks", "Steals",
+                  "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"
+                ],
+                text: [
+                  "Points: 19.1 PPG",
+                  "Rebounds: 10.3 RPG",
+                  "Assists: 4.9 APG",
+                  "Blocks: 0.8 BPG",
+                  "Steals: 1.1 SPG",
+                  "FG%: 49.6%",
+                  "3P%: 23.3%",
+                  "FT Rate: 37.4%",
+                  "FT%: 69.2%",
+                  "Turnovers: 2.6 TOPG",
+                  "Points: 19.1 PPG"
+                ]
+              },
+              {
+                name: "2025-26",
+                r: [45.6, 54.9, 61.1, 17.3, 38.1, 75.3, 87.3, 80.5, 60.7, 54.2, 45.6],
+                theta: [
+                  "Points", "Rebounds", "Assists", "Blocks", "Steals",
+                  "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"
+                ],
+                text: [
+                  "Points: 22.8 PPG",
+                  "Rebounds: 9.9 RPG",
+                  "Assists: 7.3 APG",
+                  "Blocks: 0.8 BPG",
+                  "Steals: 1.3 SPG",
+                  "FG%: 49%",
+                  "3P%: 39.3%",
+                  "FT Rate: 48.3%",
+                  "FT%: 74.3%",
+                  "Turnovers: 3.7 TOPG",
+                  "Points: 22.8 PPG"
+                ]
+              }
+            ];
+
+            const sengunTraces = sengunData.map(season => ({
+              type: 'scatterpolar',
+              r: season.r,
+              theta: season.theta,
+              fill: 'toself',
+              name: season.name,
+              text: season.text,
+              hoverinfo: 'text'
+            }));
+
+            Plotly.newPlot('sengun-radar', sengunTraces, {
+              polar: {
+                radialaxis: {
+                  visible: true,
+                  range: [0, 100],
+                  tickfont: { size: 10 }
+                },
+                angularaxis: {
+                  tickfont: { size: 10 }
+                }
+              },
+              showlegend: true,
+              legend: { font: { size: 10 } },
+              margin: { t: 30, b: 30, l: 30, r: 30 },
+              autosize: true
+            }, {
+              responsive: true,
+              displayModeBar: false
+            });
+          </script>
+
+        <p>As if the ascents of Şengün and Thompson weren’t exciting enough for Houston, the team is also getting a breakout year from the No. 3 overall pick in the 2022 draft, lanky 3-and-D-plus forward Jabari Smith Jr. He’s clearly soaking up as much as he can from playing alongside his basketball idol, Durant, and he’s never looked more confident or comfortable at the NBA level. New additions like Dorian Finney-Smith—who hasn’t debuted yet but should fit perfectly as another elite 3-and-D option—veteran third-string center Clint Capela, and defensive specialist Josh Okogie (all added alongside Durant this offseason) will only deepen an already loaded roster.</p>
+        <p>As for Durant, only an injury or a steep age-related decline could keep him from another casually efficient 25-plus points-per-game campaign. He may struggle a bit without a true point guard and might show his age at times in his 18th NBA season, but you can all but count on him to remain one of the league’s most automatic scorers. And for a Rockets team whose biggest weaknesses last year were youth and clutch-time offense, his presence could mean the difference between another early exit and a trip to the NBA Finals.</p>
+      </div>
+        
     </div>
 
     <!-- Locked Teams Below -->
     <!-- Indiana Pacers -->
-    <!-- <div class="team-card locked" id="team-pacers">
+    <div class="team-card locked" id="team-pacers">
       <div class="team-header" style="background-color: #002d62;">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/1/1b/Indiana_Pacers.svg" class="team-logo" alt="Pacers logo">
           <h2>Indiana Pacers</h2>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- Los Angeles Clippers -->
     <!-- <div class="team-card locked" id="team-clippers">
