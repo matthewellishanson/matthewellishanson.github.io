@@ -178,7 +178,9 @@
     #details-nuggets p:first-of-type::first-letter,
     #details-pistons p:first-of-type::first-letter,
     #details-warriors p:first-of-type::first-letter,
-    #details-rockets p:first-of-type::first-letter {
+    #details-rockets p:first-of-type::first-letter,
+    #details-pacers p:first-of-type::first-letter,
+    #details-clippers p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -1948,24 +1950,180 @@
 
     <!-- Locked Teams Below -->
     <!-- Indiana Pacers -->
-    <div class="team-card locked" id="team-pacers">
-      <div class="team-header" style="background-color: #002d62;">
+    <div class="team-card" id="team-pacers">
+      <div class="team-header" style="background-color: #002d62;" onclick="toggleDetails('details-pacers')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/1/1b/Indiana_Pacers.svg" class="team-logo" alt="Pacers logo">
           <h2>Indiana Pacers</h2>
+          <p class="highlight">2024-25: 50-32 &middot; 4th in East</p>
         </div>
+      </div>
+      <div class="team-details" id="details-pacers">
+        <p>Last spring the Indiana Pacers went on a magical postseason run their fans will never forget. This fall, they’re on their way to a season the Pacers faithful are probably already looking to forget.</p>
+        <p>A lot can change in just a handful of months for any team in this league, and the Pacers are perhaps the best current example of that. At a grisly 1-14 through their first month of the 2025-26 season, this team is so far from the squad that shocked the world with a scrappy, hair-raising run to the NBA Finals, you’d be forgiven for forgetting that this is in fact the same team as the Pacers who took the eventual champs in Oklahoma City all the way to a game 7 in the Finals. But due to injuries all up and down this roster, this Pacers team is a shell of who they were just a few months back, and cruising for a bottom 5 finish in the league by season’s end.</p>
+        <p>Let’s start by acknowledging the many crucial players who this team has lost just to injuries: All-NBA point guard Tyrese Haliburton, who tore his Achilles in that game 7 loss in Oklahoma City; high-flying power forward Obi Toppin, out until February with a stress fracture in his foot; rising wing and ECF hero Aaron Nesmith, out indefinitely with a knee sprain; 2022 lottery pick and major bench scorer Benedict Mathurin, out indefinitely with a right toe sprain; and the Pacers’ other starting guard from last season, Andrew Nembhard, who only just returned from a shoulder injury in the first game of the season and is playing his way back into shape. When you add in the loss of another starter from last year’s team, center Myles Turner – who the Pacers lost to division rival Milwaukee via free agency this offseason – you can begin to see what the heck happened to last year’s Eastern Conference champs to get to this kind of start to this season.</p>
+        <p>When all that remains of your Finals team a season later is a single starter, it doesn’t really matter who that last starter standing is. Not even a heroic start to the year by All-Star forward Pascal Siakam could ever paper over all these losses to injury elsewhere on this roster. As hard as he’s been playing – and just look at his career-high usage rate for evidence of that – Siakam just isn’t enough on his own to salvage this Pacers’ season.</p>
+        <div class="chart-container">
+          <h3 class="chart-title">Pascal Siakam: Usage Rates & Offensive Ratings</h3>
+          <div class="chart-wrapper">
+            <div id="siakam-dual-bar-chart"></div>
+          </div>
+        </div>
+
+        <script>
+          const siakamSeasons = [
+            "2016-17", "2017-18", "2018-19", "2019-20", "2020-21",
+            "2021-22", "2022-23", "2023-24 (TOR)", "2023-24 (IND)", "2024-25", "2025-26"
+          ];
+
+          const usg =    [13.1, 15.7, 20.8, 28.1, 26.3, 25.8, 27.2, 25.3, 25.2, 24.2, 29.6];
+          const siakamOrtg = [106, 113, 120, 107, 111, 116, 118, 119, 123, 120, 108];
+
+          const usgColors = [
+            "#ce1141", "#ce1141", "#ce1141", "#ce1141", "#ce1141",
+            "#ce1141", "#ce1141", "#ce1141", "#002d62", "#002d62", "#002d62"
+          ];
+
+          const ortgColors = [
+            "#b4975a", "#b4975a", "#b4975a", "#b4975a", "#b4975a",
+            "#b4975a", "#b4975a", "#b4975a", "#fdbb30", "#fdbb30", "#fdbb30"
+          ];
+
+          const traceUSG = {
+            x: siakamSeasons,
+            y: usg,
+            name: "USG%",
+            type: "bar",
+            marker: { color: usgColors },
+            hovertemplate: "%{x} USG: %{y}%<extra></extra>"
+          };
+
+          const traceORTG = {
+            x: siakamSeasons,
+            y: siakamOrtg,
+            name: "ORtg",
+            type: "bar",
+            marker: { color: ortgColors },
+            hovertemplate: "%{x} ORtg: %{y}<extra></extra>"
+          };
+
+          const siakamLayout = {
+            barmode: "group",
+            xaxis: {
+              title: "Season",
+              tickangle: -45,
+              tickfont: { size: 10 }
+            },
+            yaxis: {
+              title: "Stat Value",
+              tickfont: { size: 10 },
+              rangemode: 'tozero'
+            },
+            legend: {
+              orientation: "h",
+              y: -0.3
+            },
+            margin: { t: 40, b: 80, l: 40, r: 10 },
+            responsive: true
+          };
+
+          Plotly.newPlot("siakam-dual-bar-chart", [traceUSG, traceORTG], siakamLayout, { displayModeBar: false });
+        </script>
+        <p>But look on the bright side, Pacers fans and admirers (and I count myself among the many who were won over by Indiana’s playoff cinderella run last season): after a year from Hell like this one, you’ll not only return to full strength with the return of all those injured players next season. You will also get a strong shot at a top 5 pick in what is shaping up to be a historically strong NBA draft. With a new young star of the future in tow and the rest of that NBA Finals roster back and healthy, this season will feel more like a deep breath of a gap year between major contending seasons, and less like a huge drop off from the highs of the 2025 postseason. And that, at the end of the day, is as good an omen for basketball in Indiana as one can hope for.</p>
       </div>
     </div>
 
     <!-- Los Angeles Clippers -->
-    <!-- <div class="team-card locked" id="team-clippers">
-      <div class="team-header" style="background-color: #c8102e;">
+    <div class="team-card" id="team-clippers">
+      <div class="team-header" style="background-color: #c8102e;" onclick="toggleDetails('details-clippers')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/e/ed/Los_Angeles_Clippers_%282024%29.svg" class="team-logo" alt="Clippers logo">
           <h2>Los Angeles Clippers</h2>
+          <p class="highlight">2024-25: 50-32 &middot; 5th in West</p>
         </div>
       </div>
-    </div> -->
+      <div class="team-details" id="details-clippers">
+        <p>If not for those injury-riddled Pacers, this Clippers team would be a shoo-in for the proverbial “year from Hell” team this season. Granted, a 4-8 start isn’t necessarily as bad as it gets in this league, but given the high expectations for this team on court and the brutal controversies rocking the franchise off court, things are looking pretty abysmal in Inglewood this season.</p>
+        <p>Let’s get the off-court issues out of the way first. As much as it pains me to acknowledge, the mounting allegations of cap circumvention by beloved Clippers owner Steve Ballmer look pretty damning and substantive, after a suit was filed last week by 11 investors of the company at the center of the cap circumvention scandal, the sustainability firm Aspiration Partners. The investors’ suit added fuel to the fires surrounding this franchise, Ballmer and star player Kawhi Leonard by alleging that Ballmer used the company to funnel extralegal payments to Leonard without incurring cap penalties, an unprecedented bit of financial scheming that many in the league had already suspected Ballmer of after reports of the situation first surfaced in September. In short, it does not look good for Ballmer or Leonard, right now, and the distractions from this controversy seem to be affecting the team’s performance on court to start the season.</p>
+        <p>This team surprised many last season who had predicted the aging Clippers would fall off dramatically in the West, cruising to a fifth seed in the conference on the strength of the league’s fourth best defense and strong seasons from mercurial veteran superstar James Harden, oft-overlooked Croatian big man Ivica Zubac and journeyman combo guard Norman Powell. But with Powell departing for the Miami Heat this summer, Harden looking more and more like a slow, ground bound veteran and Zubac regressing to the player he was prior to last season, this team looks to be in trouble in this year’s West.</p>
+        <p>Worse, it’s unclear what, if anything, can be done to improve their chances in the conference. There aren’t a ton of moves to be made from where the Clippers stand right now, especially not with the decline of Harden and the controversy surrounding this front office and Leonard. My best bet for improving this season: get Zubac back to the player he looked like last year. The guy looked like he was turning the corner in 2024-25, and has since regressed for reasons I can’t really pinpoint from the games I’ve watched. He needs to be an All-NBA caliber big man for this team to become anything close to what they have been in seasons past. It’s not a safe bet to count on Harden to suddenly play younger than his age, or even to hope that Leonard actually plays like the player he’s been paid (perhaps illegally) to be, but you could reasonably expect a better season from Zubac than the one he’s given so far.</p>
+        <div class="chart-container">
+          <h3 class="chart-title">Ivica Zubac Year-to-Year Comparison</h3>
+          <div class="chart-wrapper">
+            <div id="zubac-radar-chart"></div>
+          </div>
+        </div>
+
+        <script>
+          const zubacData = [
+            {
+              name: "2025–26",
+              r: [32.3, 58.3, 18.8, 24.1, 14.3, 97.2, 0, 45.1, 55.6, 70.8, 32.3],
+              text: [
+                "Points: 16.2 PPG", "Rebounds: 10.5 RPG", "Assists: 2.2 APG", "Blocks: 1.1 BPG",
+                "Steals: 0.5 SPG", "FG%: 63.2%", "3P%: 0%", "FT Rate: 27.1%",
+                "FT%: 72.2%", "Turnovers: 2.3 TOPG", "Points: 16.2 PPG"
+              ],
+              color: "#1E90FF"
+            },
+            {
+              name: "2024–25",
+              r: [33.5, 70.1, 22.3, 25, 19.6, 96.7, 0, 41.8, 40.3, 80.2, 33.5],
+              text: [
+                "Points: 16.8 PPG", "Rebounds: 12.6 RPG", "Assists: 2.7 APG", "Blocks: 1.1 BPG",
+                "Steals: 0.7 SPG", "FG%: 62.8%", "3P%: 0%", "FT Rate: 25.1%",
+                "FT%: 66.1%", "Turnovers: 1.6 TOPG", "Points: 16.8 PPG"
+              ],
+              color: "#32CD32"
+            },
+            {
+              name: "2023–24",
+              r: [23.4, 51.1, 11.4, 27.1, 9.2, 99.9, 0, 53.3, 55.7, 85.5, 23.4],
+              text: [
+                "Points: 11.7 PPG", "Rebounds: 9.2 RPG", "Assists: 1.4 APG", "Blocks: 1.2 BPG",
+                "Steals: 0.3 SPG", "FG%: 64.9%", "3P%: 0%", "FT Rate: 32%",
+                "FT%: 72.3%", "Turnovers: 1.2 TOPG", "Points: 11.7 PPG"
+              ],
+              color: "#FFA500"
+            }
+          ];
+
+          const zubacTheta = [
+            "Points", "Rebounds", "Assists", "Blocks", "Steals",
+            "FG%", "3P%", "FT Rate", "FT%", "Turnovers (↓ better)", "Points"
+          ];
+
+          const zubacTraces = zubacData.map(season => ({
+            type: "scatterpolar",
+            r: season.r,
+            theta: zubacTheta,
+            name: season.name,
+            text: season.text,
+            hovertemplate: "%{text}<extra>%{name}</extra>",
+            line: { color: season.color },
+            fill: "toself"
+          }));
+
+          const zubacLayout = {
+            polar: {
+              radialaxis: {
+                visible: true,
+                range: [0, 100]
+              }
+            },
+            legend: {
+              orientation: "h",
+              y: -0.2
+            },
+            margin: { t: 40, b: 60, l: 40, r: 40 },
+            responsive: true
+          };
+
+          Plotly.newPlot("zubac-radar-chart", zubacTraces, zubacLayout, { displayModeBar: false });
+        </script>
+        <p>I expect this team’s veteran leadership, great coaching and solid depth will win out in time, and this Clippers team will be in the play-in hunt at the least by the end of this season. But that is by no means guaranteed given their off-court issues, middling and sluggish play so far this season and the age and liabilities of their key stars. If things don’t pick up soon for the Clips, they could be in for a rough year and an even rougher rebuild to follow.</p>
+      </div>
+    </div>
 
     <!-- Los Angeles Lakers -->
     <!-- <div class="team-card locked" id="team-lakers">
