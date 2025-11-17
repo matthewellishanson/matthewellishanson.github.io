@@ -180,7 +180,8 @@
     #details-warriors p:first-of-type::first-letter,
     #details-rockets p:first-of-type::first-letter,
     #details-pacers p:first-of-type::first-letter,
-    #details-clippers p:first-of-type::first-letter {
+    #details-clippers p:first-of-type::first-letter,
+    #details-lakers p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -2127,12 +2128,118 @@
 
     <!-- Locked Teams Below -->
     <!-- Los Angeles Lakers -->
-    <div class="team-card locked" id="team-lakers">
-      <div class="team-header" style="background-color: #552583;">
+    <div class="team-card" id="team-lakers">
+      <div class="team-header" style="background-color: #552583;" onclick="toggleDetails('details-lakers')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Los_Angeles_Lakers_logo.svg" class="team-logo" alt="Lakers logo">
           <h2>Los Angeles Lakers</h2>
+          <p class="highlight">2024-25: 50-32 &middot; 3rd in West</p>
         </div>
+      </div>
+      <div class="team-details" id="details-lakers">
+        <p>It has been a strong start to the new campaign for the league’s most popular team, even without the league’s most popular player, Lebron James, who has sat out the season so far for sciatica (side note: tough for me hearing so many pundits call this an old man’s injury, as I myself sustained it gardening at 27 years old). Despite James’ absence, the Lakers have jumped out to a 10-4 start on the strength of Luka Doncic and ascendant star Austin Reaves.</p>
+        <p>Doncic’s huge start to this season should surprise no one. He’s leading the league in scoring with 34.4 PPG on efficient shooting splits, and looking more fit and athletic than he has since he first came into the league. He’s even dunking semi-regularly. After a shocking trade to the Lakers by the Dallas Mavericks – the team he was drafted by, and carried to the Finals in 2024 – it’s no wonder that Doncic is finally taking his conditioning, preparation and even his defensive effort more seriously than he ever has in his eight seasons in the NBA.</p>
+        <p>Luka has always been a monster out there, but now he’s a monster with a massive chip on his shoulder and all the health and fitness resources of Los Angeles and the Lakers organization – not to mention those of his teammate, James, who famously spends upwards of $1 million per year on his own fitness and durability – at his disposal. I’m not a betting type of fan, but if I was, I’d be putting money on Luka’s MVP odds. He’s never won one before, shockingly, and is overdue for his first. If he can keep this Lakers team in contention the rest of the way like they are right now, Luka can make as strong an MVP case as any player in the league this season, even with a field as strong as any I can remember.</p>
+        <p>But the real revelation behind the Lakers’ early success this season has been Reaves, who already blew way past his projected potential in this league two or three seasons ago. Reaves’ steady rise year over year since joining the Lakers in 2021 as an undrafted free agent must be studied, and there’s no telling how much further he can take his game. I admittedly dismissed him even through his first few breakout seasons on this team as more of a novelty and beneficiary of the boosted hype any Lakers player gets just for being a Laker, but after watching him and Luka dismantle my Wolves and several other quality opponents without Lebron this season, I have to concede that this dude is the real deal.</p>
+        <div class="chart-container">
+          <h3 class="chart-title">Austin Reaves Career Stats - Basic</h3>
+          <div class="chart-wrapper">
+            <div id="reaves-bar-chart"></div>
+          </div>
+        </div>
+
+        <script>
+          var traceAPG = {
+            x: ["2021-22", "2022-23", "2023-24", "2024-25", "2025-26"],
+            y: [1.8, 3.4, 5.5, 5.8, 8.2],
+            name: 'APG',
+            type: 'bar',
+            marker: { color: '#552583' }
+          };
+
+          var traceRPG = {
+            x: ["2021-22", "2022-23", "2023-24", "2024-25", "2025-26"],
+            y: [3.2, 3.0, 4.3, 4.5, 5.1],
+            name: 'RPG',
+            type: 'bar',
+            marker: { color: '#888888' }
+          };
+
+          var tracePPG = {
+            x: ["2021-22", "2022-23", "2023-24", "2024-25", "2025-26"],
+            y: [7.3, 13.0, 15.9, 20.2, 28.3],
+            name: 'PPG',
+            type: 'bar',
+            marker: { color: '#FDB927' }
+          };
+
+          var reavesBasicData = [traceAPG, traceRPG, tracePPG];
+
+          var reavesBasicLayout = {
+            barmode: 'group',
+            margin: { t: 40 },
+            height: 400,
+            title: '',
+            xaxis: { title: 'Season' },
+            yaxis: { title: 'Per Game Average' },
+            legend: { orientation: 'h', x: 0.5, xanchor: 'center', y: -0.3 }
+          };
+
+          Plotly.newPlot('reaves-bar-chart', reavesBasicData, reavesBasicLayout, { responsive: true });
+        </script>
+        <p>If Reaves continues to play like a perfect second option next to Luka, it almost doesn’t matter what happens from here on out with Lebron. The Lakers will be set for years to come as long as Doncic and Reaves are putting up numbers like they are this season. And to think, Dallas could have very reasonably gotten Reaves lumped into the Doncic trade alongside Anthony Davis in February – but oversights like that are the reason the Mavs have already cut ties with GM Nico Harrison less than a year removed from that trade.</p>
+        <div class="chart-container">
+          <h3 class="chart-title">Austin Reaves Career Stats - Advanced</h3>
+          <div class="chart-wrapper">
+            <div id="reaves-rating-usg-chart"></div>
+          </div>
+        </div>
+
+        <script>
+          var reavesTraceORtg = {
+            x: ["2021-22", "2022-23", "2023-24", "2024-25", "2025-26"],
+            y: [123, 129, 119, 122, 127],
+            name: 'ORtg',
+            type: 'bar',
+            marker: { color: '#552583' }
+          };
+
+          var reavesTraceDRtg = {
+            x: ["2021-22", "2022-23", "2023-24", "2024-25", "2025-26"],
+            y: [116, 117, 118, 117, 116],
+            name: 'DRtg',
+            type: 'bar',
+            marker: { color: '#FDB927' }
+          };
+
+          var reavesTraceUSG = {
+            x: ["2021-22", "2022-23", "2023-24", "2024-25", "2025-26"],
+            y: [12.4, 16.2, 20.3, 23.7, 30.2],
+            name: 'USG%',
+            type: 'bar',
+            marker: { color: '#888888' }
+          };
+
+          var reavesAdvancedData = [reavesTraceORtg, reavesTraceDRtg, reavesTraceUSG];
+
+          var reavesAdvancedLayout = {
+            barmode: 'group',
+            margin: { t: 40 },
+            height: 400,
+            title: '',
+            xaxis: { title: 'Season' },
+            yaxis: { title: 'Per 100 Possessions / %' },
+            legend: { orientation: 'h', x: 0.5, xanchor: 'center', y: -0.3 }
+          };
+
+          Plotly.newPlot('reaves-rating-usg-chart', reavesAdvancedData, reavesAdvancedLayout, { responsive: true });
+        </script>
+
+        <p>The Lakers are more than just the sum of the Doncic-Reaves duo, though. Key contributors Rui Hachimura, Dalton Knecht and Jarred Vanderbilt are still here and making important impacts in their roles for this squad, and their contributions have been added to by newcomer DeAndre Ayton and Marcus Smart.</p>
+        <p>Ayton, a former top overall pick in the same draft Doncic was taken, has mostly underwhelmed and disappointed in his time in the league, despite his oozing potential and occasional flashes of the player he can be. His middling career so far hit its low point this offseason when the lottery bound Portland Trail Blazers basically paid him to leave their team, a shocking vote of no confidence for a player drafted ahead of All-Stars like Doncic and Atlanta Hawks PG Trae Young. So when Los Angeles signed him at the tail end of the offseason, the expectations for what Ayton could do on this team were mixed, at best. So far, he looks reinvigorated more often than not, and that’s before the league’s smartest teammate rejoins the action in LeBron. Look for this to continue over the rest of the year, as all the conditions are right here for an Ayton rebound season. If you can’t thrive as a center with his natural gifts next to two of the league’s greatest playmakers ever in Doncic and James, you don’t have much of a future in this league at all – and I think even the sometimes obtuse Ayton understands that much.</p>
+        <p>Smart, on the other hand, is no longer the lockdown bulldog he was in Boston for many seasons, but has acquitted himself better so far in Los Angeles than he did all last season in Memphis. I don’t know what can reasonably be expected of this guy at this point in his career, but as a longtime fan, I sure hope he can continue to play an important role on this Lakers team.</p>
+        <p>It should be said that LeBron’s return will undoubtedly help this team hold on to a good seed in the unforgiving West, no matter how his conditioning rebounds from the sciatica. Even a greatly diminished King James can still outthink and outcompete 80-90 percent of the players in this league, a remarkable feat for a man closing in on 41 years old. I can’t wait to see what he brings to this resurgent Lakers lineup and how he reintegrates himself onto a roster now very much in Doncic’s and Reaves’ hands. Look for the basketball genius and Akron native to figure out just the right way to reshape his game at his age to accommodate those two. And should he need any help with that, you can count on second year Head Coach J.J. Reddick to have all sorts of ideas for team chemistry once James is back.</p>
+        <p>As much as it pains the Celtics and Wolves fan in me to acknowledge, these Lakers are a legitimate, possibly scary, contender, now and going forward. Less than a year removed from looking like they were headed for a rare, true Lakers rebuild post-Lebron, this front office has revived the league’s most popular team for the rest of the decade, almost out of thin air. For the rest of the league, that has to sting, because as everyone knows, the Lakers never have much trouble adding talent whenever they need it. With Doncic all but falling into their laps in such miraculous fashion, you better believe this team isn’t done building a dynasty around him for the rest of the decade.</p>
       </div>
     </div>
 
