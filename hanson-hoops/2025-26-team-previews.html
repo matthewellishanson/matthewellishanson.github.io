@@ -181,7 +181,8 @@
     #details-rockets p:first-of-type::first-letter,
     #details-pacers p:first-of-type::first-letter,
     #details-clippers p:first-of-type::first-letter,
-    #details-lakers p:first-of-type::first-letter {
+    #details-lakers p:first-of-type::first-letter,
+    #details-grizzlies p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -2126,7 +2127,6 @@
       </div>
     </div>
 
-    <!-- Locked Teams Below -->
     <!-- Los Angeles Lakers -->
     <div class="team-card" id="team-lakers">
       <div class="team-header" style="background-color: #552583;" onclick="toggleDetails('details-lakers')">
@@ -2243,25 +2243,106 @@
       </div>
     </div>
 
+
+    
     <!-- Memphis Grizzlies -->
-    <!-- <div class="team-card locked" id="team-grizzlies">
-      <div class="team-header" style="background-color: #12173f;">
+    <div class="team-card" id="team-grizzlies">
+      <div class="team-header" style="background-color: #12173f;" onclick="toggleDetails('details-grizzlies')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/f/f1/Memphis_Grizzlies.svg" class="team-logo" alt="Grizzlies logo">
           <h2>Memphis Grizzlies</h2>
+          <p class="highlight">2024-25: 48-34 &middot; 8th in West</p>
         </div>
       </div>
-    </div> -->
+      <div class="team-details" id="details-grizzlies">
+        <p>At the start of this decade, the Memphis Grizzlies had all the makings of a perennial contender for years to come. Led by a charismatic, acrobatic superstar in Ja Morant, with complementary stars around him like 2024 Defensive Player of the Year Jaren Jackson, Jr. and stalwart sniper Desmond Bane – all of whom were young, happy playing in a market as small as Memphis and on team-friendly contracts for the foreseeable future at the time – the Grizzlies looked like they’d be a fixture at the top of the Western Conference following a breakout 2021-22 season. As Morant infamously put it, “I’m fine in the West” – a reasonable if somewhat cocky proclamation at the time, which has since become an all-time example of counting chickens before they’ve hatched.</p>
+        <p>As it turned out, Memphis has been far from “fine in the West” since Morant’s notorious statement back in December 2022. In fact, things have been mostly on a downhill trajectory for both the franchise and Morant himself ever since that interview – and one month into the 2025-26 season, things appear to be heading for a disappointing and potentially messy end to the once promising Morant era. Barring a quick and enduring turnaround for both Morant and the Grizzlies, this may wind up being the controversial point guard’s last season in Memphis.</p>
+        <p>In fairness to Morant, this 4-10 Grizzlies team probably wouldn’t be competing for a championship this year even if he was putting up career highs all around. After trading Bane this summer without replacing the consistent shot creation and defense he brought in his five seasons in Memphis, this already felt like a possible “gap year” for the franchise – a season in which the Grizzlies would likely take a step back competitively, while retooling this roster in Bane’s absence around Morant and Jackson, Jr. for a return to title contention in subsequent seasons. I doubt even a peak Morant season probably would be enough to keep this team in the hunt in this year’s West, given Bane’s departure and the strength of the conference’s top teams.</p>
+        <p>But what we’ve seen so far is about as far from a peak Morant season as we’ve gotten from the high-flying Murray State alum. He’s averaging career lows across all shooting categories except free throw percentage, including a truly alarming 16.7 percent from beyond the arc on 5 attempts per game. And those awful shooting splits are more than just an early season slump, as Morant’s shot has declined almost every year since his breakout 2021-22 season, with the largest drop-off occurring from last season to this one.</p>
+        <div class="chart-container">
+          <h3 class="chart-title">Ja Morant Career vs 2025-26 (Shooting)</h3>
+          <div class="chart-wrapper">
+            <div id="ja-morant-shooting-bar"></div>
+          </div>
+        </div>
 
+        <script>
+          var traceCareer = {
+            x: ['FG%', '3P%', 'FT%', 'eFG%'],
+            y: [46.5, 31.0, 77.2, 50.4],
+            name: 'Career',
+            type: 'bar',
+            marker: { color: '#12173F' } // Memphis Navy
+          };
+
+          var traceCurrent = {
+            x: ['FG%', '3P%', 'FT%', 'eFG%'],
+            y: [35.9, 16.7, 94.2, 38.5],
+            name: '2025-26',
+            type: 'bar',
+            marker: { color: '#FDBB30' } // Memphis Yellow
+          };
+
+          var morantShootingLayout = {
+            barmode: 'group',
+            xaxis: { title: 'Shooting Category' },
+            yaxis: { title: 'Percentage', ticksuffix: '%' }
+          };
+
+          Plotly.newPlot('ja-morant-shooting-bar', [traceCareer, traceCurrent], morantShootingLayout);
+        </script>
+
+        <p>Morant's numbered stats are similarly trending in the wrong direction, with his scoring down to its lowest since his rookie season. To make all this even worse, he’s once again back to courting controversies and suspensions through pouty post-game interviews and other off-court antics that echo his worst past behaviors (though nothing yet has come close to the gun issues that cost him 25 games to start the 2023-24 season).</p>
+        <div class="chart-container">
+          <h3 class="chart-title">Ja Morant Career vs 2025-26 (Counting Stats)</h3>
+          <div class="chart-wrapper">
+            <div id="ja-morant-basic-bar"></div>
+          </div>
+        </div>
+
+        <script>
+          var traceCareer = {
+            x: ['PPG', 'APG', 'RPG'],
+            y: [22.4, 7.4, 4.7],
+            name: 'Career',
+            type: 'bar',
+            marker: { color: '#12173F' } // Memphis Navy
+          };
+
+          var traceCurrent = {
+            x: ['PPG', 'APG', 'RPG'],
+            y: [17.9, 7.6, 3.5],
+            name: '2025-26',
+            type: 'bar',
+            marker: { color: '#FDBB30' } // Memphis Yellow
+          };
+
+          var morantCountingLayout = {
+            barmode: 'group',
+            xaxis: { title: 'Stat' },
+            yaxis: { title: 'Value' },
+            margin: { t: 40 }
+          };
+
+          Plotly.newPlot('ja-morant-basic-bar', [traceCareer, traceCurrent], morantCountingLayout);
+        </script>
+
+        <p>Already, trade rumours and speculation are surrounding this Grizzlies team and their mercurial star, and things between the two parties seem to be reaching a critical point. Either Morant needs to finally clean his act up and get his production and energy back to where Memphis needs them to be, or this will be his last season with the Grizzlies.</p>
+        <p>There has been one major bright spot in this otherwise gloomy start to the Grizzlies’ season, however. Rookie shooting guard Cedric Coward, whom the Grizzlies took out of Washington State with the 11th pick in this last draft, has really blown past expectations and looks like he could become a star in this league – and he may get his chance to step into a lead guard role soon should Morant and Memphis part ways, either during the season or after.</p>
+        <p>In fact, I’m quite bullish on this whole roster and the front office putting it together, except for Morant. There’s reason to believe in a brighter future without Morant than with him, in my view, and Memphis fans should bear that in mind if and when this Morant situation falls apart completely. He may be the most popular player in the franchise’s history, but all signs point to this team being better off moving him while he still has value.</p>
+      </div>
+    </div>
+    
+    <!-- Locked Teams Below -->
     <!-- Miami Heat -->
-    <!-- <div class="team-card locked" id="team-heat">
+    <div class="team-card locked" id="team-heat">
       <div class="team-header" style="background-color: #98002e;">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/f/fb/Miami_Heat_logo.svg" class="team-logo" alt="Heat logo">
           <h2>Miami Heat</h2>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- Milwaukee Bucks -->
     <!-- <div class="team-card locked" id="team-bucks">
