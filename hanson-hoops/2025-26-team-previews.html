@@ -182,7 +182,8 @@
     #details-pacers p:first-of-type::first-letter,
     #details-clippers p:first-of-type::first-letter,
     #details-lakers p:first-of-type::first-letter,
-    #details-grizzlies p:first-of-type::first-letter {
+    #details-grizzlies p:first-of-type::first-letter,
+    #details-heat p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -2333,26 +2334,130 @@
       </div>
     </div>
     
-    <!-- Locked Teams Below -->
     <!-- Miami Heat -->
-    <div class="team-card locked" id="team-heat">
-      <div class="team-header" style="background-color: #98002e;">
+    <div class="team-card" id="team-heat">
+      <div class="team-header" style="background-color: #98002e;" onclick="toggleDetails('details-heat')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/f/fb/Miami_Heat_logo.svg" class="team-logo" alt="Heat logo">
           <h2>Miami Heat</h2>
+          <p class="highlight">2024-25: 37-45 &middot; 10th in East</p>
         </div>
+      </div>
+      <div class="team-details" id="details-heat">
+        <p>In a league that never stops changing and evolving, there aren’t a lot of true constants you can count on season after season after season. The Miami Heat have been one of the exceptions to that rule: while superstars and superteams come and go year in and year out, the Heat endure, ever in the hunt and almost never in the lottery, indefatigable and inevitable amid the turmoil and turnover almost everywhere else.</p>
+        <p>Credit Head Coach Erik Spoelstra, credit team president and hall-of-famer Pat Riley, or chalk it up to Miami’s enduring appeal and financial support to attract and sign top free agents. Whatever the reason, this franchise always finds its way to relevance, decade after decade, come rain or shine.</p>
+        <p>This season has continued that pattern. After a rare down year in 2024-25, the Heat have come back stronger to start the 2025-26 campaign, with a whole new, innovative offense and a roster well suited to it, and the early results have been encouraging. Spoelstra’s tough, hard-playing squad really struggled to score most of last year, finishing the season 24th in offense while also losing their go-to scorer in their trade of a disgruntled, combative Jimmy Butler to the Warriors in February.</p>
+        <p>Heading into this season, it felt like this team was headed for a real rebuilding stretch for once, with seemingly few pathways to improve their roster in the aftermath of the Butler deal, and an offense lacking in star power that was moribund when we last saw it, in the Heat’s 0-4 series sweep at the hands of the Cleveland Cavaliers.</p>
+        <p>But instead of sliding into the rebuild many in this league have waited years to see in South Beach, the Heat did what the Heat always do. They dug in deep, made a few quiet but savvy acquisitions over the summer and reinvented themselves on the fly like the basketball winning machine they’ve been my entire life – i.e., since Riley came on as team president in 1995.</p>
+        <p>What exactly changed to get Miami back to a competitive 8-6 start? What enabled their rise to the league’s third best offense and its fastest pace, just a few months after finishing 24th and 28th, respectively? The short answer sounds almost too simple to credit with all that improvement, but clearly is the biggest change from last season: the Heat just stopped using ball screens, and started playing faster without them.</p>
+        <p>Borrowing from a revolutionary offensive system Memphis tried and failed to implement last season, the Heat have rebuilt their offense around simple, direct, rapid movements and drives, eschewing ball screens and pick-and-rolls almost completely in favor of more natural drive-and-kick actions.</p>
+        <p>According to NBA.com, Miami is last in the percentage of plays that end with pick-and-roll actions, with just 5 percent of their plays ending with something off an on-ball screen. For context, the next lowest P&R offense this season, the Utah Jazz, have run P&R in 11.5 percent of their possessions.</p>
+        <div class="chart-container">
+          <h3 class="chart-title">Pick-and-Roll Frequency, Points Per Possession (2025-26)</h3>
+          <div class="chart-wrapper">
+            <div id="pnr-scatter-plot"></div>
+          </div>
+        </div>
+
+        <script>
+          var teams = [
+            "MIA", "UTA", "SAS", "HOU", "ATL",
+            "BKN", "GSW", "DEN", "PHI",
+            "TOR", "NYK", "MIN", "LAC",
+            "MEM", "IND", "MIL", "SAC",
+            "DET", "POR", "DAL", "CLE",
+            "CHI", "PHX", "BOS", "NOP",
+            "OKC", "ORL", "LAL", "WAS",
+            "CHA"
+          ];
+
+          var freq = [
+            5.0, 11.5, 11.8, 12.0, 12.3, 12.5, 12.7, 13.0, 13.0, 13.7, 13.7, 14.0, 14.1, 14.6,
+            15.5, 15.5, 16.0, 16.2, 16.3, 16.6, 16.8, 16.8, 17.5, 17.7, 17.9, 18.0, 18.3, 18.8,
+            20.0, 20.8
+          ];
+
+          var ppp = [
+            0.90, 0.78, 0.81, 0.82, 0.83, 0.94, 0.81, 0.98, 0.82, 0.89, 0.91, 0.95, 0.88, 0.70,
+            0.86, 0.84, 0.89, 0.93, 0.81, 0.72, 0.88, 0.84, 0.93, 0.95, 0.89, 0.96, 0.79, 1.14,
+            0.89, 0.74
+          ];
+
+          // Map team abbreviations to primary colors (customizable)
+          var teamColors = {
+            MIA: "#98002E",
+            UTA: "#002B5C",
+            SAS: "#C4CED4",
+            HOU: "#CE1141",
+            ATL: "#E03A3E",
+            BKN: "#000000",
+            GSW: "#1D428A",
+            DEN: "#0E2240",
+            PHI: "#006BB6",
+            TOR: "#CE1141",
+            NYK: "#006BB6",
+            MIN: "#0C2340",
+            LAC: "#C8102E",
+            MEM: "#5D76A9",
+            IND: "#002D62",
+            MIL: "#00471B",
+            SAC: "#5A2D81",
+            DET: "#C8102E",
+            POR: "#E03A3E",
+            DAL: "#00538C",
+            CLE: "#860038",
+            CHI: "#CE1141",
+            PHX: "#1D1160",
+            BOS: "#007A33",
+            NOP: "#0C2340",
+            OKC: "#007AC1",
+            ORL: "#0077C0",
+            LAL: "#552583",
+            WAS: "#002B5C",
+            CHA: "#1D1160"
+          };
+
+          var heatColors = teams.map(team => teamColors[team] || "gray"); // fallback to gray
+
+          var trace = {
+            x: freq,
+            y: ppp,
+            text: teams,
+            mode: 'markers+text',
+            type: 'scatter',
+            textposition: 'top center',
+            marker: {
+              size: 10,
+              color: heatColors
+            }
+          };
+
+          var heatLayout = {
+            xaxis: { title: 'Pick-and-Roll Frequency (%)' },
+            yaxis: { title: 'Points Per P&R Possession' },
+            margin: { t: 40 },
+            template: 'plotly_white'
+          };
+
+          Plotly.newPlot('pnr-scatter-plot', [trace], heatLayout);
+        </script>
+        <p>Beyond the revamped offense, there’s a few other nice stories happening on this team. It’s been a delight to see the revival of Andrew Wiggins, after the 2014 number one overall pick was unceremoniously shipped out to the Heat by the Warriors in that Butler trade. He’s playing as good as his peak season, when he played a critical role in bringing a fourth title to Curry’s Warriors, and looks happier out there than I’ve ever seen him. He’s almost certainly past the point of reaching the potential most saw for him coming into the league, but there’s a really good player still within reach for Wiggins with the time he has left in the NBA, if he can keep playing like he is.</p>
+        <p>Other positives from the Heat’s early season showings include the renewed production of Jaquez, the long-awaited realization of point guard Davion Mitchell’s potential as a bruising bulldog on both ends, and the continued rise of second-year center Kel’el Ware as a frontcourt mate/backup to Adebayo.</p>
+        <p>This team has room to get even better too, once their top scorer from last season, Tyler Herro, returns from injury. Herro may struggle to adapt to the no ball screen offense, as Grizzlies stars Ja Morant and Desmond Bane did last season, but even if he does, he’s the kind of scorer who won’t be held back very long by that kind of adjustment to a new scheme. And until he does get acclimated to this offense, this team seems like they’ll be just fine making up for any drop in his scoring.</p>
+        <p>All in all, there’s a lot more to like about this Miami Heat team than I’d expected going into the season, and plenty of room to sustain and build on their strong start. Seasons change, careers come and go, the Earth rotates around the Sun, and through it all, the Miami Heat always find their way to be competitive and relevant in this league.</p>
       </div>
     </div>
 
+    <!-- Locked Teams Below -->
     <!-- Milwaukee Bucks -->
-    <!-- <div class="team-card locked" id="team-bucks">
+    <div class="team-card locked" id="team-bucks">
       <div class="team-header" style="background-color: #00471b;">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/4/4a/Milwaukee_Bucks_logo.svg" class="team-logo" alt="Bucks logo">
           <h2>Milwaukee Bucks</h2>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- Minnesota Timberwolves -->
     <!-- <div class="team-card locked" id="team-timberwolves">
