@@ -183,7 +183,8 @@
     #details-clippers p:first-of-type::first-letter,
     #details-lakers p:first-of-type::first-letter,
     #details-grizzlies p:first-of-type::first-letter,
-    #details-heat p:first-of-type::first-letter {
+    #details-heat p:first-of-type::first-letter,
+    #details-bucks p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -233,7 +234,7 @@
       }
 
       .chart-title {
-        font-size: 1.25rem;
+        font-size: 1rem;
         margin-bottom: 0.75rem;
       }
 
@@ -2450,12 +2451,86 @@
 
     <!-- Locked Teams Below -->
     <!-- Milwaukee Bucks -->
-    <div class="team-card locked" id="team-bucks">
-      <div class="team-header" style="background-color: #00471b;">
+    <div class="team-card" id="team-bucks">
+      <div class="team-header" style="background-color: #00471b;" onclick="toggleDetails('details-bucks')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/4/4a/Milwaukee_Bucks_logo.svg" class="team-logo" alt="Bucks logo">
           <h2>Milwaukee Bucks</h2>
+          <p class="highlight">2024-25: 48-34 &middot; 5th in East</p>
         </div>
+      </div>
+      <div class="team-details" id="details-bucks">
+        <p>For over a decade, Bucks basketball has centered around one man: Giannis Antetokounmpo. The man affectionately known as “the Greek freak” has dominated the league for most of his 13 seasons in Milwaukee, including delivering the Bucks a championship in 2021 on the strength of a legendary 50-point performance to clinch the title in game 6 of the NBA Finals. He’s consistently finished in the top four for MVP every season since 2020, and virtually all of the Bucks’ roster moves have been geared to placate him to keep him happy and in Milwaukee – often at the cost of the team’s future and the overall balance of the roster around him.</p>
+        <p>That pattern of the Bucks sacrificing their future to make the most of Giannis’ prime in Milwaukee peaked this offseason with the decision to waive and stretch injured star PG Damian Lillard to free up cap room to sign Pacers standout center Myles Turner in free agency – in other words, they bought out the rest of Lillard’s supermax contract by spreading it over more seasons, thereby committing to dead cap spending for the next four years in order to bring Turner in as a frontcourt partner for Giannis. It was an unprecedented kind of win-now move in a league that sees a lot of such transactions, and many questioned whether Turner would be worth such a long-term financial hit.</p>
+        <p>So far, that decision has looked less bad than I anticipated, with Turner sliding right in next to Giannis smoothly. His defense and shooting should make him a younger, more athletic replacement for departed veteran center Brook Lopez, and with Lillard still out for the season, that move didn’t look nearly as bad through the first month of the season.</p>
+        <p>That calculus may have changed this week with the groin injury of Antetokounmpo in the Bucks’ loss to Cleveland Tuesday. With their franchise player expected to be out for a few weeks at least, Milwaukee’s chances to compete this season are already in jeopardy. As the second most important player to his team statistically this season, Giannis can hardly afford to miss even that much, if the Bucks hope to make the most of their win-now move for Turner.</p>
+        <div class="chart-container">
+          <h3 class="chart-title">Bucks With vs Without Giannis Antetokounmpo (Net Ratings Per 100 Possessions)</h3>
+          <div class="chart-wrapper">
+            <div id="giannis-impact-chart"></div>
+          </div>
+        </div>
+        <div class="chart-note" style="max-width: 700px; margin-top: 10px; font-size: 0.9em; color: #555;">
+          <strong>Note:</strong> Net rating per 100 possessions represents the difference between the Bucks and their opponents while a lineup is on the court. Positive values indicate outdoing opponents in a given stat; negative values indicate the opposite.
+        </div>
+
+        <script src="https://cdn.plot.ly/plotly-2.4.1.min.js"></script>
+        <script type="text/javascript">
+          var stats = {
+            "PTS": [12.6, 4.91],
+            "FG%": [0.331, 0.031],
+            "3P%": [0.140, -0.042],
+            "FTA": [4.4, 1.48],
+            "eFG%": [0.200, 0.013],
+            "ORB": [1.35, -1.26],
+            "DRB": [4.39, -2.91],
+            "TRB": [5.74, -4.17],
+            "AST": [6.33, 2.12],
+            "STL": [0.94, 1.53],
+            "BLK": [1.53, 1.34]
+          };
+
+          var statKeys = Object.keys(stats);
+
+          var currentStat = "PTS";
+
+          var giannisImpactData = [{
+            type: "bar",
+            x: ["With Giannis", "Without Giannis"],
+            y: stats[currentStat],
+            marker: { color: ["#00471B", "#AAAAAA"] }
+          }];
+
+          var giannisImpactLayout = {
+            xaxis: { title: "Lineup Type" },
+            yaxis: { title: currentStat },
+            updatemenus: [{
+              buttons: statKeys.map(function(stat) {
+                return {
+                  method: "update",
+                  label: stat,
+                  args: [
+                    { y: [stats[stat]] },
+                    { yaxis: { title: stat } }
+                  ]
+                };
+              }),
+              direction: "down",
+              showactive: true,
+              x: 0.5,
+              xanchor: "center",
+              y: 1.2,
+              yanchor: "top"
+            }],
+            height: 500,
+            template: "plotly_white"
+          };
+
+          Plotly.newPlot("giannis-impact-chart", giannisImpactData, giannisImpactLayout);
+        </script>
+        <p>There have been some hopeful developments elsewhere on this team that could help stem the bleeding while Giannis is out. In addition to a strong first month by Turner, the Bucks have gotten a much needed boost from journeyman fourth year guard Ryan Rollins, who has emerged out of nowhere to become the team’s second leading scorer. His youth and ball handling bring a desperately needed dimension to this squad, particularly valuable on this post-Lillard team that already struggled with reliable backcourt play prior to dumping their All-NBA point guard. Other recent additions Kyle Kuzma, Gary Trent, Jr. and Cole Anthony have all acquitted themselves well since joining the team and should also help mitigate the damage of losing Giannis.</p>
+        <p>With the enormous on-off importance Giannis bears to this team, it’s impossible to project their chances this season without knowing how long the Greek Freak will be out for. But given the modest but critical improvements brought to this team by this new supporting cast, and particularly the rise of Rollins as a reliable second scorer and playmaker, this stretch without Giannis might not play out as badly as many expect. In past seasons any chunk of games without him often proved disastrous for the team, but this group has a better chance than those past supporting casts of keeping Milwaukee in the hunt until Antetokounmpo returns. And once he’s out there with any kind of decent support around him, Giannis will always find a way to keep his squad relevant and dangerous on any given night.</p>
+
       </div>
     </div>
 
