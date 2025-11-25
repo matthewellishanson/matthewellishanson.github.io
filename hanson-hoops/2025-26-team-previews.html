@@ -185,7 +185,8 @@
     #details-grizzlies p:first-of-type::first-letter,
     #details-heat p:first-of-type::first-letter,
     #details-bucks p:first-of-type::first-letter,
-    #details-timberwolves p:first-of-type::first-letter {
+    #details-timberwolves p:first-of-type::first-letter,
+    #details-pelicans p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -1003,8 +1004,6 @@
         <p>Throw in improved play so far from other young Bulls players like Ayo Dosunmu (who I’ve always been bullish on, no pun intended) and Patrick Williams and a revival of Vucevic, and you start to understand why these Bulls are off to such a surprisingly strong start. Between Giddey and Buzelis and the other improved showings by this young and athletic supporting cast, you can actually envision a strong future in Chicago for the first time in many years. And that, regardless of what else happens the rest of this season, is a massive move in the right direction for this once dominant but long dormant franchise.</p>
       </div>
      </div>
-    
-    <!-- Locked Teams Below -->
 
     <!-- Active: Cleveland Cavaliers -->
     <div class="team-card" id="team-cavs">
@@ -1430,7 +1429,6 @@
       </div>
     </div>
 
-    <!-- Locked Teams Below -->
     <!-- Detroit Pistons -->
     <div class="team-card" id="team-pistons">
       <div class="team-header" style="background-color: #1d42ba;" onclick="toggleDetails('details-pistons')">
@@ -1953,7 +1951,6 @@
         
     </div>
 
-    <!-- Locked Teams Below -->
     <!-- Indiana Pacers -->
     <div class="team-card" id="team-pacers">
       <div class="team-header" style="background-color: #002d62;" onclick="toggleDetails('details-pacers')">
@@ -2450,7 +2447,6 @@
       </div>
     </div>
 
-    <!-- Locked Teams Below -->
     <!-- Milwaukee Bucks -->
     <div class="team-card" id="team-bucks">
       <div class="team-header" style="background-color: #00471b;" onclick="toggleDetails('details-bucks')">
@@ -2650,24 +2646,195 @@
     </div>
 
     <!-- New Orleans Pelicans -->
-    <div class="team-card locked" id="team-pelicans">
-      <div class="team-header" style="background-color: #0c2340;">
+    <div class="team-card" id="team-pelicans">
+      <div class="team-header" style="background-color: #0c2340;" onclick="toggleDetails('details-pelicans')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/0/0d/New_Orleans_Pelicans_logo.svg" class="team-logo" alt="Pelicans logo">
           <h2>New Orleans Pelicans</h2>
+          <p class="highlight">2024-25: 21-61 · 14th in West</p>
         </div>
+      </div>
+
+      <div class="team-details" id="details-pelicans">
+        <p>In a league packed with more talented players and teams than it has arguably ever seen, there are still a small number of franchises that resemble the dysfunction and aimlessness more commonly associated with bygone eras of the NBA. Back in the ’90s and 2000s, nearly half the league could find itself on a fast track to nowhere with no end in sight in any given season. Today, that kind of misery is noticeably rarer. One team that does approximate that forgotten level of franchise disarray in 2025, however, is the New Orleans Pelicans.</p>
+        <p>The woes of this franchise go back further than the scope of this preview can cover, but it’s safe to say that the experiment of bringing an NBA team to the bayou has gone about as poorly as it could have. Two generational No. 1 picks and one future Hall of Fame “Point God” have come through New Orleans since the city first got a team in 2002-03, and none have made real waves in terms of winning or competing meaningfully while playing there. Chris Paul and Anthony Davis both pushed their way out of town, each winding up in Los Angeles for their primes, while 2019 first overall pick Zion Williamson has simply never stayed healthy or productive enough to live up to the hype that surrounded him when he arrived.</p>
+        <p>Compounding those superstar-sized disappointments for the Pelicans (formerly the Hornets) has been a dearth of strong fan support, committed ownership or consistent front-office leadership. Throw it all together, and you start to see how this team became the consensus pick in 2025 for the franchise most likely to be relocated. The league has never indicated that might happen officially, but there’s been enough buzz to suggest that the state of NBA basketball in New Orleans is precarious.</p>
+        <p>All of that sounds pretty bad — and you could have said every bit of it about this franchise before new GM Troy Weaver and team president Joe Dumars made the inexplicable decision to trade their 2026 first-round pick, unprotected, to the Hawks in exchange for the 13th pick in this summer’s draft. Even before the pick was made, the NBA world almost unanimously blasted the move, questioning the logic of giving up an unprotected pick that, given the state of this roster and the Pelicans’ 21-61 record last year, would very likely end up a high lottery selection in what looks to be a stacked 2026 draft.</p>
+        <p>It almost felt like nothing this team might accomplish this season could overcome that ill-advised transaction. Now, with New Orleans in last place in the West after a 3-15 start, things look as bleak as they could for the near future of this franchise. That said, there are a few reasons for optimism amid the losses.</p>
+        <p>For starters, Zion Williamson has managed to stay on the court more this season than he has for much of his career (knock on wood). Thanks to an improved physique and better conditioning, he looks like he could finally deliver a full and productive season. That alone — regardless of what else happens — would be a major win for the Pelicans, after six years of frustrating health issues and off-court concerns from the franchise’s most important player. He’s even jumping like he used to, suggesting that, with the right conditioning and commitment, he can still approximate the potential many envisioned — with the right roster around him.</p>
+        <p>Perhaps even more promising than Williamson’s resurgence has been the early performance of the Pelicans’ two lottery picks from last summer. Both Jeremiah Fears and Derik Queen — the latter acquired with the pick New Orleans traded its 2026 first for — have played as well as anyone could have hoped, showing that this front office at least identified the right talent when it went all-in on the 2025 draft. Both rank in the top 10 in most major rookie statistical categories this season and have shown real signs of long-term star potential.</p>
+        <div class="chart-container">
+          <h3 class="chart-title">2025–26 Rookie Leaders: Pelicans Rookies Among the Elite</h3>
+
+          <div style="margin-bottom:1rem;">
+            <button id="pelicans-toggle-bars" style="margin-right:6px;">📊 Bar Grid</button>
+            <button id="pelicans-toggle-heatmap">🔥 Heatmap</button>
+          </div>
+
+          <div class="chart-wrapper">
+            <div id="pelicans-chart"></div>
+
+            <!-- Legend below charts -->
+            <div id="pelicans-legend" style="text-align:center; margin-top:12px; font-size:0.85rem; display:flex; justify-content:center; gap:22px;">
+              <span><span style="display:inline-block;width:14px;height:14px;background:#0C2340;border-radius:3px;margin-right:5px;"></span>Jeremiah Fears</span>
+              <span><span style="display:inline-block;width:14px;height:14px;background:#85714D;border-radius:3px;margin-right:5px;"></span>Derik Queen</span>
+            </div>
+          </div>
+        </div>
+
+        <script type="text/javascript">
+          let pelicansChartsReady = false;
+
+          function initPelicansCharts() {
+            const PELICANS_PRIMARY = "#0C2340";
+            const PELICANS_SECONDARY = "#85714D";
+            const NEUTRAL = "#C4C4C4";
+
+            const statOrder = ["STL","TRB","PTS","AST","MP","BLK"];
+            const statLabels = {
+              STL: "Steals",
+              TRB: "Rebounds",
+              PTS: "Points",
+              AST: "Assists",
+              MP: "Minutes",
+              BLK: "Blocks"
+            };
+
+            const top10Data = {
+              STL: { players:["Jeremiah Fears","VJ Edgecombe","Cooper Flagg","Derik Queen","Drake Powell","Will Richard","Ace Bailey","Kon Knueppel","Ryan Kalkbrenner","Sion James"], values:[1.7,1.3,1.3,1.1,0.9,0.9,0.8,0.8,0.8,0.8], ranks:[1,2,3,4,5,6,7,8,9,10] },
+              TRB: { players:["Ryan Kalkbrenner","Derik Queen","Cooper Flagg","VJ Edgecombe","Cedric Coward","Kon Knueppel","Dylan Harper","Moussa Cisse","Maxime Raynaud","Ace Bailey"], values:[6.9,6.6,6.4,6.0,6.0,5.8,4.0,3.8,3.6,3.4], ranks:[1,2,3,4,5,6,7,8,9,10] },
+              PTS: { players:["Kon Knueppel","Cooper Flagg","VJ Edgecombe","Jeremiah Fears","Cedric Coward","Dylan Harper","Derik Queen","Tre Johnson","Ryan Kalkbrenner","Ace Bailey"], values:[19.4,16.1,15.6,15.4,14.3,14.0,12.6,11.5,9.4,9.2], ranks:[1,2,3,4,5,6,7,8,9,10] },
+              AST: { players:["VJ Edgecombe","Dylan Harper","Egor Demin","Derik Queen","Walter Clayton","Cooper Flagg","Kon Knueppel","Javon Small","Cedric Coward","Jeremiah Fears"], values:[4.2,3.8,3.5,3.2,3.2,3.1,2.9,2.8,2.8,2.7], ranks:[1,2,3,4,5,6,7,8,9,10] },
+              MP: { players:["VJ Edgecombe","Kon Knueppel","Cooper Flagg","Jeremiah Fears","Sion James","Cedric Coward","Ryan Kalkbrenner","Tre Johnson","Derik Queen","Dylan Harper"], values:[37.3,33.6,33.6,26.9,26.5,26.4,25.5,24.3,24.2,23.3], ranks:[1,2,3,4,5,6,7,8,9,10] },
+              BLK: { players:["Ryan Kalkbrenner","Moussa Cisse","Dylan Cardwell","Hunter Dickinson","Derik Queen","Cooper Flagg","Khaman Maluach","Chris Manon","Tre Johnson","Yang Hansen"], values:[1.9,1.3,1.0,1.0,0.8,0.7,0.6,0.5,0.5,0.5], ranks:[1,2,3,4,5,6,7,8,9,10] }
+            };
+
+            const heatPlayers = [
+              "Cooper Flagg","Derik Queen","VJ Edgecombe","Kon Knueppel",
+              "Ryan Kalkbrenner","Jeremiah Fears","Cedric Coward",
+              "Dylan Harper","Tre Johnson","Ace Bailey","Moussa Cisse","Sion James",
+              "Dylan Cardwell","Egor Demin","Hunter Dickinson","Drake Powell",
+              "Walter Clayton","Will Richard","Khaman Maluach","Chris Manon",
+              "Javon Small","Maxime Raynaud","Yang Hansen"
+            ];
+
+            const heatZ = [
+              [3,4,2,8,9,1,null,null,null,7,null,10,null,null,null,5,null,6,null,null,null,null,null],
+              [3,2,4,6,1,null,5,7,null,10,8,null,null,null,null,null,null,null,null,null,null,9,null],
+              [2,7,3,1,9,4,5,6,8,10,null,null,null,null,null,null,null,null,null,null,null,null,null],
+              [6,4,1,7,null,10,9,2,null,null,null,null,null,3,null,null,5,null,null,null,8,null,null],
+              [3,9,1,2,7,4,6,10,8,null,null,5,null,null,null,null,null,null,null,null,null,null,null],
+              [6,5,null,null,1,null,null,null,9,null,2,null,3,null,4,null,null,null,7,8,null,null,10]
+            ];
+
+            function renderGrid() {
+              const traces = [];
+              const layout = {
+                grid:{rows:2,columns:3,pattern:"independent"},
+                showlegend:false,
+                height:680,
+                template:"plotly_white",
+                margin:{l:50,r:20,t:50,b:60} // extra space for legend
+              };
+
+              statOrder.forEach((stat,i)=>{
+                const d = top10Data[stat];
+
+                layout[`xaxis${i+1}`] = {
+                  title:{text:statLabels[stat],standoff:10,font:{size:13}},
+                  automargin:true
+                };
+
+                layout[`yaxis${i+1}`] = {
+                  showticklabels:false // hide labels completely
+                };
+
+                traces.push({
+                  type:"bar",
+                  orientation:"h",
+                  x:d.values,
+                  y:d.players,
+                  marker:{
+                    color:d.players.map(p=>
+                      p==="Jeremiah Fears"? PELICANS_PRIMARY :
+                      p==="Derik Queen"? PELICANS_SECONDARY :
+                      NEUTRAL)
+                  },
+                  hovertemplate:"%{y}<br>"+statLabels[stat]+": %{x}<extra></extra>",
+                  xaxis:`x${i+1}`,
+                  yaxis:`y${i+1}`
+                });
+              });
+
+              Plotly.newPlot("pelicans-chart", traces, layout);
+            }
+
+            function renderHeatmap() {
+              Plotly.newPlot("pelicans-chart", [{
+                type: "heatmap",
+                z: heatZ,
+                x: heatPlayers,
+                y: statOrder.map(s => statLabels[s]),
+                showscale: true,      // keep color scale
+                showlegend: false,    // REMOVE legend here
+                hovertemplate: "<b>%{y}</b><br>%{x}<br>Rank: %{z}<extra></extra>"
+              }], {
+                height: 500,
+                template: "plotly_white",
+                showlegend: false,     // reinforce legend hiding
+                xaxis: { automargin: true, tickangle: 90, tickfont: { size: 8 }},
+                yaxis: { automargin: true, autorange: "reversed", tickfont: { size: 10 }}
+              });
+            }
+
+            window.PelicansCharts = { renderGrid, renderHeatmap };
+          }
+
+          document.querySelector('[onclick="toggleDetails(\'details-pelicans\')"]').addEventListener("click", () => {
+            const section = document.getElementById("details-pelicans");
+            setTimeout(() => {
+              if(section.style.display==="block" && !pelicansChartsReady){
+                initPelicansCharts();
+                PelicansCharts.renderGrid();
+                pelicansChartsReady = true;
+              }
+              const chartEl = document.getElementById("pelicans-chart");
+              if(chartEl) Plotly.Plots.resize(chartEl);
+            }, 250);
+          });
+
+          // Toggle Buttons with legend visibility control
+          document.getElementById("pelicans-toggle-bars").onclick = () => {
+            if (!pelicansChartsReady) return;
+            PelicansCharts.renderGrid();
+            Plotly.relayout("pelicans-chart", { showlegend: true }); // show legend
+          };
+
+          document.getElementById("pelicans-toggle-heatmap").onclick = () => {
+            if (!pelicansChartsReady) return;
+            PelicansCharts.renderHeatmap();
+            Plotly.relayout("pelicans-chart", { showlegend: false }); // hide legend
+          };
+
+        </script>
+        <p>Queen, in particular, has flashed tantalizing ability as a slow-but-crafty, high-skill big who can do it all offensively against the right matchup. Fears may require more time to ripen into his two-way upside, but he has nevertheless impressed with athletic playmaking on both ends in his debut season.</p>
+        <p>The problem with celebrating the young core is that, with the worst record in the West and no pick in the next draft, the Pelicans won’t have a chance to add and complement what they’ve found in these rookies — at least not until the 2027 draft. By that time, Williamson could be gone, and things may be past the point of salvaging the franchise’s future in New Orleans.</p>
+        <p>For the sake of the city, the franchise, and the fans (to the extent there are any left), the Pelicans can only hope for a better showing the rest of this season to avoid falling into a top-five pick they won’t get to make. Beyond that, the best hope for basketball in New Orleans revolves around a continued resurgence from Williamson, a blossoming into stardom from both Fears and Queen — and perhaps a bit of voodoo magic to bring this team better luck and smarter decision-making than it has had all decade.</p>
+
       </div>
     </div>
 
+
+
     <!-- New York Knicks -->
-    <!-- <div class="team-card locked" id="team-knicks">
+    <div class="team-card locked" id="team-knicks">
       <div class="team-header" style="background-color: #006bb6;">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/2/25/New_York_Knicks_logo.svg" class="team-logo" alt="Knicks logo">
           <h2>New York Knicks</h2>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- Oklahoma City Thunder -->
     <!-- <div class="team-card locked" id="team-thunder">
