@@ -186,7 +186,9 @@
     #details-heat p:first-of-type::first-letter,
     #details-bucks p:first-of-type::first-letter,
     #details-timberwolves p:first-of-type::first-letter,
-    #details-pelicans p:first-of-type::first-letter {
+    #details-pelicans p:first-of-type::first-letter,
+    #details-knicks p:first-of-type::first-letter,
+    #details-thunder p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -2827,24 +2829,413 @@
 
 
     <!-- New York Knicks -->
-    <div class="team-card locked" id="team-knicks">
-      <div class="team-header" style="background-color: #006bb6;">
+    <div class="team-card" id="team-knicks">
+      <div class="team-header" style="background-color: #006bb6;" onclick="toggleDetails('details-knicks')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/2/25/New_York_Knicks_logo.svg" class="team-logo" alt="Knicks logo">
           <h2>New York Knicks</h2>
+          <p class="highlight">2024-25: 51-31 &middot; 3rd in East</p>
         </div>
+      </div>
+      <div class="team-details" id="details-knicks">
+        <p>After decades of dysfunction and disappointment for their passionate fan base, the New York Knicks have finally brought winning back to Madison Square Garden in recent seasons. Much of the credit for their transformation goes to Jalen and Rick Brunson — the father-son, player-coach duo — thanks to Jalen’s superstar emergence since signing with the Knicks in 2022 and their role in adding his fellow 2018 Villanova national champion teammates, Mikal Bridges and Josh Hart, to fill crucial roles. Their success has already produced a conference finals appearance last postseason — the first for the franchise since 2000.</p>
+        <p>Last season, the Knicks’ roster was as top-heavy and thin on bench options as any in the league, largely due to the additions of Bridges, Karl-Anthony Towns and OG Anunoby earlier in 2024, which came at the cost of valuable picks and rotation pieces. By the time they reached the conference finals, their lack of depth and reliance on starters proved to be their downfall.</p>
+        <p>This summer, the front office addressed that weakness, making several smart, cost-effective additions that helped turn last season’s biggest flaw into a strength.</p>
+        <p>New arrivals like Jordan Clarkson and Guerschon Yabusele, along with the return of center Mitchell Robinson from injury, have reinvigorated the bench behind one of the NBA’s best starting lineups, helping the Knicks jump out to a solid 10-6 start. Each has added valuable contributions in different ways — Clarkson’s bench scoring, Yabusele’s physicality and motor, and Robinson’s dominant rebounding and rim protection. Even sitting at 10-6 and fifth in the East, the Knicks remain a consensus favorite to contend for the conference title.</p>
+        <p>Still, the biggest drivers of their success — and their postseason outlook — are the starters. Brunson has put together a rare run for a guard his size, cementing himself as the most important figure behind the Knicks’ success and championship hopes. He currently has the highest usage rate of any player under 6-foot-3 and has earned it with his shot creation and playmaking. Given his size and playing style, it’s unclear how many seasons like this he has ahead of him, so the Knicks must capitalize now if they hope to make a real title push in the Brunson era.</p>
+        <div class="chart-container">
+          <h3 class="chart-title">Jalen Brunson: Year-over-Year Performance Radar</h3>
+          <div class="chart-wrapper">
+            <div id="brunson-radar-chart"></div>
+          </div>
+        </div>
+        <script type="text/javascript">
+          const knicksBlue = "#006BB6";
+          const knicksOrange = "#F58426";
+          const knicksDark = "#0A2040";
+          const knicksGrey = "#C4CED4";
+
+          // Data sets in display order: 2023-24, 2022-23, 2021-22, 2020-21 (example)
+          const brunsonSeasons = [
+            {
+              label: "2025-26",
+              r: [57.2,18.5,52.2,1.5,21,74,81.2,48.4,87.4,70,57.2],
+              color: knicksBlue,
+              text: [
+                "Points: 28.6 PPG",
+                "Rebounds: 3.3 RPG",
+                "Assists: 6.3 APG",
+                "Blocks: 0.1 BPG",
+                "Steals: 0.7 SPG",
+                "FG%: 48.1%",
+                "3P%: 36.5%",
+                "FT Rate: 29.1%",
+                "FT%: 84.9%",
+                "Turnovers: 2.4 TOPG",
+                "Points: 28.6 PPG"
+              ]
+            },
+            {
+              label: "2024-25",
+              r: [52,16,60.9,2.7,26.4,75,85.1,62.2,80.4,68.5,52],
+              color: knicksOrange,
+              text: [
+                "Points: 26 PPG",
+                "Rebounds: 2.9 RPG",
+                "Assists: 7.3 APG",
+                "Blocks: 0.1 BPG",
+                "Steals: 0.9 SPG",
+                "FG%: 48.8%",
+                "3P%: 38.3%",
+                "FT Rate: 37.3%",
+                "FT%: 82.1%",
+                "Turnovers: 2.5 TOPG",
+                "Points: 26 PPG"
+              ]
+            },
+            {
+              label: "2023-24",
+              r: [57.5,20.1,56.2,3.8,26,73.7,89.1,50.3,86.8,69.8,57.5],
+              color: knicksDark,
+              text: [
+                "Points: 28.7 PPG",
+                "Rebounds: 3.6 RPG",
+                "Assists: 6.7 APG",
+                "Blocks: 0.2 BPG",
+                "Steals: 0.9 SPG",
+                "FG%: 47.9%",
+                "3P%: 40.1%",
+                "FT Rate: 30.2%",
+                "FT%: 84.7%",
+                "Turnovers: 2.4 TOPG",
+                "Points: 28.7 PPG"
+              ]
+            },
+            {
+              label: "2022-23",
+              r: [48,19.7,51.6,4.9,25.6,75.6,92.5,54.7,82.3,73.9,48],
+              color: knicksGrey,
+              text: [
+                "Points: 24 PPG",
+                "Rebounds: 3.5 RPG",
+                "Assists: 6.2 APG",
+                "Blocks: 0.2 BPG",
+                "Steals: 0.9 SPG",
+                "FG%: 49.1%",
+                "3P%: 41.6%",
+                "FT Rate: 32.8%",
+                "FT%: 82.9%",
+                "Turnovers: 2.1 TOPG",
+                "Points: 24 PPG"
+              ]
+            }
+          ];
+
+          const brunsonTheta = [
+            "Points","Rebounds","Assists","Blocks","Steals",
+            "FG%","3P%","FT Rate","FT%","Turnovers (↓)","Points"
+          ];
+
+          const brunsonTraces = brunsonSeasons.map(season => ({
+            type: "scatterpolar",
+            r: season.r,
+            theta: brunsonTheta,
+            text: season.text,
+            hoverinfo: "text",
+            name: season.label,
+            line: { width: 3, color: season.color }
+          }));
+
+          const brunsonLayout = {
+            polar: {
+              radialaxis: {
+                visible: true,
+                range: [0, 100],
+                tickfont: { size: 10 }
+              }
+            },
+            showlegend: true,
+            legend: { orientation: "h", y: 1.1 },
+            margin: { t: 40, b: 20 },
+            template: "plotly_white"
+          };
+
+          Plotly.newPlot("brunson-radar-chart", brunsonTraces, brunsonLayout);
+        </script>
+
+        <p>The other key piece — and the one with the widest range of possible outcomes — is Towns. The highly skilled but polarizing big man has impressed early in his New York tenure, but he still shows the familiar weaknesses that limited his playoff success in Minnesota: defensive inconsistency, turnover issues and shaky late-game decision-making. That combination has long made him a complicated star to build around. But in recent years he has shown progress toward being a winning contributor. If he holds up defensively, protects the ball and shoots like the “best shooting big in NBA history,” he could reshape his legacy in New York.</p>
+        <p>The rest of the starting lineup is no afterthought either. Bridges and Anunoby headline the defensive effort with versatile, multipositional ability while providing efficient scoring when needed. Robinson or Hart — depending on the matchup — rounds out a group of strong complementary starters.</p>
+        <p>All in all, the Knicks are every bit the contender they were projected to be. With an elite starting lineup and strengthened depth behind it, they have the tools to make a long postseason run. If Brunson stays healthy, Towns remains consistent and out of foul trouble, and everyone fulfills their roles, this team should expect to compete for the Eastern Conference crown — and a place in the NBA Finals.</p>
       </div>
     </div>
 
     <!-- Oklahoma City Thunder -->
-    <!-- <div class="team-card locked" id="team-thunder">
-      <div class="team-header" style="background-color: #007ac1;">
+    <div class="team-card" id="team-thunder">
+      <div class="team-header" style="background-color: #007ac1;" onclick="toggleDetails('details-thunder')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/5/5d/Oklahoma_City_Thunder.svg" class="team-logo" alt="Thunder logo">
           <h2>Oklahoma City Thunder</h2>
+          <p class="highlight">2024-25: 68-14 &middot; 1st in West</p>
         </div>
       </div>
-    </div> -->
+
+      <div class="team-details" id="details-thunder">
+        <p>The Oklahoma City Thunder are not your typical best team in the league — or even your average defending champion. At 18–1, with the best defense by a mile, a top-four offense and the league’s best net rating by a wide margin, these young Thunder players are overwhelming opponents in their title defense. Over the past two seasons and a month, they have done more to reshape the NBA than any team since Stephen Curry’s Warriors in the first half of the 2010s.</p>
+        <p>Right now, it’s 29 teams vs. the juggernaut that general manager Sam Presti has built in Oklahoma City — not just for this season, but for many more to come. It feels like the Thunder’s decade to lose, and everyone else is a sizable underdog to win a championship as long as this roster remains intact.</p>
+        <div class="chart-container">
+          <h3 class="chart-title">Thunder vs the NBA: Offensive, Defensive & Net Rating</h3>
+
+          <!-- Stat Toggle -->
+          <div style="margin-bottom: 1rem;">
+            <button id="okc-toggle-off" style="margin-right:6px;">⚡ Off Rating</button>
+            <button id="okc-toggle-def" style="margin-right:6px;">🛡 Def Rating</button>
+            <button id="okc-toggle-net">📈 Net Rating</button>
+          </div>
+
+          <div class="chart-wrapper">
+            <div id="okc-rating-chart"></div>
+          </div>
+        </div>
+
+        <script>
+          (function () {
+
+            const okcColors = {
+              OKC: "#007AC1" // Thunder blue
+            };
+
+            const teamColors = {
+              "OKC": "#007AC1",
+              "HOU": "#CE1141",
+              "DEN": "#0E2240",
+              "MIA": "#98002E",
+              "ORL": "#0077C0",
+              "SAS": "#C4CED4",
+              "TOR": "#CE1141",
+              "NYK": "#006BB6",
+              "DET": "#C8102E",
+              "BOS": "#007A33",
+              "CLE": "#6F263D",
+              "LAL": "#552583",
+              "PHX": "#1D1160",
+              "MIN": "#0C2340",
+              "ATL": "#C8102E",
+              "GSW": "#1D428A",
+              "PHI": "#006BB6",
+              "POR": "#E03A3E",
+              "CHI": "#CE1141",
+              "MEM": "#5D76A9",
+              "MIL": "#00471B",
+              "LAC": "#C8102E",
+              "CHA": "#1D1160",
+              "DAL": "#00538C",
+              "UTA": "#002B5C",
+              "SAC": "#5A2D81",
+              "BKN": "#000000",
+              "NOP": "#0C2340",
+              "IND": "#002D62",
+              "WAS": "#002B5C"
+            };
+
+            const ratingsData = [
+              ["OKC", 120.92, 103.95, 16.96],
+              ["HOU", 124.51, 113.03, 11.48],
+              ["DEN", 124.54, 114.31, 10.22],
+              ["MIA", 116.53, 111.04, 5.49],
+              ["ORL", 119.04, 113.91, 5.13],
+              ["SAS", 118.46, 112.34, 6.13],
+              ["TOR", 119.42, 112.53, 6.89],
+              ["NYK", 120.96, 115.57, 5.39],
+              ["DET", 118.3, 111.24, 7.06],
+              ["BOS", 119.61, 114.64, 4.97],
+              ["CLE", 116.41, 112.75, 3.67],
+              ["LAL", 118.6, 114.98, 3.62],
+              ["PHX", 117.55, 113.71, 3.84],
+              ["MIN", 118.18, 113.16, 5.02],
+              ["ATL", 115.93, 114.1, 1.83],
+              ["GSW", 114.49, 113.55, 0.94],
+              ["PHI", 116.03, 117.04, -1.01],
+              ["POR", 116.25, 118.32, -2.07],
+              ["CHI", 116.1, 118.76, -2.66],
+              ["MEM", 111.23, 115.8, -4.57],
+              ["MIL", 115.04, 118.16, -3.13],
+              ["LAC", 114.97, 121.41, -6.44],
+              ["CHA", 116.32, 120.65, -4.34],
+              ["DAL", 105.26, 111.09, -5.83],
+              ["UTA", 113.88, 121.06, -7.18],
+              ["SAC", 110.07, 121.14, -11.07],
+              ["BKN", 111.91, 122.78, -10.88],
+              ["NOP", 110.89, 122.59, -11.7],
+              ["IND", 107.6, 119.81, -12.21],
+              ["WAS", 110.22, 124.08, -13.86]
+            ];
+
+            function renderOKC(statIndex) {
+              // sort by correct direction
+              const sorted = [...ratingsData].sort((a, b) => {
+                const aVal = a[statIndex + 1];
+                const bVal = b[statIndex + 1];
+                return statIndex === 1 // Defensive: lower is better
+                  ? aVal - bVal
+                  : bVal - aVal; // Off/Net: higher is better
+              });
+
+              const teams = sorted.map(d => d[0]);
+              const vals = sorted.map(d => d[statIndex + 1]);
+
+              const trace = {
+                type: "bar",
+                orientation: "h",
+                x: vals,
+                y: teams,
+                marker: {
+                  color: teams.map(team =>
+                    team === "OKC" ? okcColors.OKC : teamColors[team]
+                  )
+                },
+                cliponaxis: false
+              };
+
+              const titleText = 
+                statIndex === 0 ? "Offensive Rating (higher is better)" :
+                statIndex === 1 ? "Defensive Rating (lower is better)" :
+                "Net Rating (higher is better)";
+
+              Plotly.newPlot("okc-rating-chart", [trace], {
+                height: 900,
+                template: "plotly_white",
+                showlegend: false,
+                xaxis: { title: titleText },
+                yaxis: { automargin: true },
+                margin: { l: 140, r: 30, t: 20, b: 40 }
+              });
+            }
+
+            document.addEventListener("DOMContentLoaded", function () {
+              document.getElementById("okc-toggle-off").onclick = () => renderOKC(0);
+              document.getElementById("okc-toggle-def").onclick = () => renderOKC(1);
+              document.getElementById("okc-toggle-net").onclick = () => renderOKC(2);
+
+              renderOKC(2); // default: net rating
+            });
+
+          })();
+        </script>
+
+        <!-- Rating Differentials History Chart -->
+        <div class="chart-container">
+          <h3 class="chart-title">Top Team Ratings & Differentials This Decade</h3>
+
+          <!-- Toggle Buttons -->
+          <div style="margin-bottom: 1rem;">
+            <button id="okc-history-off" style="margin-right:6px;">⚡ Off Rtg</button>
+            <button id="okc-history-def" style="margin-right:6px;">🛡 Def Rtg</button>
+            <button id="okc-history-net">📈 Net Rtg</button>
+          </div>
+
+          <div class="chart-wrapper">
+            <div id="okc-rating-history-chart"></div>
+          </div>
+        </div>
+
+        <script>
+          (function () {
+            const okcBlue = "#007AC1";
+            const okcGrey = "#555555";
+
+            const historicalData = [
+              { year: '2015-16', ORtgDiff: 1.42, DRtgDiff: 2.45, NRtgDiff: 0.63, TopORtg: 115.18, TopDRtg: 99.55, TopNRtg: 11.49 },
+              { year: '2016-17', ORtgDiff: 0.67, DRtgDiff: 0.32, NRtgDiff: 4.13, TopORtg: 116.26, TopDRtg: 104.25, TopNRtg: 11.69 },
+              { year: '2017-18', ORtgDiff: 0.88, DRtgDiff: 0.09, NRtgDiff: 0.61, TopORtg: 115.48, TopDRtg: 104.56, TopNRtg: 8.64 },
+              { year: '2018-19', ORtgDiff: 0.38, DRtgDiff: 0.35, NRtgDiff: 2.08, TopORtg: 116.63, TopDRtg: 105.76, TopNRtg: 8.47 },
+              { year: '2019-20', ORtgDiff: 2.84, DRtgDiff: 2.49, NRtgDiff: 3.21, TopORtg: 117.50, TopDRtg: 103.36, TopNRtg: 9.62 },
+              { year: '2020-21', ORtgDiff: 0.49, DRtgDiff: 0.67, NRtgDiff: 3.22, TopORtg: 118.91, TopDRtg: 107.84, TopNRtg: 9.48 },
+              { year: '2021-22', ORtgDiff: 0.39, DRtgDiff: 0.03, NRtgDiff: 0.18, TopORtg: 117.68, TopDRtg: 107.68, TopNRtg: 7.66 },
+              { year: '2022-23', ORtgDiff: 0.99, DRtgDiff: 0.38, NRtgDiff: 1.08, TopORtg: 119.97, TopDRtg: 111.69, TopNRtg: 6.70 },
+              { year: '2023-24', ORtgDiff: 2.38, DRtgDiff: 2.28, NRtgDiff: 4.40, TopORtg: 124.23, TopDRtg: 109.98, TopNRtg: 11.71 },
+              { year: '2024-25', ORtgDiff: 1.05, DRtgDiff: 1.93, NRtgDiff: 3.18, TopORtg: 121.88, TopDRtg: 107.61, TopNRtg: 12.72 },
+              { year: '2025-26', ORtgDiff: 0.03, DRtgDiff: 7.09, NRtgDiff: 5.48, TopORtg: 124.54, TopDRtg: 103.95, TopNRtg: 16.96 }
+            ];
+
+            function renderHistory(metric) {
+              const x = historicalData.map(d => d.year);
+
+              let gapKey, topKey, isDef;
+
+              if (metric === "ortg") {
+                gapKey = "ORtgDiff"; topKey = "TopORtg"; isDef = false;
+              } else if (metric === "drtg") {
+                gapKey = "DRtgDiff"; topKey = "TopDRtg"; isDef = true;
+              } else {
+                gapKey = "NRtgDiff"; topKey = "TopNRtg"; isDef = false;
+              }
+
+              const gapTrace = {
+                x, y: historicalData.map(d => d[gapKey]),
+                type: "scatter",
+                mode: "lines+markers",
+                name: "Gap vs #2",
+                line: { width: 3, color: okcBlue },
+                hovertemplate: "%{x}<br>Gap: %{y:.2f}<extra></extra>"
+              };
+
+              const topTrace = {
+                x, y: historicalData.map(d => d[topKey]),
+                type: "scatter",
+                mode: "lines+markers",
+                name: "Best Team",
+                line: { width: 2, dash: "dot", color: okcGrey },
+                hovertemplate: "%{x}<br>Best: %{y:.2f}<extra></extra>",
+                yaxis: "y2"
+              };
+
+              Plotly.newPlot("okc-rating-history-chart", [gapTrace, topTrace], {
+                height: 500,
+                template: "plotly_white",
+                showlegend: true,
+                legend: {
+                  orientation: "h",
+                  y: -0.15,
+                  x: 0.25
+                },
+                xaxis: {
+                  type: "category",
+                  title: "Season",
+                  tickangle: -35,
+                  automargin: true
+                },
+                margin: { l: 60, r: 65, t: 60, b: 100 },
+                yaxis: { title: "Gap vs #2 (pts/100)" },
+                yaxis2: {
+                  title: isDef ? "Best DRtg (lower = better)" : "Best Rating (pts/100)",
+                  overlaying: "y",
+                  side: "right",
+                  autorange: isDef ? "reversed" : true
+                }
+              });
+            }
+
+            // Init + Toggle buttons
+            document.addEventListener("DOMContentLoaded", () => {
+              document.getElementById("okc-history-off").onclick = () => renderHistory("ortg");
+              document.getElementById("okc-history-def").onclick = () => renderHistory("drtg");
+              document.getElementById("okc-history-net").onclick = () => renderHistory("nrtg");
+
+              renderHistory("nrtg"); // Default
+            });
+          })();
+        </script>
+        <p>That dominance begins with three outlier strengths. First: the supremely efficient, relentless scoring of reigning MVP Shai Gilgeous-Alexander. Second: the suffocating, disruptive, turnover-forcing defense that has changed the league with its constant pressure and chaos. And third: an almost absurd level of depth — a rotation that can legitimately run 12 to 15 players deep and withstand any absence — the payoff for Presti’s years of stockpiling first-round picks. Together, those strengths have stymied the NBA for the past three seasons, and with the core still this young, it feels like only the start of a dynasty.</p>
+        <p>There are almost too many standout contributors to highlight, but a few rise above the rest early this season. In his third year, lanky 5-out center Chet Holmgren appears to be making “the leap,” showcasing the two-way versatility that made him the No. 2 pick in 2023 despite concerns about his wiry frame. His rim protection — unlocked by Isaiah Hartenstein taking on the more bruising matchups — is the backbone of Oklahoma City’s aggressive defense, erasing mistakes and supporting a group of ambitious perimeter defenders with Defensive Player of the Year-level consistency. Offensively, he provides dynamic secondary scoring: stretching the floor, finishing at the rim and even handling and playmaking at a level very few bigs can match.</p>
+        <p>Just as impressive — and far more surprising — has been second-year guard Ajay Mitchell. After barely contributing to last year’s title run, Mitchell has emerged from the depths of Oklahoma City’s development pipeline as a legitimate early candidate for Most Improved Player. His 16.1 points per game have been crucial while the Thunder wait on the return of last season’s No. 2 scorer, Jalen Williams. If Mitchell continues at this pace, Oklahoma City will have found yet another rising star under 25 to add to a roster already overflowing with them.</p>
+        <p>It’s an embarrassment of riches in Oklahoma City, and this dynasty is just beginning. Barring major injury or a stunning upset, another title in June feels like the expectation for the league’s youngest and most dominant team. All bow down to Sam Presti, and god help any team standing in his way.</p>
+
+
+      </div>
+    </div>
+
+
+
 
     <!-- Orlando Magic -->
     <!-- <div class="team-card locked" id="team-magic">
