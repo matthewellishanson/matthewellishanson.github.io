@@ -188,7 +188,8 @@
     #details-timberwolves p:first-of-type::first-letter,
     #details-pelicans p:first-of-type::first-letter,
     #details-knicks p:first-of-type::first-letter,
-    #details-thunder p:first-of-type::first-letter {
+    #details-thunder p:first-of-type::first-letter,
+    #details-magic p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -3234,18 +3235,191 @@
       </div>
     </div>
 
-
-
-
     <!-- Orlando Magic -->
-    <!-- <div class="team-card locked" id="team-magic">
-      <div class="team-header" style="background-color: #0077c0;">
+    <div class="team-card" id="team-magic">
+      <div class="team-header" style="background-color: #0077c0;" onclick="toggleDetails('details-magic')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/1/10/Orlando_Magic_logo.svg" class="team-logo" alt="Magic logo">
           <h2>Orlando Magic</h2>
+          <p class="highlight">2024-25: 41-41 &middot; 7th in East</p>
         </div>
       </div>
-    </div> -->
+      <div class="team-details" id="details-magic">
+        <p>In the course of attempting to publish 30 team previews in 30 days — a deadline that’s looking more and more like one I’ll miss by about a week — there have been multiple instances where I’ve come to regret writing about a team in a particular direction early in the season, only to watch that team change course in the weeks that followed. In an 82-game season, it’s all too easy to fall victim to recency bias — to become a prisoner of the moment and the teams that look great right now — especially at the start of a new season, when everyone from players to coaches to media is trying to get a feel for all 30 teams off a very limited sample of games.</p>
+        <p>In the case of the Orlando Magic, however, I’m feeling the flip side of that phenomenon. Instead of regret for having written about this team negatively after they limped out of the gates to a concerning start in what many expected to be their breakout year, I’m relieved I waited until this point in their season to publish this preview. A lot has changed since I started this blog around what was the low point of their year — and after winning eight of their last 10, the Magic are finally beginning to resemble the serious Eastern Conference contender many projected.</p>
+        <p>After a sluggish beginning, the Magic’s offseason pickup Desmond Bane has turned things around in a big way during this recent winning stretch, highlighted by a game-winning three at home vs. Portland on Nov. 10 and a 37-point masterpiece in Friday’s clutch win in Detroit against the red-hot Pistons. His resurgent play on both ends has brought exactly what the front office hoped for when they traded Kentavious Caldwell-Pope, Cole Anthony, the No. 16 pick in the 2025 draft, unprotected first-round picks in 2026, 2028 and 2030, and a 2029 first-round pick swap to Memphis for him this summer.</p>
+        <!-- Desmond Bane Improvement Chart -->
+        <div class="chart-container">
+          <h3 class="chart-title">Desmond Bane: Scoring & Efficiency Leap (Last 10 vs First 10 Games)</h3>
+          <div class="chart-wrapper">
+            <div id="bane-improvement-chart"></div>
+          </div>
+        </div>
+
+        <script>
+        (function() {
+
+          // Magic theme colors
+          const black = "#000000";
+          const blue = "#0077C0";
+
+          // Per-game values computed from provided data
+          const stats = [
+            { label: "PTS/G", first: 14.2, last: 22.4 },
+            { label: "AST/G", first: 4.1, last: 4.9 },
+            { label: "TRB/G", first: 4.2, last: 4.8 },
+            { label: "FG%",  first: 43.1, last: 44.8 },
+            { label: "3P%",  first: 29.3, last: 33.3 },
+            { label: "TS%",  first: 52.5, last: 57.3 },
+            { label: "+/-",  first: -0.9, last: 7.3 }
+          ];
+
+          const yLabels = stats.map(s => s.label);
+          const first10 = stats.map(s => s.first);
+          const last10  = stats.map(s => s.last);
+
+          const traceFirst = {
+            type: "bar",
+            orientation: "h",
+            y: yLabels,
+            x: first10,
+            name: "First 10 Games",
+            marker: { color: black },
+            hovertemplate: "%{y}<br><b>%{x}</b><extra>First 10</extra>"
+          };
+
+          const traceLast = {
+            type: "bar",
+            orientation: "h",
+            y: yLabels,
+            x: last10,
+            name: "Last 10 Games",
+            marker: { color: blue },
+            hovertemplate: "%{y}<br><b>%{x}</b><extra>Last 10</extra>"
+          };
+
+          Plotly.newPlot("bane-improvement-chart", [traceFirst, traceLast], {
+            barmode: "group",
+            height: 420,
+            margin: { l: 90, r: 30, t: 30, b: 40 },
+            template: "plotly_white",
+            showlegend: true,
+            legend: { orientation: "h", y: 1.15 },
+            xaxis: {
+              title: "Per Game Stats",
+              automargin: true
+            },
+            yaxis: {
+              automargin: true
+            }
+          });
+
+        })();
+        </script>
+        <p>After 13 straight seasons in which the Magic finished in the bottom 10 in offensive efficiency, Bane looks like the very piece this tough, young, defense-first team needed to finally break into the top 20 — and with Orlando currently sitting seventh in offensive rating, that appears likely by season’s end.</p>
+        <div class="chart-container">
+          <h3 class="chart-title">Orlando Magic: 13 Seasons of Offensive Struggle → Breakthrough?</h3>
+          <div class="chart-wrapper">
+            <div id="magic-off-chart"></div>
+          </div>
+        </div>
+
+        <script>
+        (function () {
+
+          const seasons = [
+            "2012-13","2013-14","2014-15","2015-16","2016-17","2017-18",
+            "2018-19","2019-20","2020-21","2021-22","2022-23",
+            "2023-24","2024-25","2025-26"
+          ];
+
+          const ortg = [
+            101.6,101.7,101.6,105.1,103.7,105.2,108.9,108.5,
+            105.1,104.5,111.6,113.4,109.4,118.2
+          ];
+
+          const ranks = [
+            28,29,27,23,29,25,22,23,29,29,26,22,27,8
+          ];
+
+          // Invert rank for visualization (lower rank = taller bar)
+          const rankMax = 30;
+          const rankBarVals = ranks.map(r => rankMax - r);
+
+          const barTrace = {
+            type: "bar",
+            x: seasons,
+            y: rankBarVals,
+            name: "Offensive Rank (Lower = Better)",
+            marker: { color: "rgba(0,119,204,0.35)" },
+            hovertemplate: 
+              "<b>%{x}</b><br>" +
+              "ORtg Rank: %{customdata}<extra></extra>",
+            customdata: ranks,
+            yaxis: "y2"
+          };
+
+          const lineTrace = {
+            type: "scatter",
+            mode: "lines+markers",
+            x: seasons,
+            y: ortg,
+            name: "Offensive Rating (pts/100)",
+            line: { width: 3, color: "#0047BB" },
+            marker: { size: 7 },
+            hovertemplate: 
+              "<b>%{x}</b><br>" +
+              "ORtg: %{y:.1f}<extra></extra>"
+          };
+
+          Plotly.newPlot("magic-off-chart", [barTrace, lineTrace], {
+            template: "plotly_white",
+            height: 480,
+            margin: { l: 60, r: 60, t: 50, b: 60 },
+            xaxis: { title: "Season", tickangle: -30 },
+            yaxis: { title: "Offensive Rating (pts/100)" },
+            yaxis2: {
+              title: "Offensive Rank (30 = worst)",
+              overlaying: "y",
+              side: "right",
+              autorange: true
+            },
+            legend: { orientation: "h", y: -0.25 },
+            shapes: [
+              {
+                type: "rect",
+                xref: "paper", yref: "y2",
+                x0: 0, x1: 1,
+                y0: rankMax - 20, y1: rankMax - 30,
+                fillcolor: "rgba(200,0,0,0.12)",
+                line: { width: 0 }
+              }
+            ],
+            annotations: [
+              {
+                x: "2025-26",
+                y: ortg[13],
+                text: "🚀 Breakthrough season",
+                showarrow: true,
+                arrowhead: 3,
+                ax: 0, ay: -40,
+                bgcolor: "#0047BB",
+                font: { color: "#fff" }
+              }
+            ]
+          });
+
+        })();
+        </script>
+
+        <p>Bane’s shooting has opened up space for an offense that has desperately needed it for years, allowing the team’s young star forwards, Paolo Banchero and Franz Wagner, to do what they do best: dominate inside the arc using their size, mobility and versatile skill sets as 6-foot-10 combo forwards. Now, if any two of the Magic’s three stars have it going on the same night, this deep, scrappy team can hang with just about anyone. That’s a major step forward from where they’ve been — a defensive juggernaut that simply couldn’t keep up on the other end.</p>
+        <p>About Banchero: yes, there’s been talk about his lack of progress — even some regression — early in his fourth year, and yes, the stats do support some of that concern. But history has shown time and time again that players with his combination of skill, athleticism and size — even as a rookie, he was built like a Brinks truck, with a clear pathway toward a long, durable career at 6-10 and 250 pounds — almost always figure things out. He should get back on track statistically by season’s end, barring injury or off-court issues, and I still expect great things from him. And it’s not as though he’s been bad through the first 20 games, averaging 21.7 PPG, 8.7 RPG and 4.1 APG, albeit on less-than-ideal shooting splits. Twenty-five percent from deep is a concern, but not a long-term panic point.</p>
+        <p>With Banchero and Bane sluggish early on, other young Magic players were forced to step up — and that should pay off now that the stars are surging. Most notably, third-year supersized point guard Anthony Black looks like he’s putting it all together, developing into the solid, versatile big guard the Magic envisioned when they selected him in the lottery. His defense, improved shooting, competitive fire and high IQ give the Magic critical backcourt support while aligning with their roster-wide emphasis on length and defensive grit. His year-to-year growth has been fun to watch — and with his size and instincts, there’s plenty of room left to grow.</p>
+        <p>At 12-8, the Magic sit seventh in a crowded and wide-open East, so there’s still plenty of work to do if they want to secure home-court advantage in the first round. But with Bane’s belated blossoming and the way he’s complemented their strengths over the past 10 games, there’s a lot more reason for optimism than there was just 10 games ago.</p>
+
+      </div>
+        
+    </div>
 
     <!-- Philadelphia 76ers -->
     <!-- <div class="team-card locked" id="team-sixers">
