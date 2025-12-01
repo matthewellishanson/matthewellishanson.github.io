@@ -189,7 +189,8 @@
     #details-pelicans p:first-of-type::first-letter,
     #details-knicks p:first-of-type::first-letter,
     #details-thunder p:first-of-type::first-letter,
-    #details-magic p:first-of-type::first-letter {
+    #details-magic p:first-of-type::first-letter,
+    #details-suns p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -3421,25 +3422,99 @@
         
     </div>
 
-    <!-- Philadelphia 76ers -->
-    <!-- <div class="team-card locked" id="team-sixers">
-      <div class="team-header" style="background-color: #006bb6;">
-        <div class="team-info">
-          <img src="https://upload.wikimedia.org/wikipedia/en/0/0e/Philadelphia_76ers_logo.svg" class="team-logo" alt="76ers logo">
-          <h2>Philadelphia 76ers</h2>
-        </div>
-      </div>
-    </div> -->
-
     <!-- Phoenix Suns -->
-    <!-- <div class="team-card locked" id="team-suns">
-      <div class="team-header" style="background-color: #1d1160;">
+    <div class="team-card" id="team-suns">
+      <div class="team-header" style="background-color: #1d1160;" onclick="toggleDetails('details-suns')">
         <div class="team-info">
           <img src="https://upload.wikimedia.org/wikipedia/en/d/dc/Phoenix_Suns_logo.svg" class="team-logo" alt="Suns logo">
           <h2>Phoenix Suns</h2>
+          <p class="highlight">2024-25: 36-46 &middot; 11th in West</p>
         </div>
       </div>
-    </div> -->
+      <div class="team-details" id="details-suns">
+        <p>A year ago, the Suns had about as bleak a future as any team in the league. After trading most of their youth and future draft picks for aging, disgruntled stars Kevin Durant and Bradley Beal, they quickly learned those moves were a mistake. The two never meshed well with the remaining roster, didn’t seem aligned with the front office or franchise player Devin Booker, and consistently failed to play winning basketball. Entering this season, the outlook in Phoenix looked especially dim, even after the team wisely cut ties with both Durant and Beal in trades that returned far less than what they’d given up.</p>
+        <p>Yet somehow, 20 games into the new season, I’m sitting here grinning at how fun this year’s Suns have been. At 12-9, they’re firmly in the hunt for the No. 7 seed in the Western Conference thanks to a new head coach and a roster full of hungrier, lesser-known players willing to play hard — and pressure the ball full court far more often — than the superstars they replaced.</p>
+        <p>As <a href="https://www.theringer.com/2025/11/20/nba/nba-full-court-press-defense-trend">The Ringer’s Logan Murdock</a> and <a href="https://sports.yahoo.com/nba/article/the-early-nba-trend-thats-turning-heads-the-rise-of-the-full-court-press-154329349.html">Yahoo Sports’ Kevin O’Connor</a> recently reported, there has been a major spike in NBA teams applying full-court presses this season. With the Suns tripling their pressing frequency from last year, Phoenix is at the forefront of that trend. Their scrappy guards and wings are happy to work and compete every night in a way last season’s Suns often didn’t. First-year head coach Jordan Ott’s press-happy approach has paid off early, leading to a higher opponent turnover rate and improved defensive numbers through the first 21 games.</p>
+        <p>Leading the charge in Phoenix’s aggressive defensive identity is new arrival Dillon Brooks, acquired along with shooting guard Jalen Green in the Durant-to-Houston deal this summer. Joining Brooks at the head of the snake are breakout point guard Collin Gillespie, small forward Royce O’Neal and newly acquired combo guard Jordan Goodwin. Brooks’ relentless physicality and psychological games, combined with the hustle and hunger of the supporting cast, have made Phoenix an absolute pain in the ass to play against every night.</p>
+        <p>The hustle stats support the eye test when it comes to the Suns’ improved effort this season. They’ve posted a nearly 50% increase in steals per game and a 37% increase in offensive rebounds — two major indicators of effort on a night-to-night basis. The offensive rebounding spike is due mostly to the team’s new starting center, the promising but injury-prone Mark Williams, who joined a roster that desperately needed more interior presence after being humiliated last season when he was traded to the Lakers and then untraded after a failed physical. He has looked strong so far in Phoenix, and after such a bizarre early-career saga, it’s good to see him thriving with a team that actually wants him.</p>
+        <!-- Suns Hustle Identity Slope Chart -->
+        <div class="chart-container">
+          <h3 class="chart-title">Phoenix Suns — Hustle Stats</h3>
+          <div class="chart-wrapper">
+            <div id="suns-hustle-slope"></div>
+          </div>
+        </div>
+
+        <script>
+        (function () {
+
+          const seasons = ["2024-25", "2025-26*"];
+          const stats = [
+            {
+              label: "Steals/G",
+              last: 7.2,
+              current: 10.6,
+              pct: "+46.8%",
+              color: "#E56020" // Suns Orange
+            },
+            {
+              label: "ORB/G",
+              last: 9.5,
+              current: 13.1,
+              pct: "+37.1%",
+              color: "#1D1160" // Suns Purple
+            },
+            {
+              label: "Opp TOV/G",
+              last: 12.2,
+              current: 16.9,
+              pct: "+38.1%",
+              color: "#E56020" // Suns Orange
+            }
+          ];
+
+          const traces = stats.map(stat => ({
+            type: "scatter",
+            mode: "lines+markers+text",
+            x: seasons,
+            y: [stat.last, stat.current],
+            name: stat.label,
+            line: { width: 4, color: stat.color },
+            marker: { size: 12, color: stat.color },
+            text: ["", stat.pct],
+            textposition: "top center",
+            hovertemplate: `${stat.label}<br>%{x}: %{y}<extra></extra>`
+          }));
+
+          Plotly.newPlot("suns-hustle-slope", traces, {
+            height: 500,
+            template: "plotly_white",
+            showlegend: true,
+            margin: { l: 60, r: 30, t: 40, b: 60 },
+            xaxis: { title: "", tickangle: 0 },
+            yaxis: { title: "Per Game", range: [6, 18] },
+            annotations: [
+              {
+                text: "*Through 21 games",
+                xref: "paper",
+                yref: "paper",
+                x: 1,
+                y: -0.15,
+                showarrow: false,
+                font: { size: 10, color: "#555" }
+              }
+            ]
+          });
+
+        })();
+        </script>
+
+        <p>Beyond Williams, keep an eye on Khaman Maluach. He hasn’t made much of an impact yet as a third-string rookie center behind Williams and Nick Richards, but he remains a tantalizing long-term prospect. His 7-foot-1 frame, 7-foot-6 wingspan and surprising mobility at that size make him someone to expect more from down the road once he earns more minutes and settles into the league.</p>
+        <p>Amid all this defensive chaos, Booker has looked reinvigorated. It was easy to understand his frustration by the end of last season, so it’s no surprise that Ott’s new identity has him playing like a top-five shooting guard again. His box-score numbers remain similar to last year, but the eye test makes the difference clear — he looks happier and far more engaged than he did over the past two seasons. That’s already a symbolic win for a front office that desperately needed one.</p>
+        <p>Will the Suns sustain this defensive intensity? Will it carry them to a playoff berth in a brutally competitive West? It’s too early to say. But what is clear so far is that the vibes are immaculate compared to where this franchise stood just a few months ago. That alone feels like a major victory — and a meaningful step forward after the disappointing Durant/Beal era.</p>
+      </div>
+        
+    </div>
 
   </div>
 
