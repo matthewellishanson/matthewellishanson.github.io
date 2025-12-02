@@ -190,7 +190,8 @@
     #details-knicks p:first-of-type::first-letter,
     #details-thunder p:first-of-type::first-letter,
     #details-magic p:first-of-type::first-letter,
-    #details-suns p:first-of-type::first-letter {
+    #details-suns p:first-of-type::first-letter,
+    #details-blazers p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -3514,6 +3515,90 @@
         <p>Will the Suns sustain this defensive intensity? Will it carry them to a playoff berth in a brutally competitive West? It’s too early to say. But what is clear so far is that the vibes are immaculate compared to where this franchise stood just a few months ago. That alone feels like a major victory — and a meaningful step forward after the disappointing Durant/Beal era.</p>
       </div>
         
+    </div>
+
+    <!-- Portland Trail Blazers -->
+    <div class="team-card" id="team-blazers">
+      <div class="team-header" style="background-color: #E03A3E;" onclick="toggleDetails('details-blazers')">
+        <div class="team-info">
+          <img src="https://upload.wikimedia.org/wikipedia/en/2/21/Portland_Trail_Blazers_logo.svg" class="team-logo" alt="Blazers logo">
+          <h2>Portland Trail Blazers</h2>
+          <p class="highlight">2024-25: 30-52 &middot; 14th in West</p>
+        </div>
+      </div>
+      <div class="team-details" id="details-blazers">
+        <p>On first glance at the standings and stats, this year’s Portland Trail Blazers don’t look too different from last year’s team. At 8-12 and 10th in the West, with the 19th-best net rating and ranking in the bottom half of the league in both offense and defense, on paper these Blazers rate roughly the same as last season’s 36-46 squad, which finished 22nd in net rating and 12th in the conference.</p>
+        <p>But there’s a reason we watch the actual games and not just box scores and advanced metrics. Sometimes the real story of a team or a player can’t be found in their numbers alone, but has to be seen to be fully understood. That certainly feels true for this year’s Blazers, who have shown encouraging signs of growth, momentum and toughness early in the season. Tune in on any night and you’re likely to see a Blazers team that looks more like a group on the rise than at any point since trading franchise legend Damian Lillard to Milwaukee in 2023.</p>
+        <p>The first thing to watch with this team is its ball pressure on defense. Much like this year’s Suns and last year’s Pacers, Portland has figured out that by pressing full court — all game, every game — it can bridge talent gaps between itself and opponents and consistently stay competitive in games it otherwise might not stand a chance of winning.</p>
+        <p>Even more than the Suns and the league-best defense of the Oklahoma City Thunder, this Blazers squad really presses — attacking ballhandlers with a full arsenal of young players who are long, athletic and durable enough to maintain that pressure 48 minutes a night, 82 nights a season. They lead the league in pressing rate by a huge margin, with just under 25% of their defensive possessions incorporating a press; and the results back it up, as they also lead the NBA in defensive rating on pressing possessions, per <a href="https://sports.yahoo.com/nba/article/the-early-nba-trend-thats-turning-heads-the-rise-of-the-full-court-press-154329349.html">Yahoo Sports’ Kevin O’Connor and Synergy Sports data.</a></p>
+        <p>Leading the pack of defensive dogs Portland unleashes on opponents every game, fifth-year wing Toumani Camara continues to guard on the perimeter as well as any player in the league — flying around and disrupting offensive flow like a man possessed. He’s gotten some highly qualified help this year with the offseason acquisition of veteran lockdown guard Jrue Holiday, the best mentor a defender like Camara could ask for and still a consistent thorn in opposing offenses’ sides at the ripe age of 35.</p>
+        <p>When Portland’s relentless press breaks down or lets somebody through on a drive to the basket, there’s real size and interior defense behind it — between sophomore center Donovan Clingan and backup Robert Williams III. Williams makes for an overqualified reserve when healthy, while Clingan has thrived so far in his first season as the starting center, even flashing some surprising range from 3 and imposing himself in the paint every night on both ends. If rookie first-round pick Yang Hansen can develop into a serviceable rotation big, this frontcourt could be scary for years.</p>
+        <p>On offense, the story has undeniably been the late bloom of small forward Deni Avdija since arriving in Portland last season. After spending his first three NBA seasons in the obscurity and dysfunction of the Washington Wizards — struggling to prove himself as a reliable primary player — Avdija arrived in Portland as an unheralded addition to a fully rebuilding roster. Since then, he has played his way into being an All-Star candidate and 20-plus-point scorer on a team that desperately needed one, becoming a real rising star with a ceiling far higher than most expected during his time in D.C. He’s not a 1A option on a title contender, but he’s good enough to be a No. 2 scorer on one — and a go-to option for a fringe playoff team this season.</p>
+        <p>It’s an impressive turnaround for a player I once considered a miss as a lottery pick — and something to watch closely for these Blazers. If he can push his game even further, things could change fast and in a really exciting way for the franchise, especially considering the bargain extension they signed him to before he took this leap.</p>
+        <div class="chart-container">
+          <h3 class="chart-title">Deni Avdija: Year-Over-Year Growth</h3>
+
+          <div style="margin-bottom: 1rem;">
+            <button class="avdija-btn" data-stat="pts100">Points/100</button>
+            <button class="avdija-btn" data-stat="astpct">AST%</button>
+            <button class="avdija-btn" data-stat="ast100">AST/100</button>
+            <button class="avdija-btn" data-stat="usgpct">USG%</button>
+            <button class="avdija-btn" data-stat="tspct">TS%</button>
+            <button class="avdija-btn" data-stat="ortg">ORtg</button>
+            <button class="avdija-btn" data-stat="per">PER</button>
+          </div>
+
+          <div id="avdija-toggle-chart"></div>
+        </div>
+        <script>
+          (() => {
+            const seasons = ["2020-21","2021-22","2022-23","2023-24","2024-25","2025-26"];
+
+            const colors = [
+              "#002B5C","#002B5C","#002B5C","#002B5C", // Wizards navy (first 4 seasons)
+              "#E03A3E","#E03A3E"                      // Blazers red (last 2 seasons)
+            ];
+
+            const stats = {
+              pts100:  [12.5,17.1,16.8,22.8,27.4,35.5],
+              astpct:  [6.3,11.8,13.9,17.8,19.9,27.2],
+              ast100:  [2.3,4.2,5.1,5.9,6.3,7.9], // from box stats
+              usgpct:  [12.0,16.3,16.7,20.2,23.2,28.1],
+              tspct:   [51.5,53.6,53.5,59.7,60.5,62.1],
+              ortg:    [103,106,106,112,116,122],
+              per:     [7.6,11.6,11.2,14.9,17.7,20.9]
+            };
+
+            function render(statKey) {
+              const trace = {
+                type: "bar",
+                x: seasons,
+                y: stats[statKey],
+                marker: { color: colors },
+                text: stats[statKey].map(v => v.toFixed(1)),
+                hovertemplate: `%{x}: <b>%{y}</b><extra></extra>`
+              };
+
+              Plotly.newPlot("avdija-toggle-chart", [trace], {
+                height: 450,
+                margin: {t:35,b:50},
+                template: "plotly_white",
+                yaxis: { title: statKey.toUpperCase() }
+              });
+            }
+
+            document.querySelectorAll(".avdija-btn").forEach(btn =>
+              btn.addEventListener("click", () => render(btn.dataset.stat))
+            );
+
+            render("pts100"); // default view
+          })();
+        </script>
+        <p>The other name to watch — when he returns from injury — is Scoot Henderson, the No. 3 overall pick in 2023 whom the Blazers still need to show he can be the franchise cornerstone they hoped they drafted. When he gets healthy again, he’ll absolutely be on the clock to deliver. If he doesn’t, they may need to move him sooner than later, before his trade value falls further. Considering Portland likely could have taken Amen Thompson or Ausar Thompson in that slot, they really need this pick to pan out.</p>
+        <p>The same may be said, though slightly less urgently, for their 2022 lottery pick, Shaedon Sharpe, who has flashed unreal athleticism and explosive scoring in bursts but still has to prove he can be a starting-caliber tertiary scorer on a winning team. His long-term outlook remains more promising than Henderson’s simply because his role is less foundational.</p>
+        <p><a href="https://www.espn.com/nba/story/_/id/46695228/sources-terry-rozier-arrested-part-gambling-inquiry">Federal investigations into suspended head coach Chauncey Billups</a> notwithstanding, this team has shown plenty to be optimistic about early in the new season. Blazers fans should be excited to watch this team grow and build on this foundation — because with the right development and/or the right additions, you can start to see a winning culture coming together in Portland.</p>
+
+      </div>
     </div>
 
   </div>
