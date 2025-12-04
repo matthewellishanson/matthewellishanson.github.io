@@ -191,7 +191,8 @@
     #details-thunder p:first-of-type::first-letter,
     #details-magic p:first-of-type::first-letter,
     #details-suns p:first-of-type::first-letter,
-    #details-blazers p:first-of-type::first-letter {
+    #details-blazers p:first-of-type::first-letter,
+    #details-kings p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -3597,6 +3598,300 @@
         <p>The other name to watch — when he returns from injury — is Scoot Henderson, the No. 3 overall pick in 2023 whom the Blazers still need to show he can be the franchise cornerstone they hoped they drafted. When he gets healthy again, he’ll absolutely be on the clock to deliver. If he doesn’t, they may need to move him sooner than later, before his trade value falls further. Considering Portland likely could have taken Amen Thompson or Ausar Thompson in that slot, they really need this pick to pan out.</p>
         <p>The same may be said, though slightly less urgently, for their 2022 lottery pick, Shaedon Sharpe, who has flashed unreal athleticism and explosive scoring in bursts but still has to prove he can be a starting-caliber tertiary scorer on a winning team. His long-term outlook remains more promising than Henderson’s simply because his role is less foundational.</p>
         <p><a href="https://www.espn.com/nba/story/_/id/46695228/sources-terry-rozier-arrested-part-gambling-inquiry">Federal investigations into suspended head coach Chauncey Billups</a> notwithstanding, this team has shown plenty to be optimistic about early in the new season. Blazers fans should be excited to watch this team grow and build on this foundation — because with the right development and/or the right additions, you can start to see a winning culture coming together in Portland.</p>
+
+      </div>
+    </div>
+
+    <!-- Sacramento Kings -->
+    <div class="team-card" id="team-kings">
+      <div class="team-header" style="background-color: #5A2D81;" onclick="toggleDetails('details-kings')">
+        <div class="team-info">
+          <img src="https://upload.wikimedia.org/wikipedia/en/c/c7/SacramentoKings.svg" class="team-logo" alt="Kings logo">
+          <h2>Sacramento Kings</h2>
+          <p class="highlight">2024-25: 34-48 &middot; 13th in West</p>
+        </div>
+      </div>
+      <div class="team-details" id="details-kings">
+        <p>In a league where most franchises rise and fall from era to era with roughly equal frequency, a few teams seem permanently stuck at one end of the standings or the other. On the winning side of that dynamic are the iconic franchises — the Los Angeles Lakers, Boston Celtics and San Antonio Spurs — all of which have managed to outperform the typical ebb and flow of NBA competition across modern history.</p>
+        <p>On the other end are the franchises that somehow always seem mired in losing and aimlessness. Until recently, my Timberwolves were counted among these sorry sacks, having failed to reach the postseason between 2004 and 2018 and not winning a playoff series between their 2004 Western Conference finals appearance and their 2024 first-round win against the Suns. So it’s with an air of sorrowful sympathy that I now consider another historically sad franchise — one that, only a few seasons ago, seemed on the brink of breaking through at long last, only to slide almost impossibly fast back into obscurity.</p>
+        <p>Back in 2022-23, the Sacramento Kings were the feel-good story of the NBA, ending their 16-season playoff drought with a surprise home-court playoff series as the No. 3 seed in the West before losing in seven games to Stephen Curry and the Warriors at the tail end of their dynasty. Those “Light the Beam” Kings — named for the towering skylight ignited above Golden 1 Center after home wins — felt destined to continue their long-awaited climb, even after their disappointing first-round exit.</p>
+        <p>Led by a pair of nontraditional but young and exciting stars in De’Aaron Fox and Domantas Sabonis, and supported by a deep, balanced roster that seemed to have plenty of room for growth, that Kings team looked set for the next several seasons. It finally felt like Sacramento had escaped the NBA’s basement.</p>
+        <p>But a lot can change in a few years. And for Sacramento, the playoff dreams of this era died almost as quickly as they appeared.</p>
+        <div class="chart-container">
+          <h3 class="chart-title">Sacramento Kings Decline: Ratings & Rankings (2022–2026)</h3>
+          <div class="chart-wrapper">
+            <select id="kings-rating-select" style="margin-bottom:10px;">
+              <option value="off">Offensive Rating</option>
+              <option value="def">Defensive Rating</option>
+              <option value="net">Net Rating</option>
+            </select>
+            <div id="kings-rating-chart"></div>
+          </div>
+        </div>
+
+        <script>
+        (function(){
+
+          const seasons = ["2022-23", "2023-24", "2024-25", "2025-26"];
+
+          // ----------------------------
+          // DATA
+          // ----------------------------
+
+          const data = {
+            off: {
+              rating: [119.4, 116.9, 116.7, 109.6],
+              ranking: [1, 13, 7, 28],
+              title: "Offensive Rating"
+            },
+            def: {
+              rating: [116.8, 115.2, 116.2, 120.6],
+              ranking: [25, 14, 23, 25],
+              title: "Defensive Rating"
+            },
+            net: {
+              rating: [2.6, 1.7, 0.5, -10.9],
+              ranking: [8, 17, 16, 28],
+              title: "Net Rating"
+            }
+          };
+
+          // Kings colors
+          const purple = "#5A2D81";
+          const black   = "#000000";
+          const silver  = "#8E9090";
+
+          // ----------------------------
+          // DRAW FUNCTION
+          // ----------------------------
+
+          function drawChart(type) {
+
+            const d = data[type];
+
+            const ratingLine = {
+              x: seasons,
+              y: d.rating,
+              type: "scatter",
+              mode: "lines+markers",
+              name: d.title,
+              marker: { color: purple, size: 10 },
+              line: { width: 3, color: purple },
+              hovertemplate: `${d.title}: %{y}<extra></extra>`
+            };
+
+            const rankingBars = {
+              x: seasons,
+              y: d.ranking,
+              type: "bar",
+              name: "Ranking (Lower = Better)",
+              marker: { color: silver, opacity: 0.55 },
+              yaxis: "y2",
+              hovertemplate: "Rank: %{y}<extra></extra>"
+            };
+
+            const layout = {
+              template: "plotly_white",
+              height: 500,
+              margin: { t: 60, b: 80, l: 60, r: 60 },
+              xaxis: {
+                title: "Season",
+                tickfont: { size: 13 }
+              },
+              yaxis: {
+                title: d.title,
+                tickfont: { size: 13 }
+              },
+              yaxis2: {
+                title: "League Ranking (1 = Best)",
+                overlaying: "y",
+                side: "right",
+                autorange: "reversed",   // rank 1 at top
+                tickfont: { size: 13 }
+              },
+              legend: {
+                orientation: "h",
+                y: -0.15,    // move well below the chart title
+                x: 0.5,
+                xanchor: "center"
+              }
+            };
+
+            Plotly.newPlot("kings-rating-chart", [rankingBars, ratingLine], layout);
+          }
+
+          // Initial draw
+          drawChart("off");
+
+          // Dropdown listener
+          document.getElementById("kings-rating-select").addEventListener("change", (e) => {
+            drawChart(e.target.value);
+          });
+
+        })();
+        </script>
+        <p>Somehow, this front office and ownership group found a way to detonate a sure contender at record speed, beginning with a series of confounding roster moves. It started with the July 2024 sign-and-trade acquisition of veteran wing DeMar DeRozan from Chicago, which cost the Kings forward Harrison Barnes (who landed in San Antonio) and Chris Duarte (sent to Chicago). As an addition to that version of the Kings, the aging midrange assassin wasn’t a terrible fit. Sacramento, as a small-market team, could reasonably justify adding a steady, experienced scorer to help Fox and Sabonis in the halfcourt.</p>
+        <p>But after a disappointing start to last season, the Kings doubled down — and quickly. The collapse of the Light the Beam era began with the controversial firing of 2022-23 Coach of the Year Mike Brown (now thriving in his first season with the Knicks). The move was handled clumsily, with Brown dismissed by phone while heading to board the team plane in December 2024. Players and coaches across the league blasted the decision.</p>
+        <p>Soon after, Sacramento traded Fox to San Antonio in the second of their two three-team deals with the Bulls and Spurs. In return, the Kings received yet another veteran star from Chicago: the ever-underwhelming but undeniably talented Zach LaVine. For a franchise that needed to maximize the return for its best player — an unhappy Fox whose small size, reliance on speed and questionable credentials as a true No. 1 option made this the right time to move him — the deal might not have been awful… if the Kings hadn’t already added his former running mate months earlier.</p>
+        <p>Replacing Barnes, Duarte and ultimately Fox with an older, slower duo in LaVine and DeRozan — the same pair that had failed to win together in Chicago — amounted to a stunning sabotage of the franchise’s lone successful team in nearly 20 years. In less than eight months, team governor Vivek Ranadivé and his front office succeeded in destroying the momentum it took 16 seasons to build, dropping this year’s Kings squarely back into NBA no-man’s land with no clear path out.</p>
+        <p>What’s left in Sacramento doesn’t warrant much serious basketball analysis. NBA fans have seen enough of the Kings’ not-so-big three to know the ceiling here — both now and going forward. LaVine remains one of the most frustratingly empty superstars of his generation, and it feels fitting he’s now wasting the rest of his prime on a roster this aimless. He’s the last star you’d count on to drag a team out of the lottery.</p>
+        <p>DeRozan, for all his clutch brilliance and competitive fire, is one of the few remaining NBA players born in the 1980s and long past the point of anchoring a contender. Sabonis, while statistically a top-five center earlier this decade, remains a complicated star to build around given his ground-bound defense and lack of floor spacing. He’ll get you double-doubles every night, but if he’s your franchise centerpiece, you’re not going far. Worse still, he’s showing alarming early signs of decline this season, posting some of his worst numbers in key categories since his second year.</p>
+        <!-- Sabonis Efficiency Regression Chart -->
+        <div class="chart-container">
+          <h3 class="chart-title">Domantas Sabonis Efficiency Regression Timeline</h3>
+          <div class="chart-wrapper">
+            <select id="sabonis-metric-select" style="margin-bottom:10px;">
+              <option value="TS">True Shooting %</option>
+              <option value="PER">PER</option>
+              <option value="eFG">eFG%</option>
+              <option value="ORtg">Offensive Rating</option>
+              <option value="DRtg">Defensive Rating (lower = better)</option>
+            </select>
+            <div id="sabonis-metrics-chart"></div>
+          </div>
+        </div>
+
+        <script>
+          // Seasons
+          const sabonisSeasons = [
+            "2016-17", "2017-18", "2018-19", "2019-20",
+            "2020-21", "2021-22", "2022-23", "2023-24",
+            "2024-25", "2025-26"
+          ];
+
+          // Metric data
+          const sabonisData = {
+            TS:  [0.469,0.567,0.630,0.586,0.601,0.637,0.668,0.637,0.655,0.564],
+            PER: [6.9,17.5,21.9,20.7,20.6,21.9,23.5,23.2,22.9,17.4],
+            eFG: [0.452,0.524,0.596,0.550,0.564,0.598,0.632,0.609,0.627,0.524],
+            ORtg:[93,110,118,115,115,121,132,127,128,112],
+            DRtg:[108,107,104,106,110,113,114,112,114,117]
+          };
+
+          function sabonisMakeTrace(metric) {
+            return {
+              x: sabonisSeasons,
+              y: sabonisData[metric],
+              type: 'scatter',
+              mode: 'lines+markers',
+              line: { color: '#5A2D81', width: 3 },
+              marker: { size: 8, color: '#5A2D81' },
+              hovertemplate: `%{x}<br>${metric}: %{y}<extra></extra>`
+            };
+          }
+
+          const sabonisLayout = {
+            margin: { t: 10, l: 60, r: 40, b: 60 },
+            template: "plotly_white",
+            xaxis: {
+              tickangle: -45,
+              automargin: true
+            },
+            yaxis: {
+              title: "Value"
+            },
+            showlegend: false,
+          };
+
+          // Initial render
+          Plotly.newPlot(
+            "sabonis-metrics-chart",
+            [sabonisMakeTrace("TS")],
+            sabonisLayout
+          );
+
+          // Dropdown change
+          document.getElementById("sabonis-metric-select").addEventListener("change", (e) => {
+            const metric = e.target.value;
+            Plotly.react(
+              "sabonis-metrics-chart",
+              [sabonisMakeTrace(metric)],
+              sabonisLayout
+            );
+          });
+
+        </script>
+        <p>Even the role players Kings fans hoped would soften the blow from losing core pieces of that 2023 playoff team — fourth-year lottery pick Keegan Murray, Summer League standout rookie Nique Clifford and EuroBasket Finals MVP Dennis Schröder — have failed to offset the roster’s unraveling.</p>
+        <p>Murray remains solid and steady as a stretch four who can defend multiple positions, but he still looks like essentially the same player he was as a rookie. It’s feeling less likely he’ll ever become more than a reliable starter who can get buckets and stops in a supporting role. I like him, and I’d love to be wrong, but his ceiling appears fairly set.</p>
+        <p>Clifford impressed in Summer League and preseason action but hasn’t earned the regular-season minutes necessary to build on that hype. I like him — he and Devin Carter are the team’s only real prospects — but I don’t expect him to make much noise for this year’s struggling squad. Long-term, though, I’m optimistic he’ll become a solid rotation player.</p>
+        <p>Schröder is the real disappointment for me. Watching him dominate for Germany — winning EuroBasket Finals MVP last summer and playing brilliantly again at the Paris Olympics — you’d think he was a top-15 guard in the NBA, not someone who has been traded eight times and played for 10 teams in 13 seasons. He consistently looks like a star on the international stage, often against elite NBA talent, yet never manages to bring that same version of himself to the NBA. This season felt like the last straw for my hopes that “Team Germany Schröder” would ever show up stateside.</p>
+        <!-- Schröder NBA vs Germany Career Comparison Chart -->
+        <div class="chart-container">
+          <h3 class="chart-title">Dennis Schröder — Career Per-36 Comparison (NBA vs Germany)</h3>
+          <div class="chart-wrapper">
+            <div id="schroder-career-compare"></div>
+          </div>
+        </div>
+
+        <script>
+        (function(){
+
+          // ----------------------------
+          // DATA (Per-36 Career Stats)
+          // ----------------------------
+          const labels = ["PTS/36", "AST/36", "FG%", "3P%"];
+
+          const nba =  [18.3, 6.4, 43.1, 34.2];   // NBA career per 36
+          const ger =  [22.9, 9.6, 46.5, 40.0];  // Germany career per 36
+
+          // ----------------------------
+          // BAR TRACES
+          // ----------------------------
+
+          const nbaTrace = {
+            x: labels,
+            y: nba,
+            name: "NBA Career",
+            type: "bar",
+            marker: {
+              color: "#4682B4"   // Steel blue
+            },
+            hovertemplate: "NBA: %{y}<extra></extra>"
+          };
+
+          const gerTrace = {
+            x: labels,
+            y: ger,
+            name: "Team Germany",
+            type: "bar",
+            marker: {
+              color: "#FFCC00"   // Gold
+            },
+            hovertemplate: "Germany: %{y}<extra></extra>"
+          };
+
+          // ----------------------------
+          // LAYOUT
+          // ----------------------------
+
+          const layout = {
+            barmode: "group",
+            template: "plotly_white",
+            height: 450,
+            margin: { t: 40, b: 80, l: 60, r: 20 },
+            xaxis: {
+              tickfont: { size: 14 }
+            },
+            yaxis: {
+              title: "Value",
+              tickfont: { size: 14 }
+            },
+            legend: {
+              orientation: "h",
+              y: 1.12
+            }
+          };
+
+          Plotly.newPlot("schroder-career-compare", [nbaTrace, gerTrace], layout);
+
+        })();
+        </script>
+        <p>In short, a whole lot has gone wrong in the past year for a franchise that finally seemed to have broken through after two decades in NBA purgatory. And there isn’t much to be excited about with this version of the Kings.</p>
+        <p>That said, some have floated the idea that the front office might be attempting a “stealth tank” — satisfying ownership’s desire to appear competitive while quietly assembling a roster incapable of winning. Perhaps, by loading up on big names like LaVine and DeRozan, both past their primes and previously unsuccessful together, the Kings’ front office has slipped a tankable roster past Ranadivé. Even if that isn’t the plan, the outcome will likely be the same: a high lottery pick and, hopefully, a quicker, cleaner rebuild than the Kings have managed at any point in the last two decades.</p>
+
+
+        
+
 
       </div>
     </div>
