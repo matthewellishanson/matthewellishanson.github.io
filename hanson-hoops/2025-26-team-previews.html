@@ -192,7 +192,8 @@
     #details-magic p:first-of-type::first-letter,
     #details-suns p:first-of-type::first-letter,
     #details-blazers p:first-of-type::first-letter,
-    #details-kings p:first-of-type::first-letter {
+    #details-kings p:first-of-type::first-letter,
+    #details-spurs p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -249,10 +250,35 @@
       .team-details .js-plotly-plot {
         min-height: 350px; /* Ensures radar doesn’t collapse too small */
       }
+      svg .tick text {
+        font-size: 10px !important;
+      }
+      svg .axis-label,
+      svg .x-label,
+      svg .y-label {
+        font-size: 11px !important;
+      }
+    }
+    @media (max-width: 480px) {
+      svg .tick text {
+        font-size: 9px !important;
+      }
+      svg .axis-label,
+      svg .x-label,
+      svg .y-label {
+        font-size: 10px !important;
+      }
     }
   </style>
 
   <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- Plugin registration -->
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+  </script>
 </head>
 <body>
   <div class="sidebar">
@@ -3896,7 +3922,462 @@
       </div>
     </div>
 
-  </div>
+    <!-- San Antonio Spurs -->
+    <div class="team-card" id="team-spurs">
+      <div class="team-header" style="background-color: #C4CED4;" onclick="toggleDetails('details-spurs')">
+        <div class="team-info">
+          <img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/sa.png" class="team-logo" alt="Spurs logo">
+          <h2>San Antonio Spurs</h2>
+          <p class="highlight">2024-25: 34-48 &middot; 13th in West</p>
+        </div>
+      </div>
+      <div class="team-details" id="details-spurs">
+        <p>If the Sacramento Kings represent the bottom of the luck spectrum for NBA franchises this century, their opposite on that spectrum would have to be the San Antonio Spurs. With more titles than any other franchise over the last 30 seasons, the Spurs have had the most stable, professional and consistent winning culture in the NBA in my lifetime, for two simple but obvious reasons: incredible lottery luck in landing the No. 1 picks in 1997 and 2023, which they used to take two of the most talented prospects in NBA draft history; and the stewardship of Gregg Popovich, whom many consider the best NBA coach ever. When your only bad stretches in the last 30 years netted you Tim Duncan and Victor Wembanyama, those bad stretches are bound to be shorter than those suffered by other teams.</p>
+        <p>The first time San Antonio lucked into a generational, can’t-miss 7-footer in the draft, it only took two years to turn that luck into the franchise’s first championship. This time around, it hasn’t happened that fast, but with the team sitting at 15-6 in Wembanyama’s third season — and continuing to win games in impressive fashion while the French phenom has been out with an injury since Nov. 16 — things certainly seem headed in that direction again.</p>
+        <p>To be clear, I’m not actually expecting a title this year for the still very young Spurs. But what is evident already is that the sleeping giant that is this organization is back on a dynastic trajectory, and already a serious threat in the conference despite all three of its core stars being younger than 22. And if the rumors circulating this week about a possible trade for Giannis Antetokounmpo have any merit — if San Antonio finds a path to add the league’s most dominant paint scorer next to its most dominant paint defender in Wembanyama — then that championship really could happen this season.</p>
+        <p>Let’s start with the 7-foot-6 French elephant in the room. At just 22, Wembanyama has already proved he deserved all the hype he entered the league with, and then some. With only one full season and two partial seasons under his belt to date — he’s played just 129 games through three years in the league — Wembanyama is already the fastest player in NBA history to reach more than 400 blocks and 250 made 3-pointers, a feat that only 101 players ever have accomplished in their careers.</p>
+        <p>That’s just one of many jaw-dropping numbers that attest to Wemby’s limitless ceiling as a Gen-Z Kareem Abdul-Jabbar — the heir apparent to the line of legendary NBA centers that goes back to Wilt Chamberlain and Bill Russell. Some of my favorites so far:</p>
+        <ul>
+          <li>Wemby’s block percentage (the percentage of opponents’ two-point shot attempts that are blocked while a player is on the court) of 10.1% is the second-highest ever for players with at least 100 games, just 0.1 points shy of Manute Bol’s top rate.</li>
+          <li>He became the first player in NBA history to record 100-plus points and 15-plus blocks through his team’s first three games of the season in October.</li>
+          <li>Opponents have shot just 39.7% on shots he has contested this season, the lowest by two full percentage points of any player with at least 15 contests per game.</li>
+          <li>He’s already had two 5-by-5 games (meaning games in which he has at least five points, assists, rebounds, blocks and steals), more than any other active player in the NBA and already just four shy of the career record of six, held by Hakeem Olajuwon.</li>
+          <li>Wembanyama was the fastest in NBA history to hit 200 threes, doing so in fewer games than even Stephen Curry.</li>
+        </ul>
+        <p>I could go on with more numbers like these, but the point is that Wembanyama has already cemented himself not only as one of the greats in today’s game, but as an all-time great on a per-minute and per-game basis. When he gets back from his current injury, the only thing standing between him and complete dominance for the next decade will be further health issues, like the blood clot that sidelined him for the second half of last season or the calf strain he’s currently out with.</p>
+        <!-- Wembanyama Milestone Chart -->
+        <div class="chart-container">
+          <h3 class="chart-title">Players With 400+ BLK and 250+ 3PM in Their First Five Seasons</h3>
+          <div class="chart-wrapper">
+            <svg id="fastest-400-chart" width="100%" height="500"></svg>
+          </div>
+        </div>
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+          const data = [
+            { player: "Draymond Green", games: 397 },
+            { player: "Shane Battier", games: 396 },
+            { player: "Jerami Grant", games: 383 },
+            { player: "Shawn Marion", games: 371 },
+            { player: "Karl-Anthony Towns", games: 358 },
+            { player: "Myles Turner", games: 342 },
+            { player: "Raef LaFrentz", games: 318 },
+            { player: "Kristaps Porziņģis", games: 286 },
+            { player: "Jaren Jackson Jr.", games: 267 },
+            { player: "Joel Embiid", games: 260 },
+            { player: "Victor Wembanyama", games: 129 }
+          ];
+
+          // sort descending
+          data.sort((a, b) => d3.descending(a.games, b.games));
+
+          let chartLoaded = false;
+
+          // Scroll trigger
+          const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting && !chartLoaded) {
+                chartLoaded = true;
+                buildChart();
+                observer.disconnect();
+              }
+            });
+          }, { threshold: 0.15 });
+
+          observer.observe(document.querySelector("#fastest-400-chart"));
+
+          // Chart builder
+          function buildChart() {
+
+            const svgContainer = d3.select("#fastest-400-chart");
+            const width = 700;
+            const height = 450;
+            const margin = { top: 10, right: 30, bottom: 50, left: 140 };
+
+            // responsive viewBox
+            const svg = svgContainer
+              .attr("viewBox", `0 0 ${width} ${height}`)
+              .append("g")
+              .attr("transform", `translate(${margin.left},${margin.top})`);
+
+            const innerWidth = width - margin.left - margin.right;
+            const innerHeight = height - margin.top - margin.bottom;
+
+            // Scales
+            const x = d3.scaleLinear()
+              .domain([0, d3.max(data, d => d.games)])
+              .range([0, innerWidth]);
+
+            const y = d3.scaleBand()
+              .domain(data.map(d => d.player))
+              .range([0, innerHeight])
+              .padding(0.15);
+
+            // Axes (hidden initially)
+            const xAxis = svg.append("g")
+              .attr("class", "x-axis")
+              .attr("transform", `translate(0,${innerHeight})`)
+              .style("opacity", 0);
+
+            const yAxis = svg.append("g")
+              .attr("class", "y-axis")
+              .style("opacity", 0);
+
+            // Bars
+            const bars = svg.selectAll(".bar")
+              .data(data)
+              .enter()
+              .append("rect")
+              .attr("class", "bar")
+              .attr("y", d => y(d.player))
+              .attr("height", y.bandwidth())
+              .attr("x", 0)
+              .attr("width", 0)
+              .attr("fill", d =>
+                d.player === "Victor Wembanyama" ? "#7C3AED" : "#8A9AA9"
+              );
+
+            // Tooltip div
+            const tooltip = d3.select("body")
+              .append("div")
+              .style("position", "absolute")
+              .style("font-size", "13px")
+              .style("background", "white")
+              .style("padding", "6px 8px")
+              .style("border", "1px solid #ccc")
+              .style("border-radius", "4px")
+              .style("pointer-events", "none")
+              .style("opacity", 0);
+
+            bars
+              .on("mouseover", (event, d) => {
+                tooltip
+                  .style("opacity", 1)
+                  .html(`<strong>${d.player}</strong><br>Games: ${d.games}`)
+                  .style("top", (event.pageY - 10) + "px")
+                  .style("left", (event.pageX + 10) + "px");
+              })
+              .on("mousemove", (event, d) => {
+                tooltip
+                  .style("top", (event.pageY - 10) + "px")
+                  .style("left", (event.pageX + 10) + "px");
+              })
+              .on("mouseout", () => tooltip.style("opacity", 0));
+
+            // Animate in bars
+            bars.transition()
+              .duration(1200)
+              .delay((d, i) => i * 120)
+              .attr("width", d => x(d.games));
+
+            // Reveal axes in sync
+            xAxis.transition()
+              .delay(500)
+              .duration(700)
+              .style("opacity", 1)
+              .call(d3.axisBottom(x).ticks(5));
+
+            yAxis.transition()
+              .delay(500)
+              .duration(700)
+              .style("opacity", 1)
+              .call(d3.axisLeft(y));
+
+          }
+        });
+        </script>
+
+        <!-- Wembanyama Block% Chart -->
+        <div class="chart-container">
+          <h3 class="chart-title">Career Block Percentage Leaders (4000+ Minutes)</h3>
+          <div class="chart-wrapper">
+            <svg id="blockpct-chart"></svg>
+          </div>
+        </div>
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+          const data = [
+            { player: "Mitchell Robinson", blkPct: 7.0 },
+            { player: "Larry Sanders", blkPct: 7.1 },
+            { player: "Theo Ratliff", blkPct: 7.2 },
+            { player: "Hassan Whiteside", blkPct: 7.5 },
+            { player: "Robert Williams III", blkPct: 7.5 },
+            { player: "Shawn Bradley", blkPct: 7.8 },
+            { player: "Walker Kessler", blkPct: 8.3 },
+            { player: "Jim McIlvaine", blkPct: 8.8 },
+            { player: "Victor Wembanyama", blkPct: 10.1 },
+            { player: "Manute Bol", blkPct: 10.2 }
+          ];
+
+          let chartLoaded = false;
+
+          const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting && !chartLoaded) {
+                chartLoaded = true;
+                buildChart();
+                observer.disconnect();
+              }
+            });
+          }, { threshold: 0.15 });
+
+          observer.observe(document.querySelector("#blockpct-chart"));
+
+          function buildChart() {
+
+            const svgContainer = d3.select("#blockpct-chart");
+            const width = 700;
+            const height = 450;
+            const margin = { top: 10, right: 30, bottom: 50, left: 160 };
+
+            const svg = svgContainer
+              .attr("viewBox", `0 0 ${width} ${height}`)
+              .append("g")
+              .attr("transform", `translate(${margin.left},${margin.top})`);
+
+            const innerWidth = width - margin.left - margin.right;
+            const innerHeight = height - margin.top - margin.bottom;
+
+            const x = d3.scaleLinear()
+              .domain([0, d3.max(data, d => d.blkPct)])
+              .range([0, innerWidth]);
+
+            const y = d3.scaleBand()
+              .domain(data.map(d => d.player))
+              .range([innerHeight, 0]) // ascending visually = smallest bottom
+              .padding(0.15);
+
+            const xAxis = svg.append("g")
+              .attr("class", "x-axis")
+              .attr("transform", `translate(0,${innerHeight})`)
+              .style("opacity", 0);
+
+            const yAxis = svg.append("g")
+              .attr("class", "y-axis")
+              .style("opacity", 0);
+
+            const bars = svg.selectAll(".bar")
+              .data(data)
+              .enter()
+              .append("rect")
+              .attr("class", "bar")
+              .attr("y", d => y(d.player))
+              .attr("height", y.bandwidth())
+              .attr("x", 0)
+              .attr("width", 0)
+              .attr("fill", d =>
+                d.player === "Victor Wembanyama" ? "#7C3AED" : "#8A9AA9"
+              );
+
+            const tooltip = d3.select("body")
+              .append("div")
+              .style("position", "absolute")
+              .style("font-size", "13px")
+              .style("background", "white")
+              .style("padding", "6px 8px")
+              .style("border", "1px solid #ccc")
+              .style("border-radius", "4px")
+              .style("pointer-events", "none")
+              .style("opacity", 0);
+
+            bars
+              .on("mouseover", (event, d) => {
+                tooltip
+                  .style("opacity", 1)
+                  .html(`<strong>${d.player}</strong><br>BLK%: ${d.blkPct.toFixed(1)}%`)
+                  .style("top", (event.pageY - 10) + "px")
+                  .style("left", (event.pageX + 10) + "px");
+              })
+              .on("mousemove", (event) => {
+                tooltip
+                  .style("top", (event.pageY - 10) + "px")
+                  .style("left", (event.pageX + 10) + "px");
+              })
+              .on("mouseout", () => tooltip.style("opacity", 0));
+
+            bars.transition()
+              .duration(1200)
+              .delay((d, i) => i * 140)
+              .attr("width", d => x(d.blkPct));
+
+            xAxis.transition()
+              .delay(500)
+              .duration(700)
+              .style("opacity", 1)
+              .call(d3.axisBottom(x).ticks(6).tickFormat(d => d + "%"));
+
+            yAxis.transition()
+              .delay(500)
+              .duration(700)
+              .style("opacity", 1)
+              .call(d3.axisLeft(y));
+
+          }
+        });
+        </script>
+
+        <!-- Contest DFG Leaderboard Chart -->
+        <div class="chart-container">
+          <h3 class="chart-title">
+            Lowest Opponent FG% on Contested Shots (15+ contests per game)
+          </h3>
+          <div class="chart-wrapper">
+            <svg id="contest-dfg-chart" width="100%" height="500"></svg>
+          </div>
+        </div>
+
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+          const contestDataRaw = [
+            { player: "Victor Wembanyama", dfg: 39.7, dfga: 17.8, diff: -8.5 },
+            { player: "Luke Kornet", dfg: 41.8, dfga: 16.6, diff: -7.8 },
+            { player: "Donovan Clingan", dfg: 43.1, dfga: 16.3, diff: -7.5 },
+            { player: "Andrew Wiggins", dfg: 41.7, dfga: 15.1, diff: -5.7 },
+            { player: "P.J. Washington", dfg: 42.7, dfga: 15.5, diff: -5.3 },
+            { player: "Walker Kessler", dfg: 45.5, dfga: 15.4, diff: -4.9 },
+            { player: "Rudy Gobert", dfg: 44.6, dfga: 16.8, diff: -4.6 },
+            { player: "Deandre Ayton", dfg: 43.6, dfga: 15.6, diff: -4.4 },
+            { player: "Evan Mobley", dfg: 45.6, dfga: 17.3, diff: -3.9 },
+            { player: "Ryan Kalkbrenner", dfg: 46.5, dfga: 15.5, diff: -2.8 }
+          ];
+
+          const contestData = contestDataRaw.sort((a,b) => a.dfg - b.dfg);
+
+          let chartLoaded = false;
+
+          const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting && !chartLoaded) {
+                chartLoaded = true;
+                buildContestChart();
+                observer.disconnect();
+              }
+            });
+          }, { threshold: 0.15 });
+
+          observer.observe(document.querySelector("#contest-dfg-chart"));
+
+          function buildContestChart() {
+            const svgContainer = d3.select("#contest-dfg-chart");
+            const width = 700;
+            const height = 450;
+            const margin = { top: 20, right: 30, bottom: 50, left: 160 };
+
+            const svg = svgContainer
+              .attr("viewBox", `0 0 ${width} ${height}`)
+              .append("g")
+              .attr("transform", `translate(${margin.left},${margin.top})`);
+
+            const innerWidth = width - margin.left - margin.right;
+            const innerHeight = height - margin.top - margin.bottom;
+
+            const x = d3.scaleLinear()
+              .domain([35, d3.max(contestData, d => d.dfg)])
+              .range([0, innerWidth]);
+
+            const y = d3.scaleBand()
+              .domain(contestData.map(d => d.player))
+              .range([innerHeight, 0])
+              .padding(0.25);
+
+            const xAxis = svg.append("g")
+              .attr("class", "x-axis")
+              .attr("transform", `translate(0, ${innerHeight})`)
+              .style("opacity", 0);
+
+            const yAxis = svg.append("g")
+              .attr("class", "y-axis")
+              .style("opacity", 0);
+
+            const bars = svg.selectAll(".bar")
+              .data(contestData)
+              .enter()
+              .append("rect")
+              .attr("class", "bar")
+              .attr("y", d => y(d.player))
+              .attr("height", y.bandwidth())
+              .attr("x", 0)
+              .attr("width", 0)
+              .attr("fill", d =>
+                d.player === "Victor Wembanyama" ? "#7C3AED" : "#8A9AA9"
+              );
+
+            const tooltip = d3.select("body")
+              .append("div")
+              .style("position", "absolute")
+              .style("font-size", "13px")
+              .style("background", "white")
+              .style("padding", "6px 8px")
+              .style("border", "1px solid #ccc")
+              .style("border-radius", "4px")
+              .style("pointer-events", "none")
+              .style("opacity", 0);
+
+            bars
+              .on("mouseover", (event, d) => {
+                tooltip
+                  .style("opacity", 1)
+                  .html(`
+                    <strong>${d.player}</strong><br>
+                    Opponent FG%: ${d.dfg}%<br>
+                    Contested FGA/game: ${d.dfga}<br>
+                    Shot suppression: ${d.diff}%
+                  `)
+                  .style("top", (event.pageY - 10) + "px")
+                  .style("left", (event.pageX + 10) + "px");
+              })
+              .on("mousemove", (event) => {
+                tooltip
+                  .style("top", (event.pageY - 10) + "px")
+                  .style("left", (event.pageX + 10) + "px");
+              })
+              .on("mouseout", () => tooltip.style("opacity", 0));
+
+            bars.transition()
+              .delay((d, i) => i * 150)
+              .duration(900)
+              .attr("width", d => x(d.dfg));
+
+            xAxis.transition()
+              .delay(500)
+              .duration(700)
+              .style("opacity", 1)
+              .call(d3.axisBottom(x).ticks(6).tickFormat(d => d + "%"));
+
+            yAxis.transition()
+              .delay(500)
+              .duration(700)
+              .style("opacity", 1)
+              .call(d3.axisLeft(y));
+
+            svg.append("text")
+              .attr("x", innerWidth / 2)
+              .attr("y", innerHeight + 40)
+              .attr("text-anchor", "middle")
+              .style("font-size", "13px")
+              .text("Opponent FG%");
+          }
+        });
+        </script>
+        <p>Until that point, the Spurs seem fine without their superstar, thanks to the leap being made by second-year guard Stephon Castle; the additions of two quality backup centers in Luke Kornet and Kelly Olynyk, who can give you good minutes with or without Wembanyama out there; and the emergence of a new rookie phenom in the form of No. 2 overall pick Dylan Harper.</p>
+        <p>While Wemby’s hot start captured the imagination and headlines around the league early in the season, the real story of this Spurs team’s success so far has been Castle and Harper, who complement one another better than expected and both seem like rising superstars in their own right. They’re two very different kinds of players, despite bearing a slight resemblance on the floor (along with veteran shooting guard Devin Vassell) due to their similar frames and hairstyles.</p>
+        <p>Castle is more of a bruising, freak athlete with a penchant for stuffing the stat sheet despite a very underdeveloped outside shot. More importantly, last year’s Rookie of the Year has already proved he can lock down other teams’ best perimeter scorers on any night, averaging 2.5 steals per 100 possessions and forcing opposing players to shoot 1.6% lower on field goals he has contested, leading to his solid 113 defensive rating. But his ability to spark offense without a reliable jump shot is the real impressive development here, as many questioned the potential fit between Castle and Harper — who also needs to develop as a shooter — and the other veteran guard on this team, De’Aaron Fox, a career 33.2% 3-point shooter.</p>
+        <p>Harper, meanwhile, is a year younger than Castle, but already shows an offensive game that is in many ways more polished than the older guard’s. His footwork and finishing at the rim especially have been impressive and smooth for a rookie, and his outside shot has been somewhat more reliable than Castle’s — although with Harper shooting just 27.3% from deep and Castle a measly 24%, it’s clear both need to work on that part of their games.</p>
+        <p>Best of all, both guards have coexisted just fine next to Fox, whose pedigree as an All-Star and 25.0 points per game this season warrants more playing time and usage than either of the younger guards. It did strike me as noteworthy that Fox and Harper have yet to share the court at any point this season. Evidently, second-year head coach Mitch Johnson has preferred to stagger his point guards’ minutes so far, but I’d like to see both out there at some point just to know how they’d work together.</p>
+        <p>At the end of the day, any success this Spurs team achieves this season will be a cherry on top of the cake that is the longer-term trajectory this team and its three under-25 stars are on. I doubt even the most bullish Spurs executives or coaches went into this season expecting to seriously compete for a championship in June, but the fact that I can even sit here and entertain that as a remote but real possibility speaks volumes about the talent of Wembanyama, Castle and Harper, as well as the roster of quality veterans and young role players that GM Brian Wright and team president R.C. Buford have assembled around them.</p>
+        <p>The present-day Spurs are exciting and competitive in a way they haven’t been since Kawhi Leonard departed for Toronto in 2019, and that’s a big win. But the real wins come further down the line, if and when a healthy and more mature big three of Wemby, Castle and Harper becomes ready for real championship goals. Until then, let’s just enjoy the few remaining seasons this league has free of a fully realized, Death Star-like Wemby Spurs team that we all can see coming now. Enjoy the competitive parity while we still have it, because by the time this team enters its prime together, it could be damn near impossible to beat.</p>
+
+
+
+
+
+
+    </div>
+
+    </div>
 
   <script>
     function toggleDetails(id) {
