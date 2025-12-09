@@ -269,6 +269,12 @@
         font-size: 10px !important;
       }
     }
+    @media(max-width:600px){
+      #lineup-ratings-chart .xtick text,
+      #lineup-ratings-chart .ytick text {
+        font-size:9px !important;
+      }
+    }
   </style>
 
   <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
@@ -4375,25 +4381,327 @@
 
 
 
+      </div>
     </div>
 
+    <!-- Toronto Raptors -->
+    <div class="team-card" id="team-raptors">
+      <div class="team-header" style="background-color: #CE1141;" onclick="toggleDetails('details-raptors')">
+        <div class="team-info">
+          <img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/tor.png" class="team-logo" alt="Raptors logo">
+          <h2>Toronto Raptors</h2>
+          <p class="highlight">2024-25: 30-52 &middot; 11th in East</p>
+        </div>
+      </div>
+      <div class="team-details" id="details-raptors">
+        <p>One of the most pleasant surprises early in this NBA season has been the emergence of the Toronto Raptors as a legitimate contender in the Eastern Conference. After half a decade of middling in the wake of their first and only NBA championship in 2019 — when they traded for a prime Kawhi Leonard with one year left on his contract and made the most of his one season in town with a magical title run that captivated all of Canada — the Raptors are back in the mix at a time many expected them to be headed in the opposite direction.</p>
+        <p>The strengths of this Raptors team weren’t obvious heading into the season but, in hindsight, seem almost inevitable. This roster was assembled piecemeal by the team’s former president, Masai Ujiri, and its current GM, Bobby Webster, over the past two years through a series of trades and signings that went largely unheralded and produced little on-court success until now.</p>
+        <p>The road to this year’s breakout began in summer 2023, when Toronto reunited with former Spurs and Raptors big man Jakob Poeltl — whom they’d traded away in the deal that brought Leonard to Toronto in 2018. They followed that signing in December 2023 by sending one of their three remaining homegrown stars from the title team, Pascal Siakam, to Indiana for a package of picks and role players. One month later, they doubled down by shipping another homegrown star, forward O.G. Anunoby, to the New York Knicks for R.J. Barrett and microwave scorer Immanuel Quickley. Finally, the Raptors moved one of the pieces they received for Siakam, former Nuggets champion Bruce Brown, along with stretch center Kelly Olynyk and the 2026 first-round pick from Indiana, to New Orleans in exchange for All-Star scoring wing Brandon Ingram.</p>
+        <p>With that last move, Toronto rounded out its current starting lineup, which has the team off to a 15-9 start and third place in a wide-open East. Ingram joined Poeltl, Barrett, Quickley and the franchise star, versatile forward Scottie Barnes. But because that core was assembled in fragments, and thanks to untimely injuries, the payoff hadn’t shown up until this season — the first time all five starters have been healthy and sharing the court for an extended stretch. As of Dec. 8, that lineup ranks seventh in the NBA in offensive rating among lineups with at least 100 minutes played this season, and 13th in net rating.</p>
+        <div class="chart-container">
+          <h3 class="chart-title">Raptors vs NBA Lineups (Min. 100 Minutes)</h3>
+
+          <div class="toggle-wrap" style="margin-bottom: 1rem;">
+            <button class="rating-btn" data-metric="off">🥇 Off Rating</button>
+            <button class="rating-btn" data-metric="def">🛡 Def Rating</button>
+            <button class="rating-btn" data-metric="net">📈 Net Rating</button>
+          </div>
+
+          <div class="chart-wrapper">
+            <div id="raptors-lineup-chart"></div>
+          </div>
+        </div>
+        <div class="chart-note" style="max-width: 700px; margin-top: 10px; font-size: 0.9em; color: #555;">
+          <strong>Note:</strong> Net rating per 100 possessions represents the difference between a team and its opponents while a lineup is on the court. Positive values indicate outdoing opponents in a given stat; negative values indicate the opposite. For defensive rating, lower values are better.
+        </div>
+        <script>
+        (function () {
+          // === Data & colors ===
+          const RAPTORS_GOLD = "#B4975A";
+
+          const lineupData = [
+            { lineup: "Jokić, Murray, Johnson, Watson, Jones", team: "DEN", min: 103, off: 142.1, def: 119.5, net: 22.6 },
+            { lineup: "Towns, Hart, Bridges, Brunson, McBride", team: "NYK", min: 110, off: 134.7, def: 117.7, net: 17.0 },
+            { lineup: "Durant, Okogie, Sengun, Smith Jr, Thompson", team: "HOU", min: 141, off: 125.3, def: 110.7, net: 14.6 },
+            { lineup: "Gobert, Randle, DiVincenzo, Edwards, McDaniels", team: "MIN", min: 234, off: 123.7, def: 109.9, net: 13.8 },
+            { lineup: "Hartenstein, SGA, Dort, Holmgren, Wallace", team: "OKC", min: 112, off: 123.6, def: 105.2, net: 18.3 },
+            { lineup: "Carter Jr, Bane, Wagner, Suggs, Banchero", team: "ORL", min: 117, off: 122.6, def: 104.6, net: 18.0 },
+            { lineup: "Ingram, Poeltl, Barrett, Quickley, Barnes", team: "TOR", min: 166, off: 121.5, def: 116.6, net: 5.0 },
+            { lineup: "Porzingis, NAW, Johnson, Daniels, Risacher", team: "ATL", min: 127, off: 121.4, def: 114.0, net: 7.3 },
+            { lineup: "NAW, Okongwu, Johnson, Daniels, Risacher", team: "ATL", min: 157, off: 119.3, def: 112.9, net: 6.4 },
+            { lineup: "Gordon, Jokić, Murray, Johnson, Braun", team: "DEN", min: 159, off: 119.2, def: 107.2, net: 11.9 },
+            { lineup: "H. Barnes, Fox, Kornet, Vassell, Champagnie", team: "SAS", min: 110, off: 116.4, def: 109.8, net: 6.6 },
+            { lineup: "BR. Barnes, Vassell, Champagnie, Wemby, Castle", team: "SAS", min: 110, off: 115.6, def: 103.9, net: 11.7 }
+          ];
+
+          const teamColors = {
+            TOR: RAPTORS_GOLD,
+            OKC: "#007AC1",
+            DEN: "#0E2240",
+            NYK: "#006BB6",
+            HOU: "#CE1141",
+            MIN: "#0C2340",
+            ORL: "#0077C0",
+            ATL: "#C8102E",
+            SAS: "#C4CED4",
+            BKN: "#000000",
+            MIL: "#00471B",
+            POR: "#E03A3E",
+            LAC: "#C8102E",
+            DET: "#C8102E",
+            UTA: "#002B5C"
+          };
+
+          // === Helpers ===
+          function isMobile() {
+            return window.matchMedia("(max-width: 480px)").matches;
+          }
+
+          function metricLabel(metric) {
+            if (metric === "off") return "Offensive Rating";
+            if (metric === "def") return "Defensive Rating";
+            return "Net Rating";
+          }
+
+          function sortByMetric(metric) {
+            return [...lineupData].sort((a, b) => {
+              if (metric === "def") return a[metric] - b[metric]; // lower is better
+              return b[metric] - a[metric];                       // higher is better
+            });
+          }
+
+          // Compress long lineup names for tiny screens
+          function abbreviated(name) {
+            return name
+              .split(",")
+              .map(part => part.trim().split(" ")[0])
+              .join(" / ");
+          }
+
+          // === Core render ===
+          function render(metric) {
+            const sorted = sortByMetric(metric);
+            const colors = sorted.map(d =>
+              d.team === "TOR" ? RAPTORS_GOLD : (teamColors[d.team] || "#8A9AA9")
+            );
+
+            const isSmall = isMobile();
+            const values = sorted.map(d => d[metric]);
+
+            let trace, layout;
+
+            if (!isSmall) {
+              // Desktop / tablet: horizontal bars
+              trace = {
+                type: "bar",
+                orientation: "h",
+                x: values,
+                y: sorted.map(d => d.lineup),
+                marker: { color: colors },
+                cliponaxis: false
+              };
+
+              layout = {
+                height: 900,
+                bargap: 0.25,
+                margin: { l: 260, r: 20, t: 10, b: 40 },
+                xaxis: { title: metricLabel(metric) },
+                yaxis: { automargin: true },
+                showlegend: false,
+                template: "plotly_white"
+              };
+            } else {
+              // Mobile: vertical bars, thicker visually
+              trace = {
+                type: "bar",
+                orientation: "v",
+                x: sorted.map(d => abbreviated(d.lineup)),
+                y: values,
+                marker: { color: colors },
+                cliponaxis: false
+              };
+
+              layout = {
+                height: 640,
+                bargap: 0.2,
+                margin: { l: 40, r: 10, t: 10, b: 160 },
+                xaxis: { tickangle: -45, automargin: true },
+                yaxis: { title: metricLabel(metric), automargin: true },
+                showlegend: false,
+                template: "plotly_white"
+              };
+            }
+
+            Plotly.newPlot("raptors-lineup-chart", [trace], layout, { responsive: true });
+          }
+
+          // === Wire up buttons & initial render once DOM is ready ===
+          document.addEventListener("DOMContentLoaded", function () {
+            const container = document.getElementById("details-raptors");
+            if (!container) return;
+
+            const buttons = container.querySelectorAll(".rating-btn");
+            buttons.forEach(btn => {
+              btn.addEventListener("click", () => {
+                buttons.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                render(btn.dataset.metric);
+              });
+            });
+
+            // Set default to Net Rating
+            const defaultBtn = container.querySelector('.rating-btn[data-metric="net"]');
+            if (defaultBtn) defaultBtn.classList.add("active");
+            render("net");
+          });
+
+          // Re-render on resize to flip orientation if needed
+          window.addEventListener("resize", () => {
+            const active =
+              document.querySelector("#details-raptors .rating-btn.active")?.dataset.metric || "net";
+            render(active);
+          });
+
+        })();
+      </script>
+      <p>The key to the Raptors’ success has been their balance and the chemistry created by second-year head coach Darko Rajaković’s egalitarian approach. Everyone gets shots. Everyone defends. The ball moves without sticking to any one player — outside of the standard isolation possessions Ingram thrives on, which have proved valuable in clutch situations.</p>
+      <p>Essentially, the Raptors collected a group of good players who weren’t getting starting minutes or a real chance on their previous teams — Barrett and Quickley are the clearest examples — and gave them the opportunity to compete for leadership of this team. The result is a roster full of hungry, talented, ego-free guys trying to prove themselves in this league at the same time. Even Ingram, who is the closest thing this team has to a No. 1 scorer and more of a traditional star than any other Raptor, arrived in Toronto with the lowest league value of his career. He has played like a star in his prime with something to prove.</p>
+      <p>Another player worth highlighting is Barrett, who was highly touted as the No. 3 pick in the 2019 draft but struggled to find consistent success with the Knicks before being traded to the Raptors in the Anunoby deal. This season, he looks reinvigorated — more like the player many expected him to become: a real No. 2 or No. 3 scoring option who can hold up on the other end with his size and athleticism. He’s having a great year in this early stretch, even outscoring Ingram on a per-possession basis, while posting a career-high offensive rating of 120 and the best shooting splits of his career.</p>
+      <!-- Barrett chart -->
+      <div class="chart-container">
+        <h3 class="chart-title">R.J. Barrett: Shooting and Points Per 100 Possessions</h3>
+        <div class="chart-wrapper">
+          <div id="barrett-career-chart"></div>
+        </div>
+      </div>
+      <script>
+      // Barrett career data
+      const barrettData = [
+        { season: "2019-20", fg: .402, efg: .445, pts100: 22.9 },
+        { season: "2020-21", fg: .441, efg: .499, pts100: 25.2 },
+        { season: "2021-22", fg: .408, efg: .466, pts100: 29.0 },
+        { season: "2022-23", fg: .434, efg: .485, pts100: 28.6 },
+        { season: "2023-24", fg: .495, efg: .547, pts100: 31.3 },
+        { season: "2024-25", fg: .468, efg: .523, pts100: 31.5 },
+        { season: "2025-26", fg: .506, efg: .572, pts100: 30.1 }
+      ];
+
+      const barrettSeasons = barrettData.map(d => d.season);
+      const barrettFg = barrettData.map(d => d.fg * 100);
+      const barrettEfg = barrettData.map(d => d.efg * 100);
+      const barrettPts100 = barrettData.map(d => d.pts100);
+
+      // FG%
+      const fgTrace = {
+        x: barrettSeasons,
+        y: barrettFg,
+        type: "scatter",
+        mode: "lines+markers",
+        name: "FG%",
+        line: { width: 3, shape: "spline", color:"#B4975A" },
+        hovertemplate: "FG%: %{y:.1f}%<extra></extra>"
+      };
+
+      // eFG%
+      const efgTrace = {
+        x: barrettSeasons,
+        y: barrettEfg,
+        type: "scatter",
+        mode: "lines+markers",
+        name: "eFG%",
+        line: { width: 3, dash: "dot", shape: "spline", color:"#CE1141" },
+        hovertemplate: "eFG%: %{y:.1f}%<extra></extra>"
+      };
+
+      // Pts per 100 (secondary axis)
+      const ptsTrace = {
+        x: barrettSeasons,
+        y: barrettPts100,
+        type: "scatter",
+        mode: "lines+markers",
+        name: "Points per 100",
+        line: { width: 3, shape: "spline", color:"black" },
+        hovertemplate: "Pts/100: %{y}<extra></extra>",
+        yaxis: "y2"
+      };
+
+      // Layout
+      const barrettLayout = {
+        template: "plotly_white",
+        margin: { l: 50, r: 50, t: 30, b: 50 },
+        hovermode: "x unified",
+        legend: {
+          orientation: "h",
+          x: 0.5,
+          xanchor: "center",
+          y: -0.2
+        },
+        xaxis: {
+          title: "Season",
+          tickmode: "array",
+          tickvals: barrettSeasons,
+          automargin: true
+        },
+        yaxis: {
+          title: "Shooting % (FG / eFG)",
+          range: [30, 70],
+          ticksuffix: "%"
+        },
+        yaxis2: {
+          title: "Points per 100",
+          overlaying: "y",
+          side: "right",
+          range: [20, 35]
+        }
+      };
+
+      // Render
+      Plotly.newPlot(
+        "barrett-career-chart",
+        [fgTrace, efgTrace, ptsTrace],
+        barrettLayout,
+        { responsive: true }
+      );
+      </script>
+
+      <p>Between Barrett, Ingram, Barnes and Quickley, the Raptors almost always have at least two plus scorers on the floor, and often three or more. That makes them a tough cover in a league where many offenses revolve around one star or a single elite duo. That balance might run into its ceiling in the postseason, but it’s clearly putting the Raptors on track to make the playoffs for the first time in several years — already making this season a certified success for a franchise eager to get back to relevance and contention.</p>
+
+
+
+
+
+
+
+
+      </div>
     </div>
+
+  </div>
 
   <script>
-    function toggleDetails(id) {
-      const section = document.getElementById(id);
-      const isOpen = section.style.display === 'block';
-      section.style.display = isOpen ? 'none' : 'block';
+  function toggleDetails(id) {
+    const section = document.getElementById(id);
+    const isOpen = section.style.display === 'block';
 
-      // Resize charts after expanding the section
-      if (!isOpen) {
-        setTimeout(() => {
-          section.querySelectorAll('.js-plotly-plot').forEach(chart => {
-            Plotly.Plots.resize(chart);
-          });
-        }, 200); // delay for layout recalculation
+    section.style.display = isOpen ? 'none' : 'block';
+
+    if (!isOpen) {
+      // For Raptors — render only once
+      if (id === 'details-raptors' && !raptorsChartBuilt) {
+        raptorsChartBuilt = true;
+        window.renderRaptorsLineup('net');
       }
+
+      // After open — resize
+      setTimeout(() => {
+        section.querySelectorAll('.js-plotly-plot').forEach(chart => {
+          Plotly.Plots.resize(chart);
+        });
+      }, 200);
     }
+  }
   </script>
+
+
 </body>
 </html>
