@@ -194,7 +194,9 @@
     #details-blazers p:first-of-type::first-letter,
     #details-kings p:first-of-type::first-letter,
     #details-spurs p:first-of-type::first-letter,
-    #details-raptors p:first-of-type::first-letter {
+    #details-raptors p:first-of-type::first-letter,
+    #details-jazz p:first-of-type::first-letter,
+    #details-wizards p:first-of-type::first-letter {
       float: left;
       font-size: 3rem;
       line-height: 1;
@@ -4676,6 +4678,103 @@
 
       </div>
     </div>
+
+    <!-- Utah Jazz -->
+    <div class="team-card" id="team-jazz">
+      <div class="team-header" style="background-color: #753bbd;" onclick="toggleDetails('details-jazz')">
+        <div class="team-info">
+          <img src="https://a.espncdn.com/guid/77cea2fb-1388-b7c8-d171-2e72b3aecbfb/logos/primary_logo_on_black_color.png" class="team-logo" alt="Jazz logo">
+          <h2>Utah Jazz</h2>
+          <p class="highlight">2024-25: 17-65 &middot; 15th in West</p>
+        </div>
+      </div>
+      <div class="team-details" id="details-jazz">
+        <p>For the last several seasons, I’ve liked to call the Utah Jazz “the smartest bad team in the league.” After fleecing my Timberwolves for five first-round picks and five players in return for an aging Rudy Gobert, then doubling down by trading Donovan Mitchell to the Cavaliers for another slew of first-round picks and a then-unheralded Lauri Markkanen — who has since exploded into an All-Star amid the obscurity of a tanking era — the Jazz have thrown away three straight seasons in an effort to land a No. 1 pick. They’ve existed in a holding pattern, clearly unwilling to improve the current roster around standouts Markkanen and center Walker Kessler (also acquired in the Gobert trade), instead focusing on player development and tanking for better lottery odds.</p>
+        <p>But while their failure to land a pick higher than No. 5 in the last three drafts could be seen by some as cause for alarm — or a reason to revisit the overall strategy — I still think the Jazz are in the driver’s seat and doing everything right for the long-term plan. This has not been a failed rebuild by any reasonable measure, outside of missing the very top of the lottery. If anything, Utah has used those lower picks to uncover several hidden gems who should play real roles in the future, from second-round stretch big Kyle Filipowski to streaky scoring guard Keyonte George to this year’s No. 5 pick, the uber-talented but raw forward Ace Bailey, who at times has briefly resembled a young Kevin Durant.</p>
+        <p>That said, this current Jazz team, while slightly more competitive than the last two, is still not much to talk about in terms of actual results. At 8-15, and sitting 13th in offense and 29th in defense, with a net rating that ranks 27th in the league, they’re not going anywhere this season except right back into the lottery. The upside of three straight tanking seasons, though, is a roster full of pieces to watch and root for — whether you’re a Jazz fan or just a fan of young prospects and player development.</p>
+        <p>Let’s start with Markkanen, the clear No. 1 option and, at 28, one of the few veterans on a roster full of players who can’t legally drink. He’s an obvious trade chip if Utah ever decides to pivot. He currently ranks 10th in the NBA in scoring at 27.6 points per game, and what makes him especially valuable is that he’s the rare high-volume scorer who can slide into any roster as a seamless off-ball mover and on-ball connector. He doesn’t need an offense built around him to thrive or maintain team chemistry. At 7-foot, 240 pounds, with a serviceable handle and a smooth jumper, he’s one of the biggest and most versatile stretch fours in the NBA, and could make a lot of teams significantly better if Utah opens the door. So far, though, the front office has repeatedly signaled he’s in Utah to stay and remains a major part of the long-term plan. Only time will tell if they mean it. Until there’s clarity, other teams will be circling.</p>
+        <div class="chart-container">
+          <h3 class="chart-title">Lauri Markkanen: Career Stats</h3>
+
+          <div class="toggle-wrap" style="margin-bottom: 1rem;">
+            <button class="markk-btn active" data-metric="PTS">PTS</button>
+            <button class="markk-btn" data-metric="ORtg">ORtg</button>
+            <button class="markk-btn" data-metric="USG">USG%</button>
+            <button class="markk-btn" data-metric="PER">PER</button>
+            <button class="markk-btn" data-metric="AST">AST%</button>
+            <button class="markk-btn" data-metric="eFG">eFG%</button>
+          </div>
+
+          <div class="chart-wrapper">
+            <div id="markkanen-chart"></div>
+          </div>
+        </div>
+        <script>
+        // Markkanen full career data
+        const markkanenData = [
+          { season: "2017-18", team: "CHI", PTS: 15.2, ORtg: 107, USG: 21.9, PER: 15.6, AST: 6.4, eFG: 0.518 },
+          { season: "2018-19", team: "CHI", PTS: 18.7, ORtg: 107, USG: 25.1, PER: 17.1, AST: 7.2, eFG: 0.506 },
+          { season: "2019-20", team: "CHI", PTS: 14.7, ORtg: 108, USG: 21.1, PER: 14.3, AST: 7.6, eFG: 0.517 },
+          { season: "2020-21", team: "CHI", PTS: 13.6, ORtg: 115, USG: 20.2, PER: 15.2, AST: 5.0, eFG: 0.594 },
+          { season: "2021-22", team: "CLE", PTS: 14.8, ORtg: 117, USG: 19.5, PER: 14.7, AST: 6.6, eFG: 0.542 },
+          { season: "2022-23", team: "UTA", PTS: 25.6, ORtg: 125, USG: 26.6, PER: 22.1, AST: 8.6, eFG: 0.586 },
+          { season: "2023-24", team: "UTA", PTS: 23.2, ORtg: 128, USG: 25.0, PER: 21.5, AST: 9.5, eFG: 0.578 },
+          { season: "2024-25", team: "UTA", PTS: 19.0, ORtg: 115, USG: 24.0, PER: 15.6, AST: 7.5, eFG: 0.521 },
+          { season: "2025-26", team: "UTA", PTS: 27.6, ORtg: 127, USG: 27.7, PER: 21.5, AST: 9.8, eFG: 0.549 }
+        ];
+
+        const teamColor = {
+          CHI: "#CE1141",
+          CLE: "#6F263D",
+          UTA: "#5A2D81"
+        };
+
+        function renderMarkkanen(metric) {
+          const seasons = markkanenData.map(d => d.season);
+          const values = markkanenData.map(d => metric === "eFG" ? d[metric] * 100 : d[metric]);
+
+          const colors = markkanenData.map(d => teamColor[d.team]);
+
+          const trace = {
+            type: "bar",
+            orientation: "v",
+            x: seasons,
+            y: values,
+            marker: { color: colors },
+            hovertemplate: `<b>%{x}</b><br>${metric}: %{y}<extra></extra>`
+          };
+
+          Plotly.newPlot("markkanen-chart", [trace], {
+            height: 400,
+            margin: { l: 60, r: 20, t: 20, b: 60 },
+            template: "plotly_white",
+            yaxis: {
+              title: metric === "eFG" ? "eFG%" : metric,
+              ticksuffix: metric === "eFG" ? "%" : ""
+            },
+            showlegend: false
+          });
+        }
+
+        // Bind buttons
+        document.querySelectorAll(".markk-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            document.querySelectorAll(".markk-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            renderMarkkanen(btn.dataset.metric);
+          });
+        });
+
+        // Default load
+        renderMarkkanen("PTS");
+        </script>
+        <p>Beyond Markkanen’s production and potential trade value, the other stories in Utah mostly involve the continued development of the large cast of prospects the front office has accumulated.</p>
+        <p>I’m most intrigued by Bailey, given his pedigree coming out of high school and college and his tantalizing shot-making as a 6-foot-10 athletic wing. But he’s still a long way from being a No. 1 option for this or any NBA team, and given the questions about his maturity that caused him to fall to No. 5, there’s no guarantee he ever becomes the superstar some believe he could be. Two months into his rookie season, Bailey ranks ninth among rookies in scoring at 10.3 points per game on respectable shooting splits, but he’s struggled with consistency, turnovers and staying solid defensively. It’s typical rookie growing pains for a prospect this raw, and nothing to worry about yet. He still has a very high ceiling, and he’s worth tuning in for as he finds his game at the pro level.</p>
+        <p>Also intriguing are Filipowski and George, who both bring streaky shot-making to this offense as tertiary options behind Markkanen. With Kessler out for the season with a torn labrum, more frontcourt minutes have opened up for Filipowski, whose shooting and offensive skill set make him a fun watch and a clean fit next to Markkanen. George, a third-year guard out of Baylor who has had as many lows as highs, is putting together his best season so far as he fights for a long-term starting role on a team that keeps adding young, talented guards, including second-year point guard Isaiah Collier and 2025 Final Four hero Walter Clayton Jr. He’s averaging a career-high 22.2 points on streaky 43/32/90 shooting splits, and he can really pop if you catch him on the right night (on the wrong night, he can really fall flat). He’s certainly something for this Jazz team going forward, but whether he ends up as a trade asset, a sixth man or a full-time starter remains to be seen.</p>
+        <p>The Jazz aren’t going to win a title or even make the play-in tournament this season — and they’re not trying to. The fun with this group is the internal competition between all their young players and the race to carve out a long-term role with this team and in the league. With or without Markkanen, they’ll be a fun League Pass watch from time to time and are likely headed for another high pick next year, adding again to their war chest of young talent. For my money, it’s the right way to approach a rebuild, and that’s what really matters for Utah in this moment.</p>
+
+
+      </div>
 
   </div>
 
