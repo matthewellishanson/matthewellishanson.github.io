@@ -4770,6 +4770,113 @@
         </script>
         <p>Beyond Markkanen’s production and potential trade value, the other stories in Utah mostly involve the continued development of the large cast of prospects the front office has accumulated.</p>
         <p>I’m most intrigued by Bailey, given his pedigree coming out of high school and college and his tantalizing shot-making as a 6-foot-10 athletic wing. But he’s still a long way from being a No. 1 option for this or any NBA team, and given the questions about his maturity that caused him to fall to No. 5, there’s no guarantee he ever becomes the superstar some believe he could be. Two months into his rookie season, Bailey ranks ninth among rookies in scoring at 10.3 points per game on respectable shooting splits, but he’s struggled with consistency, turnovers and staying solid defensively. It’s typical rookie growing pains for a prospect this raw, and nothing to worry about yet. He still has a very high ceiling, and he’s worth tuning in for as he finds his game at the pro level.</p>
+        <!-- Ace Bailey vs Kevin Durant Radar Chart -->
+        <div class="chart-container">
+          <h3 class="chart-title">Rookie Season Comparison: Ace Bailey vs. Kevin Durant</h3>
+          <div class="chart-wrapper">
+            <div id="bailey-kd-radar"></div>
+          </div>
+        </div>
+
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+          // Shared stat categories
+          const categories = [
+            "Points",
+            "Rebounds",
+            "Assists",
+            "Blocks",
+            "Steals",
+            "FG%",
+            "3P%",
+            "FT Rate",
+            "FT%",
+            "Turnovers (↓ better)"
+          ];
+
+          // Ace Bailey normalized data
+          const ace = {
+            name: "Ace Bailey",
+            r: [20.5, 18.1, 14.5, 7.7, 23.6, 68.7, 81, 17.8, 68.2, 82.6],
+            text: [
+              "Points: 10.3 PPG",
+              "Rebounds: 3.3 RPG",
+              "Assists: 1.7 APG",
+              "Blocks: 0.3 BPG",
+              "Steals: 0.8 SPG",
+              "FG%: 44.7%",
+              "3P%: 36.5%",
+              "FT Rate: 10.7%",
+              "FT%: 77.3%",
+              "Turnovers: 1.4 TOPG"
+            ]
+          };
+
+          // Kevin Durant normalized data
+          const kd = {
+            name: "Kevin Durant",
+            r: [40.6, 24.2, 20, 20.8, 27.9, 66.1, 64, 54.7, 93.2, 63.7],
+            text: [
+              "Points: 20.3 PPG",
+              "Rebounds: 4.3 RPG",
+              "Assists: 2.4 APG",
+              "Blocks: 0.9 BPG",
+              "Steals: 1.0 SPG",
+              "FG%: 43%",
+              "3P%: 28.8%",
+              "FT Rate: 32.8%",
+              "FT%: 87.3%",
+              "Turnovers: 2.9 TOPG"
+            ]
+          };
+
+          // Radar traces
+          const traceAce = {
+            type: "scatterpolar",
+            r: ace.r,
+            theta: categories,
+            fill: "toself",
+            name: "Ace Bailey",
+            hovertext: ace.text,
+            hoverinfo: "text",
+            line: { color: "#5A2D81", width: 3 }, // Jazz gold
+            fillcolor: "rgba(180,151,90,0.25)"
+          };
+
+          const traceKD = {
+            type: "scatterpolar",
+            r: kd.r,
+            theta: categories,
+            fill: "toself",
+            name: "Kevin Durant",
+            hovertext: kd.text,
+            hoverinfo: "text",
+            line: { color: "#007A33", width: 3 }, // Sonics green
+            fillcolor: "rgba(0,122,51,0.25)"
+          };
+
+          const layout = {
+            template: "plotly_white",
+            margin: { l: 40, r: 40, t: 40, b: 40 },
+            polar: {
+              radialaxis: {
+                visible: true,
+                range: [0, 100]
+              }
+            },
+            legend: {
+              orientation: "h",
+              x: 0.5,
+              xanchor: "center",
+              y: -0.15
+            }
+          };
+
+          Plotly.newPlot("bailey-kd-radar", [traceAce, traceKD], layout, { responsive: true });
+        });
+        </script>
+
         <p>Also intriguing are Filipowski and George, who both bring streaky shot-making to this offense as tertiary options behind Markkanen. With Kessler out for the season with a torn labrum, more frontcourt minutes have opened up for Filipowski, whose shooting and offensive skill set make him a fun watch and a clean fit next to Markkanen. George, a third-year guard out of Baylor who has had as many lows as highs, is putting together his best season so far as he fights for a long-term starting role on a team that keeps adding young, talented guards, including second-year point guard Isaiah Collier and 2025 Final Four hero Walter Clayton Jr. He’s averaging a career-high 22.2 points on streaky 43/32/90 shooting splits, and he can really pop if you catch him on the right night (on the wrong night, he can really fall flat). He’s certainly something for this Jazz team going forward, but whether he ends up as a trade asset, a sixth man or a full-time starter remains to be seen.</p>
         <p>The Jazz aren’t going to win a title or even make the play-in tournament this season — and they’re not trying to. The fun with this group is the internal competition between all their young players and the race to carve out a long-term role with this team and in the league. With or without Markkanen, they’ll be a fun League Pass watch from time to time and are likely headed for another high pick next year, adding again to their war chest of young talent. For my money, it’s the right way to approach a rebuild, and that’s what really matters for Utah in this moment.</p>
 
