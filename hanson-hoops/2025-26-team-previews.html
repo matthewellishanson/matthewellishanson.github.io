@@ -4882,6 +4882,106 @@
 
 
       </div>
+    </div>
+
+    <!-- Washington Wizards -->
+    <div class="team-card" id="team-wizards">
+      <div class="team-header" style="background-color: #002B5C;" onclick="toggleDetails('details-wizards')">
+        <div class="team-info">
+          <img src="https://a.espncdn.com/i/teamlogos/nba/500/was.png" class="team-logo" alt="Wizards logo">
+          <h2>Washington Wizards</h2>
+          <p class="highlight">2024-25: 35-47 &middot; 10th in East</p>
+        </div>
+      </div>
+      <div class="team-details" id="details-wizards">
+        <p>When I began this 30 teams in 30-ish days project and chose to start at the top of the alphabet, I did so for one specific reason: to put off writing about the Washington Wizards as long as possible. I’m joking — mostly — but there is an added challenge in discussing a team that has lived at the bottom of the league for several seasons with no clear end in sight, and that currently stands alone as the one NBA roster I would argue has no stars.</p>
+        <p>What do you say about a team that is actively trying to lose and purge its roster down to little more than young prospects — plus C.J. McCollum and Khris Middleton — year after year, without a clearly defined path out of the league’s basement? The obvious answer is “the prospects,” and to the Wizards’ credit, they have plenty of those right now. The problem, or at least the looming concern, is that there are no clear favorites among Washington’s collection of young players to emerge as future stars.</p>
+        <p>The closest thing this roster has to a potential franchise building block is second-year French center Alex Sarr. His blend of athleticism, defensive upside and outside shooting projects him as a younger, more athletic version of Myles Turner. That’s a valuable archetype, but if that represents the realistic ceiling of your franchise player, you’re probably still searching for another cornerstone. I like Sarr, but his star ceiling feels too limited for the Wizards to rely on as the foundation of their rebuild.</p>
+        <p>Sarr’s best long-term value is as a stretch center who can anchor a defense, though both sides of that equation remain works in progress. He leads the league this season in defended field-goal attempts at 20.1 per game and has held up reasonably well under that nightly workload, limiting opponents to 48.8% shooting on contested attempts. Still, he can lose his bearings defensively at times and is often asked to cover for the complete lack of structure around him on that end of the floor. It’s hard to fault a 20-year-old for being stretched thin while effectively propping up the league’s 30th-ranked defense by himself. If anything, that responsibility speaks to his potential as a defensive anchor. But it does raise questions about how steep and how long his defensive development curve might be.</p>
+        <div class="chart-container">
+          <h3 class="chart-title">
+            Defended FG Attempts vs. Opponent FG% (15+ Contests per Game)
+          </h3>
+          <div class="chart-wrapper">
+            <div id="dfg-scatter-chart"></div>
+          </div>
+        </div>
+
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+          const data = [
+            { player: "Domantas Sabonis", team: "SAC", dfga: 16.2, dfg: 59.0, diff: 4.7 },
+            { player: "Nikola Jokić", team: "DEN", dfga: 18.0, dfg: 53.6, diff: 5.1 },
+            { player: "Keegan Murray", team: "SAC", dfga: 16.3, dfg: 52.1, diff: 3.6 },
+            { player: "Nikola Vučević", team: "CHI", dfga: 16.8, dfg: 50.1, diff: 0.8 },
+            { player: "Pascal Siakam", team: "IND", dfga: 15.1, dfg: 50.1, diff: 2.2 },
+            { player: "Luka Dončić", team: "LAL", dfga: 16.3, dfg: 49.7, diff: 3.1 },
+            { player: "Derik Queen", team: "NOP", dfga: 15.0, dfg: 49.1, diff: -0.8 },
+            { player: "Alex Sarr", team: "WAS", dfga: 20.1, dfg: 48.8, diff: -0.9 },
+            { player: "Ivica Zubac", team: "LAC", dfga: 16.2, dfg: 47.8, diff: -2.0 },
+            { player: "Alperen Sengun", team: "HOU", dfga: 17.6, dfg: 47.7, diff: -0.8 },
+            { player: "Kyshawn George", team: "WAS", dfga: 16.6, dfg: 47.4, diff: 0.7 },
+            { player: "Ryan Kalkbrenner", team: "CHA", dfga: 15.7, dfg: 47.1, diff: -2.4 },
+            { player: "Cooper Flagg", team: "DAL", dfga: 15.6, dfg: 46.8, diff: -0.6 },
+            { player: "Evan Mobley", team: "CLE", dfga: 17.4, dfg: 45.8, diff: -3.4 },
+            { player: "Walker Kessler", team: "UTA", dfga: 15.4, dfg: 45.5, diff: -4.8 },
+            { player: "Rudy Gobert", team: "MIN", dfga: 16.8, dfg: 45.3, diff: -4.3 },
+            { player: "Jaden McDaniels", team: "MIN", dfga: 15.1, dfg: 44.8, diff: -2.7 },
+            { player: "Luke Kornet", team: "SAS", dfga: 17.4, dfg: 44.2, diff: -6.0 },
+            { player: "Deandre Ayton", team: "LAL", dfga: 15.4, dfg: 43.5, diff: -4.7 },
+            { player: "P.J. Washington", team: "DAL", dfga: 15.7, dfg: 43.3, diff: -5.0 },
+            { player: "Donovan Clingan", team: "POR", dfga: 16.3, dfg: 43.1, diff: -7.5 },
+            { player: "Josh Giddey", team: "CHI", dfga: 15.1, dfg: 43.0, diff: -2.8 },
+            { player: "Victor Wembanyama", team: "SAS", dfga: 17.8, dfg: 39.7, diff: -8.7 }
+          ];
+
+          const trace = {
+            type: "scatter",
+            mode: "markers",
+            x: data.map(d => d.dfga),
+            y: data.map(d => d.dfg),
+            text: data.map(d =>
+              `<b>${d.player}</b><br>
+              DFGA/game: ${d.dfga}<br>
+              Opp FG%: ${d.dfg}%<br>
+              Diff vs avg: ${d.diff}%`
+            ),
+            hoverinfo: "text",
+            marker: {
+              size: 10,
+              color: data.map(d =>
+                d.player === "Alex Sarr" ? "#E31837" : "#9AA0A6"
+              ),
+              opacity: 0.85
+            }
+          };
+
+          const layout = {
+            template: "plotly_white",
+            margin: { l: 60, r: 30, t: 20, b: 60 },
+            xaxis: {
+              title: "DFGA Per Game",
+              range: [14.5, 21],
+              zeroline: false
+            },
+            yaxis: {
+              title: "Opponent FG% on Contested Shots",
+              range: [38, 60],
+              zeroline: false
+            }
+          };
+
+          Plotly.newPlot("dfg-scatter-chart", [trace], layout, { responsive: true });
+        });
+        </script>
+
+        <p>Offensively, the shooting is also trending in the right direction, albeit slowly. Sarr is taking fewer 3s than he did as a rookie — 3.3 per game compared with 5.1 last season — but he’s converting at a more respectable rate. Even so, a center can’t truly function as an above-average stretch five in today’s NBA while hitting just 34.6% on low volume. To reach his ceiling in that role, Sarr will need to improve both his efficiency and his comfort as a spot-up shooter.</p>
+        <p>If Sarr leaves something to be desired as a potential franchise player, the same is true — but even more so — of the rest of Washington’s young core. There are prospects here I genuinely like, from rookie microwave scorer Tre Johnson, to second-year standouts Kyshawn George (who continues to impress without much hype) and Bub Carrington (great name, fun game, limited ceiling), to hyper-athletic Rockets castoff Cam Whitmore. But I don’t see a true star emerging from that group.</p>
+        <p>Whitmore may be the closest. He’s a bruising athlete for his position who can finish violently at the rim when given a runway, but he’s struggled with efficiency and consistency since being drafted in 2023 and profiles more as a high-end sixth man than a foundational piece. Johnson could elevate his ceiling if he develops real playmaking and on-ball creation to complement his shot-making, but that outcome feels no more likely than Whitmore’s leap to stardom.</p>
+        <p>It’s slim pickings, and that’s largely by design. This front office, which took over in 2023, appears committed to a different approach than the one Washington followed for decades. Under president Michael Winger and general manager Will Dawkins, the Wizards seem to have concluded that tanking is preferable to perpetually chasing mediocrity, as previous regimes did. With some luck — something this franchise has historically lacked — that strategy could finally pay off in the upcoming draft, which by most accounts features at least six legitimate future franchise stars.</p>
+        <p>Unlike recent years (with the exception of the underwhelming 2024 draft in which Washington took Sarr second overall), the Wizards may not even need a top-three pick in the 2026 draft to find the cornerstone they’ve spent most of the last decade searching for. Any of the top six prospects would immediately arrive in Washington as the most important player on the roster. As long as the Wizards stay on track to land one of those picks, they’re playing the odds as well as they can.</p>
+      </div>
 
   </div>
 
