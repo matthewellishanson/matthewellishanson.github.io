@@ -2,14 +2,19 @@ const width = 1000;
 const height = 500;
 const margin = { top: 20, right: 20, bottom: 40, left: 50 };
 
-const svg = d3.select("#chart");
+const svg = d3.select("#chart")
+  .attr("width", width)
+  .attr("height", height)
+  .attr("viewBox", `0 0 ${width} ${height}`);
+
 const tooltip = d3.select("#tooltip");
 
-let rawData;
+let rawData = [];
 let metric = "minutes";
 let positionFilter = "all";
 
 d3.csv("data/rookie_height_stream_wide.csv", d3.autoType).then(data => {
+  console.log("Loaded rows:", data.length);
   rawData = data;
   update();
 });
@@ -25,6 +30,8 @@ d3.select("#positionSelect").on("change", e => {
 });
 
 function update() {
+  if (!rawData.length) return;
+
   let data = rawData;
 
   if (positionFilter !== "all") {
@@ -32,15 +39,14 @@ function update() {
   }
 
   const seasons = [...new Set(data.map(d => d.season))].sort(d3.ascending);
-  const heights = [...new Set(data.map(d => d.height_in))].sort(d3.ascending);
+  const heights = [...new Set(data.map(d => d.height_in))].sort(d3.ascending).map(String);
 
   const nested = d3.rollup(
     data,
     v => d3.sum(v, d => d[metric] || 0),
     d => d.season,
-    d => d.height_in
+    d => String(d.height_in)
   );
-
 
   const stackedData = seasons.map(y => {
     const row = { season: y };
@@ -54,8 +60,8 @@ function update() {
 
   const series = stack(stackedData);
 
-  const x = d3.scaleLinear()
-    .domain(d3.extent(seasons))
+  const x = d3.scalePoint()
+    .domain(seasons)
     .range([margin.left, width - margin.right]);
 
   const y = d3.scaleLinear()
@@ -63,6 +69,7 @@ function update() {
       d3.min(series, s => d3.min(s, d => d[0])),
       d3.max(series, s => d3.max(s, d => d[1]))
     ])
+    .nice()
     .range([height - margin.bottom, margin.top]);
 
   const area = d3.area()
@@ -78,10 +85,16 @@ function update() {
     .data(series)
     .join("path")
     .attr("fill", (d,i) => d3.interpolateTurbo(i / heights.length))
+    .attr("fill-opacity", 0.85)
+    .attr("stroke", "white")
+    .attr("stroke-width", 0.2)
     .attr("d", area)
     .on("mousemove", (event, d) => {
       const [mx] = d3.pointer(event);
-      const season = Math.round(x.invert(mx));
+      const season = x.domain().reduce((a,b) =>
+        Math.abs(x(b) - mx) < Math.abs(x(a) - mx) ? b : a
+      );
+
       tooltip
         .style("opacity", 1)
         .html(`Height: ${d.key}"<br>Season: ${season}`)
