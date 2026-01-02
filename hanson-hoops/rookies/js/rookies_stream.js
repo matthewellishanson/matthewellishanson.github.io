@@ -14,7 +14,6 @@ let metric = "minutes";
 let positionFilter = "all";
 
 d3.csv("data/rookie_height_stream_wide.csv", d3.autoType).then(data => {
-  console.log("Loaded:", data.length);
   rawData = data;
   update();
 });
@@ -30,123 +29,67 @@ d3.select("#positionSelect").on("change", e => {
 });
 
 function update() {
-  let data = rawData.filter(d => d.shot_type === shotType);
+  let data = rawData;
 
-  if (position !== "all") {
-    data = data.filter(d => d.position_group === position);
+  if (positionFilter !== "all") {
+    data = data.filter(d => d.position_group === positionFilter);
   }
 
   const seasons = [...new Set(data.map(d => d.season))].sort(d3.ascending);
+  const heights = [...new Set(data.map(d => d.height_in))].sort(d3.ascending);
 
-  const grouped = d3.group(data, d => d.metric);
+  const nested = d3.rollup(
+    data,
+    v => d3.sum(v, d => d[metric] || 0),
+    d => d.season,
+    d => d.height_in
+  );
 
-  const series = metrics.map(m => ({
-    metric: m,
-    values: seasons.map(s => {
-      const row = grouped.get(m)?.find(d => d.season === s);
-      return { season: s, value: row ? row.value : null };
-    })
-  }));
+  const stackedData = seasons.map(y => {
+    const row = { season: y };
+    heights.forEach(h => row[h] = nested.get(y)?.get(h) || 0);
+    return row;
+  });
+
+  const stack = d3.stack()
+    .keys(heights)
+    .offset(d3.stackOffsetWiggle);
+
+  const series = stack(stackedData);
 
   const x = d3.scaleLinear()
     .domain(d3.extent(seasons))
     .range([margin.left, width - margin.right]);
 
-  const yLeft = d3.scaleLinear()
+  const y = d3.scaleLinear()
     .domain([
-      0,
-      d3.max(series.filter(s => s.metric !== "pct"),
-        s => d3.max(s.values, d => d.value || 0))
+      d3.min(series, s => d3.min(s, d => d[0])),
+      d3.max(series, s => d3.max(s, d => d[1]))
     ])
-    .nice()
     .range([height - margin.bottom, margin.top]);
 
-  const yRight = d3.scaleLinear()
-    .domain([0, 1])
-    .range([height - margin.bottom, margin.top]);
-
-  const lineLeft = d3.line()
-    .defined(d => d.value != null)
-    .x(d => x(d.season))
-    .y(d => yLeft(d.value));
-
-  const lineRight = d3.line()
-    .defined(d => d.value != null)
-    .x(d => x(d.season))
-    .y(d => yRight(d.value));
+  const area = d3.area()
+    .x(d => x(d.data.season))
+    .y0(d => y(d[0]))
+    .y1(d => y(d[1]))
+    .curve(d3.curveBasis);
 
   svg.selectAll("*").remove();
 
-  // Axes
+  svg.append("g")
+    .selectAll("path")
+    .data(series)
+    .join("path")
+    .attr("fill", (d,i) => d3.interpolateTurbo(i / heights.length))
+    .attr("d", area);
+
   svg.append("g")
     .attr("transform", `translate(0,${height - margin.bottom})`)
     .call(d3.axisBottom(x).tickFormat(d3.format("d")));
 
   svg.append("g")
     .attr("transform", `translate(${margin.left},0)`)
-    .call(d3.axisLeft(yLeft));
-
-  svg.append("g")
-    .attr("transform", `translate(${width - margin.right},0)`)
-    .call(d3.axisRight(yRight).tickFormat(d3.format(".0%")));
-
-  // Lines
-  svg.append("g")
-    .selectAll(".line")
-    .data(series)
-    .join("path")
-    .attr("fill", "none")
-    .attr("stroke", d => colors[d.metric])
-    .attr("stroke-width", 2)
-    .attr("d", d => d.metric === "pct" ? lineRight(d.values) : lineLeft(d.values));
-
-  // Dots + tooltips
-  series.forEach(s => {
-    const yScale = s.metric === "pct" ? yRight : yLeft;
-
-    svg.append("g")
-      .selectAll("circle")
-      .data(s.values.filter(d => d.value != null))
-      .join("circle")
-      .attr("r", 3)
-      .attr("fill", colors[s.metric])
-      .attr("cx", d => x(d.season))
-      .attr("cy", d => yScale(d.value))
-      .on("mouseover", (event, d) => {
-        tooltip
-          .style("opacity", 1)
-          .html(`
-            <strong>${s.metric.toUpperCase()}</strong><br>
-            Season: ${d.season}<br>
-            Value: ${s.metric === "pct" ? d3.format(".1%")(d.value) : d.value.toFixed(1)}
-          `)
-          .style("left", event.pageX + 10 + "px")
-          .style("top", event.pageY - 20 + "px");
-      })
-      .on("mouseout", () => tooltip.style("opacity", 0));
-  });
-
-  // Legend
-  const legend = svg.append("g")
-    .attr("transform", `translate(${width - 120},${margin.top})`);
-
-  metrics.forEach((m, i) => {
-    const g = legend.append("g")
-      .attr("transform", `translate(0,${i * 18})`);
-
-    g.append("line")
-      .attr("x1", 0).attr("x2", 20)
-      .attr("y1", 10).attr("y2", 10)
-      .attr("stroke", colors[m])
-      .attr("stroke-width", 2);
-
-    g.append("text")
-      .attr("x", 25)
-      .attr("y", 13)
-      .text(m)
-      .style("font-size", "12px");
-  });
+    .call(d3.axisLeft(y));
 }
-
 
 })();

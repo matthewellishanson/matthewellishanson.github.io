@@ -5,7 +5,8 @@ const height = 450;
 const margin = { top: 20, right: 80, bottom: 40, left: 60 };
 
 const svg = d3.select("#shootingChart")
-  .attr("viewBox", `0 0 ${width} ${height}`);
+  .attr("viewBox", `0 0 ${width} ${height}`)
+  .attr("height", height);
 
 const tooltip = d3.select("#shootingTooltip");
 
@@ -21,7 +22,13 @@ const colors = {
 };
 
 d3.csv("data/rookie_shooting_stream.csv", d3.autoType).then(data => {
-  rawData = data;
+  rawData = data.map(d => ({
+    ...d,
+    position_simple:
+      d.position_group.includes("Guard") ? "Guard" :
+      d.position_group.includes("Forward") ? "Forward" :
+      d.position_group.includes("Center") ? "Center" : d.position_group
+  }));
   update();
 });
 
@@ -36,13 +43,25 @@ d3.select("#shootingPositionSelect").on("change", e => {
 });
 
 function update() {
+  console.log("raw:", rawData.length);
+
   let data = rawData.filter(d => d.shot_type === shotType);
+  console.log("after shot:", data.length);
 
   if (position !== "all") {
-    data = data.filter(d => d.position_group === position);
+    data = data.filter(d => d.position_simple === position);
+  }
+  console.log("after pos:", data.length);
+
+  if (!data.length) {
+    svg.selectAll("*").remove();
+    return;
   }
 
   const seasons = [...new Set(data.map(d => d.season))].sort(d3.ascending);
+
+  // confirm x domain
+  console.log("seasons:", seasons.slice(0,5), "...", seasons.length);
 
   const grouped = d3.group(data, d => d.metric);
 
@@ -58,15 +77,26 @@ function update() {
     .domain(d3.extent(seasons))
     .range([margin.left, width - margin.right]);
 
-  const y = d3.scaleLinear()
-    .domain([0, d3.max(series, s => d3.max(s.values, d => d.value || 0))])
+  const yLeft = d3.scaleLinear()
+    .domain([0, d3.max(series.filter(s => s.metric !== "pct"),
+      s => d3.max(s.values, d => d.value || 0))])
     .nice()
     .range([height - margin.bottom, margin.top]);
 
-  const line = d3.line()
+  const yRight = d3.scaleLinear()
+    .domain([0, 1])
+    .range([height - margin.bottom, margin.top]);
+
+  const lineLeft = d3.line()
     .defined(d => d.value != null)
     .x(d => x(d.season))
-    .y(d => y(d.value));
+    .y(d => yLeft(d.value));
+
+  const lineRight = d3.line()
+    .defined(d => d.value != null)
+    .x(d => x(d.season))
+    .y(d => yRight(d.value));
+
 
   svg.selectAll("*").remove();
 
@@ -75,8 +105,12 @@ function update() {
     .call(d3.axisBottom(x).tickFormat(d3.format("d")));
 
   svg.append("g")
-    .attr("transform", `translate(${margin.left},0)`)
-    .call(d3.axisLeft(y));
+  .attr("transform", `translate(${margin.left},0)`)
+  .call(d3.axisLeft(yLeft));
+
+  svg.append("g")
+  .attr("transform", `translate(${width - margin.right},0)`)
+  .call(d3.axisRight(yRight).tickFormat(d3.format(".0%")));
 
   svg.append("g")
     .selectAll("path")
@@ -85,7 +119,7 @@ function update() {
     .attr("fill", "none")
     .attr("stroke", d => colors[d.metric])
     .attr("stroke-width", 2)
-    .attr("d", d => line(d.values));
+    .attr("d", d => d.metric === "pct" ? lineRight(d.values) : lineLeft(d.values));
 
   series.forEach(s => {
     svg.append("g")
@@ -95,7 +129,7 @@ function update() {
       .attr("r", 3)
       .attr("fill", colors[s.metric])
       .attr("cx", d => x(d.season))
-      .attr("cy", d => y(d.value))
+      .attr("cy", d => s.metric === "pct" ? yRight(d.value) : yLeft(d.value))
       .on("mouseover", (event, d) => {
         tooltip
           .style("opacity", 1)
