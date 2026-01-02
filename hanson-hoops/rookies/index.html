@@ -74,6 +74,20 @@
       opacity: 0;
       box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     }
+
+    .tooltip {
+      position: absolute;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 6px 8px;
+      border-radius: 4px;
+      pointer-events: none;
+      font-size: 12px;
+      opacity: 0;
+    }
+
+    #shootingChart { height: 450px; }
+    
   </style>
 </head>
 <body>
@@ -93,7 +107,6 @@
         <label for="metricSelect" class="form-label mb-0">Metric</label>
         <select id="metricSelect" class="form-select form-select-sm">
           <option value="minutes" selected>Minutes</option>
-          <option value="usage">Usage</option>
           <option value="count">Count</option>
         </select>
       </div>
@@ -115,12 +128,45 @@
 
     <svg id="chart"></svg>
   </div>
+  <div class="chart-card" style="margin-top: 2rem;">
+    <div class="chart-title">Rookie Shooting Trends</div>
+    <div class="controls">
+      <label>
+        Shot Type:
+        <select id="shootingShotSelect">
+          <option value="fg">Field Goals</option>
+          <option value="3p">Three Pointers</option>
+          <option value="ft">Free Throws</option>
+        </select>
+      </label>
+
+      <label>
+        Position:
+        <select id="shootingPositionSelect">
+          <option value="all">All</option>
+          <option value="Guard">Guard</option>
+          <option value="Forward">Forward</option>
+          <option value="Center">Center</option>
+        </select>
+      </label>
+    </div>
+
+    <svg id="shootingChart"></svg>
+    <div id="shootingTooltip" class="tooltip"></div>
+  </div>
+
+
+
+
 </main>
 
 <div id="tooltip"></div>
 
 <!-- Your streamgraph logic -->
 <script src="js/rookies_stream.js"></script>
+
+<!-- Shooting Trends logic -->
+<script src="js/rookies_shooting.js"></script>
 
 </body>
 </html>
