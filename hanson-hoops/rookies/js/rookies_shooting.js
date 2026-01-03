@@ -1,8 +1,9 @@
 (() => {
 
 const width = 900;
-const height = 450;
-const margin = { top: 20, right: 80, bottom: 40, left: 60 };
+const height = 500;
+const margin = { top: 20, right: 80, bottom: 80, left: 60 };
+
 
 const svg = d3.select("#shootingChart")
   .attr("viewBox", `0 0 ${width} ${height}`)
@@ -121,13 +122,24 @@ function update() {
   .attr("transform", `translate(${width - margin.right},0)`)
   .call(d3.axisRight(yRight).tickFormat(d3.format(".0%")));
 
+  svg.append("text")
+  .attr("x", width - margin.right + 40)
+  .attr("y", margin.top)
+  .attr("text-anchor", "start")
+  .style("font-size", "12px")
+  .style("fill", "#d62728")
+  .text("Shooting %");
+
+
   svg.append("g")
     .selectAll("path")
     .data(series)
     .join("path")
     .attr("fill", "none")
     .attr("stroke", d => colors[d.metric])
-    .attr("stroke-width", 2)
+    .attr("stroke-width", d => d.metric === "pct" ? 2 : 2.5)
+    .attr("stroke-dasharray", d => d.metric === "pct" ? "4 3" : null)
+    .attr("opacity", d => d.metric === "pct" ? 0.9 : 1)
     .attr("d", d => d.metric === "pct" ? lineRight(d.values) : lineLeft(d.values));
 
   series.forEach(s => {
@@ -148,6 +160,42 @@ function update() {
       })
       .on("mouseout", () => tooltip.style("opacity", 0));
   });
+
+    // ---- Legend ----
+  const legendData = [
+    { key: "attempts", label: "Attempts per game" },
+    { key: "makes", label: "Makes per game" },
+    { key: "pct", label: "Shooting percentage" }
+  ];
+
+  const legend = svg.append("g")
+    .attr("class", "legend")
+    .attr(
+      "transform",
+      `translate(${width / 2 - 200}, ${height - margin.bottom + 30})`
+    );
+
+  const legendItem = legend.selectAll(".legend-item")
+    .data(legendData)
+    .join("g")
+    .attr("class", "legend-item")
+    .attr("transform", (d, i) => `translate(${i * 140}, 0)`);
+
+
+  legendItem.append("line")
+    .attr("x1", 0)
+    .attr("x2", 20)
+    .attr("y1", 8)
+    .attr("y2", 8)
+    .attr("stroke", d => colors[d.key])
+    .attr("stroke-width", 3);
+
+  legendItem.append("text")
+    .attr("x", 26)
+    .attr("y", 12)
+    .text(d => d.label)
+    .style("font-size", "12px");
+
 }
 
 })();
