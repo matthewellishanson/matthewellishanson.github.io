@@ -67,18 +67,15 @@ function update() {
   // confirm x domain
   console.log("seasons:", seasons.slice(0,5), "...", seasons.length);
 
-  const grouped = d3.group(data, d => d.metric, d => d.season);
+  const grouped = d3.group(data, d => d.metric);
 
   const series = metrics.map(m => ({
     metric: m,
-    values: seasons.map(s => {
-      const rows = grouped.get(m)?.get(s);
-      return {
-        season: s,
-        value: rows ? d3.mean(rows, r => r.value) : null
-      };
-    })
+    values: grouped.get(m)
+      .sort((a,b) => a.season - b.season)
+      .map(d => ({ season: d.season, value: d.value }))
   }));
+
 
 
   const x = d3.scaleLinear()
