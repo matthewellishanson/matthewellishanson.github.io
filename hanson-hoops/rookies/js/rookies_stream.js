@@ -83,6 +83,52 @@ function update() {
     .attr("fill", (d,i) => d3.interpolateTurbo(i / heights.length))
     .attr("d", area);
 
+  // ---- Gradient Legend ----
+  const legendWidth = 160;
+  const legendHeight = 12;
+
+  const legendGroup = svg.append("g")
+    .attr("class", "legend")
+    .attr("transform", `translate(${width - legendWidth - 20}, ${margin.top})`);
+
+  const defs = svg.append("defs");
+
+  const gradient = defs.append("linearGradient")
+    .attr("id", "height-gradient")
+    .attr("x1", "0%")
+    .attr("x2", "100%");
+
+  gradient.selectAll("stop")
+    .data(d3.range(0, 1.01, 0.1))
+    .join("stop")
+    .attr("offset", d => `${d * 100}%`)
+    .attr("stop-color", d => d3.interpolateTurbo(d));
+
+  legendGroup.append("rect")
+    .attr("width", legendWidth)
+    .attr("height", legendHeight)
+    .style("fill", "url(#height-gradient)");
+
+  legendGroup.append("text")
+    .attr("x", 0)
+    .attr("y", -4)
+    .text("Shorter")
+    .style("font-size", "11px");
+
+  legendGroup.append("text")
+    .attr("x", legendWidth)
+    .attr("y", -4)
+    .attr("text-anchor", "end")
+    .text("Taller")
+    .style("font-size", "11px");
+
+  legendGroup.append("text")
+    .attr("x", legendWidth / 2)
+    .attr("y", legendHeight + 12)
+    .attr("text-anchor", "middle")
+    .text("Player height distribution")
+    .style("font-size", "11px");
+
   svg.append("g")
     .attr("transform", `translate(0,${height - margin.bottom})`)
     .call(d3.axisBottom(x).tickFormat(d3.format("d")));
