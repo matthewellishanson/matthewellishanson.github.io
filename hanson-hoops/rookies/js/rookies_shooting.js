@@ -29,6 +29,10 @@ d3.csv("data/rookie_shooting_stream.csv", d3.autoType).then(data => {
       d.position_group.includes("Forward") ? "Forward" :
       d.position_group.includes("Center") ? "Center" : d.position_group
   }));
+
+  window._rawData = rawData;   // 👈 expose it
+  console.log("Exposed _rawData:", rawData.length);
+
   update();
 });
 
