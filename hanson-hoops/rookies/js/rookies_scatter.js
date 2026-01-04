@@ -10,7 +10,7 @@ const svg = d3.select("#scatterChart")
 
 const tooltip = d3.select("#scatterTooltip");
 
-d3.csv("data/rookie_scatter_pp100.csv", d3.autoType).then(raw => {
+d3.csv("data/rookie_scatter_with_usage.csv", d3.autoType).then(raw => {
 
   console.log("Loaded rows:", raw.length);
   console.log("Sample:", raw.slice(0, 5));
