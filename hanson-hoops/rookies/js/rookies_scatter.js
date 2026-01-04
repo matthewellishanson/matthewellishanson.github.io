@@ -10,7 +10,7 @@ const svg = d3.select("#scatterChart")
 
 const tooltip = d3.select("#scatterTooltip");
 
-d3.csv("data/rookie_points_scatter.csv", d3.autoType).then(raw => {
+d3.csv("data/rookie_scatter_pp100.csv", d3.autoType).then(raw => {
 
   console.log("Loaded rows:", raw.length);
   console.log("Sample:", raw.slice(0, 5));
@@ -21,7 +21,7 @@ d3.csv("data/rookie_points_scatter.csv", d3.autoType).then(raw => {
   console.log("After filter:", data.length);
 
   const x = d3.scaleLinear()
-    .domain(d3.extent(data, d => d.rookie_season))
+    .domain(d3.extent(data, d => d.usg_pct))
     .nice()
     .range([margin.left, width - margin.right]);
 
@@ -35,7 +35,7 @@ d3.csv("data/rookie_points_scatter.csv", d3.autoType).then(raw => {
   // Axes
   svg.append("g")
     .attr("transform", `translate(0,${height - margin.bottom})`)
-    .call(d3.axisBottom(x).tickFormat(d3.format("d")));
+    .call(d3.axisBottom(x));
 
   svg.append("g")
     .attr("transform", `translate(${margin.left},0)`)
@@ -60,24 +60,23 @@ d3.csv("data/rookie_points_scatter.csv", d3.autoType).then(raw => {
     .selectAll("circle")
     .data(data)
     .join("circle")
-    .attr("cx", d => x(d.rookie_season))
+    .attr("cx", d => x(d.usg_pct))
     .attr("cy", d => y(d.pts_per_100))
-    .attr("r", 3)
+    .attr("r", 4)
     .attr("fill", "#1f77b4")
-    .attr("opacity", 0.7)
-    .on("mouseover", (event, d) => {
-      tooltip
-        .style("opacity", 1)
-        .html(`
-          <strong>${d.player}</strong><br>
-          Season: ${d.rookie_season}<br>
-          Pts/100: ${d.pts_per_100.toFixed(1)}<br>
-          Minutes: ${d.minutes}
-        `)
+    .attr("opacity", 0.6)
+    .on("mouseover", (event,d) => {
+        tooltip.style("opacity",1)
+        .html(`<strong>${d.player}</strong><br>
+                Season: ${d.rookie_season}<br>
+                Usage: ${d.usg_pct}%<br>
+                Pts/100: ${d.pts_per_100.toFixed(1)}<br>
+                Minutes: ${d.minutes}`)
         .style("left", event.pageX + 10 + "px")
         .style("top", event.pageY - 20 + "px");
     })
-    .on("mouseout", () => tooltip.style("opacity", 0));
+    .on("mouseout", () => tooltip.style("opacity",0));
+
 
 });
 })();
