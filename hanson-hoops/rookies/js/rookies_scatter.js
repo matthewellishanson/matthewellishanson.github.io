@@ -47,17 +47,20 @@ d3.csv("data/rookie_scatter_final_fixed.csv", d3.autoType).then(raw => {
 
   console.log("After filter:", data.length);
 
-  const seasons = [...new Set(data.map(d => d.rookie_season))].sort(d3.ascending);
+  const seasonsAll = [...new Set(data.map(d => d.rookie_season))].sort(d3.ascending);
 
   const x = d3.scaleBand()
-    .domain(seasons)
+    .domain(seasonsAll)
     .range([margin.left, width - margin.right])
     .padding(0.2);
 
-  const y = d3.scaleLinear()
-    .domain(d3.extent(data, d => d.pts_per_100))
-    .nice()
-    .range([height - margin.bottom, margin.top]);
+  // Pre-compute 80th percentile cutoff across all filtered rookies
+  const ptsValues = data
+    .map(d => d.pts_per_100)
+    .filter(Number.isFinite)
+    .sort(d3.ascending);
+  const topCutoff = ptsValues.length ? d3.quantile(ptsValues, 0.8) : null;
+  let showTopOnly = false;
 
   // ---- Radius scale (only from valid usage) ----
   const usageVals = data
@@ -73,85 +76,106 @@ d3.csv("data/rookie_scatter_final_fixed.csv", d3.autoType).then(raw => {
     return Number.isFinite(v) ? r(v) : 4; // fallback radius for null usage (2025/2026)
   }
 
-  svg.selectAll("*").remove();
-
-  // Axes
-  svg.append("g")
-    .attr("transform", `translate(0,${height - margin.bottom})`)
-    .call(d3.axisBottom(x).tickValues(seasons.filter((d,i) => i % 2 === 0)));
-
-  svg.append("g")
-    .attr("transform", `translate(${margin.left},0)`)
-    .call(d3.axisLeft(y));
-
-  // Labels
-  svg.append("text")
-    .attr("x", width / 2)
-    .attr("y", height - 5)
-    .attr("text-anchor", "middle")
-    .text("Rookie season");
-
-  svg.append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("x", -height / 2)
-    .attr("y", 15)
-    .attr("text-anchor", "middle")
-    .text("Points per 100 possessions");
-
   // ---- Jitter helper ----
   function jitter() {
     return (Math.random() - 0.5) * x.bandwidth() * 0.6;
   }
 
-  // ---- Points ----
-  const points = svg.append("g")
-    .selectAll("circle")
-    .data(data, d => `${d.player_id ?? d.player}-${d.rookie_season}`)
-    .join("circle")
-    .attr("cx", d => {
-      const base = x(d.rookie_season);
-      // If season not in band domain, base will be undefined => NaN cx
-      return (base == null)
-        ? -9999
-        : base + x.bandwidth() / 2 + jitter();
-    })
-    .attr("cy", d => y(d.pts_per_100))
-    .attr("r", d => radius(d))
-    .attr("fill", defaultColor)
-    .attr("opacity", 0.65);
+  // ---- Toggle button (full vs top 20%) ----
+  const chartParent = d3.select("#scatterChart").node().parentNode;
+  const toggleBtn = document.createElement("button");
+  toggleBtn.id = "scatterTopToggle";
+  toggleBtn.textContent = "Show top 20% (pts/100)";
+  toggleBtn.style.marginBottom = "8px";
+  toggleBtn.onclick = () => {
+    showTopOnly = !showTopOnly;
+    toggleBtn.textContent = showTopOnly ? "Show full dataset" : "Show top 20% (pts/100)";
+    update();
+  };
+  chartParent.insertBefore(toggleBtn, document.getElementById("scatterChart"));
 
-  // OPTIONAL: visually confirm off-domain points
-  console.log("cx undefined seasons:",
-    data.filter(d => x(d.rookie_season) == null).map(d => d.rookie_season)
-  );
+  function getActiveData() {
+    if (!showTopOnly || topCutoff == null) return data;
+    return data.filter(d => Number.isFinite(d.pts_per_100) && d.pts_per_100 >= topCutoff);
+  }
 
-  // tooltip/hover
-  points
-    .on("mouseover", function(event, d) {
-      d3.select(this).attr("fill", hoverColor).attr("opacity", 1);
+  function update() {
+    const active = getActiveData();
 
-      const usageText = (d.usg_pct == null || isNaN(d.usg_pct))
-        ? "n/a"
-        : `${(+d.usg_pct).toFixed(1)}%`;
+    const y = d3.scaleLinear()
+      .domain(d3.extent((active.length ? active : data), d => d.pts_per_100))
+      .nice()
+      .range([height - margin.bottom, margin.top]);
 
-      tooltip.style("opacity", 1)
-        .html(`
-          <strong>${d.player}</strong><br>
-          Season: ${d.rookie_season}<br>
-          Usage: ${usageText}<br>
-          Pts/100: ${(+d.pts_per_100).toFixed(1)}<br>
-          Minutes: ${(+d.minutes).toFixed(0)}
-        `)
-        .style("left", event.pageX + 10 + "px")
-        .style("top", event.pageY - 20 + "px");
-    })
-    .on("mouseout", function() {
-      d3.select(this).attr("fill", defaultColor).attr("opacity", 0.65);
-      tooltip.style("opacity", 0);
-    })
-    .on("click", function() {
-      d3.select(this).attr("fill", hoverColor).attr("opacity", 1);
-    });
+    svg.selectAll("*").remove();
+
+    // Axes
+    svg.append("g")
+      .attr("transform", `translate(0,${height - margin.bottom})`)
+      .call(d3.axisBottom(x).tickValues(seasonsAll.filter((d,i) => i % 2 === 0)));
+
+    svg.append("g")
+      .attr("transform", `translate(${margin.left},0)`)
+      .call(d3.axisLeft(y));
+
+    // Labels
+    svg.append("text")
+      .attr("x", width / 2)
+      .attr("y", height - 5)
+      .attr("text-anchor", "middle")
+      .text("Rookie season");
+
+    svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("x", -height / 2)
+      .attr("y", 15)
+      .attr("text-anchor", "middle")
+      .text("Points per 100 possessions");
+
+    const points = svg.append("g")
+      .selectAll("circle")
+      .data(active, d => `${d.player_id ?? d.player}-${d.rookie_season}`)
+      .join("circle")
+      .attr("cx", d => {
+        const base = x(d.rookie_season);
+        return (base == null)
+          ? -9999
+          : base + x.bandwidth() / 2 + jitter();
+      })
+      .attr("cy", d => y(d.pts_per_100))
+      .attr("r", d => radius(d))
+      .attr("fill", defaultColor)
+      .attr("opacity", 0.65);
+
+    points
+      .on("mouseover", function(event, d) {
+        d3.select(this).attr("fill", hoverColor).attr("opacity", 1);
+
+        const usageText = (d.usg_pct == null || isNaN(d.usg_pct))
+          ? "n/a"
+          : `${(+d.usg_pct).toFixed(1)}%`;
+
+        tooltip.style("opacity", 1)
+          .html(`
+            <strong>${d.player}</strong><br>
+            Season: ${d.rookie_season}<br>
+            Usage: ${usageText}<br>
+            Pts/100: ${(+d.pts_per_100).toFixed(1)}<br>
+            Minutes: ${(+d.minutes).toFixed(0)}
+          `)
+          .style("left", event.pageX + 10 + "px")
+          .style("top", event.pageY - 20 + "px");
+      })
+      .on("mouseout", function() {
+        d3.select(this).attr("fill", defaultColor).attr("opacity", 0.65);
+        tooltip.style("opacity", 0);
+      })
+      .on("click", function() {
+        d3.select(this).attr("fill", hoverColor).attr("opacity", 1);
+      });
+  }
+
+  update();
 
 });
 })();
