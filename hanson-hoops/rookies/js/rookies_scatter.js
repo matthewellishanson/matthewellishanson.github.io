@@ -32,6 +32,11 @@ d3.csv("data/rookie_scatter_final_fixed.csv", d3.autoType).then(raw => {
   const data = raw.filter(d => {
     const isRecent = d.rookie_season >= currentSeasons - 1;
 
+    // Enforce 300-minute cutoff for 2026 only
+    if (d.rookie_season === 2026) {
+      return d.minutes != null && d.minutes >= 300 && d.pts_per_100 != null;
+    }
+
     if (isRecent) {
       return d.minutes != null && d.pts_per_100 != null;
     }
@@ -112,7 +117,7 @@ d3.csv("data/rookie_scatter_final_fixed.csv", d3.autoType).then(raw => {
     // Axes
     svg.append("g")
       .attr("transform", `translate(0,${height - margin.bottom})`)
-      .call(d3.axisBottom(x).tickValues(seasonsAll.filter((d,i) => i % 2 === 0)));
+      .call(d3.axisBottom(x).tickValues(seasonsAll));
 
     svg.append("g")
       .attr("transform", `translate(${margin.left},0)`)
