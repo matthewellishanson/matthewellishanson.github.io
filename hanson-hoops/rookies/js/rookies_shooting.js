@@ -22,7 +22,7 @@ const colors = {
   pct: "#d62728"
 };
 
-d3.csv("data/rookie_shooting_stream.csv", d3.autoType).then(data => {
+d3.csv("data/rookie_shooting_stream_v2.csv", d3.autoType).then(data => {
   rawData = data.map(d => ({
     ...d,
     position_simple:

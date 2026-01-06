@@ -13,7 +13,7 @@ let rawData = [];
 let metric = "minutes";
 let positionFilter = "all";
 
-d3.csv("data/rookie_height_stream_wide.csv", d3.autoType).then(data => {
+d3.csv("data/rookie_height_stream_wide_v2.csv", d3.autoType).then(data => {
   rawData = data;
   update();
 });
