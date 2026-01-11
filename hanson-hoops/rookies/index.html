@@ -88,6 +88,30 @@
 
     #shootingChart { height: 450px; }
     
+    #originsRace { height: 520px; }
+
+    #originsRestart {
+      border-color: #1f2937;
+      color: #1f2937;
+    }
+
+    #originsRestart:hover {
+      background: #1f2937;
+      color: white;
+    }
+
+    #originsPause {
+      border-color: #475569;
+      color: #475569;
+    }
+
+    #originsPause:hover {
+      background: #475569;
+      color: white;
+    }
+
+    #wsScatterChart { height: 520px; }
+    
   </style>
 </head>
 <body>
@@ -129,6 +153,15 @@
     <svg id="chart"></svg>
   </div>
   <div class="chart-card" style="margin-top: 2rem;">
+    <div class="chart-title">Rookie Origins Bar Chart Race</div>
+    <div class="controls">
+      <button id="originsRestart" class="btn btn-sm btn-outline-primary">Restart</button>
+      <button id="originsPause" class="btn btn-sm btn-outline-secondary">Pause</button>
+    </div>
+    <svg id="originsRace"></svg>
+  </div>
+
+  <div class="chart-card" style="margin-top: 2rem;">
     <div class="chart-title">Rookie Shooting Trends</div>
     <div class="controls">
       <label>
@@ -162,8 +195,35 @@
   </div>
 
 
-
-
+  <div class="chart-card" style="margin-top: 2rem;">
+    <div class="chart-title">Top Rookie Win Shares Scatterplot</div>
+    <div class="controls">
+      <div>
+        <label for="wsScatterX" class="form-label mb-0">X Axis</label>
+        <select id="wsScatterX" class="form-select form-select-sm">
+          <option value="WS" selected>Win Shares</option>
+          <option value="PER">PER</option>
+          <option value="ORtg">ORtg</option>
+          <option value="DRtg">DRtg</option>
+          <option value="BPM">BPM</option>
+          <option value="USG%">USG%</option>
+        </select>
+      </div>
+      <div>
+        <label for="wsScatterY" class="form-label mb-0">Y Axis</label>
+        <select id="wsScatterY" class="form-select form-select-sm">
+          <option value="PER" selected>PER</option>
+          <option value="WS">Win Shares</option>
+          <option value="ORtg">ORtg</option>
+          <option value="DRtg">DRtg</option>
+          <option value="BPM">BPM</option>
+          <option value="USG%">USG%</option>
+        </select>
+      </div>
+    </div>
+    <svg id="wsScatterChart"></svg>
+    <div id="wsScatterTooltip" class="tooltip"></div>
+  </div>
 
 </main>
 
@@ -179,6 +239,12 @@
 <!-- Scatterplot logic -->
 <script src="js/rookies_scatter.js"></script>
 
+<!-- Top rookies win shares scatterplot -->
+<script src="js/rookies_ws_scatter.js"></script>
+
+
+<!-- Rookie origins bar chart race -->
+<script src="js/rookie_origins_race.js"></script>
 </body>
 </html>
 
