@@ -37,6 +37,7 @@
     "DRtg": "DRtg",
     "BPM": "BPM",
     "USG%": "USG%",
+    "PTS/100 Poss.": "PTS/100",
   };
 
   const formatters = {
@@ -46,6 +47,7 @@
     "DRtg": d3.format(".0f"),
     "BPM": d3.format(".1f"),
     "USG%": d3.format(".1f"),
+    "PTS/100 Poss.": d3.format(".1f"),
   };
 
   function formatValue(field, value) {
@@ -58,12 +60,16 @@
 
   d3.csv("data/top_rookies_by_ws.csv", d3.autoType).then(data => {
     const cleaned = data.filter(d => d.Player);
+    const baseColor = "#6f42c1";
+    const highlightColor = "#f59e0b";
+    const sizeField = "PTS/100 Poss.";
 
     const xSelect = document.getElementById("wsScatterX");
     const ySelect = document.getElementById("wsScatterY");
 
     const x = d3.scaleLinear().range([margin.left, width - margin.right]);
     const y = d3.scaleLinear().range([height - margin.bottom, margin.top]);
+    const r = d3.scaleSqrt().range([3, 10]);
 
     function update() {
       const xField = xSelect.value;
@@ -71,9 +77,11 @@
 
       const xExtent = d3.extent(cleaned, d => d[xField]);
       const yExtent = d3.extent(cleaned, d => d[yField]);
+      const rExtent = d3.extent(cleaned, d => d[sizeField]);
 
       x.domain(xExtent).nice();
       y.domain(yExtent).nice();
+      r.domain(rExtent);
 
       xAxisG.transition().duration(600)
         .call(d3.axisBottom(x).ticks(6));
@@ -91,15 +99,17 @@
           .attr("cx", d => x(d[xField]))
           .attr("cy", d => y(d[yField]))
           .attr("r", 0)
-          .attr("fill", "#2563eb")
+          .attr("fill", d => d["Draft Year"] === 2025 ? highlightColor : baseColor)
           .attr("opacity", 0.75)
           .attr("stroke", "#1e3a8a")
           .attr("stroke-width", 0.6)
           .call(enter => enter.transition().duration(600)
-            .attr("r", 5)),
+            .attr("r", d => r(d[sizeField]))),
         update => update.call(update => update.transition().duration(600)
           .attr("cx", d => x(d[xField]))
-          .attr("cy", d => y(d[yField]))),
+          .attr("cy", d => y(d[yField]))
+          .attr("r", d => r(d[sizeField]))
+          .attr("fill", d => d["Draft Year"] === 2025 ? highlightColor : baseColor)),
         exit => exit.call(exit => exit.transition().duration(300)
           .attr("r", 0)
           .remove())
@@ -110,6 +120,7 @@
           const html = `
             <strong>${d.Player}</strong><br/>
             Draft Year: ${d["Draft Year"] || "n/a"}<br/>
+            PTS/100: ${formatValue("PTS/100 Poss.", d["PTS/100 Poss."])}<br/>
             WS: ${formatValue("WS", d.WS)}<br/>
             PER: ${formatValue("PER", d.PER)}<br/>
             ORtg: ${formatValue("ORtg", d.ORtg)}<br/>
