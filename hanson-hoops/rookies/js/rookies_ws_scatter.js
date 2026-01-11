@@ -30,6 +30,8 @@
     .attr("font-size", 12)
     .attr("fill", "#374151");
 
+  const dotsLayer = chart.append("g");
+
   const fields = {
     "WS": "Win Shares",
     "PER": "PER",
@@ -141,7 +143,7 @@
       xLabel.text(fields[xField] || xField);
       yLabel.text(fields[yField] || yField);
 
-      const dots = chart.selectAll("circle")
+      const dots = dotsLayer.selectAll("circle")
         .data(cleaned, d => `${d.Player}-${d["Draft Year"]}`);
 
       dots.join(
@@ -165,7 +167,7 @@
           .remove())
       );
 
-      chart.selectAll("circle")
+      dotsLayer.selectAll("circle")
         .on("mousemove", (event, d) => {
           const html = `
             <strong>${d.Player}</strong><br/>
