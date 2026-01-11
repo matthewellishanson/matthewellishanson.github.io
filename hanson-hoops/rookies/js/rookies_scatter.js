@@ -114,20 +114,35 @@ d3.csv("data/rookie_scatter_final_fixed.csv", d3.autoType).then(raw => {
     if (!legend) {
       legend = document.createElement("div");
       legend.id = "scatterUsageLegend";
-      legend.style.position = "absolute";
-      legend.style.pointerEvents = "none";
       legend.style.display = "flex";
       legend.style.flexDirection = "column";
       legend.style.gap = "4px";
       legend.style.fontSize = "11px";
+      legend.style.pointerEvents = "none";
       chartParent.style.position = "relative";
       chartParent.appendChild(legend);
     }
 
     const chartTitle = chartParent.querySelector(".chart-title");
-    const topOffset = chartTitle ? chartTitle.offsetTop : 0;
-    legend.style.top = `${topOffset}px`;
-    legend.style.right = "18px";
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+      legend.style.position = "relative";
+      legend.style.top = "0";
+      legend.style.right = "0";
+      legend.style.margin = "0 0 8px auto";
+      legend.style.alignItems = "flex-end";
+      legend.style.fontSize = "10px";
+      chartParent.insertBefore(legend, document.getElementById("scatterChart"));
+    } else {
+      const topOffset = chartTitle ? chartTitle.offsetTop : 0;
+      legend.style.position = "absolute";
+      legend.style.top = `${topOffset}px`;
+      legend.style.right = "18px";
+      legend.style.margin = "0";
+      legend.style.alignItems = "flex-start";
+      legend.style.fontSize = "11px";
+    }
 
     legend.innerHTML = "";
 
