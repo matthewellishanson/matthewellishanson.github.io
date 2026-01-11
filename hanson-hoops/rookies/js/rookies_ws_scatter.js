@@ -71,6 +71,56 @@
     const y = d3.scaleLinear().range([height - margin.bottom, margin.top]);
     const r = d3.scaleSqrt().range([3, 10]);
 
+    const legend = chart.append("g")
+      .attr("transform", `translate(${margin.left},${margin.top - 8})`);
+
+    legend.append("circle")
+      .attr("cx", 0)
+      .attr("cy", 6)
+      .attr("r", 5)
+      .attr("fill", highlightColor)
+      .attr("stroke", "#1e3a8a")
+      .attr("stroke-width", 0.6)
+      .attr("opacity", 0.85);
+
+    legend.append("text")
+      .attr("x", 12)
+      .attr("y", 10)
+      .attr("font-size", 12)
+      .attr("fill", "#374151")
+      .text("Current rookies (Draft Year 2025)");
+
+    legend.append("circle")
+      .attr("cx", 260)
+      .attr("cy", 6)
+      .attr("r", 5)
+      .attr("fill", baseColor)
+      .attr("stroke", "#1e3a8a")
+      .attr("stroke-width", 0.6)
+      .attr("opacity", 0.85);
+
+    legend.append("text")
+      .attr("x", 272)
+      .attr("y", 10)
+      .attr("font-size", 12)
+      .attr("fill", "#374151")
+      .text("Past rookies");
+
+    legend.append("circle")
+      .attr("cx", 400)
+      .attr("cy", 6)
+      .attr("r", 8)
+      .attr("fill", "none")
+      .attr("stroke", "#6b7280")
+      .attr("stroke-width", 1);
+
+    legend.append("text")
+      .attr("x", 412)
+      .attr("y", 10)
+      .attr("font-size", 12)
+      .attr("fill", "#374151")
+      .text("Size = PTS/100");
+
     function update() {
       const xField = xSelect.value;
       const yField = ySelect.value;
