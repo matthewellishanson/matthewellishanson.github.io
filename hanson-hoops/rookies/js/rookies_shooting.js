@@ -123,9 +123,9 @@ function update() {
   .call(d3.axisRight(yRight).tickFormat(d3.format(".0%")));
 
   svg.append("text")
-  .attr("x", width - margin.right + 40)
-  .attr("y", margin.top)
-  .attr("text-anchor", "start")
+  .attr("x", width - 6)
+  .attr("y", margin.top - 12)
+  .attr("text-anchor", "end")
   .style("font-size", "12px")
   .style("fill", "#d62728")
   .text("Shooting %");

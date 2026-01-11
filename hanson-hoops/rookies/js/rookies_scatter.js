@@ -104,6 +104,61 @@ d3.csv("data/rookie_scatter_final_fixed.csv", d3.autoType).then(raw => {
     return data.filter(d => Number.isFinite(d.pts_per_100) && d.pts_per_100 >= topCutoff);
   }
 
+  function renderUsageLegend() {
+    const [usageMin, usageMax] = r.domain();
+    const usageMid = (usageMin + usageMax) / 2;
+    const legendValues = Array.from(new Set([usageMin, usageMid, usageMax]))
+      .filter(Number.isFinite);
+
+    let legend = chartParent.querySelector("#scatterUsageLegend");
+    if (!legend) {
+      legend = document.createElement("div");
+      legend.id = "scatterUsageLegend";
+      legend.style.position = "absolute";
+      legend.style.pointerEvents = "none";
+      legend.style.display = "flex";
+      legend.style.flexDirection = "column";
+      legend.style.gap = "4px";
+      legend.style.fontSize = "11px";
+      chartParent.style.position = "relative";
+      chartParent.appendChild(legend);
+    }
+
+    const chartTitle = chartParent.querySelector(".chart-title");
+    const topOffset = chartTitle ? chartTitle.offsetTop : 0;
+    legend.style.top = `${topOffset}px`;
+    legend.style.right = "18px";
+
+    legend.innerHTML = "";
+
+    const title = document.createElement("div");
+    title.textContent = "Usage (USG%)";
+    title.style.fontWeight = "600";
+    legend.appendChild(title);
+
+    legendValues.forEach(value => {
+      const row = document.createElement("div");
+      row.style.display = "flex";
+      row.style.alignItems = "center";
+      row.style.gap = "6px";
+
+      const dot = document.createElement("div");
+      const size = r(value) * 2;
+      dot.style.width = `${size}px`;
+      dot.style.height = `${size}px`;
+      dot.style.borderRadius = "50%";
+      dot.style.background = defaultColor;
+      dot.style.opacity = "0.65";
+
+      const label = document.createElement("div");
+      label.textContent = `${value.toFixed(1)}%`;
+
+      row.appendChild(dot);
+      row.appendChild(label);
+      legend.appendChild(row);
+    });
+  }
+
   function update() {
     const active = getActiveData();
 
@@ -137,6 +192,8 @@ d3.csv("data/rookie_scatter_final_fixed.csv", d3.autoType).then(raw => {
       .attr("text-anchor", "middle")
       .text("Points per 100 possessions");
 
+    renderUsageLegend();
+
     const points = svg.append("g")
       .selectAll("circle")
       .data(active, d => `${d.player_id ?? d.player}-${d.rookie_season}`)
@@ -160,6 +217,8 @@ d3.csv("data/rookie_scatter_final_fixed.csv", d3.autoType).then(raw => {
           ? "n/a"
           : `${(+d.usg_pct).toFixed(1)}%`;
 
+        const [tooltipX, tooltipY] = d3.pointer(event, chartParent);
+
         tooltip.style("opacity", 1)
           .html(`
             <strong>${d.player}</strong><br>
@@ -168,8 +227,8 @@ d3.csv("data/rookie_scatter_final_fixed.csv", d3.autoType).then(raw => {
             Pts/100: ${(+d.pts_per_100).toFixed(1)}<br>
             Minutes: ${(+d.minutes).toFixed(0)}
           `)
-          .style("left", event.pageX + 10 + "px")
-          .style("top", event.pageY - 20 + "px");
+          .style("left", tooltipX + 10 + "px")
+          .style("top", tooltipY - 20 + "px");
       })
       .on("mouseout", function() {
         d3.select(this).attr("fill", defaultColor).attr("opacity", 0.65);
