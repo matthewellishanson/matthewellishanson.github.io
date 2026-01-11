@@ -68,6 +68,8 @@
 
     const xSelect = document.getElementById("wsScatterX");
     const ySelect = document.getElementById("wsScatterY");
+    const defaultX = "WS";
+    const defaultY = "PER";
 
     const x = d3.scaleLinear().range([margin.left, width - margin.right]);
     const y = d3.scaleLinear().range([height - margin.bottom, margin.top]);
@@ -124,8 +126,8 @@
       .text("Size = PTS/100");
 
     function update() {
-      const xField = xSelect.value;
-      const yField = ySelect.value;
+      const xField = xSelect ? xSelect.value : defaultX;
+      const yField = ySelect ? ySelect.value : defaultY;
 
       const xExtent = d3.extent(cleaned, d => d[xField]);
       const yExtent = d3.extent(cleaned, d => d[yField]);
@@ -191,8 +193,12 @@
         });
     }
 
-    xSelect.addEventListener("change", update);
-    ySelect.addEventListener("change", update);
+    if (xSelect) {
+      xSelect.addEventListener("change", update);
+    }
+    if (ySelect) {
+      ySelect.addEventListener("change", update);
+    }
 
     update();
   });

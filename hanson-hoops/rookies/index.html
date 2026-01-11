@@ -2,13 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Rookie Height Streamgraph</title>
+  <title>A Quarter Century of NBA Rookies — Hanson Hoops</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Bootstrap (for consistency with site) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- D3 -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
 
   <style>
@@ -17,8 +14,10 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
+      font-family: Georgia, "Times New Roman", serif;
+      background-color: #ffffff;
+      color: #111;
+      line-height: 1.65;
     }
 
     .navbar {
@@ -27,23 +26,82 @@
 
     .navbar .navbar-brand {
       color: white !important;
+      font-weight: 600;
     }
 
-    .content {
-      padding: 2rem 1rem;
+    /* ===== Hero ===== */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      background: url("https://placehold.co/1600x900?text=Rookie+Class+Hero+Image") center/cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      color: white;
     }
 
+    .hero-overlay {
+      width: 100%;
+      padding: 3rem 1.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+    }
+
+    .hero h1 {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+    }
+
+    .hero .dek {
+      max-width: 900px;
+      margin: 1rem auto 0;
+      font-size: 1.25rem;
+      opacity: 0.9;
+    }
+
+    /* ===== Story body ===== */
+    .story {
+      max-width: 720px;
+      margin: 4rem auto;
+      padding: 0 1.25rem;
+    }
+
+    .story p {
+      font-size: 1.05rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .story p:first-of-type::first-letter {
+      float: left;
+      font-size: 3.5rem;
+      line-height: 1;
+      font-weight: bold;
+      color: var(--app-primary);
+      padding-right: 0.35rem;
+      padding-top: 0.1rem;
+    }
+
+    .story h2 {
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+
+    /* ===== Charts ===== */
     .chart-card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      background: #fafafa;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       padding: 1.5rem;
       max-width: 1100px;
-      margin: 0 auto;
+      margin: 4rem auto;
     }
 
     .chart-title {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: 600;
       margin-bottom: 1rem;
       text-align: center;
@@ -55,24 +113,14 @@
       gap: 1rem;
       margin-bottom: 1rem;
       flex-wrap: wrap;
+      font-family: system-ui, sans-serif;
+      font-size: 0.9rem;
     }
 
     svg {
       width: 100%;
       height: auto;
       display: block;
-    }
-
-    #tooltip {
-      position: absolute;
-      font-size: 13px;
-      background: white;
-      padding: 6px 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      pointer-events: none;
-      opacity: 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     }
 
     .tooltip {
@@ -84,44 +132,8 @@
       pointer-events: none;
       font-size: 12px;
       opacity: 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     }
-
-    #shootingChart { height: 450px; }
-    
-    #originsRace { height: 520px; }
-
-    #originsRestart {
-      border-color: #1f2937;
-      color: #1f2937;
-    }
-
-    #originsRestart:hover {
-      background: #1f2937;
-      color: white;
-    }
-
-    #originsPause {
-      border-color: #475569;
-      color: #475569;
-    }
-
-    #originsPause:hover {
-      background: #475569;
-      color: white;
-    }
-
-    #wsScatterChart { height: 520px; }
-
-    .content-body p:first-of-type::first-letter {
-      float: left;
-      font-size: 3rem;
-      line-height: 1;
-      font-weight: bold;
-      color: var(--app-primary);
-      padding-right: 0.25rem;
-      padding-top: 0.1rem;
-    }
-    
   </style>
 </head>
 <body>
@@ -132,131 +144,128 @@
   </div>
 </nav>
 
-<main class="content">
-  <h1>A Quarter Century of NBA Rookies: A Hanson Hoops Deep Dive</h1>
-  <p class="content-body">When I finished my introductory "30 teams in 30 days" season preview last month, I knew my next pivot with Hanson Hoops content would be toward more in-depth, carefully planned big picture pieces, the kind that dive deeper into a specific trend, player or team that I wanted to zero in on using my data journalism and visualization toolkit. One of the first trends that jumped to the front of my mind at that point was the oft-discussed rise in young talent around the league, and in the case of this season, the emergence of another hugely promising rookie class to add to that trend.</p>
-  <div class="chart-card">
-    <div class="chart-title">Rookie Height Streamgraph</div>
-
-    <div class="controls">
-      <div>
-        <label for="metricSelect" class="form-label mb-0">Metric</label>
-        <select id="metricSelect" class="form-select form-select-sm">
-          <option value="minutes" selected>Minutes</option>
-          <option value="count">Count</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="positionSelect" class="form-label mb-0">Position</label>
-        <select id="positionSelect" class="form-select form-select-sm">
-          <option value="all" selected>All</option>
-          <option value="Guard">Guard</option>
-          <option value="Forward">Forward</option>
-          <option value="Center">Center</option>
-          <option value="Guard-Forward">Guard-Forward</option>
-          <option value="Forward-Guard">Forward-Guard</option>
-          <option value="Forward-Center">Forward-Center</option>
-          <option value="Center-Forward">Center-Forward</option>
-        </select>
-      </div>
+<header class="hero">
+  <div class="hero-overlay">
+    <h1>A Quarter Century of NBA Rookies</h1>
+    <div class="dek">
+      How the league’s youngest players have changed — in size, skill, origin and impact — from 2000 to today.
     </div>
-
-    <svg id="chart"></svg>
   </div>
-  <div class="chart-card" style="margin-top: 2rem;">
-    <div class="chart-title">Rookie Origins Bar Chart Race</div>
-    <div class="controls">
-      <button id="originsRestart" class="btn btn-sm btn-outline-primary">Restart</button>
-      <button id="originsPause" class="btn btn-sm btn-outline-secondary">Pause</button>
-    </div>
-    <svg id="originsRace"></svg>
-  </div>
+</header>
 
-  <div class="chart-card" style="margin-top: 2rem;">
-    <div class="chart-title">Rookie Shooting Trends</div>
-    <div class="controls">
-      <label>
-        Shot Type:
-        <select id="shootingShotSelect">
-          <option value="fg">Field Goals</option>
-          <option value="3p">Three Pointers</option>
-          <option value="ft">Free Throws</option>
-        </select>
-      </label>
+<main class="story">
+  <p>
+    When I finished my introductory "30 teams in 30 days" season preview last month, I knew my next pivot with Hanson Hoops content would be toward more in-depth, carefully planned big picture pieces, the kind that dive deeper into a specific trend, player or team that I wanted to zero in on using my data journalism and visualization toolkit.
+  </p>
 
-      <label>
-        Position:
-        <select id="shootingPositionSelect">
-          <option value="all">All</option>
-          <option value="Guard">Guard</option>
-          <option value="Forward">Forward</option>
-          <option value="Center">Center</option>
-        </select>
-      </label>
-    </div>
-
-    <svg id="shootingChart"></svg>
-    <div id="shootingTooltip" class="tooltip"></div>
-  </div>
-  <div class="chart-card" style="margin-top: 2rem;">
-    <div class="chart-title">Rookie Scoring — Points per 100 Possessions</div>
-
-    <svg id="scatterChart"></svg>
-    <div id="scatterTooltip" class="tooltip"></div>
-  </div>
-
-
-  <div class="chart-card" style="margin-top: 2rem;">
-    <div class="chart-title">Top Rookie Win Shares Scatterplot</div>
-    <div class="controls">
-      <div>
-        <label for="wsScatterX" class="form-label mb-0">X Axis</label>
-        <select id="wsScatterX" class="form-select form-select-sm">
-          <option value="WS" selected>Win Shares</option>
-          <option value="PER">PER</option>
-          <option value="ORtg">ORtg</option>
-          <option value="DRtg">DRtg</option>
-          <option value="BPM">BPM</option>
-          <option value="USG%">USG%</option>
-        </select>
-      </div>
-      <div>
-        <label for="wsScatterY" class="form-label mb-0">Y Axis</label>
-        <select id="wsScatterY" class="form-select form-select-sm">
-          <option value="PER" selected>PER</option>
-          <option value="WS">Win Shares</option>
-          <option value="ORtg">ORtg</option>
-          <option value="DRtg">DRtg</option>
-          <option value="BPM">BPM</option>
-          <option value="USG%">USG%</option>
-        </select>
-      </div>
-    </div>
-    <svg id="wsScatterChart"></svg>
-    <div id="wsScatterTooltip" class="tooltip"></div>
-  </div>
-
+  <!-- You’ll add more paragraphs and sections here -->
 </main>
 
-<div id="tooltip"></div>
+<!-- ===== Charts ===== -->
 
-<!-- Your streamgraph logic -->
+<div class="chart-card">
+  <div class="chart-title">Rookie Height Streamgraph, 2000-2025</div>
+  <div class="controls">
+    <div>
+      <label for="metricSelect" class="form-label mb-0">Metric</label>
+      <select id="metricSelect" class="form-select form-select-sm">
+        <option value="minutes" selected>Minutes</option>
+        <option value="count">Count</option>
+      </select>
+    </div>
+    <div>
+      <label for="positionSelect" class="form-label mb-0">Position</label>
+      <select id="positionSelect" class="form-select form-select-sm">
+        <option value="all" selected>All</option>
+        <option value="Guard">Guard</option>
+        <option value="Forward">Forward</option>
+        <option value="Center">Center</option>
+        <option value="Guard-Forward">Guard-Forward</option>
+        <option value="Forward-Guard">Forward-Guard</option>
+        <option value="Forward-Center">Forward-Center</option>
+        <option value="Center-Forward">Center-Forward</option>
+      </select>
+    </div>
+  </div>
+  <svg id="chart"></svg>
+</div>
+
+<div class="chart-card">
+  <div class="chart-title">Draft Origins, 2000-2025</div>
+  <div class="controls">
+    <button id="originsRestart" class="btn btn-sm btn-outline-primary">Restart</button>
+    <button id="originsPause" class="btn btn-sm btn-outline-secondary">Pause</button>
+  </div>
+  <svg id="originsRace"></svg>
+</div>
+
+<div class="chart-card">
+  <div class="chart-title">Rookie Shooting Trends. 2000-2025</div>
+  <div class="controls">
+    <label>
+      Shot Type:
+      <select id="shootingShotSelect">
+        <option value="fg">Field Goals</option>
+        <option value="3p">Three Pointers</option>
+        <option value="ft">Free Throws</option>
+      </select>
+    </label>
+    <label>
+      Position:
+      <select id="shootingPositionSelect">
+        <option value="all">All</option>
+        <option value="Guard">Guard</option>
+        <option value="Forward">Forward</option>
+        <option value="Center">Center</option>
+      </select>
+    </label>
+  </div>
+  <svg id="shootingChart"></svg>
+  <div id="shootingTooltip" class="tooltip"></div>
+</div>
+
+<div class="chart-card">
+  <div class="chart-title">Highest Scoring Rookies By Year</div>
+  <svg id="scatterChart"></svg>
+  <div id="scatterTooltip" class="tooltip"></div>
+</div>
+
+<div class="chart-card">
+  <div class="chart-title">Top 200 Highest Scoring Rookies - Advanced Stats</div>
+  <div class="controls">
+    <div>
+      <label for="wsScatterX" class="form-label mb-0">X Axis</label>
+      <select id="wsScatterX" class="form-select form-select-sm">
+        <option value="WS" selected>Win Shares</option>
+        <option value="PER">PER</option>
+        <option value="ORtg">ORtg</option>
+        <option value="DRtg">DRtg</option>
+        <option value="BPM">BPM</option>
+        <option value="USG%">USG%</option>
+      </select>
+    </div>
+    <div>
+      <label for="wsScatterY" class="form-label mb-0">Y Axis</label>
+      <select id="wsScatterY" class="form-select form-select-sm">
+        <option value="PER" selected>PER</option>
+        <option value="WS">Win Shares</option>
+        <option value="ORtg">ORtg</option>
+        <option value="DRtg">DRtg</option>
+        <option value="BPM">BPM</option>
+        <option value="USG%">USG%</option>
+      </select>
+    </div>
+  </div>
+  <svg id="wsScatterChart"></svg>
+  <div id="wsScatterTooltip" class="tooltip"></div>
+</div>
+
 <script src="js/rookies_stream.js"></script>
-
-<!-- Shooting Trends logic -->
+<script src="js/rookie_origins_race.js"></script>
 <script src="js/rookies_shooting.js"></script>
-
-
-<!-- Scatterplot logic -->
 <script src="js/rookies_scatter.js"></script>
-
-<!-- Top rookies win shares scatterplot -->
 <script src="js/rookies_ws_scatter.js"></script>
 
 
-<!-- Rookie origins bar chart race -->
-<script src="js/rookie_origins_race.js"></script>
 </body>
 </html>
-
