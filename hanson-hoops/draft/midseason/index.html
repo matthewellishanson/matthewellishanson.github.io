@@ -88,16 +88,6 @@
       text-align: center;
     }
 
-    .controls {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-      font-family: system-ui, sans-serif;
-      font-size: 0.9rem;
-    }
-
     svg {
       width: 100%;
       height: auto;
@@ -146,35 +136,34 @@
   <p class="story-dek">A midseason snapshot of the most explosive freshman scorers, ranked by points per 100 possessions.</p>
 
   <p class="story-lead">
-    Every season has a handful of freshmen who hit the ground running and set the college game on fire. This quick check-in gathers the most prolific scoring starts across recent years and stacks them side by side. The goal: see who has posted the loudest early-season scoring rates, and how much separation there is between the very top and the rest of the pack.
+    This year’s draft is shaping up to be the most highly touted draft since 2003, and you don’t need to be an expert at assessing talent to see why. Just as everyone in NBA circles is accepting a reality of “the foreigners are taking over,” we will have a draft where nearly the entire lottery will be American kids who played a year of college – with at least half the lottery comprised of elite talents. 
   </p>
   <p>
-    Use the table selector to swap between per-100, totals, and advanced data files. No matter which table you pick, the bars are ranked by points per 100 possessions, and each bar is colored by the player’s college team colors.
+    There is a clear top four, followed by a laundry list of guys fighting for the fifth spot. 
   </p>
+  <ul>
+    <li>Darryn Peterson</li>
+    <li>AJ Dybantsa</li>
+    <li>Cameron Boozer</li>
+    <li>Caleb Wilson</li>
+  </ul>
 </main>
 
 <div class="chart-card">
   <div class="chart-title">Top Per-Possession Scoring Freshmen, NCAA, 1986-2026</div>
-  <div class="controls">
-    <div>
-      <label for="statSelect" class="form-label mb-0">Data Table</label>
-      <select id="statSelect" class="form-select form-select-sm">
-        <option value="p100p" selected>Per 100 Possessions</option>
-        <option value="totals">Totals</option>
-        <option value="advanced">Advanced</option>
-      </select>
-    </div>
-  </div>
   <svg id="midseasonChart"></svg>
   <div id="midseasonTooltip" class="tooltip"></div>
 </div>
 
+<div class="chart-card">
+  <div class="chart-title">Usage vs Efficiency — NCAA Freshmen (2002–Present)</div>
+  <svg id="usageEfficiencyChart"></svg>
+  <div id="usageEfficiencyTooltip" class="tooltip"></div>
+</div>
+
 <script>
-  const dataFiles = {
-    p100p: "../../rookies/data/diaperdandies_p100p.csv",
-    totals: "../../rookies/data/diaperdandies_totals.csv",
-    advanced: "../../rookies/data/diaperdandies_advanced.csv"
-  };
+  const dataFile = "../../rookies/data/diaperdandies_p100p.csv";
+  const scatterDataFile = "./data/ncaa_freshmen_adv.csv";
 
   const teamColors = {
     "Abilene Christian": "#512888",
@@ -200,9 +189,35 @@
     "UTSA": "#0C2340"
   };
 
+  const teamLogos = {
+  "Duke": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png",
+  "Kentucky": "https://a.espncdn.com/i/teamlogos/ncaa/500/96.png",
+  "Kansas": "https://a.espncdn.com/i/teamlogos/ncaa/500/2305.png",
+  "Indiana": "https://a.espncdn.com/i/teamlogos/ncaa/500/84.png",
+  "Oregon": "https://a.espncdn.com/i/teamlogos/ncaa/500/2483.png",
+  "Abilene Christian": "https://a.espncdn.com/i/teamlogos/ncaa/500/2000.png",
+  "Louisiana State": "https://a.espncdn.com/i/teamlogos/ncaa/500/99.png",
+  "Ohio State": "https://a.espncdn.com/i/teamlogos/ncaa/500/194.png",
+  "Oklahoma": "https://a.espncdn.com/i/teamlogos/ncaa/500/201.png",
+  "Brigham Young": "https://a.espncdn.com/i/teamlogos/ncaa/500/252.png",
+  "Cal State Northridge": "https://a.espncdn.com/i/teamlogos/ncaa/500/2463.png",
+  "Detroit Mercy": "https://a.espncdn.com/i/teamlogos/ncaa/500/2174.png",
+  "High Point": "https://a.espncdn.com/i/teamlogos/ncaa/500/2272.png",
+  "Howard": "https://a.espncdn.com/i/teamlogos/ncaa/500/47.png",
+  "Marist": "https://a.espncdn.com/i/teamlogos/ncaa/500/2368.png",
+  "Montana": "https://a.espncdn.com/i/teamlogos/ncaa/500/149.png",
+  "Oral Roberts": "https://a.espncdn.com/i/teamlogos/ncaa/500/198.png",
+  "South Dakota State": "https://a.espncdn.com/i/teamlogos/ncaa/500/2571.png",
+  "Stanford": "https://a.espncdn.com/i/teamlogos/ncaa/500/24.png",
+  "USC Upstate": "https://a.espncdn.com/i/teamlogos/ncaa/500/2908.png",
+  "UTSA": "https://a.espncdn.com/i/teamlogos/ncaa/500/2636.png"
+  // add the rest once
+};
+
   const svg = d3.select("#midseasonChart");
   const tooltip = d3.select("#midseasonTooltip");
-  const statSelect = document.getElementById("statSelect");
+  const scatterSvg = d3.select("#usageEfficiencyChart");
+  const scatterTooltip = d3.select("#usageEfficiencyTooltip");
 
   const chartWidth = 1000;
   const margin = { top: 40, right: 40, bottom: 30, left: 220 };
@@ -230,7 +245,7 @@
       .range([margin.left, chartWidth - margin.right]);
 
     const y = d3.scaleBand()
-      .domain(data.map(d => d.player))
+      .domain(data.map(d => d.label))
       .range([margin.top, height - margin.bottom])
       .padding(0.25);
 
@@ -239,17 +254,36 @@
       .attr("transform", `translate(0, ${margin.top})`)
       .call(d3.axisTop(x).ticks(6).tickSizeOuter(0));
 
-    svg.append("g")
+    const yAxis = svg.append("g")
       .attr("class", "axis")
       .attr("transform", `translate(${margin.left}, 0)`)
-      .call(d3.axisLeft(y).tickSizeOuter(0));
+      .call(d3.axisLeft(y).tickSize(0).tickPadding(10));
+
+    yAxis.selectAll(".tick text").remove();
+
+    yAxis.selectAll(".tick")
+      .append("image")
+      .attr("xlink:href", d => teamLogos[data.find(r => r.label === d).team])
+      .attr("x", -34)
+      .attr("y", -10)
+      .attr("width", 22)
+      .attr("height", 22);
+
+    yAxis.selectAll(".tick")
+      .append("text")
+      .attr("x", -6)
+      .attr("y", 4)
+      .attr("text-anchor", "end")
+      .attr("font-size", "12px")
+      .attr("font-family", "system-ui, sans-serif")
+      .text(d => d);
 
     const bars = svg.append("g")
       .selectAll("rect")
       .data(data, d => d.player)
       .join("rect")
       .attr("x", x(0))
-      .attr("y", d => y(d.player))
+      .attr("y", d => y(d.label))
       .attr("height", y.bandwidth())
       .attr("width", d => x(d.pts) - x(0))
       .attr("fill", d => getTeamColor(d.team))
@@ -261,14 +295,14 @@
       .join("text")
       .attr("class", "value-label")
       .attr("x", d => x(d.pts) + 6)
-      .attr("y", d => y(d.player) + y.bandwidth() / 2 + 4)
-      .text(d => d.pts.toFixed(1));
+      .attr("y", d => y(d.label) + y.bandwidth() / 2 + 4)
+      .text(d => `${d.pts.toFixed(1)} - ${d.season}`);
 
     bars
       .on("mouseenter", (event, d) => {
         tooltip
           .style("opacity", 1)
-          .html(`<strong>${d.player}</strong><br>${d.team} • ${d.season}<br>${d.pts.toFixed(1)} PTS/100`);
+          .html(`<strong>${d.player}</strong><br>${d.team} - ${d.season}<br>${d.pts.toFixed(1)} PTS/100`);
       })
       .on("mousemove", (event) => {
         tooltip
@@ -281,22 +315,259 @@
   }
 
   function loadData() {
-    const fileKey = statSelect.value;
-    const filePath = dataFiles[fileKey];
-
-    d3.csv(filePath).then(raw => {
+    d3.csv(dataFile).then(raw => {
       const rows = raw.map(d => ({
         player: d.Player,
         team: d.Team,
         season: d.Season,
+        label: `${d.Player} (${d.Season})`,
         pts: parseFloat(d["PTS/100 Poss."])
       }));
       renderChart(rows);
     });
   }
 
-  statSelect.addEventListener("change", loadData);
   loadData();
+
+  function renderUsageEfficiency(rows) {
+    const width = 1000;
+    const height = 560;
+    const margin = { top: 40, right: 40, bottom: 50, left: 70 };
+
+    scatterSvg.selectAll("*").remove();
+    scatterSvg.attr("viewBox", `0 0 ${width} ${height}`);
+
+    const usgExtent = d3.extent(rows, d => d.usg);
+    const tsExtent = d3.extent(rows, d => d.ts);
+    const ptsExtent = d3.extent(rows, d => d.pts100);
+
+    const usgPad = 2;
+    const tsPad = 0.02;
+
+    const x = d3.scaleLinear()
+      .domain([
+        Math.max(5, usgExtent[0] - usgPad),
+        usgExtent[1] + usgPad
+      ])
+      .range([margin.left, width - margin.right]);
+
+    const y = d3.scaleLinear()
+      .domain([tsExtent[0] - tsPad, tsExtent[1] + tsPad])
+      .range([height - margin.bottom, margin.top]);
+
+    const ptsMin = 25;
+    const ptsMax = 49;
+    const r = d3.scaleSqrt()
+      .domain([
+        Math.min(ptsMin, ptsExtent[0]),
+        Math.max(ptsMax, ptsExtent[1])
+      ])
+      .range([3, 9])
+      .clamp(true);
+
+    scatterSvg.append("g")
+      .attr("class", "axis")
+      .attr("transform", `translate(0, ${height - margin.bottom})`)
+      .call(d3.axisBottom(x).ticks(7));
+
+    scatterSvg.append("g")
+      .attr("class", "axis")
+      .attr("transform", `translate(${margin.left}, 0)`)
+      .call(d3.axisLeft(y).ticks(6).tickFormat(d3.format(".0%")));
+
+    scatterSvg.append("text")
+      .attr("x", (width - margin.left - margin.right) / 2 + margin.left)
+      .attr("y", height - 12)
+      .attr("text-anchor", "middle")
+      .attr("font-family", "system-ui, sans-serif")
+      .attr("font-size", "12px")
+      .text("Usage Rate (USG%)");
+
+    scatterSvg.append("text")
+      .attr("x", -(height - margin.top - margin.bottom) / 2 - margin.top)
+      .attr("y", 18)
+      .attr("transform", "rotate(-90)")
+      .attr("text-anchor", "middle")
+      .attr("font-family", "system-ui, sans-serif")
+      .attr("font-size", "12px")
+      .text("True Shooting (TS%)");
+
+    const usgRef = 25;
+    const tsRef = 0.58;
+
+    if (usgRef >= x.domain()[0] && usgRef <= x.domain()[1]) {
+      scatterSvg.append("line")
+        .attr("x1", x(usgRef))
+        .attr("x2", x(usgRef))
+        .attr("y1", margin.top)
+        .attr("y2", height - margin.bottom)
+        .attr("stroke", "#d1d5db")
+        .attr("stroke-dasharray", "4 4");
+    }
+
+    if (tsRef >= y.domain()[0] && tsRef <= y.domain()[1]) {
+      scatterSvg.append("line")
+        .attr("x1", margin.left)
+        .attr("x2", width - margin.right)
+        .attr("y1", y(tsRef))
+        .attr("y2", y(tsRef))
+        .attr("stroke", "#d1d5db")
+        .attr("stroke-dasharray", "4 4");
+    }
+
+    scatterSvg.append("text")
+      .attr("x", width - margin.right - 8)
+      .attr("y", margin.top + 14)
+      .attr("text-anchor", "end")
+      .attr("font-family", "system-ui, sans-serif")
+      .attr("font-size", "11px")
+      .attr("fill", "#9ca3af")
+      .text("High usage / High efficiency");
+
+    scatterSvg.append("text")
+      .attr("x", width - margin.right - 8)
+      .attr("y", height - margin.bottom - 8)
+      .attr("text-anchor", "end")
+      .attr("font-family", "system-ui, sans-serif")
+      .attr("font-size", "11px")
+      .attr("fill", "#9ca3af")
+      .text("High usage / Low efficiency");
+
+    scatterSvg.append("text")
+      .attr("x", margin.left + 8)
+      .attr("y", margin.top + 14)
+      .attr("text-anchor", "start")
+      .attr("font-family", "system-ui, sans-serif")
+      .attr("font-size", "11px")
+      .attr("fill", "#9ca3af")
+      .text("Low usage / High efficiency");
+
+    scatterSvg.append("text")
+      .attr("x", margin.left + 8)
+      .attr("y", height - margin.bottom - 8)
+      .attr("text-anchor", "start")
+      .attr("font-family", "system-ui, sans-serif")
+      .attr("font-size", "11px")
+      .attr("fill", "#9ca3af")
+      .text("Low usage / Low efficiency");
+
+    const highlightSeason = "2025-26";
+    const namedProspects = new Set([
+      "Darryn Peterson",
+      "Cameron Boozer",
+      "AJ Dybantsa",
+      "Caleb Wilson"
+    ]);
+
+    const points = scatterSvg.append("g")
+      .selectAll("circle")
+      .data(rows, d => `${d.player}-${d.season}`)
+      .join("circle")
+      .attr("cx", d => x(d.usg))
+      .attr("cy", d => y(d.ts))
+      .attr("r", d => {
+        const base = r(d.pts100);
+        return namedProspects.has(d.player) ? base + 1.5 : base;
+      })
+      .attr("fill", d => d.season === highlightSeason ? "#7c3aed" : "#9ca3af")
+      .attr("opacity", d => d.season === highlightSeason ? 0.9 : 0.45)
+      .attr("stroke", d => {
+        if (namedProspects.has(d.player)) {
+          return "#111";
+        }
+        return d.season === highlightSeason ? "#111" : "none";
+      })
+      .attr("stroke-width", d => namedProspects.has(d.player) ? 1.2 : 0.8);
+
+    points
+      .on("mouseenter", (event, d) => {
+        scatterTooltip
+          .style("opacity", 1)
+          .html(
+            `<strong>${d.player}</strong><br>${d.team} - ${d.season}` +
+            `<br>PTS/100: ${d.pts100.toFixed(1)}` +
+            `<br>USG: ${d.usg.toFixed(1)}%` +
+            `<br>TS: ${(d.ts * 100).toFixed(1)}%` +
+            `<br>MP: ${d.mp.toFixed(0)}`
+          );
+      })
+      .on("mousemove", (event) => {
+        scatterTooltip
+          .style("left", `${event.pageX + 12}px`)
+          .style("top", `${event.pageY - 24}px`);
+      })
+      .on("mouseleave", () => {
+        scatterTooltip.style("opacity", 0);
+      });
+
+    const legend = scatterSvg.append("g")
+      .attr("transform", `translate(${width - margin.right - 210}, ${margin.top + 36})`);
+
+    legend.append("circle")
+      .attr("cx", 0)
+      .attr("cy", 0)
+      .attr("r", 5)
+      .attr("fill", "#9ca3af")
+      .attr("opacity", 0.6);
+
+    legend.append("text")
+      .attr("x", 12)
+      .attr("y", 4)
+      .attr("font-family", "system-ui, sans-serif")
+      .attr("font-size", "12px")
+      .attr("fill", "#374151")
+      .text("Historical freshmen");
+
+    legend.append("circle")
+      .attr("cx", 0)
+      .attr("cy", 20)
+      .attr("r", 5)
+      .attr("fill", "#7c3aed");
+
+    legend.append("text")
+      .attr("x", 12)
+      .attr("y", 24)
+      .attr("font-family", "system-ui, sans-serif")
+      .attr("font-size", "12px")
+      .attr("fill", "#374151")
+      .text("2025-26 freshmen");
+
+    legend.append("text")
+      .attr("x", 0)
+      .attr("y", 44)
+      .attr("font-family", "system-ui, sans-serif")
+      .attr("font-size", "11px")
+      .attr("fill", "#6b7280")
+      .text("Size = PTS/100 (25–49)");
+  }
+
+  function loadUsageEfficiencyData() {
+    d3.text(scatterDataFile).then(text => {
+      const rows = d3.csvParseRows(text);
+      const columns = rows[0] || [];
+      const playerIndex = columns.indexOf("Player");
+      const teamIndex = columns.indexOf("Team");
+      const seasonIndex = columns.indexOf("Season");
+      const ptsIndex = columns.indexOf("PTS/100 Poss.");
+      const usgIndex = columns.indexOf("USG%");
+      const tsIndex = columns.indexOf("TS%");
+      const mpIndex = columns.indexOf("MP");
+
+      const parsed = rows.slice(1).map(row => ({
+        player: row[playerIndex],
+        team: row[teamIndex],
+        season: row[seasonIndex],
+        pts100: parseFloat(row[ptsIndex]),
+        usg: parseFloat(row[usgIndex]),
+        ts: parseFloat(row[tsIndex]),
+        mp: parseFloat(row[mpIndex])
+      })).filter(d => !Number.isNaN(d.usg) && !Number.isNaN(d.ts));
+
+      renderUsageEfficiency(parsed);
+    });
+  }
+
+  loadUsageEfficiencyData();
 </script>
 
 </body>
