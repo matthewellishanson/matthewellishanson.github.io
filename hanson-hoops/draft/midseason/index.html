@@ -34,6 +34,7 @@
       max-width: 720px;
       margin: 4rem auto;
       padding: 0 1.25rem;
+      text-align: center;
     }
 
     .story-title {
@@ -41,12 +42,33 @@
       font-weight: 700;
       line-height: 1.15;
       margin-bottom: 0.75rem;
+      text-align: center;
     }
 
     .story-dek {
       font-size: 1.25rem;
       color: #555;
       margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .lead-art {
+      margin: 2rem auto 3rem;
+      max-width: 720px;
+      text-align: center;
+    }
+
+    .lead-art img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .lead-art figcaption {
+      font-size: 0.8rem;
+      color: #666;
+      margin-top: 0.5rem;
     }
 
     .story p {
@@ -64,11 +86,34 @@
       padding-top: 0.1rem;
     }
 
+    .story-lead {
+      text-align: justify
+    }
+
+    p {
+      text-align: justify;
+    }
+
     .story h2 {
       margin-top: 3rem;
       margin-bottom: 1rem;
       font-size: 1.75rem;
       font-weight: 700;
+    }
+
+    .story .centered-list {
+      list-style-position: inside;
+      padding-left: 0;
+      margin: 0 auto 1.5rem;
+      max-width: 320px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .story .centered-list li a {
+      color: var(--app-primary);
+      margin-bottom: 0.5rem;
+      display: inline-block;
     }
 
     /* ===== Charts ===== */
@@ -82,7 +127,7 @@
     }
 
     .chart-title {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       font-weight: 600;
       margin-bottom: 1rem;
       text-align: center;
@@ -121,6 +166,168 @@
       opacity: 0;
       box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     }
+
+    .story-break{
+      display:flex;
+      justify-content:center;
+      margin:3rem 0;
+    }
+
+    .story-break img{
+      width:20%;
+      max-width:170px;
+      min-width:90px;
+      height:auto;
+      display:block;
+    }
+
+    .player-subhead{
+      margin: 3rem 0 1.75rem 0;
+      padding-bottom: 0.75rem;
+      border-bottom: 3px solid var(--app-primary);
+    }
+
+    .player-subhead h3{
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.2;
+      letter-spacing: -0.3px;
+    }
+
+    .player-meta{
+      margin-top: 0.35rem;
+      font-family: system-ui, sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #555;
+    }
+
+    .player-subhead-lite{
+      margin: 2.25rem 0 2.25rem 0;
+      padding-left: 0.75rem;
+      border-left: 3px solid var(--app-primary);
+    }
+
+    .player-subhead-lite h4{
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .player-meta-lite{
+      margin-top: 0.15rem;
+      font-family: system-ui, sans-serif;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #666;
+    }
+
+    /* ===== Mobile-only chart tightening ===== */
+    @media (max-width: 576px){
+      .chart-card{
+        padding: 1rem;
+        margin: 2.25rem auto;
+        border-radius: 10px;
+      }
+
+      .chart-title{
+        font-size: 1.05rem;
+        line-height: 1.25;
+        margin-bottom: 0.75rem;
+      }
+
+      .axis text{
+        font-size: 10px;
+      }
+
+      .value-label{
+        font-size: 10px;
+      }
+    }
+
+    .byline {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.6rem;
+      margin: 1.25rem auto 2.25rem;
+      padding: 0.85rem 1rem;
+      max-width: 720px;
+
+      border-top: 2px solid rgba(124, 58, 237, 0.25);
+      border-bottom: 2px solid rgba(124, 58, 237, 0.25);
+    }
+
+    .byline .byline-label {
+      font-family: system-ui, sans-serif;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #666;
+    }
+
+    .byline .byline-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .byline .byline-name a {
+      color: var(--app-primary);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(124, 58, 237, 0.35);
+    }
+
+    .byline .byline-name a:hover {
+      border-bottom-color: var(--app-primary);
+    }
+
+    .byline .byline-meta {
+      font-family: system-ui, sans-serif;
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .byline .dot {
+      color: rgba(124, 58, 237, 0.5);
+    }
+
+    /* Mobile: tighter spacing */
+    @media (max-width: 576px) {
+      .byline {
+        margin: 1rem auto 1.75rem;
+        padding: 0.75rem 0.9rem;
+      }
+      .byline .byline-name { font-size: 1.05rem; }
+      .byline .byline-meta { font-size: 0.8rem; }
+    }
+
+    .byline-secondary{
+      max-width: 720px;
+      margin: -1.25rem auto 2.25rem; /* tucks under main byline */
+      text-align: center;
+      font-family: system-ui, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #777;
+    }
+
+    .byline-secondary span{
+      color: var(--app-primary);
+      font-weight: 600;
+    }
+
+
+
   </style>
 </head>
 <body>
@@ -132,8 +339,21 @@
 </nav>
 
 <main class="story">
+  <figure class="lead-art">
+    <img src="../../assets/darrynpeterson.jpg" alt="Darryn Peterson">
+  </figure>
   <h1 class="story-title">Midseason NBA Draft Review</h1>
-  <p class="story-dek">A midseason snapshot of the most explosive freshman scorers, ranked by points per 100 possessions.</p>
+  <p class="story-dek">A midseason snapshot of the most explosive NBA Draft prospects from one of the most hyped draft classes in recent memory</p>
+  <div class="byline">
+    <span class="byline-label">Guest writer</span>
+    <span class="dot">•</span>
+    <span class="byline-name">
+      <a href="https://graydonjmelia.wordpress.com" rel="author">G.J. Melia</a>
+    </span>
+  </div>
+  <div class="byline-secondary">
+  Graphics by <span>Matt Hanson</span>
+  </div>
 
   <p class="story-lead">
     This year’s draft is shaping up to be the most highly touted draft since 2003, and you don’t need to be an expert at assessing talent to see why. Just as everyone in NBA circles is accepting a reality of “the foreigners are taking over,” we will have a draft where nearly the entire lottery will be American kids who played a year of college – with at least half the lottery comprised of elite talents. 
@@ -141,25 +361,135 @@
   <p>
     There is a clear top four, followed by a laundry list of guys fighting for the fifth spot. 
   </p>
-  <ul>
-    <li>Darryn Peterson</li>
-    <li>AJ Dybantsa</li>
-    <li>Cameron Boozer</li>
-    <li>Caleb Wilson</li>
+  <ul class="centered-list">
+    <li><a href="#darryn-peterson">Darryn Peterson</a></li>
+    <li><a href="#aj-dybantsa">AJ Dybantsa</a></li>
+    <li><a href="#cameron-boozer">Cameron Boozer</a></li>
+    <li><a href="#caleb-wilson">Caleb Wilson</a></li>
   </ul>
+  <p>All four players feel pretty interchangeable as prospects at this midpoint of their college seasons, four guaranteed franchise talents separated only by their unique games and skill sets. Any one of them should hit at the next level. A closer look at these can’t-miss prospects reveals exactly why so many NBA teams are itching to land in the top of the lottery this season.</p>
+  <div class="story-break">
+    <img src="../../assets/basketball-court.svg" alt="" aria-hidden="true">
+  </div>
+  <div class="player-subhead">
+    <h3 id="darryn-peterson">Darryn Peterson</h3>
+    <div class="player-meta">
+      Kansas • 46.9 PTS/100 • 35.8 USG% • .629 TS
+    </div>
+  </div>
+  <p>Let’s start with the presumptive top overall pick, Darryn Peterson. People have compared his game to Kobe, Tracy McGrady and other elite scoring guards. Darryn is easily the favorite to hear his name called first in April, if he’s healthy and there is no doubt about his availability. While I don’t think his lingering hamstring and quad cramping issues will follow him to the league, this season has not sowed trust in his health. Even when he is constantly asking out to treat his cramps, he manages to put up a seemingly lackadaisical but enormous statline, like the 32 points in 32 minutes against TCU on January 6. Like his three other counterparts, he is the reason the one and done rule should not exist. This man is an NBA rookie-of-the-year candidate playing in college. He’s actually historically great through his first 10 games: he ranks first among all freshmen in the 3-point era (since 1986-87) with at least 5 games played and 20 minutes per game in points per 100 possessions, averaging nearly 50 points per 100 so far.</p>
+  <div class="player-subhead">
+    <h3 id="aj-dybantsa">AJ Dybantsa</h3>
+    <div class="player-meta">
+      BYU • 41.9 PTS/100 • 32.6 USG% • .615 TS
+    </div>
+  </div>
+  <p>Before the season, AJ was breaking NIL earnings records. A few months into his freshman season at BYU, he’s graduated to breaking NCAA scoring records. He’s led the Cougars to their best start in 15 years, since Jimmer Fredette graced the Marriott Center. While he can shoot it, he’s more inclined to find the rim, thanks to his athleticism in a 6’9”, 210-lb frame. In his best performance, (January 24 vs. Utah) he set the BYU freshman record with 43 points. Only 12 of those 43 points came off three pointers, with the other 31 from an assortment of well-defended floaters, lay-ups, dunks and free throws. AJ is developing a reputation as a foul baiter, averaging nine trips to the line this year. Being frequently compared to Shai Gilgeous-Alexander. Like SGA, his high number of free throw attempts also highlights his unwavering confidence to attack the paint and force contact. Like Peterson, he’s historically good from a points per possession standpoint, ranking fourth among all the freshmen meeting the aforementioned criteria in per-possession scoring.</p>
+  <div class="chart-card">
+    <div class="chart-title">Top Per-Possession Scoring Freshmen, NCAA, 1986-2026</div>
+    <svg id="midseasonChart"></svg>
+    <div id="midseasonTooltip" class="tooltip"></div>
+  </div>
+  <div class="player-subhead">
+    <h3 id="cameron-boozer">Cameron Boozer</h3>
+    <div class="player-meta">
+      Duke • 41.9 PTS/100 • 30.2 USG% • .664 TS
+    </div> 
+  </div>
+  <p>A recurring theme here is each of these guys get their stats. You can box score watch all you want and get an idea that you should watch the highlights. Boozer has the highest floor of these four phenoms. Like AJ and Darryn, Cam makes putting up 20 points look easy. Yet, he is showing to be the most consistent, averaging a double-double and solidifying his case as the best big in the draft. He is already the betting favorite to win the lion’s share player of the year awards.The natural comparison is his dad, former NBA All-Star PF Carlos Boozer, but even that would sell him short. Cam is much more versatile than Carlos ever was, with a perimeter game that can stretch the floor effectively. He’s also been a higher-touted prospect than his dad for years now, after a high school career that ranks among the best of all-time in winning percentage and consistent production over all four years.</p>
+  <div class="player-subhead">
+    <h3 id="caleb-wilson">Caleb Wilson</h3>
+    <div class="player-meta">
+      UNC • 36.6 PTS/100 • 28.2 USG% • .629 TS
+    </div>
+  </div>
+  <p>He could end up being the best of the four. He is leading North Carolina to their best start in Hubert Davis’ five years as head coach. Wilson is the most versatile of the top four. Listed two inches below seven feet, he is a long, menacing presence compared to Kevin Durant. Although nowhere near the shotmaker Durant was at Texas, Wilson is a more broadly gifted player than KD at 18. He leads the Tar Heels in every statistical category except assists, where he sits at 2.8 per game to Kyan Evans’ 3.0. He consistently impresses with his ability to make a play on the defensive end, then immediately look to start the break. He also has a developed inside game, able to get a bucket in the paint when called upon. Caleb Wilson being the fourth guy on this list just goes to show how freakish the other three are.</p>
+  <div class="chart-card">
+    <div class="chart-title">Usage vs Efficiency — NCAA Freshmen (2002–Present)</div>
+    <svg id="usageEfficiencyChart"></svg>
+    <div id="usageEfficiencyTooltip" class="tooltip"></div>
+  </div>
+  <div class="story-break">
+    <img src="../../assets/basketball-court.svg" alt="" aria-hidden="true">
+  </div>
+  <p class="story-lead">
+    These four guys are all clearly ahead of the rest, but there's a laundry list of others fighting for a lottery selection. While not all of them are from the US, for the first time in years, all these top prospects are exclusively college freshmen breaking into the American basketball scene.
+  </p>
+  <div class="player-subhead-lite">
+    <h4>Mikel Brown Jr.</h4>
+    <div class="player-meta-lite">
+      Louisville • 32.3 PTS/100 • 29.9 USG% • .539 TS
+    </div>
+  </div>
+  <p>The player most commonly mentioned behind the four juggernauts in the preseason, Brown has impressed when available, but unfortunately injuries have kept him sidelined for the last month. Brown Jr. is an offensive talent, but can struggle to shoot efficiently.</p>
+  <div class="player-subhead-lite">
+    <h4>Kingston Flemings</h4>
+    <div class="player-meta-lite">
+      Houston • 34.3 PTS/100 • 26.1 USG% • .616 TS
+    </div>
+  </div>
+  <p>Flemings is a notable new fifth selection in recent mock drafts. In any other draft he’d be the first scoring guard selected, but in this year’s guard-heavy class he is the third or fourth. Most recently, he scored 42 of Houston’s 86 points in a loss to conference and in-state rival Texas Tech.</p>
+  <div class="player-subhead-lite">
+    <h4>Braylon Mullins</h4>
+    <div class="player-meta-lite">
+      UCONN •  26.6 PTS/100 • 21.7 USG% • .602 TS
+    </div>
+  </div>
+  <p>The 2025 Mr. Indiana Basketball has one of the highest ceilings in this list. Although he has yet to truly break out, he is a consistent deep threat and can be counted on to make timely tough shots.</p>
+  <div class="player-subhead-lite">
+    <h4>Darius Acuff Jr</h4>
+    <div class="player-meta-lite">
+      Arkansas • 33.3 PTS/100 • 26.8 USG% • .607 TS
+    </div>
+  </div>
+  <p>Acuff’s elite offensive prowess reminds of many past prized recruits of John Calipari. His ability to score and distribute efficiently is a large reason Arkansas remains a dark horse in the SEC regular season chase.</p>
+  <div class="player-subhead-lite">
+    <h4>Nate Ament</h4>
+    <div class="player-meta-lite">
+      Tennessee •  32.6 PTS/100 • 28.7 USG% • .540 TS
+    </div>
+  </div>
+  <p>Ament is a versatile wing with a big upside. Lanky but agile, he is comfortable leading the break or running the offense. Ament is unafraid to attack and plays with a short memory, always finding ways to find a look or get to the line.</p>
+  <div class="player-subhead-lite">
+    <h4>Koa Peat</h4>
+    <div class="player-meta-lite">
+      Arizona • 29.0 PTS/100 • 23.7 USG% • .591 TS
+    </div>
+  </div>
+  <p>Peat’s hype has cooled off a bit since his 30 point emergence in the opener against defending national champion Florida. He continues to be one of the main characters of undefeated and top ranked Wildcats, providing a solid interior presence each game.</p>
+  <div class="player-subhead-lite">
+    <h4>Tounde Yessoufou</h4>
+    <div class="player-meta-lite">
+      Baylor • 32.3 PTS/100 • 27.2 USG% • .571 TS
+    </div>
+  </div>
+  <p>In recent weeks, Yessoufou is slowly moving up draft boards and catching the eyes of scouts after three 20-point performances versus Big 12 competition. As the second leading scorer and rebounder on Baylor, he is a steady, reliable small forward who is only continuing to improve.</p>
+  <div class="player-subhead-lite">
+    <h4>Keaton Wagler</h4>
+    <div class="player-meta-lite">
+      Illinois • 32.9 PTS/100 • 23.4 USG% • .639 TS
+    </div>
+  </div>
+  <p>An under-the-radar recruit from the Kansas City suburbs, local schools like Kansas, K-State and Missouri clearly overlooked Wagler and let him get to Illinois. He has already carved a vital role in Champaign and led the team to a signature road win at Purdue, scoring 46 points, and is rapidly climbing mock drafts following that breakout performance.</p>
+  <div class="player-subhead-lite">
+    <h4>Hannes Steinbach</h4>
+    <div class="player-meta-lite">
+      Washington • 30.8 PTS/100 • 24.6 USG% • .595 TS
+    </div>
+  </div>
+  <p>Steinbach is a long, near seven-foot nightmare to face on the defensive end. Offensively, he is able to easily find a good shot when fed in the paint, but steps outside to attempt 2-3 three pointers a game. He is constantly battling for rebounds and averages a double double. He aims to be the latest German big man to have an impact quickly in the league.</p>
+  <div class="player-subhead-lite">
+    <h4>Brayden Burries</h4>
+    <div class="player-meta-lite">
+      Arizona • 29.3 PTS/100 • 22.8 USG% • .610 TS
+    </div>
+  </div>
+  <p>Builds on each performance and continues to rise draft boards. A natural scorer averaging 15 points per game with seven 20-point games this year. In Arizona’s first true road test at BYU, Burries scored a career high 29 to lead the Wildcats to the win.</p>
 </main>
 
-<div class="chart-card">
-  <div class="chart-title">Top Per-Possession Scoring Freshmen, NCAA, 1986-2026</div>
-  <svg id="midseasonChart"></svg>
-  <div id="midseasonTooltip" class="tooltip"></div>
-</div>
 
-<div class="chart-card">
-  <div class="chart-title">Usage vs Efficiency — NCAA Freshmen (2002–Present)</div>
-  <svg id="usageEfficiencyChart"></svg>
-  <div id="usageEfficiencyTooltip" class="tooltip"></div>
-</div>
+
+
 
 <script>
   const dataFile = "../../rookies/data/diaperdandies_p100p.csv";
@@ -186,49 +516,121 @@
     "South Dakota State": "#0033A0",
     "Stanford": "#8C1515",
     "USC Upstate": "#006A4E",
-    "UTSA": "#0C2340"
+    "UTSA": "#0C2340",
+    "Virginia": "#E57200"
   };
 
   const teamLogos = {
-  "Duke": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png",
-  "Kentucky": "https://a.espncdn.com/i/teamlogos/ncaa/500/96.png",
-  "Kansas": "https://a.espncdn.com/i/teamlogos/ncaa/500/2305.png",
-  "Indiana": "https://a.espncdn.com/i/teamlogos/ncaa/500/84.png",
-  "Oregon": "https://a.espncdn.com/i/teamlogos/ncaa/500/2483.png",
-  "Abilene Christian": "https://a.espncdn.com/i/teamlogos/ncaa/500/2000.png",
-  "Louisiana State": "https://a.espncdn.com/i/teamlogos/ncaa/500/99.png",
-  "Ohio State": "https://a.espncdn.com/i/teamlogos/ncaa/500/194.png",
-  "Oklahoma": "https://a.espncdn.com/i/teamlogos/ncaa/500/201.png",
-  "Brigham Young": "https://a.espncdn.com/i/teamlogos/ncaa/500/252.png",
-  "Cal State Northridge": "https://a.espncdn.com/i/teamlogos/ncaa/500/2463.png",
-  "Detroit Mercy": "https://a.espncdn.com/i/teamlogos/ncaa/500/2174.png",
-  "High Point": "https://a.espncdn.com/i/teamlogos/ncaa/500/2272.png",
-  "Howard": "https://a.espncdn.com/i/teamlogos/ncaa/500/47.png",
-  "Marist": "https://a.espncdn.com/i/teamlogos/ncaa/500/2368.png",
-  "Montana": "https://a.espncdn.com/i/teamlogos/ncaa/500/149.png",
-  "Oral Roberts": "https://a.espncdn.com/i/teamlogos/ncaa/500/198.png",
-  "South Dakota State": "https://a.espncdn.com/i/teamlogos/ncaa/500/2571.png",
-  "Stanford": "https://a.espncdn.com/i/teamlogos/ncaa/500/24.png",
-  "USC Upstate": "https://a.espncdn.com/i/teamlogos/ncaa/500/2908.png",
-  "UTSA": "https://a.espncdn.com/i/teamlogos/ncaa/500/2636.png"
-  // add the rest once
-};
+    "Duke": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png",
+    "Kentucky": "https://a.espncdn.com/i/teamlogos/ncaa/500/96.png",
+    "Kansas": "https://a.espncdn.com/i/teamlogos/ncaa/500/2305.png",
+    "Indiana": "https://a.espncdn.com/i/teamlogos/ncaa/500/84.png",
+    "Oregon": "https://a.espncdn.com/i/teamlogos/ncaa/500/2483.png",
+    "Abilene Christian": "https://a.espncdn.com/i/teamlogos/ncaa/500/2000.png",
+    "Louisiana State": "https://a.espncdn.com/i/teamlogos/ncaa/500/99.png",
+    "Ohio State": "https://a.espncdn.com/i/teamlogos/ncaa/500/194.png",
+    "Oklahoma": "https://a.espncdn.com/i/teamlogos/ncaa/500/201.png",
+    "Brigham Young": "https://a.espncdn.com/i/teamlogos/ncaa/500/252.png",
+    "Cal State Northridge": "https://a.espncdn.com/i/teamlogos/ncaa/500/2463.png",
+    "Detroit Mercy": "https://a.espncdn.com/i/teamlogos/ncaa/500/2174.png",
+    "High Point": "https://a.espncdn.com/i/teamlogos/ncaa/500/2272.png",
+    "Howard": "https://a.espncdn.com/i/teamlogos/ncaa/500/47.png",
+    "Marist": "https://a.espncdn.com/i/teamlogos/ncaa/500/2368.png",
+    "Montana": "https://a.espncdn.com/i/teamlogos/ncaa/500/149.png",
+    "Oral Roberts": "https://a.espncdn.com/i/teamlogos/ncaa/500/198.png",
+    "South Dakota State": "https://a.espncdn.com/i/teamlogos/ncaa/500/2571.png",
+    "Stanford": "https://a.espncdn.com/i/teamlogos/ncaa/500/24.png",
+    "USC Upstate": "https://a.espncdn.com/i/teamlogos/ncaa/500/2908.png",
+    "UTSA": "https://a.espncdn.com/i/teamlogos/ncaa/500/2636.png",
+    "Virginia": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/258.png&h=200&w=200"
+  };
 
   const svg = d3.select("#midseasonChart");
   const tooltip = d3.select("#midseasonTooltip");
+
   const scatterSvg = d3.select("#usageEfficiencyChart");
   const scatterTooltip = d3.select("#usageEfficiencyTooltip");
 
-  const chartWidth = 1000;
-  const margin = { top: 40, right: 40, bottom: 30, left: 220 };
-  const barHeight = 22;
-  const barGap = 6;
+  // ---------------------------
+  // Responsive helpers (NEW)
+  // ---------------------------
+  function isMobile() {
+    return window.innerWidth <= 576;
+  }
+
+  function getBarLayout() {
+    if (!isMobile()) {
+      return {
+        chartWidth: 1000,
+        margin: { top: 40, right: 40, bottom: 30, left: 220 },
+        barHeight: 22,
+        barGap: 6,
+        logoSize: 22,
+        logoX: -34,
+        tickFont: 12,
+        valueFont: 11,
+        xTicks: 6,
+        tickPadding: 10
+      };
+    }
+    // Mobile: reduce left margin + logo size, fewer ticks
+    return {
+      chartWidth: 520,
+      margin: { top: 32, right: 18, bottom: 28, left: 150 },
+      barHeight: 18,
+      barGap: 5,
+      logoSize: 16,
+      logoX: -26,
+      tickFont: 10,
+      valueFont: 10,
+      xTicks: 4,
+      tickPadding: 8
+    };
+  }
+
+  function getScatterLayout() {
+    if (!isMobile()) {
+      return {
+        width: 1000,
+        height: 560,
+        margin: { top: 40, right: 40, bottom: 50, left: 70 },
+        axisFont: 12,
+        quadFont: 11,
+        showQuadrants: true,
+        showLegend: true,
+        xTicks: 7,
+        yTicks: 6
+      };
+    }
+    // Mobile: smaller canvas, hide legend & quadrant text
+    return {
+      width: 520,
+      height: 380,
+      margin: { top: 26, right: 16, bottom: 44, left: 52 },
+      axisFont: 10,
+      quadFont: 9,
+      showQuadrants: false,
+      showLegend: false,
+      xTicks: 5,
+      yTicks: 5
+    };
+  }
 
   function getTeamColor(team) {
     return teamColors[team] || "#6b7280";
   }
 
+  // ---------------------------
+  // BAR CHART (updated to use layout)
+  // ---------------------------
   function renderChart(rows) {
+    const layout = getBarLayout();
+
+    const chartWidth = layout.chartWidth;
+    const margin = layout.margin;
+    const barHeight = layout.barHeight;
+    const barGap = layout.barGap;
+
     const data = rows
       .filter(d => !Number.isNaN(d.pts))
       .sort((a, b) => d3.descending(a.pts, b.pts))
@@ -252,29 +654,36 @@
     svg.append("g")
       .attr("class", "axis")
       .attr("transform", `translate(0, ${margin.top})`)
-      .call(d3.axisTop(x).ticks(6).tickSizeOuter(0));
+      .call(d3.axisTop(x).ticks(layout.xTicks).tickSizeOuter(0));
 
     const yAxis = svg.append("g")
       .attr("class", "axis")
       .attr("transform", `translate(${margin.left}, 0)`)
-      .call(d3.axisLeft(y).tickSize(0).tickPadding(10));
+      .call(d3.axisLeft(y).tickSize(0).tickPadding(layout.tickPadding));
 
+    // Replace default tick labels with logo + text
     yAxis.selectAll(".tick text").remove();
 
+    // Logo
     yAxis.selectAll(".tick")
       .append("image")
-      .attr("xlink:href", d => teamLogos[data.find(r => r.label === d).team])
-      .attr("x", -34)
-      .attr("y", -10)
-      .attr("width", 22)
-      .attr("height", 22);
+      .attr("xlink:href", tickLabel => {
+        const row = data.find(r => r.label === tickLabel);
+        if (!row) return null;
+        return teamLogos[row.team] || null;
+      })
+      .attr("x", layout.logoX)
+      .attr("y", -(layout.logoSize / 2))
+      .attr("width", layout.logoSize)
+      .attr("height", layout.logoSize);
 
+    // Text
     yAxis.selectAll(".tick")
       .append("text")
       .attr("x", -6)
       .attr("y", 4)
       .attr("text-anchor", "end")
-      .attr("font-size", "12px")
+      .attr("font-size", layout.tickFont)
       .attr("font-family", "system-ui, sans-serif")
       .text(d => d);
 
@@ -294,6 +703,7 @@
       .data(data, d => d.player)
       .join("text")
       .attr("class", "value-label")
+      .attr("font-size", layout.valueFont)
       .attr("x", d => x(d.pts) + 6)
       .attr("y", d => y(d.label) + y.bandwidth() / 2 + 4)
       .text(d => `${d.pts.toFixed(1)} - ${d.season}`);
@@ -327,12 +737,15 @@
     });
   }
 
-  loadData();
-
+  // ---------------------------
+  // SCATTER (updated to use layout)
+  // ---------------------------
   function renderUsageEfficiency(rows) {
-    const width = 1000;
-    const height = 560;
-    const margin = { top: 40, right: 40, bottom: 50, left: 70 };
+    const layout = getScatterLayout();
+
+    const width = layout.width;
+    const height = layout.height;
+    const margin = layout.margin;
 
     scatterSvg.selectAll("*").remove();
     scatterSvg.attr("viewBox", `0 0 ${width} ${height}`);
@@ -346,52 +759,54 @@
 
     const x = d3.scaleLinear()
       .domain([
-        Math.max(5, usgExtent[0] - usgPad),
-        usgExtent[1] + usgPad
+        Math.max(5, (usgExtent[0] ?? 5) - usgPad),
+        (usgExtent[1] ?? 40) + usgPad
       ])
       .range([margin.left, width - margin.right]);
 
     const y = d3.scaleLinear()
-      .domain([tsExtent[0] - tsPad, tsExtent[1] + tsPad])
+      .domain([(tsExtent[0] ?? 0.5) - tsPad, (tsExtent[1] ?? 0.75) + tsPad])
       .range([height - margin.bottom, margin.top]);
 
     const ptsMin = 25;
     const ptsMax = 49;
     const r = d3.scaleSqrt()
       .domain([
-        Math.min(ptsMin, ptsExtent[0]),
-        Math.max(ptsMax, ptsExtent[1])
+        Math.min(ptsMin, ptsExtent[0] ?? ptsMin),
+        Math.max(ptsMax, ptsExtent[1] ?? ptsMax)
       ])
-      .range([3, 9])
+      .range(isMobile() ? [2.5, 7.5] : [3, 9])
       .clamp(true);
 
     scatterSvg.append("g")
       .attr("class", "axis")
       .attr("transform", `translate(0, ${height - margin.bottom})`)
-      .call(d3.axisBottom(x).ticks(7));
+      .call(d3.axisBottom(x).ticks(layout.xTicks));
 
     scatterSvg.append("g")
       .attr("class", "axis")
       .attr("transform", `translate(${margin.left}, 0)`)
-      .call(d3.axisLeft(y).ticks(6).tickFormat(d3.format(".0%")));
+      .call(d3.axisLeft(y).ticks(layout.yTicks).tickFormat(d3.format(".0%")));
 
+    // Axis labels
     scatterSvg.append("text")
       .attr("x", (width - margin.left - margin.right) / 2 + margin.left)
       .attr("y", height - 12)
       .attr("text-anchor", "middle")
       .attr("font-family", "system-ui, sans-serif")
-      .attr("font-size", "12px")
+      .attr("font-size", layout.axisFont)
       .text("Usage Rate (USG%)");
 
     scatterSvg.append("text")
       .attr("x", -(height - margin.top - margin.bottom) / 2 - margin.top)
-      .attr("y", 18)
+      .attr("y", 16)
       .attr("transform", "rotate(-90)")
       .attr("text-anchor", "middle")
       .attr("font-family", "system-ui, sans-serif")
-      .attr("font-size", "12px")
+      .attr("font-size", layout.axisFont)
       .text("True Shooting (TS%)");
 
+    // Reference lines
     const usgRef = 25;
     const tsRef = 0.58;
 
@@ -415,42 +830,46 @@
         .attr("stroke-dasharray", "4 4");
     }
 
-    scatterSvg.append("text")
-      .attr("x", width - margin.right - 8)
-      .attr("y", margin.top + 14)
-      .attr("text-anchor", "end")
-      .attr("font-family", "system-ui, sans-serif")
-      .attr("font-size", "11px")
-      .attr("fill", "#9ca3af")
-      .text("High usage / High efficiency");
+    // Quadrant labels (desktop only)
+    if (layout.showQuadrants) {
+      scatterSvg.append("text")
+        .attr("x", width - margin.right - 8)
+        .attr("y", margin.top + 14)
+        .attr("text-anchor", "end")
+        .attr("font-family", "system-ui, sans-serif")
+        .attr("font-size", layout.quadFont)
+        .attr("fill", "#9ca3af")
+        .text("High usage / High efficiency");
 
-    scatterSvg.append("text")
-      .attr("x", width - margin.right - 8)
-      .attr("y", height - margin.bottom - 8)
-      .attr("text-anchor", "end")
-      .attr("font-family", "system-ui, sans-serif")
-      .attr("font-size", "11px")
-      .attr("fill", "#9ca3af")
-      .text("High usage / Low efficiency");
+      scatterSvg.append("text")
+        .attr("x", width - margin.right - 8)
+        .attr("y", height - margin.bottom - 8)
+        .attr("text-anchor", "end")
+        .attr("font-family", "system-ui, sans-serif")
+        .attr("font-size", layout.quadFont)
+        .attr("fill", "#9ca3af")
+        .text("High usage / Low efficiency");
 
-    scatterSvg.append("text")
-      .attr("x", margin.left + 8)
-      .attr("y", margin.top + 14)
-      .attr("text-anchor", "start")
-      .attr("font-family", "system-ui, sans-serif")
-      .attr("font-size", "11px")
-      .attr("fill", "#9ca3af")
-      .text("Low usage / High efficiency");
+      scatterSvg.append("text")
+        .attr("x", margin.left + 8)
+        .attr("y", margin.top + 14)
+        .attr("text-anchor", "start")
+        .attr("font-family", "system-ui, sans-serif")
+        .attr("font-size", layout.quadFont)
+        .attr("fill", "#9ca3af")
+        .text("Low usage / High efficiency");
 
-    scatterSvg.append("text")
-      .attr("x", margin.left + 8)
-      .attr("y", height - margin.bottom - 8)
-      .attr("text-anchor", "start")
-      .attr("font-family", "system-ui, sans-serif")
-      .attr("font-size", "11px")
-      .attr("fill", "#9ca3af")
-      .text("Low usage / Low efficiency");
+      scatterSvg.append("text")
+        .attr("x", margin.left + 8)
+        .attr("y", height - margin.bottom - 8)
+        .attr("text-anchor", "start")
+        .attr("font-family", "system-ui, sans-serif")
+        .attr("font-size", layout.quadFont)
+        .attr("fill", "#9ca3af")
+        .text("Low usage / Low efficiency");
+    }
 
+    // Points
     const highlightSeason = "2025-26";
     const namedProspects = new Set([
       "Darryn Peterson",
@@ -467,17 +886,15 @@
       .attr("cy", d => y(d.ts))
       .attr("r", d => {
         const base = r(d.pts100);
-        return namedProspects.has(d.player) ? base + 1.5 : base;
+        return namedProspects.has(d.player) ? base + 1.2 : base;
       })
       .attr("fill", d => d.season === highlightSeason ? "#7c3aed" : "#9ca3af")
       .attr("opacity", d => d.season === highlightSeason ? 0.9 : 0.45)
       .attr("stroke", d => {
-        if (namedProspects.has(d.player)) {
-          return "#111";
-        }
+        if (namedProspects.has(d.player)) return "#111";
         return d.season === highlightSeason ? "#111" : "none";
       })
-      .attr("stroke-width", d => namedProspects.has(d.player) ? 1.2 : 0.8);
+      .attr("stroke-width", d => namedProspects.has(d.player) ? 1.1 : 0.8);
 
     points
       .on("mouseenter", (event, d) => {
@@ -500,55 +917,61 @@
         scatterTooltip.style("opacity", 0);
       });
 
-    const legend = scatterSvg.append("g")
-      .attr("transform", `translate(${width - margin.right - 210}, ${margin.top + 36})`);
+    // Legend (desktop only)
+    if (layout.showLegend) {
+      const legend = scatterSvg.append("g")
+        .attr("transform", `translate(${width - margin.right - 210}, ${margin.top + 36})`);
 
-    legend.append("circle")
-      .attr("cx", 0)
-      .attr("cy", 0)
-      .attr("r", 5)
-      .attr("fill", "#9ca3af")
-      .attr("opacity", 0.6);
+      legend.append("circle")
+        .attr("cx", 0)
+        .attr("cy", 0)
+        .attr("r", 5)
+        .attr("fill", "#9ca3af")
+        .attr("opacity", 0.6);
 
-    legend.append("text")
-      .attr("x", 12)
-      .attr("y", 4)
-      .attr("font-family", "system-ui, sans-serif")
-      .attr("font-size", "12px")
-      .attr("fill", "#374151")
-      .text("Historical freshmen");
+      legend.append("text")
+        .attr("x", 12)
+        .attr("y", 4)
+        .attr("font-family", "system-ui, sans-serif")
+        .attr("font-size", 12)
+        .attr("fill", "#374151")
+        .text("Historical freshmen");
 
-    legend.append("circle")
-      .attr("cx", 0)
-      .attr("cy", 20)
-      .attr("r", 5)
-      .attr("fill", "#7c3aed");
+      legend.append("circle")
+        .attr("cx", 0)
+        .attr("cy", 20)
+        .attr("r", 5)
+        .attr("fill", "#7c3aed");
 
-    legend.append("text")
-      .attr("x", 12)
-      .attr("y", 24)
-      .attr("font-family", "system-ui, sans-serif")
-      .attr("font-size", "12px")
-      .attr("fill", "#374151")
-      .text("2025-26 freshmen");
+      legend.append("text")
+        .attr("x", 12)
+        .attr("y", 24)
+        .attr("font-family", "system-ui, sans-serif")
+        .attr("font-size", 12)
+        .attr("fill", "#374151")
+        .text("2025-26 freshmen");
 
-    legend.append("text")
-      .attr("x", 0)
-      .attr("y", 44)
-      .attr("font-family", "system-ui, sans-serif")
-      .attr("font-size", "11px")
-      .attr("fill", "#6b7280")
-      .text("Size = PTS/100 (25–49)");
+      legend.append("text")
+        .attr("x", 0)
+        .attr("y", 44)
+        .attr("font-family", "system-ui, sans-serif")
+        .attr("font-size", 11)
+        .attr("fill", "#6b7280")
+        .text("Size = PTS/100 (25–49)");
+    }
   }
 
   function loadUsageEfficiencyData() {
     d3.text(scatterDataFile).then(text => {
       const rows = d3.csvParseRows(text);
       const columns = rows[0] || [];
+
       const playerIndex = columns.indexOf("Player");
       const teamIndex = columns.indexOf("Team");
       const seasonIndex = columns.indexOf("Season");
       const ptsIndex = columns.indexOf("PTS/100 Poss.");
+
+      // Note: "USG%" appears twice in your export; indexOf returns the FIRST one.
       const usgIndex = columns.indexOf("USG%");
       const tsIndex = columns.indexOf("TS%");
       const mpIndex = columns.indexOf("MP");
@@ -561,14 +984,37 @@
         usg: parseFloat(row[usgIndex]),
         ts: parseFloat(row[tsIndex]),
         mp: parseFloat(row[mpIndex])
-      })).filter(d => !Number.isNaN(d.usg) && !Number.isNaN(d.ts));
+      })).filter(d =>
+        d.player &&
+        d.team &&
+        d.season &&
+        !Number.isNaN(d.usg) &&
+        !Number.isNaN(d.ts)
+      );
 
       renderUsageEfficiency(parsed);
     });
   }
 
+  // ---------------------------
+  // Initial loads
+  // ---------------------------
+  loadData();
   loadUsageEfficiencyData();
+
+  // ---------------------------
+  // Re-render on resize/rotate (NEW)
+  // ---------------------------
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      loadData();
+      loadUsageEfficiencyData();
+    }, 150);
+  });
 </script>
+
 
 </body>
 </html>
