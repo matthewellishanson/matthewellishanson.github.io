@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bracket Data Entry Helper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --app-primary: #7c3aed;
+      --border: #ddd6fe;
+      --bg: #fafafa;
+      --ink: #111;
+      --muted: #666;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: system-ui, sans-serif;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+    }
+
+    .sub {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      background: var(--bg);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.15rem;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .row label {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font: inherit;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .primary {
+      background: var(--app-primary);
+      color: white;
+    }
+
+    .secondary {
+      background: #eee;
+      color: #111;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #111;
+      color: #f5f5f5;
+      padding: 16px;
+      border-radius: 14px;
+      overflow-x: auto;
+      min-height: 220px;
+    }
+
+    .players-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Bracket JSON Entry Helper</h1>
+    <p class="sub">
+      Fill one matchup at a time. This generates a single game object you can paste into your region’s
+      <code>games</code> array in <code>data.js</code>.
+    </p>
+
+    <div class="card">
+      <h2>Game Meta</h2>
+      <div class="grid">
+        <div class="row">
+          <label for="gameId">Game ID</label>
+          <input id="gameId" placeholder="east-3" />
+        </div>
+        <div class="row">
+          <label for="round">Round</label>
+          <input id="round" value="First Round" />
+        </div>
+        <div class="row">
+          <label for="label">Seed Label</label>
+          <input id="label" placeholder="5 vs 12" />
+        </div>
+        <div class="row">
+          <label for="pick">Pick</label>
+          <input id="pick" placeholder="Team Name" />
+        </div>
+        <div class="row">
+          <label for="confidence">Confidence</label>
+          <select id="confidence">
+            <option>Very High</option>
+            <option>High</option>
+            <option selected>Medium</option>
+            <option>Low</option>
+            <option>Very Low</option>
+          </select>
+        </div>
+        <div class="row">
+          <label for="upsetLabel">Upset Label</label>
+          <select id="upsetLabel">
+            <option>Very Low Upset Risk</option>
+            <option>Low Upset Risk</option>
+            <option selected>Toss-Up</option>
+            <option>Moderate Upset Risk</option>
+            <option>High Upset Risk</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row full">
+        <label for="swingFactor">Swing Factor</label>
+        <textarea id="swingFactor" placeholder="What decides this matchup?"></textarea>
+      </div>
+      <div class="row full">
+        <label for="whyTeam1Wins">Why Team 1 Wins</label>
+        <textarea id="whyTeam1Wins"></textarea>
+      </div>
+      <div class="row full">
+        <label for="whyTeam2Wins">Why Team 2 Wins</label>
+        <textarea id="whyTeam2Wins"></textarea>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Team 1</h2>
+        <div class="row"><label for="t1Seed">Seed</label><input id="t1Seed" type="number" /></div>
+        <div class="row"><label for="t1Name">Name</label><input id="t1Name" /></div>
+        <div class="row"><label for="t1ShortName">Short Name</label><input id="t1ShortName" /></div>
+        <div class="row"><label for="t1Record">Record</label><input id="t1Record" placeholder="24-9" /></div>
+        <div class="row"><label for="t1Conference">Conference</label><input id="t1Conference" /></div>
+        <div class="row"><label for="t1Net">NET</label><input id="t1Net" type="number" step="any" /></div>
+        <div class="row"><label for="t1Kenpom">KenPom</label><input id="t1Kenpom" type="number" step="any" /></div>
+        <div class="row"><label for="t1AdjOff">AdjO</label><input id="t1AdjOff" type="number" step="any" /></div>
+        <div class="row"><label for="t1AdjDef">AdjD</label><input id="t1AdjDef" type="number" step="any" /></div>
+        <div class="row"><label for="t1Tempo">Tempo</label><input id="t1Tempo" type="number" step="any" /></div>
+        <div class="row"><label for="t13p">3P%</label><input id="t13p" type="number" step="any" /></div>
+        <div class="row"><label for="t1Reb">REB%</label><input id="t1Reb" type="number" step="any" /></div>
+      </div>
+
+      <div class="card">
+        <h2>Team 2</h2>
+        <div class="row"><label for="t2Seed">Seed</label><input id="t2Seed" type="number" /></div>
+        <div class="row"><label for="t2Name">Name</label><input id="t2Name" /></div>
+        <div class="row"><label for="t2ShortName">Short Name</label><input id="t2ShortName" /></div>
+        <div class="row"><label for="t2Record">Record</label><input id="t2Record" placeholder="24-9" /></div>
+        <div class="row"><label for="t2Conference">Conference</label><input id="t2Conference" /></div>
+        <div class="row"><label for="t2Net">NET</label><input id="t2Net" type="number" step="any" /></div>
+        <div class="row"><label for="t2Kenpom">KenPom</label><input id="t2Kenpom" type="number" step="any" /></div>
+        <div class="row"><label for="t2AdjOff">AdjO</label><input id="t2AdjOff" type="number" step="any" /></div>
+        <div class="row"><label for="t2AdjDef">AdjD</label><input id="t2AdjDef" type="number" step="any" /></div>
+        <div class="row"><label for="t2Tempo">Tempo</label><input id="t2Tempo" type="number" step="any" /></div>
+        <div class="row"><label for="t23p">3P%</label><input id="t23p" type="number" step="any" /></div>
+        <div class="row"><label for="t2Reb">REB%</label><input id="t2Reb" type="number" step="any" /></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Players to Watch</h2>
+
+      <div class="players-grid">
+        <input id="p1Team" placeholder="Team name" />
+        <input id="p1Name" placeholder="Player name" />
+      </div>
+      <textarea id="p1Note" placeholder="Player note"></textarea>
+
+      <div style="height: 12px;"></div>
+
+      <div class="players-grid">
+        <input id="p2Team" placeholder="Team name" />
+        <input id="p2Name" placeholder="Player name" />
+      </div>
+      <textarea id="p2Note" placeholder="Player note"></textarea>
+
+      <div style="height: 12px;"></div>
+
+      <div class="players-grid">
+        <input id="p3Team" placeholder="Optional third player's team" />
+        <input id="p3Name" placeholder="Optional third player name" />
+      </div>
+      <textarea id="p3Note" placeholder="Optional third player note"></textarea>
+
+      <p class="small-note">
+        Leave the third player blank if you only want one featured player per team.
+      </p>
+    </div>
+
+    <div class="actions">
+      <button class="primary" id="generateBtn">Generate JSON</button>
+      <button class="secondary" id="copyBtn">Copy Output</button>
+      <button class="secondary" id="clearBtn">Clear Form</button>
+      <button class="secondary" id="loadEastTemplateBtn">Load East Template</button>
+    </div>
+
+    <pre id="output"></pre>
+  </div>
+
+  <script>
+    function val(id) {
+      return document.getElementById(id).value.trim();
+    }
+
+    function num(id) {
+      const raw = document.getElementById(id).value.trim();
+      if (raw === "") return null;
+      return Number(raw);
+    }
+
+    function buildPlayer(teamId, nameId, noteId) {
+      const team = val(teamId);
+      const name = val(nameId);
+      const note = val(noteId);
+
+      if (!team && !name && !note) return null;
+
+      return { team, name, note };
+    }
+
+    function buildTeam(prefix) {
+      return {
+        seed: num(`${prefix}Seed`),
+        name: val(`${prefix}Name`),
+        shortName: val(`${prefix}ShortName`),
+        record: val(`${prefix}Record`),
+        conference: val(`${prefix}Conference`),
+        net: num(`${prefix}Net`),
+        kenpom: num(`${prefix}Kenpom`),
+        adjOff: num(`${prefix}AdjOff`),
+        adjDef: num(`${prefix}AdjDef`),
+        tempo: num(`${prefix}Tempo`)
+      };
+    }
+
+    function buildProfileStats() {
+      return [
+        { label: "AdjO", team1: num("t1AdjOff"), team2: num("t2AdjOff") },
+        { label: "AdjD", team1: num("t1AdjDef"), team2: num("t2AdjDef") },
+        { label: "Tempo", team1: num("t1Tempo"), team2: num("t2Tempo") },
+        { label: "3P%", team1: num("t13p"), team2: num("t23p") },
+        { label: "REB%", team1: num("t1Reb"), team2: num("t2Reb") }
+      ];
+    }
+
+    function buildGameObject() {
+      const players = [
+        buildPlayer("p1Team", "p1Name", "p1Note"),
+        buildPlayer("p2Team", "p2Name", "p2Note"),
+        buildPlayer("p3Team", "p3Name", "p3Note")
+      ].filter(Boolean);
+
+      return {
+        id: val("gameId"),
+        round: val("round"),
+        label: val("label"),
+        team1: buildTeam("t1"),
+        team2: buildTeam("t2"),
+        pick: val("pick"),
+        confidence: val("confidence"),
+        upsetLabel: val("upsetLabel"),
+        swingFactor: val("swingFactor"),
+        whyTeam1Wins: val("whyTeam1Wins"),
+        whyTeam2Wins: val("whyTeam2Wins"),
+        players,
+        profileStats: buildProfileStats()
+      };
+    }
+
+    function formatGameObject(game) {
+      const base = "        "; // 8 spaces
+      const i1 = base + "  ";
+      const i2 = base + "    ";
+      const i3 = base + "      ";
+
+      function row(label, value, indent = i1) {
+        if (typeof value === "string") {
+          return `${indent}${label}: ${JSON.stringify(value)},`;
+        }
+        return `${indent}${label}: ${value},`;
+      }
+
+      function teamBlock(team, name) {
+        return [
+          `${i1}${name}: {`,
+          row("seed", team.seed, i2),
+          row("name", team.name, i2),
+          row("shortName", team.shortName, i2),
+          row("record", team.record, i2),
+          row("conference", team.conference, i2),
+          row("net", team.net, i2),
+          row("kenpom", team.kenpom, i2),
+          row("adjOff", team.adjOff, i2),
+          row("adjDef", team.adjDef, i2),
+          row("tempo", team.tempo, i2).replace(/,$/, ""), // remove trailing comma
+          `${i1}},`
+        ].join("\n");
+      }
+
+      function playersBlock(players) {
+        if (!players.length) return `${i1}players: [],`;
+
+        return [
+          `${i1}players: [`,
+          ...players.map((p, idx) => {
+            return [
+              `${i2}{`,
+              row("team", p.team, i3),
+              row("name", p.name, i3),
+              row("note", p.note, i3).replace(/,$/, ""),
+              `${i2}}${idx < players.length - 1 ? "," : ""}`
+            ].join("\n");
+          }),
+          `${i1}],`
+        ].join("\n");
+      }
+
+      function profileStatsBlock(stats) {
+        return [
+          `${i1}profileStats: [`,
+          ...stats.map((s, idx) => {
+            return `${i2}{ label: "${s.label}", team1: ${s.team1}, team2: ${s.team2} }${idx < stats.length - 1 ? "," : ""}`;
+          }),
+          `${i1}]`
+        ].join("\n");
+      }
+
+      return [
+        `${base}{`,
+        row("id", game.id),
+        row("round", game.round),
+        row("label", game.label),
+        teamBlock(game.team1, "team1"),
+        teamBlock(game.team2, "team2"),
+        row("pick", game.pick),
+        row("confidence", game.confidence),
+        row("upsetLabel", game.upsetLabel),
+        row("swingFactor", game.swingFactor),
+        row("whyTeam1Wins", game.whyTeam1Wins),
+        row("whyTeam2Wins", game.whyTeam2Wins),
+        playersBlock(game.players),
+        profileStatsBlock(game.profileStats),
+        `${base}},`
+      ].join("\n");
+    }
+
+    function generateOutput() {
+      const gameObj = buildGameObject();
+      const output = formatGameObject(gameObj);
+      document.getElementById("output").textContent = output;
+    }
+
+    document.getElementById("generateBtn").addEventListener("click", generateOutput);
+
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      const text = document.getElementById("output").textContent;
+      if (!text) return;
+      await navigator.clipboard.writeText(text);
+    });
+
+    document.getElementById("clearBtn").addEventListener("click", () => {
+      document.querySelectorAll("input, textarea, select").forEach(el => {
+        if (el.tagName === "SELECT") {
+          el.selectedIndex = 0;
+        } else if (el.id === "round") {
+          el.value = "First Round";
+        } else {
+          el.value = "";
+        }
+      });
+      document.getElementById("round").value = "First Round";
+      document.getElementById("output").textContent = "";
+    });
+
+    document.getElementById("loadEastTemplateBtn").addEventListener("click", () => {
+      document.getElementById("gameId").value = "east-3";
+      document.getElementById("label").value = "5 vs 12";
+      document.getElementById("confidence").value = "Medium";
+      document.getElementById("upsetLabel").value = "Toss-Up";
+      document.getElementById("round").value = "First Round";
+    });
+  </script>
+</body>
+</html>

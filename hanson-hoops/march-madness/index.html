@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NCAA Tournament Matchup Explorer — Hanson Hoops</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="/hanson-hoops/index.html">Hanson Hoops</a>
+    </div>
+  </nav>
+
+  <header class="hero-bracket">
+    <div class="hero-overlay">
+      <div class="hero-inner">
+        <p class="eyebrow">NCAA Tournament Preview</p>
+        <h1>First-Round Matchup Explorer</h1>
+        <p class="dek">
+          A bracket-driven interactive scouting report for every first-round game.
+        </p>
+        <div class="hero-meta">
+          <span>By Matthew Hanson</span>
+          <span>Updated: March 2026</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="story-shell">
+    <section class="intro-copy">
+      <div class="text-col">
+        <p class="dropcap">
+          March is the best kind of chaos: familiar powers, dangerous mid-majors, stylistic clashes,
+          and 48 hours of basketball that can reshape an entire tournament.
+        </p>
+        <p>
+          This matchup explorer is built to function like a bracket-first scouting report. Click any first-round game
+          in the bracket to load a head-to-head preview, team comparison cards, chart space, player spotlight notes,
+          and a quick summary of what could decide the game.
+        </p>
+      </div>
+    </section>
+
+    <section class="explainer-strip">
+      <div class="explainer-card">
+        <h3>How to use this page</h3>
+        <p>Click any matchup in the bracket to update the scouting report panel.</p>
+      </div>
+      <div class="explainer-card">
+        <h3>What matters most</h3>
+        <p>Team quality, shot profile, rebounding, turnover margin, and pace control.</p>
+      </div>
+      <div class="explainer-card">
+        <h3>How I made my picks</h3>
+        <p>Each preview balances team strength, matchup context, and upset potential.</p>
+      </div>
+    </section>
+
+    <section class="bracket-explorer" id="bracket-explorer">
+      <div class="section-header">
+        <h2>The Bracket</h2>
+        <p>Click a matchup to load the report.</p>
+      </div>
+
+      <div class="explorer-layout">
+        <aside class="bracket-panel" id="bracket-panel">
+          <!-- JS injects regions + matchup buttons here -->
+        </aside>
+
+        <article class="matchup-panel" id="matchup-panel">
+          <div class="matchup-header">
+            <p class="kicker" id="matchup-kicker">South Region · First Round</p>
+            <h2 id="matchup-title">(1) Team A vs. (16) Team B</h2>
+
+            <div class="pick-badges">
+              <span class="badge-chip pick" id="pick-badge">Pick: Team A</span>
+              <span class="badge-chip confidence" id="confidence-badge">Confidence: High</span>
+              <span class="badge-chip upset" id="upset-badge">Low Upset Risk</span>
+            </div>
+          </div>
+
+          <div class="quick-facts-grid" id="quick-facts-grid">
+            <!-- JS injects team cards -->
+          </div>
+
+          <div class="matchup-copy two-col">
+            <div class="copy-block">
+              <h3 id="team1-why-title">Why Team A can win</h3>
+              <p id="team1-why-text"></p>
+            </div>
+
+            <div class="copy-block">
+              <h3 id="team2-why-title">Why Team B can win</h3>
+              <p id="team2-why-text"></p>
+            </div>
+          </div>
+
+          <section class="stats-comparison-card">
+            <div class="section-subhead">
+              <h3>Team Stats Comparison</h3>
+              <p>Side-by-side matchup profile</p>
+            </div>
+
+            <div class="stats-compare-header" id="stats-compare-header">
+              <!-- JS injects team names -->
+            </div>
+
+            <div class="stats-compare-body" id="stats-compare-body">
+              <!-- JS injects mirrored stat bars -->
+            </div>
+          </section>
+
+          <section class="swing-factor-card">
+            <div class="section-subhead">
+              <h3>Swing Factor</h3>
+            </div>
+            <p id="swing-factor-text"></p>
+          </section>
+
+          <div class="player-spotlight">
+            <h3>Players to Watch</h3>
+            <div class="player-cards" id="player-cards"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="methodology">
+      <h2>What’s in each matchup</h2>
+      <p>
+        Each preview includes team snapshot stats, matchup-specific context, reusable chart shells,
+        and quick written analysis designed for fast scanning during tournament week.
+      </p>
+    </section>
+
+    <section class="conference-trends">
+      <h2>Conference and style context</h2>
+      <div class="chart-grid two-up">
+        <div class="chart-card">
+          <h3>Conference strength</h3>
+          <p class="placeholder-copy">Optional later module.</p>
+        </div>
+        <div class="chart-card">
+          <h3>Play style trends</h3>
+          <p class="placeholder-copy">Optional later module.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="upset-watch">
+      <h2>Upset Watch</h2>
+      <div class="cards-grid">
+        <article class="summary-card">
+          <h3>Best 12-over-5 candidate</h3>
+          <p>Placeholder summary card.</p>
+        </article>
+        <article class="summary-card">
+          <h3>Most volatile 8-9 game</h3>
+          <p>Placeholder summary card.</p>
+        </article>
+        <article class="summary-card">
+          <h3>Safest top seed</h3>
+          <p>Placeholder summary card.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="closing-notes">
+      <h2>Final Thoughts</h2>
+      <p>
+        Tournament previews are always part model, part feel, and part willingness to embrace chaos.
+        The point is not to eliminate uncertainty. It’s to understand where it lives.
+      </p>
+    </section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
