@@ -449,59 +449,54 @@ const bracketData = {
           label: "1 vs 16",
           team1: {
             seed: 1,
-            name: "Houston",
-            shortName: "Houston",
-            record: "31-3",
-            conference: "Big 12",
-            net: 2,
-            kenpom: 1,
-            adjOff: 123.3,
-            adjDef: 87.4,
-            tempo: 63.2
+            name: "Florida",
+            shortName: "Florida",
+            record: "26-7",
+            conference: "SEC",
+            net: 4,
+            kenpom: 4,
+            adjOff: 125.5,
+            adjDef: 91.7,
+            tempo: 70.6
           },
           team2: {
             seed: 16,
-            name: "Howard",
-            shortName: "Howard",
-            record: "21-12",
-            conference: "MEAC",
-            net: 168,
-            kenpom: 171,
-            adjOff: 103.9,
-            adjDef: 105.4,
-            tempo: 70.3
+            name: "Prairie View A&M",
+            shortName: "Prairie View A&M",
+            record: "19-17",
+            conference: "SWAC",
+            net: 300,
+            kenpom: 280,
+            adjOff: 101.2,
+            adjDef: 111,
+            tempo: 70.8
           },
-          pick: "Houston",
-          confidence: "High",
-          upsetLabel: "Low Upset Risk",
-          swingFactor: "Can Howard survive Houston’s pressure and physicality?",
-          whyTeam1Wins: "Houston’s defense narrows the game into uncomfortable possessions and rarely gives underdogs easy offense.",
-          whyTeam2Wins: "Howard would need a huge shotmaking performance and early variance from three to create pressure.",
+          pick: "Florida",
+          confidence: "Very High",
+          upsetLabel: "Very Low Upset Risk",
+          swingFactor: "Florida's experience, talent and depth should prove way too much for the 19-17 Prairie View A&M Panthers to handle, let alone challenge seriously.",
+          whyTeam1Wins: "Florida has so many different ways to win it's almost easier to identify the one or two ways they might not. Barring huge injuries, a dramatic variance in both team's shooting or some other unlikely scenario, expect an easy win for the defending national champions.",
+          whyTeam2Wins: "A Panthers win would be unprecedented even by the standards of a 16 beating a 1-seed, which has only ever happened twice (both in the past decade though!). They'll need a miracle or two to pull that off.",
           players: [
             {
-              team: "Houston",
-              name: "Player E1",
-              note: "Primary perimeter stopper."
+              team: "Florida",
+              name: "Thomas Haugh",
+              note: "The returning national champion led the Gators in scoring in his third college season, and should be the key to their title defense here and going forward."
             },
             {
-              team: "Houston",
-              name: "Player E2",
-              note: "Interior anchor and rebounder."
-            },
-            {
-              team: "Howard",
-              name: "Player F1",
-              note: "Lead scorer who has to create difficult offense."
+              team: "Prairie View A&M",
+              name: "Dontae Horne",
+              note: "The Panthers' top scorer averaged 20.3 points per game in his senior season, but will have to reach another level AND get a lot of help from his teammates for them to even stay in this game."
             }
           ],
           profileStats: [
-            { label: "AdjO", team1: 123.3, team2: 103.9 },
-            { label: "AdjD", team1: 87.4, team2: 105.4 },
-            { label: "Tempo", team1: 63.2, team2: 70.3 },
-            { label: "3P%", team1: 38.1, team2: 34.0 },
-            { label: "REB%", team1: 54.8, team2: 47.9 }
+            { label: "AdjO", team1: 125.5, team2: 101.2 },
+            { label: "AdjD", team1: 91.7, team2: 111 },
+            { label: "Tempo", team1: 70.6, team2: 70.8 },
+            { label: "3P%", team1: 30.8, team2: 33.4 },
+            { label: "REB%", team1: 59.5, team2: 45.9 }
           ]
-        }
+        },
       ]
     }
   ]
