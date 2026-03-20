@@ -713,7 +713,60 @@ const bracketData = {
             { label: "REB%", team1: 52.6, team2: 51.7 }
           ]
         },
-        
+        {
+          id: "south-6",
+          round: "First Round",
+          label: "3 vs 11",
+          team1: {
+            seed: 3,
+            name: "Illinois",
+            shortName: "Illinois",
+            record: "24-8",
+            conference: "Big 10",
+            net: 8,
+            kenpom: 7,
+            adjOff: 131.1,
+            adjDef: 99,
+            tempo: 65.6
+          },
+          team2: {
+            seed: 14,
+            name: "Penn",
+            shortName: "Penn",
+            record: "18-11",
+            conference: "Ivy",
+            net: 139,
+            kenpom: 150,
+            adjOff: 107.3,
+            adjDef: 106,
+            tempo: 69.1
+          },
+          pick: "Illinois",
+          confidence: "Medium",
+          upsetLabel: "Moderate Upset Risk",
+          swingFactor: "Can surprise phenom freshman Keaton Wagler and the rest of Illinois' elite offense outgun Ivy League champs Penn? Or will Penn become the latest in a surprisingly strong history of Ivy upsets?",
+          whyTeam1Wins: "Illinois is a sleeper contender to win it all, in my book, so it would take a big turnover game or a terrible shooting night for them to go down in round 1. Expect a close game but an Illini W.",
+          whyTeam2Wins: "I've always taken Ivy to win round 1, and historically I have been right almost one in every three seasons. Something about smart coaches and smart players just seems to catch better teams off guard more than the odds say they should, so never sleep on the team that makes this tournament out of that conference.",
+          players: [
+            {
+              team: "Illinois",
+              name: "Keaton Wagler",
+              note: "The Shawnee Mission, KS (my hometown) native was unheralded coming out of high school and famously committed to play for Brad Underwood without the Illini coach having ever seen him play. The results have been something out of a Hollywood movie, with Wagler leading the team in scoring and cementing his place as a likely lottery pick in this loaded draft class, but can the Hollywood story have a Hollywood ending for his team?"
+            },
+            {
+              team: "Penn",
+              name: "TJ Power",
+              note: "The Quakers (yes, they still go by that) junior forward is neck and neck with teammate Ethan Roberts in leading this team in points per game, but his size will be more important in this matchup against one of the best rebounding teams in the nation."
+            }
+          ],
+          profileStats: [
+            { label: "AdjO", team1: 131.1, team2: 107.3 },
+            { label: "AdjD", team1: 99, team2: 106 },
+            { label: "Tempo", team1: 65.6, team2: 69.1 },
+            { label: "3P%", team1: 34.7, team2: 38.6 },
+            { label: "REB%", team1: 56.7, team2: 49.5 }
+          ]
+        },
       ]
     }
   ]
