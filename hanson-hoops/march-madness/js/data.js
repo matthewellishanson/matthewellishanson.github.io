@@ -1151,7 +1151,60 @@ const bracketData = {
             { label: "REB%", team1: 52.5, team2: 54.9 }
           ]
         },
-        
+        {
+          id: "west-6",
+          round: "First Round",
+          label: "3 vs 14",
+          team1: {
+            seed: 3,
+            name: "Gonzaga",
+            shortName: "Gonzaga",
+            record: "31-3",
+            conference: "WCC",
+            net: 7,
+            kenpom: 12,
+            adjOff: 121.3,
+            adjDef: 93.8,
+            tempo: 68.5
+          },
+          team2: {
+            seed: 14,
+            name: "Kennesaw State",
+            shortName: "Kennesaw State",
+            record: "21-14",
+            conference: "CUSA",
+            net: 155,
+            kenpom: 152,
+            adjOff: 110.6,
+            adjDef: 109.4,
+            tempo: 71.1
+          },
+          pick: "Gonzaga",
+          confidence: "High",
+          upsetLabel: "Low Upset Risk",
+          swingFactor: "Gonzaga's overall talent on both ends should trump a very strong offense from Kennesaw State, but an upset is not out of the question here.",
+          whyTeam1Wins: "Gonzaga is one of the few teams in the country with a top 20 offense and defense, and has talent, experience and coaching needed to make a deep run. Expect a win over a worthwhile Kennesaw State team that can challenge but probably won't have enough to knock off the Zags.",
+          whyTeam2Wins: "Kennesaw State",
+          players: [
+            {
+              team: "Gonzaga",
+              name: "Graham Ike",
+              note: "The Zags' best player is a force to be reckoned with in the paint, averaging 19.7 PPG and 8.2 RPG. He should be able to exploit his size advantage against Kennesaw State's smaller frontcourt."
+            },
+            {
+              team: "Kennesaw State",
+              name: "RJ Johnson",
+              note: "Johnson leads the Owls in scoring as a 6'4\" junior guard, and will need a big game against Mark Few's experienced difference."
+            }
+          ],
+          profileStats: [
+            { label: "AdjO", team1: 121.3, team2: 110.6 },
+            { label: "AdjD", team1: 93.8, team2: 109.4 },
+            { label: "Tempo", team1: 68.5, team2: 71.1 },
+            { label: "3P%", team1: 33.5, team2: 34.7 },
+            { label: "REB%", team1: 55.4, team2: 51.6 }
+          ]
+        },
       ]
     }
   ]
