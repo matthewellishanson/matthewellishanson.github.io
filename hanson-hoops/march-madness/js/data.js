@@ -1097,6 +1097,61 @@ const bracketData = {
             { label: "REB%", team1: 51.2, team2: 53.7 }
           ]
         },
+        {
+          id: "west-5",
+          round: "First Round",
+          label: "6 vs 11",
+          team1: {
+            seed: 6,
+            name: "BYU",
+            shortName: "BYU",
+            record: "23-12",
+            conference: "Big 12",
+            net: 23,
+            kenpom: 23,
+            adjOff: 124.9,
+            adjDef: 102.2,
+            tempo: 69.9
+          },
+          team2: {
+            seed: 11,
+            name: "Texas",
+            shortName: "Texas",
+            record: "20-14",
+            conference: "SEC",
+            net: 42,
+            kenpom: 34,
+            adjOff: 124.2,
+            adjDef: 104.5,
+            tempo: 66.8
+          },
+          pick: "BYU",
+          confidence: "Medium",
+          upsetLabel: "Moderate Upset Risk",
+          swingFactor: "Can BYU's offense survive its ultra dependency on star freshman and future number one pick AJ Dybantsa, in the absence of his injured teammate Richie Saunders?",
+          whyTeam1Wins: "BYU wins because Dybantsa is the best overall talent in the country right now and can power through at least one NCAA tournament matchup without Saunders as his Robin.",
+          whyTeam2Wins: "Texas has a good chance to pull off this upset with BYU so overly reliant on Dybantsa for the lion's share of their offense. Double and triple team the freshman phenom and they might take the BYU offense out altogether.",
+          players: [
+            {
+              team: "BYU",
+              name: "AJ Dybantsa",
+              note: "Dybantsa is the most likely number one pick in this coming draft, and is only getting better with each game. His dominance and his ability to read and react to double teams that Texas will likely throw his way will be the key to this game."
+            },
+            {
+              team: "Texas",
+              name: "Dailyn Swain",
+              note: "The Longhorn's best offensive option will also be their primary defender on Dybantsa in this game. He'll need to be big and reliable on both ends for Texas to pull off the upset."
+            }
+          ],
+          profileStats: [
+            { label: "AdjO", team1: 124.9, team2: 124.2 },
+            { label: "AdjD", team1: 102.2, team2: 104.5 },
+            { label: "Tempo", team1: 69.9, team2: 66.8 },
+            { label: "3P%", team1: 34.5, team2: 35.2 },
+            { label: "REB%", team1: 52.5, team2: 54.9 }
+          ]
+        },
+        
       ]
     }
   ]
