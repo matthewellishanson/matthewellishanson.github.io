@@ -497,6 +497,223 @@ const bracketData = {
             { label: "REB%", team1: 59.5, team2: 45.9 }
           ]
         },
+        {
+          id: "south-2",
+          round: "First Round",
+          label: "8 vs 9",
+          team1: {
+            seed: 8,
+            name: "Clemson",
+            shortName: "Clemson",
+            record: "24-10",
+            conference: "ACC",
+            net: 34,
+            kenpom: 36,
+            adjOff: 116.5,
+            adjDef: 97.3,
+            tempo: 64.3
+          },
+          team2: {
+            seed: 9,
+            name: "Iowa",
+            shortName: "Iowa",
+            record: "21-12",
+            conference: "Big 10",
+            net: 27,
+            kenpom: 25,
+            adjOff: 121.7,
+            adjDef: 99.3,
+            tempo: 63.1
+          },
+          pick: "Iowa",
+          confidence: "Very Low",
+          upsetLabel: "High Upset Risk",
+          swingFactor: "Iowa's offense vs. Clemson's defense. Both teams favor one side of the ball and rely on their strengths on their respective ends to win games, so it's a tale of which side wins out.",
+          whyTeam1Wins: "Clemson slows the pace and potency of Iowa's offensive attack, drawing a first round win, grit and grind style, through their superior defense.",
+          whyTeam2Wins: "Iowa's offense proves too much for the Clemson Tigers' stellar defense, and the Hawkeyes shoot their way to the second round.",
+          players: [
+            {
+              team: "Clemson",
+              name: "Carter Welling",
+              note: "Welling gets the edge over his teammates on this balanced, deep Clemson roster, due to his team lead in rebounds and blocks, both of which will be needed against this Iowa offense."
+            },
+            {
+              team: "Iowa",
+              name: "Bennett Stirtz",
+              note: "The leading minutes getter in the Big 10 also led the Hawkeyes in scoring with 20 ppg while shooting 37.6% from beyond on 6.6 3PA per game."
+            }
+          ],
+          profileStats: [
+            { label: "AdjO", team1: 116.5, team2: 121.7 },
+            { label: "AdjD", team1: 97.3, team2: 99.3 },
+            { label: "Tempo", team1: 64.3, team2: 63.1 },
+            { label: "3P%", team1: 34.1, team2: 35.7 },
+            { label: "REB%", team1: 51.4, team2: 50.8 }
+          ]
+        },
+        {
+          id: "south-3",
+          round: "First Round",
+          label: "5 vs 12",
+          team1: {
+            seed: 5,
+            name: "Vanderbilt",
+            shortName: "Vanderbilt",
+            record: "26-8",
+            conference: "SEC",
+            net: 13,
+            kenpom: 12,
+            adjOff: 126.7,
+            adjDef: 99.3,
+            tempo: 68.9
+          },
+          team2: {
+            seed: 12,
+            name: "McNeese State",
+            shortName: "McNeese State",
+            record: "28-5",
+            conference: "Southland",
+            net: 56,
+            kenpom: 66,
+            adjOff: 114.3,
+            adjDef: 101.8,
+            tempo: 66.2
+          },
+          pick: "Vanderbilt",
+          confidence: "Medium",
+          upsetLabel: "Low Upset Risk",
+          swingFactor: "Vanderbilt's pace and space offense should be the difference here, unless McNeese can slow them down.",
+          whyTeam1Wins: "Vanderbilt wins through its high powered offense, ranked 13th in points per game in the country, and cruises to a second round matchup with Nebraska or Troy.",
+          whyTeam2Wins: "McNeese's strong defense finds a way to curb this dangerous Vanderbilt offense, while taking care of the ball to avoid giving the Commodores fast break opportunities.",
+          players: [
+            {
+              team: "Vanderbilt",
+              name: "Tyler Nickel",
+              note: "The sharpshooting forward may not lead the Commodores in scoring, but his 7 3-point attempts per game on 40% shooting makes him a huge stretch player for this electric Vanderbilt offense."
+            },
+            {
+              team: "McNeese",
+              name: "Javohn Garcia",
+              note: "The senior guard may be the team's best defender as well as a top producer on the other end, and stands to have the biggest impact as the spearhead of this defense as they attempt to slow down Vandy."
+            }
+          ],
+          profileStats: [
+            { label: "AdjO", team1: 126.7, team2: 114.3 },
+            { label: "AdjD", team1: 99.3, team2: 101.8 },
+            { label: "Tempo", team1: 68.9, team2: 66.2 },
+            { label: "3P%", team1: 35.5, team2: 31.9 },
+            { label: "REB%", team1: 50.3, team2: 49.7 }
+          ]
+        },
+        {
+          id: "south-4",
+          round: "First Round",
+          label: "4 vs 13",
+          team1: {
+            seed: 4,
+            name: "Nebraska",
+            shortName: "UNL",
+            record: "26-6",
+            conference: "Big 10",
+            net: 14,
+            kenpom: 14,
+            adjOff: 118.5,
+            adjDef: 92.3,
+            tempo: 66.8
+          },
+          team2: {
+            seed: 13,
+            name: "Troy",
+            shortName: "Troy",
+            record: "22-11",
+            conference: "Sun Belt",
+            net: 125,
+            kenpom: 141,
+            adjOff: 110.7,
+            adjDef: 108.9,
+            tempo: 65
+          },
+          pick: "Nebraska",
+          confidence: "Medium",
+          upsetLabel: "Toss-Up",
+          swingFactor: "Three point shooting, on both sides, as each team is heavily reliant on them to drive their offenses.",
+          whyTeam1Wins: "Nebraska's experience from Big 10 competition and the sheer desperation and support from the Huskers traveling fanbase should carry them to their first ever NCAA tournament win Thursday morning.",
+          whyTeam2Wins: "Troy's three point shooting outguns that of the Huskers while exploiting Nebraska's nerves about securing their first ever tournament win, leading to an upset and another disappointment for UNL.",
+          players: [
+            {
+              team: "Nebraska",
+              name: "Pryce Sandfort",
+              note: "The Huskers' leading scorer is a sniper from deep and one of the best shooters the school has had in its long but limited college basketball history. Look for him to come out gunning Thursday."
+            },
+            {
+              team: "Troy",
+              name: "Thomas Dowd",
+              note: "Another gunner like Sandfort, Dowd will have to sink as many threes as he can to keep up with the firepower Nebraska will bring to this matchup on the other end. With some help from twins Cooper and Cobi Campbell, he may just have enough to spoil Huskers' dreams everywhere."
+            }
+          ],
+          profileStats: [
+            { label: "AdjO", team1: 118.5, team2: 110.7 },
+            { label: "AdjD", team1: 92.3, team2: 108.9 },
+            { label: "Tempo", team1: 66.8, team2: 65 },
+            { label: "3P%", team1: 35.3, team2: 33.5 },
+            { label: "REB%", team1: 50.2, team2: 51.8 }
+          ]
+        },
+        {
+          id: "south-5",
+          round: "First Round",
+          label: "6 vs 11",
+          team1: {
+            seed: 6,
+            name: "North Carolina",
+            shortName: "UNC",
+            record: "24-8",
+            conference: "ACC",
+            net: 24,
+            kenpom: 30,
+            adjOff: 121.3,
+            adjDef: 100.5,
+            tempo: 68
+          },
+          team2: {
+            seed: 11,
+            name: "VCU",
+            shortName: "VCU",
+            record: "27-7",
+            conference: "Atlantic 10",
+            net: 43,
+            kenpom: 44,
+            adjOff: 119.9,
+            adjDef: 102.5,
+            tempo: 68.6
+          },
+          pick: "UNC",
+          confidence: "Low",
+          upsetLabel: "Toss-Up",
+          swingFactor: "How much does the rest of this UNC roster have in the tank without star freshman Caleb Wilson?",
+          whyTeam1Wins: "UNC proves they can win without Wilson on the strength of their depth and high-end talent, cruising to a win over scrappy VCU.",
+          whyTeam2Wins: "VCU exploits the undermanned UNC roster in the wake of Wilson's season-ending injury, upsetting the Tarheels with their balanced attack led by Terrence Hill.",
+          players: [
+            {
+              team: "UNC",
+              name: "Seth Trimble",
+              note: "An aggressive dog of a guard who has the grit and talent and mental fortitude to carry this Tarheels team in Wilson's absence."
+            },
+            {
+              team: "VCU",
+              name: "Terrence Hill Jr.",
+              note: "Hill Jr. is the nominal leader and top scorer for this balanced, capable VCU squad, and should be a crucial piece of their efforts to upset UNC Thursday."
+            }
+          ],
+          profileStats: [
+            { label: "AdjO", team1: 121.3, team2: 119.9 },
+            { label: "AdjD", team1: 100.5, team2: 102.5 },
+            { label: "Tempo", team1: 68, team2: 68.6 },
+            { label: "3P%", team1: 34.5, team2: 36.7 },
+            { label: "REB%", team1: 52.6, team2: 51.7 }
+          ]
+        },
+        
       ]
     }
   ]
