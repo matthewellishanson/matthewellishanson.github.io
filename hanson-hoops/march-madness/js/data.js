@@ -767,6 +767,174 @@ const bracketData = {
             { label: "REB%", team1: 56.7, team2: 49.5 }
           ]
         },
+        {
+          id: "south-7",
+          round: "First Round",
+          label: "7 vs 10",
+          team1: {
+            seed: 7,
+            name: "Saint Mary's",
+            shortName: "Saint Mary's",
+            record: "27-5",
+            conference: "WCC",
+            net: 22,
+            kenpom: 24,
+            adjOff: 120.3,
+            adjDef: 97.3,
+            tempo: 65.2
+          },
+          team2: {
+            seed: 10,
+            name: "Texas A&M",
+            shortName: "Texas A&M",
+            record: "21-11",
+            conference: "SEC",
+            net: 44,
+            kenpom: 39,
+            adjOff: 119.7,
+            adjDef: 101.1,
+            tempo: 70.5
+          },
+          pick: "Saint Mary's",
+          confidence: "Low",
+          upsetLabel: "Toss-Up",
+          swingFactor: "Can Saint Mary's hot 3-point shooting - they're 10th in 3-point percentage in the country - sustain and keep up with the Aggies' explosive offense, ranked 9th in the nation?",
+          whyTeam1Wins: "",
+          whyTeam2Wins: "",
+          players: [
+            {
+              team: "Saint Mary's",
+              name: "Paulius Murauskas",
+              note: "The Gaels are a European-heavy team led by Murauskas, who put up 18.8 ppg and 7.7 rpg this season as a junior and will have to be great to get Saint Mary's into the second round over this A&M team that is very capable of upsetting them."
+            },
+            {
+              team: "Texas A&M",
+              name: "Rashaun Agee",
+              note: "One of nine seniors on this A&M squad, Agee led the team's balanced attack with 14.7 ppg and 8.9 rpg."
+            }
+          ],
+          profileStats: [
+            { label: "AdjO", team1: 120.3, team2: 119.7 },
+            { label: "AdjD", team1: 97.3, team2: 101.1 },
+            { label: "Tempo", team1: 65.2, team2: 70.5 },
+            { label: "3P%", team1: 38.9, team2: 36.4 },
+            { label: "REB%", team1: 57.9, team2: 49.9 }
+          ]
+        },
+        {
+          id: "south-8",
+          round: "First Round",
+          label: "2 vs 15",
+          team1: {
+            seed: 2,
+            name: "Houston",
+            shortName: "Houston",
+            record: "28-6",
+            conference: "Big 12",
+            net: 5,
+            kenpom: 5,
+            adjOff: 124.8,
+            adjDef: 91.4,
+            tempo: 63.4
+          },
+          team2: {
+            seed: 15,
+            name: "Idaho",
+            shortName: "Idaho",
+            record: "21-14",
+            conference: "Big Sky",
+            net: 145,
+            kenpom: 149,
+            adjOff: 108.7,
+            adjDef: 107.3,
+            tempo: 67.8
+          },
+          pick: "Houston",
+          confidence: "Very High",
+          upsetLabel: "Very Low Upset Risk",
+          swingFactor: "Houston's suffocating defensive scheme and a roster built to execute it.",
+          whyTeam1Wins: "Under Kelvin Sampson, the Cougars have become one of the flagship defensive basketball teams in the nation, and once again have a roster perfectly suited to their scrappy, tough, bruising style of play. Expect big things and an easy round 1 victory from this team.",
+          whyTeam2Wins: "Potato power? I don't know, honestly, this one feels pretty lopsided on paper. But it's March, and madness has been known to occur this time of year, so you can't count any team out, even in a matchup as uneven as this one.",
+          players: [
+            {
+              team: "Houston",
+              name: "Kingston Flemings",
+              note: "Arguably the best NBA prospect Houston has produced since Hakeem Olajuwon, this surefire lottery pick has led the Cougars in scoring as a freshman point guard while holding his own on the other end despite a wiry, slight frame."
+            },
+            {
+              team: "Idaho",
+              name: "Jackson Rasmussen",
+              note: "The 6'7\" freshman and leading scorer for the Vandals would have to be exceptional holding his own against Houston's big, bruising bigs for Idaho to have any shot at an upset."
+            }
+          ],
+          profileStats: [
+            { label: "AdjO", team1: 124.8, team2: 108.7 },
+            { label: "AdjD", team1: 91.4, team2: 107.3 },
+            { label: "Tempo", team1: 63.4, team2: 67.8 },
+            { label: "3P%", team1: 34.9, team2: 35.6 },
+            { label: "REB%", team1: 52.2, team2: 51.8 }
+          ]
+        }
+      ]
+    },
+    {
+      name: "West",
+      slug: "west",
+      games: [
+        {
+          id: "west-1",
+          round: "First Round",
+          label: "1 vs 16",
+          team1: {
+            seed: 1,
+            name: "Arizona",
+            shortName: "Arizona",
+            record: "32-2",
+            conference: "Big 12",
+            net: 3,
+            kenpom: 2,
+            adjOff: 127.6,
+            adjDef: 90,
+            tempo: 69.9
+          },
+          team2: {
+            seed: 16,
+            name: "Long Island",
+            shortName: "LIU",
+            record: "",
+            conference: "NEC",
+            net: 198,
+            kenpom: 216,
+            adjOff: 105.6,
+            adjDef: 109.6,
+            tempo: 67.9
+          },
+          pick: "Arizona",
+          confidence: "Very High",
+          upsetLabel: "Very Low Upset Risk",
+          swingFactor: "Only direct intervention from God Himself could swing this one in Long Island's favor. Arizona may be the eventual champion, so there's very little room for error for their 16-seed opponent this round, and even a perfect showing from the Sharks might still not be enough to beat the Wildcats.",
+          whyTeam1Wins: "Arizona wins because they're as deep and talented a team as there is in the country this season.",
+          whyTeam2Wins: "Long Island wins because leading scorer Jamal Fuller goes bananas with a 40-point masterpiece... or something crazy unlikely like that.",
+          players: [
+            {
+              team: "Arizona",
+              name: "Brayden Burries",
+              note: "On a loaded, experienced, title contending Wildcats team, Burries may have the highest potential for the NBA, with some mock drafts elevating him into the top half of this year's stacked lottery - he'll have a chance to prove he belongs in that elite talent pool during what should be a lengthy Arizona run this tournament."
+            },
+            {
+              team: "Long Island",
+              name: "Jamal Fuller",
+              note: "Like I said, Long Island's leading scorer may need to put up Herculean numbers to pull off the upset against Arizona. Crazier things have happened in this tournament, though, and Fuller is a legit number one option for the Sharks, so I guess I'm saying there's a chance."
+            }
+          ],
+          profileStats: [
+            { label: "AdjO", team1: 127.6, team2: 105.6 },
+            { label: "AdjD", team1: 90, team2: 109.6 },
+            { label: "Tempo", team1: 69.9, team2: 67.9 },
+            { label: "3P%", team1: 36, team2: 36.1 },
+            { label: "REB%", team1: 57.3, team2: 51.3 }
+          ]
+        }
       ]
     }
   ]
