@@ -934,7 +934,169 @@ const bracketData = {
             { label: "3P%", team1: 36, team2: 36.1 },
             { label: "REB%", team1: 57.3, team2: 51.3 }
           ]
-        }
+        },
+        {
+          id: "west-2",
+          round: "First Round",
+          label: "8 vs 9",
+          team1: {
+            seed: 8,
+            name: "Villanova",
+            shortName: "Villanova",
+            record: "24-8",
+            conference: "Big East",
+            net: 35,
+            kenpom: 33,
+            adjOff: 120.3,
+            adjDef: 100.4,
+            tempo: 65.3
+          },
+          team2: {
+            seed: 9,
+            name: "Utah State",
+            shortName: "Utah State",
+            record: "28-6",
+            conference: "MWC",
+            net: 26,
+            kenpom: 29,
+            adjOff: 122.2,
+            adjDef: 101.4,
+            tempo: 67.7
+          },
+          pick: "Utah State",
+          confidence: "Low",
+          upsetLabel: "High Upset Risk",
+          swingFactor: "Can a turnover prone Villanova squad hold onto the ball against a ball-hawking Utah State defense, and will the threes fall for the Wildcats?",
+          whyTeam1Wins: "Villanova wins by controlling the ball and hitting their threes at volume.",
+          whyTeam2Wins: "Utah State disrupts Villanova head coach Kevin Willard's offense through physical, point-of-attack defense and creating turnovers, and senior guard MJ Collins has a strong game to lead the Aggies' offense.",
+          players: [
+            {
+              team: "Villanova",
+              name: "Acaden Lewis",
+              note: "As freshman point guard and leading passer for the Wildcats with 5.3 APG, Lewis will be critical to withstanding the ball pressure from the Aggies and running the Wildcats offense smoothly in the face of Utah State's turnover-generating defense."
+            },
+            {
+              team: "Utah St",
+              name: "MJ Collins",
+              note: "Alongside second option and backcourt running mate Mason Falsley, the Aggies' leading scorer Collins will be essential to their upset hopes on both ends of the floor, but especially as the vanguard of their offense against a proven Villanova defense."
+            }
+          ],
+          profileStats: [
+            { label: "AdjO", team1: 120.3, team2: 122.2 },
+            { label: "AdjD", team1: 100.4, team2: 101.4 },
+            { label: "Tempo", team1: 65.3, team2: 67.7 },
+            { label: "3P%", team1: 35.3, team2: 35.8 },
+            { label: "REB%", team1: 49.8, team2: 50.9 }
+          ]
+        },
+        {
+          id: "west-3",
+          round: "First Round",
+          label: "5 vs 12",
+          team1: {
+            seed: 5,
+            name: "Wisconsin",
+            shortName: "Wisconsin",
+            record: "24-11",
+            conference: "Big 10",
+            net: 25,
+            kenpom: 22,
+            adjOff: 124.9,
+            adjDef: 102.1,
+            tempo: 68.8
+          },
+          team2: {
+            seed: 12,
+            name: "High Point",
+            shortName: "High Point",
+            record: "30-4",
+            conference: "Big South",
+            net: 75,
+            kenpom: 89,
+            adjOff: 117.2,
+            adjDef: 108.1,
+            tempo: 70
+          },
+          pick: "High Point",
+          confidence: "Low",
+          upsetLabel: "High Upset Risk",
+          swingFactor: "Can Wisconsin slow down the formidable mid-major challenger High Point's powerful, balanced offense?",
+          whyTeam1Wins: "Wisconsin shows its power conference meddle by stamping out the 31-4 Panthers' best chance at their first ever tournament win, using their defense, Big 10-tested roster and tournament experience to thwart the upset.",
+          whyTeam2Wins: "High Point's no joke, and have a very real upset potential here. They're 6th in the country in free throws made and attempted, first in steals per game and fourth in points per game.",
+          players: [
+            {
+              team: "Wisconsin",
+              name: "Nick Boyd",
+              note: "The sharpshooter led the Badgers in scoring this season with 20.7 PPG on 36.5% 3-point shooting with a decent volume, taking 4.8 threes a game. His shot may decide this one."
+            },
+            {
+              team: "High Point",
+              name: "Owen Aquino",
+              note: "The only player on the Panthers to average more than 2 stocks (steals + blocks) per game, Aquino's size and defense will be put to the test against the Badgers in this first round."
+            }
+          ],
+          profileStats: [
+            { label: "AdjO", team1: 124.9, team2: 117.2 },
+            { label: "AdjD", team1: 102.1, team2: 108.1 },
+            { label: "Tempo", team1: 68.8, team2: 70 },
+            { label: "3P%", team1: 35.6, team2: 36.2 },
+            { label: "REB%", team1: 50.4, team2: 50.1 }
+          ]
+        },
+        {
+          id: "west-4",
+          round: "First Round",
+          label: "4 vs 13",
+          team1: {
+            seed: 4,
+            name: "Arkansas",
+            shortName: "Arkansas",
+            record: "27-8",
+            conference: "SEC",
+            net: 15,
+            kenpom: 15,
+            adjOff: 127.9,
+            adjDef: 101.7,
+            tempo: 71.2
+          },
+          team2: {
+            seed: 13,
+            name: "Hawaii",
+            shortName: "Hawaii",
+            record: "24-9",
+            conference: "Big West",
+            net: 101,
+            kenpom: 109,
+            adjOff: 107.1,
+            adjDef: 101.5,
+            tempo: 69.8
+          },
+          pick: "Arkansas",
+          confidence: "Medium",
+          upsetLabel: "Low Upset Risk",
+          swingFactor: "Arkansas' ability to leverage its high scoring backcourt against Hawaii will make or break their first round chances. Darius Acuff will be key here.",
+          whyTeam1Wins: "Arkansas' guards are some of the best in the country, led by Acuff, who projects to be a top pick in this year's NBA Draft.",
+          whyTeam2Wins: "Hawaii's frontcourt, led by 7-foot senior Isaac Johnson, will be critical if they're going to knock off the Razorbacks Thursday.",
+          players: [
+            {
+              team: "Arkansas",
+              name: "Darius Acuff",
+              note: "The presumptive top 10 pick should be instrumental to the Razorbacks' chances this March, and ought to have a big tournament debut against a Hawaii defense that hasn't faced anyone of his caliber all season."
+            },
+            {
+              team: "Hawaii",
+              name: "Isaac Johnson",
+              note: "The 7-footer will be a huge key to Hawaii's gameplan against the Razorbacks. If he can stay on the court and not get played off from foul trouble or not being able to keep up with Arkansas' speedy, rangy backcourt, then the Rainbow Warriors have a shot to stay in this game."
+            }
+          ],
+          profileStats: [
+            { label: "AdjO", team1: 127.9, team2: 107.1 },
+            { label: "AdjD", team1: 101.7, team2: 101.5 },
+            { label: "Tempo", team1: 71.2, team2: 69.8 },
+            { label: "3P%", team1: 38.3, team2: 31.6 },
+            { label: "REB%", team1: 51.2, team2: 53.7 }
+          ]
+        },
       ]
     }
   ]
