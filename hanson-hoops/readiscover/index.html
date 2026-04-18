@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/hanson-hoops/readiscover/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>readiscover-v1</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background:
+          radial-gradient(circle at top, rgba(242, 194, 48, 0.12), transparent 24%),
+          radial-gradient(circle at 85% 20%, rgba(242, 194, 48, 0.08), transparent 18%),
+          #080808;
+        color: #f5f1e8;
+      }
+
+      body.rd-app-mounted #boot-splash {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #boot-splash {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        padding: 32px 20px;
+        transition: opacity 180ms ease;
+      }
+
+      .rd-instant-boot__panel {
+        width: min(420px, 100%);
+        padding: 24px 22px;
+        border: 1px solid rgba(242, 194, 48, 0.18);
+        border-radius: 24px;
+        background:
+          linear-gradient(180deg, rgba(18, 18, 18, 0.96), rgba(10, 10, 10, 0.92)),
+          rgba(10, 10, 10, 0.92);
+        box-shadow:
+          0 20px 50px rgba(0, 0, 0, 0.32),
+          0 0 0 1px rgba(242, 194, 48, 0.05);
+        backdrop-filter: blur(14px);
+      }
+
+      .rd-instant-boot__eyebrow {
+        margin: 0 0 8px;
+        color: #f2c230;
+        font: 700 0.74rem/1.2 Arial, Helvetica, sans-serif;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .rd-instant-boot__title {
+        margin: 0 0 10px;
+        color: #f5f1e8;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        line-height: 1.06;
+      }
+
+      .rd-instant-boot__copy {
+        margin: 0;
+        color: rgba(245, 241, 232, 0.74);
+        font: 400 0.96rem/1.6 Georgia, "Times New Roman", serif;
+      }
+    </style>
+    <script type="module" crossorigin src="/hanson-hoops/readiscover/assets/index-BpkOVsGM.js"></script>
+    <link rel="modulepreload" crossorigin href="/hanson-hoops/readiscover/assets/jsx-runtime-Bazp9XYe.js">
+    <link rel="stylesheet" crossorigin href="/hanson-hoops/readiscover/assets/index-CW4OU4Ym.css">
+  </head>
+  <body>
+    <div id="boot-splash" aria-live="polite">
+      <div class="rd-instant-boot__panel">
+        <p class="rd-instant-boot__eyebrow">READiscover</p>
+        <h1 class="rd-instant-boot__title" id="boot-splash-title">Loading story theater</h1>
+        <p class="rd-instant-boot__copy">
+          Preparing the playback shell, text cues, and active media stage.
+        </p>
+      </div>
+    </div>
+    <div id="root"></div>
+    <script>
+      (function () {
+        const titleNode = document.getElementById("boot-splash-title");
+        if (!titleNode) {
+          return;
+        }
+
+        const normalizeBasePath = function (basePath) {
+          if (!basePath || basePath === "/") {
+            return "/";
+          }
+
+          return basePath.endsWith("/") ? basePath : basePath + "/";
+        };
+        const normalizeRoutePath = function (routePath) {
+          const normalizedPath = String(routePath || "/").replace(/\/{2,}/g, "/").trim();
+
+          if (!normalizedPath || normalizedPath === "/") {
+            return "/";
+          }
+
+          const withLeadingSlash = normalizedPath.startsWith("/") ? normalizedPath : "/" + normalizedPath;
+
+          return withLeadingSlash.endsWith("/")
+            ? withLeadingSlash.slice(0, -1)
+            : withLeadingSlash;
+        };
+        const stripBasePath = function (pathname, basePath) {
+          const normalizedPath = normalizeRoutePath(pathname);
+          const normalizedBasePath = normalizeBasePath(basePath);
+
+          if (normalizedBasePath === "/") {
+            return normalizedPath;
+          }
+
+          const basePrefix = normalizedBasePath.replace(/\/$/, "");
+
+          if (!normalizedPath.startsWith(basePrefix)) {
+            return normalizedPath;
+          }
+
+          return normalizeRoutePath(normalizedPath.slice(basePrefix.length) || "/");
+        };
+        const getRoutePathFromHash = function (hash) {
+          const normalizedHash = String(hash || "").replace(/^#/, "").trim();
+          return normalizedHash ? normalizeRoutePath(normalizedHash) : "/";
+        };
+
+        const basePath = "/hanson-hoops/readiscover/";
+        const isChartsSandbox = stripBasePath(window.location.pathname, basePath) === "/charts-sandbox"
+          || getRoutePathFromHash(window.location.hash) === "/charts-sandbox";
+
+        titleNode.textContent = isChartsSandbox
+          ? "Loading charts sandbox"
+          : "Loading story theater";
+      }());
+    </script>
+  </body>
+</html>
