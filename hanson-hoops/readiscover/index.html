@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>readiscover-v1</title>
     <style>
+      /* This inline CSS exists so the first paint already looks branded before
+         Vite has loaded the real stylesheet bundle. */
       :root {
         color-scheme: dark;
       }
@@ -88,6 +90,8 @@
     <div id="root"></div>
     <script>
       (function () {
+        // Duplicate a tiny amount of route logic here so the pre-React splash can
+        // show the right loading title even before the app bundle executes.
         const titleNode = document.getElementById("boot-splash-title");
         if (!titleNode) {
           return;
