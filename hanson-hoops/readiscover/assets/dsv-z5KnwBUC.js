@@ -1,1 +1,0 @@
-import{c as e,d as t,l as n}from"./src-DeQ51hjN.js";var r=t(`	`);r.parse,r.parseRows,r.format,r.formatBody,r.formatRows,r.formatRow,r.formatValue;function i(t){return function(n,r,i){return arguments.length===2&&typeof r==`function`&&(i=r,r=void 0),e(n,r).then(function(e){return t(e,i)})}}var a=i(n);export{a as t};

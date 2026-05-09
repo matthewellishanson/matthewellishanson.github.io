@@ -1,0 +1,1 @@
+import{i as e,n as t,t as n}from"./src--2Y2FgwS.js";var r=e(`	`);r.parse,r.parseRows,r.format,r.formatBody,r.formatRows,r.formatRow,r.formatValue;function i(e){return function(t,r,i){return arguments.length===2&&typeof r==`function`&&(i=r,r=void 0),n(t,r).then(function(t){return e(t,i)})}}var a=i(t);export{a as t};
