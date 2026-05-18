@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/hanson-hoops/readiscover/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>readiscover-v1</title>
+    <title>READiscover Media</title>
     <style>
       /* This inline CSS exists so the first paint already looks branded before
          Vite has loaded the real stylesheet bundle. */
@@ -73,17 +73,17 @@
         font: 400 0.96rem/1.6 Georgia, "Times New Roman", serif;
       }
     </style>
-    <script type="module" crossorigin src="/hanson-hoops/readiscover/assets/index-ZtsjmMf7.js"></script>
-    <link rel="modulepreload" crossorigin href="/hanson-hoops/readiscover/assets/jsx-runtime-Bazp9XYe.js">
-    <link rel="stylesheet" crossorigin href="/hanson-hoops/readiscover/assets/index-B84JkFwB.css">
+    <script type="module" crossorigin src="/hanson-hoops/readiscover/assets/index-9Tr4a-ZR.js"></script>
+    <link rel="modulepreload" crossorigin href="/hanson-hoops/readiscover/assets/jsx-runtime-DPurpXpC.js">
+    <link rel="stylesheet" crossorigin href="/hanson-hoops/readiscover/assets/index-pEzc0ox-.css">
   </head>
   <body>
     <div id="boot-splash" aria-live="polite">
       <div class="rd-instant-boot__panel">
         <p class="rd-instant-boot__eyebrow">READiscover</p>
-        <h1 class="rd-instant-boot__title" id="boot-splash-title">Loading story theater</h1>
-        <p class="rd-instant-boot__copy">
-          Preparing the playback shell, text cues, and active media stage.
+        <h1 class="rd-instant-boot__title" id="boot-splash-title">Loading READiscover Media</h1>
+        <p class="rd-instant-boot__copy" id="boot-splash-copy">
+          Preparing the landing page, demo links, and project overview.
         </p>
       </div>
     </div>
@@ -93,7 +93,8 @@
         // Duplicate a tiny amount of route logic here so the pre-React splash can
         // show the right loading title even before the app bundle executes.
         const titleNode = document.getElementById("boot-splash-title");
-        if (!titleNode) {
+        const copyNode = document.getElementById("boot-splash-copy");
+        if (!titleNode || !copyNode) {
           return;
         }
 
@@ -139,12 +140,25 @@
         };
 
         const basePath = "/hanson-hoops/readiscover/";
-        const isChartsSandbox = stripBasePath(window.location.pathname, basePath) === "/charts-sandbox"
-          || getRoutePathFromHash(window.location.hash) === "/charts-sandbox";
+        const pathRoute = stripBasePath(window.location.pathname, basePath);
+        const hashRoute = window.location.hash ? getRoutePathFromHash(window.location.hash) : null;
+        const activeRoute = hashRoute || pathRoute;
+        const usesLegacyStoryBase = normalizeBasePath(basePath) === "/hanson-hoops/readiscover/";
+        const isChartsSandbox = pathRoute === "/charts-sandbox" || hashRoute === "/charts-sandbox";
+        const isStoryRoute = activeRoute.indexOf("/stories/") === 0
+          || (usesLegacyStoryBase && activeRoute === "/");
 
         titleNode.textContent = isChartsSandbox
           ? "Loading charts sandbox"
-          : "Loading story theater";
+          : isStoryRoute
+            ? "Loading story theater"
+            : "Loading READiscover Media";
+
+        copyNode.textContent = isChartsSandbox
+          ? "Preparing the chart review surface and data views."
+          : isStoryRoute
+            ? "Preparing the playback shell, text cues, and active media stage."
+            : "Preparing the landing page, demo links, and project overview.";
       }());
     </script>
   </body>
