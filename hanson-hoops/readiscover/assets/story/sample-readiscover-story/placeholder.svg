@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">READiscover Studio sample visual</title>
+  <desc id="desc">Abstract gold reading lines moving across a dark blue field.</desc>
+  <rect width="1200" height="800" fill="#101827"/>
+  <circle cx="930" cy="175" r="110" fill="#d6aa55" opacity=".18"/>
+  <path d="M140 210h700M140 310h900M140 410h620M140 510h820" stroke="#f3ead8" stroke-width="28" stroke-linecap="round" opacity=".9"/>
+  <path d="M140 610h500" stroke="#d6aa55" stroke-width="28" stroke-linecap="round"/>
+</svg>
